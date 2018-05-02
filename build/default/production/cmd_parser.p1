@@ -1,0 +1,634 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"5 cmd_parser.c
+[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 .. ]
+[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_COMM_CHECK CMD_PING  ]
+"24 cmd_parser.h
+[u S6 `uc -> 10 `i `i 1 ]
+[n S6 . paramString paramI ]
+"29
+[s S7 `E272 1 `S6 1 `S6 1 ]
+[n S7 CMD_STRUCT c p1 p2 ]
+"41 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
+[v _strtok `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"46
+[v _stricmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
+"55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
+[v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
+"42 cmd_parser.h
+[v _startRelMove `(i ~T0 @X0 0 ef1`i ]
+"43
+[v _startAbsMove `(i ~T0 @X0 0 ef1`i ]
+"46
+[v _getPosition `(i ~T0 @X0 0 ef1`i ]
+"45
+[v _zeroPosition `(i ~T0 @X0 0 ef ]
+"51
+[v _setDrvPeak `(i ~T0 @X0 0 ef1`i ]
+"52
+[v _setDrvGain `(i ~T0 @X0 0 ef1`i ]
+"53
+[v _setDrvPiezoOnTime `(i ~T0 @X0 0 ef1`i ]
+"58
+[v _setHeaterPreTime `(i ~T0 @X0 0 ef1`i ]
+"59
+[v _setHeaterPostTime `(i ~T0 @X0 0 ef1`i ]
+"60
+[v _setLEDBrightnessRange `(i ~T0 @X0 0 ef2`i`i ]
+"61
+[v _setLEDPwr `(i ~T0 @X0 0 ef2`i`i ]
+"62
+[v _setHeaterToggle `(i ~T0 @X0 0 ef2`i`i ]
+"66
+[v _setActive `(i ~T0 @X0 0 ef2`i`i ]
+"67
+[v _setMoveMask `(i ~T0 @X0 0 ef2`i`i ]
+"68
+[v _getActive `(i ~T0 @X0 0 ef ]
+"69
+[v _getMoveMask `(i ~T0 @X0 0 ef ]
+"70
+[v _getMotionStatus `(i ~T0 @X0 0 ef ]
+"71
+[v _commCheck `(i ~T0 @X0 0 ef ]
+"195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stdarg.h: 7: typedef void * va_list[1];
+[; ;stdarg.h: 10: extern void * __va_start(void);
+[; ;stdarg.h: 13: extern void * __va_arg(void *, ...);
+[; ;stdio.h: 43: struct __prbuf
+[; ;stdio.h: 44: {
+[; ;stdio.h: 45: char * ptr;
+[; ;stdio.h: 46: void (* func)(char);
+[; ;stdio.h: 47: };
+[; ;errno.h: 29: extern int errno;
+[; ;conio.h: 12: extern void init_uart(void);
+[; ;conio.h: 14: extern char getch(void);
+[; ;conio.h: 15: extern char getche(void);
+[; ;conio.h: 16: extern void putch(char);
+[; ;conio.h: 17: extern void ungetch(char);
+[; ;conio.h: 19: extern __bit kbhit(void);
+[; ;conio.h: 23: extern char * cgets(char *);
+[; ;conio.h: 24: extern void cputs(const char *);
+[; ;stdio.h: 88: extern int cprintf(char *, ...);
+[; ;stdio.h: 93: extern int _doprnt(struct __prbuf *, const register char *, register va_list);
+[; ;stdio.h: 183: extern char * gets(char *);
+[; ;stdio.h: 184: extern int puts(const char *);
+[; ;stdio.h: 185: extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
+[; ;stdio.h: 186: extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
+[; ;stdio.h: 187: extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
+[; ;stdio.h: 188: extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
+[; ;stdio.h: 189: extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
+[; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
+[; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
+[; ;stdio.h: 195: extern int printf(const char *, ...);
+[; ;stdlib.h: 7: typedef unsigned short wchar_t;
+[; ;stdlib.h: 15: typedef struct {
+[; ;stdlib.h: 16: int rem;
+[; ;stdlib.h: 17: int quot;
+[; ;stdlib.h: 18: } div_t;
+[; ;stdlib.h: 19: typedef struct {
+[; ;stdlib.h: 20: unsigned rem;
+[; ;stdlib.h: 21: unsigned quot;
+[; ;stdlib.h: 22: } udiv_t;
+[; ;stdlib.h: 23: typedef struct {
+[; ;stdlib.h: 24: long quot;
+[; ;stdlib.h: 25: long rem;
+[; ;stdlib.h: 26: } ldiv_t;
+[; ;stdlib.h: 27: typedef struct {
+[; ;stdlib.h: 28: unsigned long quot;
+[; ;stdlib.h: 29: unsigned long rem;
+[; ;stdlib.h: 30: } uldiv_t;
+[; ;stdlib.h: 53: extern double atof(const char *);
+[; ;stdlib.h: 54: extern double strtod(const char *, const char **);
+[; ;stdlib.h: 55: extern int atoi(const char *);
+[; ;stdlib.h: 56: extern unsigned xtoi(const char *);
+[; ;stdlib.h: 57: extern long atol(const char *);
+[; ;stdlib.h: 58: extern long strtol(const char *, char **, int);
+[; ;stdlib.h: 60: extern int rand(void);
+[; ;stdlib.h: 61: extern void srand(unsigned int);
+[; ;stdlib.h: 62: extern void * calloc(size_t, size_t);
+[; ;stdlib.h: 63: extern div_t div(int numer, int denom);
+[; ;stdlib.h: 64: extern udiv_t udiv(unsigned numer, unsigned denom);
+[; ;stdlib.h: 65: extern ldiv_t ldiv(long numer, long denom);
+[; ;stdlib.h: 66: extern uldiv_t uldiv(unsigned long numer,unsigned long denom);
+[; ;stdlib.h: 67: extern unsigned long _lrotl(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 68: extern unsigned long _lrotr(unsigned long value, unsigned int shift);
+[; ;stdlib.h: 69: extern unsigned int _rotl(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 70: extern unsigned int _rotr(unsigned int value, unsigned int shift);
+[; ;stdlib.h: 75: extern void * malloc(size_t);
+[; ;stdlib.h: 76: extern void free(void *);
+[; ;stdlib.h: 77: extern void * realloc(void *, size_t);
+[; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
+[; ;stdlib.h: 86: extern int atexit(void (*)(void));
+[; ;stdlib.h: 87: extern char * getenv(const char *);
+[; ;stdlib.h: 88: extern char ** environ;
+[; ;stdlib.h: 89: extern int system(char *);
+[; ;stdlib.h: 90: extern void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
+[; ;stdlib.h: 91: extern void * bsearch(const void *, void *, size_t, size_t, int(*)(const void *, const void *));
+[; ;stdlib.h: 92: extern int abs(int);
+[; ;stdlib.h: 93: extern long labs(long);
+[; ;stdlib.h: 95: extern char * itoa(char * buf, int val, int base);
+[; ;stdlib.h: 96: extern char * utoa(char * buf, unsigned val, int base);
+[; ;stdlib.h: 101: extern char * ltoa(char * buf, long val, int base);
+[; ;stdlib.h: 102: extern char * ultoa(char * buf, unsigned long val, int base);
+[; ;stdlib.h: 104: extern char * ftoa(float f, int * status);
+[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 16: extern void * memset(void *, int, size_t);
+[; ;string.h: 21: extern void * __builtin_memcpy(void *, const void *, size_t);
+[; ;string.h: 36: extern char * strcat(char *, const char *);
+[; ;string.h: 37: extern char * strcpy(char *, const char *);
+[; ;string.h: 38: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 39: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 40: extern char * strdup(const char *);
+[; ;string.h: 41: extern char * strtok(char *, const char *);
+[; ;string.h: 44: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 45: extern int strcmp(const char *, const char *);
+[; ;string.h: 46: extern int stricmp(const char *, const char *);
+[; ;string.h: 47: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 48: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 49: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 50: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 51: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 52: extern size_t strspn(const char *, const char *);
+[; ;string.h: 53: extern char * strstr(const char *, const char *);
+[; ;string.h: 54: extern char * stristr(const char *, const char *);
+[; ;string.h: 55: extern char * strerror(int);
+[; ;string.h: 56: extern size_t strlen(const char *);
+[; ;string.h: 57: extern char * strchr(const char *, int);
+[; ;string.h: 58: extern char * strichr(const char *, int);
+[; ;string.h: 59: extern char * strrchr(const char *, int);
+[; ;string.h: 60: extern char * strrichr(const char *, int);
+[; ;cmd_parser.h: 15: typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
+[; ;cmd_parser.h: 16: CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
+[; ;cmd_parser.h: 17: CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
+[; ;cmd_parser.h: 18: CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
+[; ;cmd_parser.h: 19: CMD_HEATER_TOGGLE,
+[; ;cmd_parser.h: 20: CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_COMM_CHECK,
+[; ;cmd_parser.h: 21: CMD_PING
+[; ;cmd_parser.h: 22: } cmd_list;
+"23 cmd_parser.h
+[v _errorOut `i ~T0 @X0 1 e ]
+[; ;cmd_parser.h: 23: int errorOut;
+[; ;cmd_parser.h: 24: typedef union {
+[; ;cmd_parser.h: 25: char paramString[10];
+[; ;cmd_parser.h: 26: int paramI;
+[; ;cmd_parser.h: 27: } param;
+[; ;cmd_parser.h: 29: struct CMD_STRUCT{
+[; ;cmd_parser.h: 30: cmd_list c;
+[; ;cmd_parser.h: 31: param p1;
+[; ;cmd_parser.h: 32: param p2;
+[; ;cmd_parser.h: 33: };
+[; ;cmd_parser.h: 35: int execCmd (struct CMD_STRUCT *s);
+[; ;cmd_parser.h: 36: void parseCmd(char cmdString[], struct CMD_STRUCT *s);
+[; ;cmd_parser.h: 41: void doMove(void);
+[; ;cmd_parser.h: 42: int startRelMove(int steps);
+[; ;cmd_parser.h: 43: int startAbsMove(int steps);
+[; ;cmd_parser.h: 44: int stop(void);
+[; ;cmd_parser.h: 45: int zeroPosition(void);
+[; ;cmd_parser.h: 46: int getPosition(int a);
+[; ;cmd_parser.h: 51: int setDrvPeak(int);
+[; ;cmd_parser.h: 52: int setDrvGain(int);
+[; ;cmd_parser.h: 53: int setDrvPiezoOnTime(int);
+[; ;cmd_parser.h: 58: int setHeaterPreTime(int);
+[; ;cmd_parser.h: 59: int setHeaterPostTime(int);
+[; ;cmd_parser.h: 60: int setLEDBrightnessRange(int gain, int topOrBottom);
+[; ;cmd_parser.h: 61: int setLEDPwr(int pwr, int topOrBottom);
+[; ;cmd_parser.h: 62: int setHeaterToggle(int num, int topOrB);
+[; ;cmd_parser.h: 66: int setActive(int probeNum, int onOff);
+[; ;cmd_parser.h: 67: int setMoveMask(int probeNum, int onOff);
+[; ;cmd_parser.h: 68: int getActive(void);
+[; ;cmd_parser.h: 69: int getMoveMask(void);
+[; ;cmd_parser.h: 70: int getMotionStatus(void);
+[; ;cmd_parser.h: 71: int commCheck(void);
+"5 cmd_parser.c
+[v _parseCmd `(v ~T0 @X0 1 ef2`*uc`*S7 ]
+{
+[; ;cmd_parser.c: 5: void parseCmd(char cmdString[], struct CMD_STRUCT *s){
+[e :U _parseCmd ]
+[v _cmdString `*uc ~T0 @X0 1 r1 ]
+[v _s `*S7 ~T0 @X0 1 r2 ]
+[f ]
+"6
+[v _paramIter `i ~T0 @X0 1 a ]
+[; ;cmd_parser.c: 6: int paramIter = 0;
+[e = _paramIter -> 0 `i ]
+[; ;cmd_parser.c: 7: for (char *p = strtok(cmdString," "); p != (0); p = strtok((0), " ")){
+"7
+{
+[v _p `*uc ~T0 @X0 1 a ]
+[e = _p ( _strtok (2 , _cmdString :s 1C ]
+[e $ != _p -> -> 0 `i `*uc 9  ]
+[e $U 10  ]
+[e :U 9 ]
+{
+[; ;cmd_parser.c: 9: if (paramIter == 0){
+"9
+[e $ ! == _paramIter -> 0 `i 12  ]
+{
+[; ;cmd_parser.c: 10: if(stricmp(p, "rel") == 0)
+"10
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 3C -> 0 `i 13  ]
+[; ;cmd_parser.c: 11: s->c = CMD_REL;
+"11
+[e = . *U _s 0 . `E272 2 ]
+[e $U 14  ]
+"12
+[e :U 13 ]
+[; ;cmd_parser.c: 12: else if(stricmp(p, "abs") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 4C -> 0 `i 15  ]
+[; ;cmd_parser.c: 13: s->c = CMD_ABS;
+"13
+[e = . *U _s 0 . `E272 1 ]
+[e $U 16  ]
+"14
+[e :U 15 ]
+[; ;cmd_parser.c: 14: else if(stricmp(p, "pos") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 5C -> 0 `i 17  ]
+[; ;cmd_parser.c: 15: s->c = CMD_P;
+"15
+[e = . *U _s 0 . `E272 3 ]
+[e $U 18  ]
+"16
+[e :U 17 ]
+[; ;cmd_parser.c: 16: else if(stricmp(p,"s") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 6C -> 0 `i 19  ]
+[; ;cmd_parser.c: 17: s->c = CMD_S;
+"17
+[e = . *U _s 0 . `E272 4 ]
+[e $U 20  ]
+"18
+[e :U 19 ]
+[; ;cmd_parser.c: 18: else if(stricmp(p,"setA") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 7C -> 0 `i 21  ]
+[; ;cmd_parser.c: 19: s->c = CMD_SETA;
+"19
+[e = . *U _s 0 . `E272 5 ]
+[e $U 22  ]
+"20
+[e :U 21 ]
+[; ;cmd_parser.c: 20: else if(stricmp(p,"setM") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 8C -> 0 `i 23  ]
+[; ;cmd_parser.c: 21: s->c = CMD_SETM;
+"21
+[e = . *U _s 0 . `E272 6 ]
+[e $U 24  ]
+"22
+[e :U 23 ]
+[; ;cmd_parser.c: 22: else if(stricmp(p,"z") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 9C -> 0 `i 25  ]
+[; ;cmd_parser.c: 23: s->c = CMD_ZERO;
+"23
+[e = . *U _s 0 . `E272 7 ]
+[e $U 26  ]
+"24
+[e :U 25 ]
+[; ;cmd_parser.c: 24: else if(stricmp(p,"drvPeak") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 10C -> 0 `i 27  ]
+[; ;cmd_parser.c: 25: s->c = CMD_DRV_PEAK;
+"25
+[e = . *U _s 0 . `E272 8 ]
+[e $U 28  ]
+"26
+[e :U 27 ]
+[; ;cmd_parser.c: 26: else if(stricmp(p,"drvGain") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 11C -> 0 `i 29  ]
+[; ;cmd_parser.c: 27: s->c = CMD_DRV_GAIN;
+"27
+[e = . *U _s 0 . `E272 9 ]
+[e $U 30  ]
+"28
+[e :U 29 ]
+[; ;cmd_parser.c: 28: else if(stricmp(p,"piezoontime") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 12C -> 0 `i 31  ]
+[; ;cmd_parser.c: 29: s->c = CMD_DRV_PIEZOONTIME;
+"29
+[e = . *U _s 0 . `E272 10 ]
+[e $U 32  ]
+"30
+[e :U 31 ]
+[; ;cmd_parser.c: 30: else if(stricmp(p,"heaterpretime") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 13C -> 0 `i 33  ]
+[; ;cmd_parser.c: 31: s->c = CMD_HEATER_PRETIME;
+"31
+[e = . *U _s 0 . `E272 11 ]
+[e $U 34  ]
+"32
+[e :U 33 ]
+[; ;cmd_parser.c: 32: else if(stricmp(p,"heaterposttime") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 14C -> 0 `i 35  ]
+[; ;cmd_parser.c: 33: s->c = CMD_HEATER_POSTTIME;
+"33
+[e = . *U _s 0 . `E272 12 ]
+[e $U 36  ]
+"34
+[e :U 35 ]
+[; ;cmd_parser.c: 34: else if(stricmp(p,"ledgain") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 15C -> 0 `i 37  ]
+[; ;cmd_parser.c: 35: s->c = CMD_HEATER_GAIN;
+"35
+[e = . *U _s 0 . `E272 13 ]
+[e $U 38  ]
+"36
+[e :U 37 ]
+[; ;cmd_parser.c: 36: else if(stricmp(p,"ledpwr") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 16C -> 0 `i 39  ]
+[; ;cmd_parser.c: 37: s->c = CMD_HEATER_PWR;
+"37
+[e = . *U _s 0 . `E272 14 ]
+[e $U 40  ]
+"38
+[e :U 39 ]
+[; ;cmd_parser.c: 38: else if(stricmp(p,"toggleheater") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 17C -> 0 `i 41  ]
+[; ;cmd_parser.c: 39: s->c = CMD_HEATER_TOGGLE;
+"39
+[e = . *U _s 0 . `E272 15 ]
+[e $U 42  ]
+"40
+[e :U 41 ]
+[; ;cmd_parser.c: 40: else if(stricmp(p,"getA") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 18C -> 0 `i 43  ]
+[; ;cmd_parser.c: 41: s->c = CMD_GET_ACTIVE;
+"41
+[e = . *U _s 0 . `E272 16 ]
+[e $U 44  ]
+"42
+[e :U 43 ]
+[; ;cmd_parser.c: 42: else if(stricmp(p,"getM") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 19C -> 0 `i 45  ]
+[; ;cmd_parser.c: 43: s->c = CMD_GET_MOVABLE;
+"43
+[e = . *U _s 0 . `E272 17 ]
+[e $U 46  ]
+"44
+[e :U 45 ]
+[; ;cmd_parser.c: 44: else if(stricmp(p,"mstatus") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 20C -> 0 `i 47  ]
+[; ;cmd_parser.c: 45: s->c = CMD_MOTION_STATUS;
+"45
+[e = . *U _s 0 . `E272 18 ]
+[e $U 48  ]
+"46
+[e :U 47 ]
+[; ;cmd_parser.c: 46: else if(stricmp(p,"comm") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 21C -> 0 `i 49  ]
+[; ;cmd_parser.c: 47: s->c = CMD_COMM_CHECK;
+"47
+[e = . *U _s 0 . `E272 19 ]
+[e $U 50  ]
+"48
+[e :U 49 ]
+[; ;cmd_parser.c: 48: else if(stricmp(p,"ping") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 22C -> 0 `i 51  ]
+[; ;cmd_parser.c: 49: s->c = CMD_PING;
+"49
+[e = . *U _s 0 . `E272 20 ]
+[e $U 52  ]
+"52
+[e :U 51 ]
+[; ;cmd_parser.c: 52: else
+[; ;cmd_parser.c: 53: s->c = CMD_NONE;
+"53
+[e = . *U _s 0 . `E272 0 ]
+[e :U 52 ]
+[e :U 50 ]
+[e :U 48 ]
+[e :U 46 ]
+[e :U 44 ]
+[e :U 42 ]
+[e :U 40 ]
+[e :U 38 ]
+[e :U 36 ]
+[e :U 34 ]
+[e :U 32 ]
+[e :U 30 ]
+[e :U 28 ]
+[e :U 26 ]
+[e :U 24 ]
+[e :U 22 ]
+[e :U 20 ]
+[e :U 18 ]
+[e :U 16 ]
+[e :U 14 ]
+"54
+}
+[; ;cmd_parser.c: 54: }
+[e $U 53  ]
+"55
+[e :U 12 ]
+[; ;cmd_parser.c: 55: else if(paramIter == 1){
+[e $ ! == _paramIter -> 1 `i 54  ]
+{
+[; ;cmd_parser.c: 56: s->p1.paramI = atoi(p);
+"56
+[e = . . *U _s 1 1 ( _atoi (1 -> _p `*Cuc ]
+"57
+}
+[; ;cmd_parser.c: 57: }
+[e $U 55  ]
+"58
+[e :U 54 ]
+[; ;cmd_parser.c: 58: else if(paramIter == 2){
+[e $ ! == _paramIter -> 2 `i 56  ]
+{
+[; ;cmd_parser.c: 60: s->p2.paramI = atoi(p);
+"60
+[e = . . *U _s 2 1 ( _atoi (1 -> _p `*Cuc ]
+"61
+}
+[e :U 56 ]
+"63
+[e :U 55 ]
+[e :U 53 ]
+[; ;cmd_parser.c: 61: }
+[; ;cmd_parser.c: 63: paramIter++;
+[e ++ _paramIter -> 1 `i ]
+"64
+}
+"7
+[e = _p ( _strtok (2 , -> -> 0 `i `*uc :s 2C ]
+[e $ != _p -> -> 0 `i `*uc 9  ]
+[e :U 10 ]
+"64
+}
+[; ;cmd_parser.c: 64: }
+[; ;cmd_parser.c: 65: }
+"65
+[e :UE 8 ]
+}
+"68
+[v _execCmd `(i ~T0 @X0 1 ef1`*S7 ]
+{
+[; ;cmd_parser.c: 68: int execCmd (struct CMD_STRUCT *s){
+[e :U _execCmd ]
+[v _s `*S7 ~T0 @X0 1 r1 ]
+[f ]
+[; ;cmd_parser.c: 69: errorOut = 1;
+"69
+[e = _errorOut -> 1 `i ]
+[; ;cmd_parser.c: 70: switch(s->c){
+"70
+[e $U 59  ]
+{
+[; ;cmd_parser.c: 71: case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+"71
+[e :U 60 ]
+[e = _errorOut ( _startRelMove (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 72: case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
+"72
+[e :U 61 ]
+[e = _errorOut ( _startAbsMove (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 73: case CMD_P: errorOut = getPosition(s->p1.paramI); break;
+"73
+[e :U 62 ]
+[e = _errorOut ( _getPosition (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 74: case CMD_ZERO: errorOut = zeroPosition(); break;
+"74
+[e :U 63 ]
+[e = _errorOut ( _zeroPosition ..  ]
+[e $U 58  ]
+[; ;cmd_parser.c: 77: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
+"77
+[e :U 64 ]
+[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 78: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
+"78
+[e :U 65 ]
+[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 79: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
+"79
+[e :U 66 ]
+[e = _errorOut ( _setDrvPiezoOnTime (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 82: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
+"82
+[e :U 67 ]
+[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 83: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
+"83
+[e :U 68 ]
+[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 84: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
+"84
+[e :U 69 ]
+[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 85: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
+"85
+[e :U 70 ]
+[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 86: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
+"86
+[e :U 71 ]
+[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 88: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
+"88
+[e :U 72 ]
+[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 89: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
+"89
+[e :U 73 ]
+[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 58  ]
+[; ;cmd_parser.c: 90: case CMD_GET_ACTIVE: errorOut = getActive(); break;
+"90
+[e :U 74 ]
+[e = _errorOut ( _getActive ..  ]
+[e $U 58  ]
+[; ;cmd_parser.c: 91: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
+"91
+[e :U 75 ]
+[e = _errorOut ( _getMoveMask ..  ]
+[e $U 58  ]
+[; ;cmd_parser.c: 92: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+"92
+[e :U 76 ]
+[e = _errorOut ( _getMotionStatus ..  ]
+[e $U 58  ]
+[; ;cmd_parser.c: 93: case CMD_COMM_CHECK: errorOut = commCheck(); break;
+"93
+[e :U 77 ]
+[e = _errorOut ( _commCheck ..  ]
+[e $U 58  ]
+[; ;cmd_parser.c: 94: case CMD_PING: printf("!\n"); break;
+"94
+[e :U 78 ]
+[e ( _printf :s 23C ]
+[e $U 58  ]
+[; ;cmd_parser.c: 95: default: printf("UNRECOGNIZED COMMAND!\n");
+"95
+[e :U 79 ]
+[e ( _printf :s 24C ]
+"102
+}
+[; ;cmd_parser.c: 102: }
+[e $U 58  ]
+"70
+[e :U 59 ]
+[e [\ . *U _s 0 , $ . `E272 2 60
+ , $ . `E272 1 61
+ , $ . `E272 3 62
+ , $ . `E272 7 63
+ , $ . `E272 8 64
+ , $ . `E272 9 65
+ , $ . `E272 10 66
+ , $ . `E272 11 67
+ , $ . `E272 12 68
+ , $ . `E272 13 69
+ , $ . `E272 14 70
+ , $ . `E272 15 71
+ , $ . `E272 5 72
+ , $ . `E272 6 73
+ , $ . `E272 16 74
+ , $ . `E272 17 75
+ , $ . `E272 18 76
+ , $ . `E272 19 77
+ , $ . `E272 20 78
+ 79 ]
+"102
+[e :U 58 ]
+[; ;cmd_parser.c: 104: return errorOut;
+"104
+[e ) _errorOut ]
+[e $UE 57  ]
+[; ;cmd_parser.c: 105: }
+"105
+[e :UE 57 ]
+}
+[p f _printf 8388608 ]
+[a 9C 122 0 ]
+[a 20C 109 115 116 97 116 117 115 0 ]
+[a 5C 112 111 115 0 ]
+[a 4C 97 98 115 0 ]
+[a 6C 115 0 ]
+[a 16C 108 101 100 112 119 114 0 ]
+[a 17C 116 111 103 103 108 101 104 101 97 116 101 114 0 ]
+[a 15C 108 101 100 103 97 105 110 0 ]
+[a 11C 100 114 118 71 97 105 110 0 ]
+[a 21C 99 111 109 109 0 ]
+[a 3C 114 101 108 0 ]
+[a 10C 100 114 118 80 101 97 107 0 ]
+[a 22C 112 105 110 103 0 ]
+[a 14C 104 101 97 116 101 114 112 111 115 116 116 105 109 101 0 ]
+[a 12C 112 105 101 122 111 111 110 116 105 109 101 0 ]
+[a 13C 104 101 97 116 101 114 112 114 101 116 105 109 101 0 ]
+[a 8C 115 101 116 77 0 ]
+[a 19C 103 101 116 77 0 ]
+[a 7C 115 101 116 65 0 ]
+[a 18C 103 101 116 65 0 ]
+[a 1C 32 0 ]
+[a 2C 32 0 ]
+[a 24C 85 78 82 69 67 79 71 78 73 90 69 68 32 67 79 77 77 65 78 68 33 10 0 ]
+[a 23C 33 10 0 ]
