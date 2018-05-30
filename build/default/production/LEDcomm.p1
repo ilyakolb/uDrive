@@ -7812,26 +7812,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
-[; ;tmr2.h: 102: void TMR2_Initialize(void);
-[; ;tmr2.h: 131: void TMR2_StartTimer(void);
-[; ;tmr2.h: 163: void TMR2_StopTimer(void);
-[; ;tmr2.h: 198: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 237: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 289: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 307: void TMR2_ISR(void);
-[; ;tmr2.h: 325: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 343: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 361: void TMR2_DefaultInterruptHandler(void);
-[; ;tmr0.h: 99: void TMR0_Initialize(void);
-[; ;tmr0.h: 128: void TMR0_StartTimer(void);
-[; ;tmr0.h: 160: void TMR0_StopTimer(void);
-[; ;tmr0.h: 195: uint8_t TMR0_Read8bitTimer(void);
-[; ;tmr0.h: 234: void TMR0_Write8bitTimer(uint8_t timerVal);
-[; ;tmr0.h: 271: void TMR0_Load8bitPeriod(uint8_t periodVal);
-[; ;tmr0.h: 290: void TMR0_ISR(void);
-[; ;tmr0.h: 309: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 327: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 345: void TMR0_DefaultInterruptHandler(void);
+[; ;tmr2.h: 104: void TMR2_Initialize(void);
+[; ;tmr2.h: 133: void TMR2_StartTimer(void);
+[; ;tmr2.h: 165: void TMR2_StopTimer(void);
+[; ;tmr2.h: 200: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 239: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 291: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 309: void TMR2_ISR(void);
+[; ;tmr2.h: 327: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 345: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 363: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr0.h: 102: void TMR0_Initialize(void);
+[; ;tmr0.h: 131: void TMR0_StartTimer(void);
+[; ;tmr0.h: 163: void TMR0_StopTimer(void);
+[; ;tmr0.h: 198: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 237: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 274: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 293: void TMR0_ISR(void);
+[; ;tmr0.h: 312: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 330: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 348: void TMR0_DefaultInterruptHandler(void);
 [; ;eusart.h: 76: extern volatile uint8_t eusartTxBufferRemaining;
 [; ;eusart.h: 77: extern volatile uint8_t eusartRxCount;
 [; ;eusart.h: 103: void EUSART_Initialize(void);
@@ -8248,9 +8248,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 1051 ]
-[; ;LEDcomm.c: 110: if (PORTCbits.RC3) printf("%d ", j);
+[; ;LEDcomm.c: 110: if (PORTCbits.RC6) printf("%d ", j);
 "110
-[e $ ! != -> . . _PORTCbits 0 3 `i -> -> -> 0 `i `Vuc `i 1053  ]
+[e $ ! != -> . . _PORTCbits 0 6 `i -> -> -> 0 `i `Vuc `i 1053  ]
 [e ( _printf , (. :s 1C _j ]
 [e :U 1053 ]
 [; ;LEDcomm.c: 116: if (j == 23) do { LATCbits.LATC1 = 1; } while(0);
@@ -8336,9 +8336,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 }
 [e :U 1070 ]
-[; ;LEDcomm.c: 136: readData |= (PORTCbits.RC3 << j);
+[; ;LEDcomm.c: 136: readData |= (PORTCbits.RC6 << j);
 "136
-[e =| _readData -> << -> . . _PORTCbits 0 3 `i _j `l ]
+[e =| _readData -> << -> . . _PORTCbits 0 6 `i _j `l ]
 [; ;LEDcomm.c: 138: do { LATAbits.LATA2 = 0; } while(0);
 "138
 [e :U 1074 ]
@@ -8392,8 +8392,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _LED_setBrightnessRange (2 , -> 1 `i _topOrBottom ]
 "155
 [v _readResult `i ~T0 @X0 1 a ]
-[; ;LEDcomm.c: 155: int readResult = LED_readConfig(1);
-[e = _readResult -> ( _LED_readConfig (1 -> 1 `i `i ]
+[; ;LEDcomm.c: 155: int readResult = LED_readConfig(topOrBottom);
+[e = _readResult -> ( _LED_readConfig (1 _topOrBottom `i ]
 [; ;LEDcomm.c: 157: LED_setBrightnessRange(oldConfigReg > 0, topOrBottom);
 "157
 [e ( _LED_setBrightnessRange (2 , -> > _oldConfigReg -> -> 0 `i `l `i _topOrBottom ]

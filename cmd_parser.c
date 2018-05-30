@@ -35,14 +35,16 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
                 s->c = CMD_HEATER_GAIN;
             else if(stricmp(p,"ledpwr") == 0) // syntax: ledpwr 63 (set LED power to 63 (max value))
                 s->c = CMD_HEATER_PWR;
-            else if(stricmp(p,"toggleheater") == 0) // syntax: 
+            else if(stricmp(p,"toggleheater") == 0) // syntax: toggleheater 5 1 (toggles 5th heater on/off on top board)
                 s->c = CMD_HEATER_TOGGLE;
             else if(stricmp(p,"getA") == 0) // syntax: getA (returns 0 0 1 0 1 0 0 ... 24 bits corresponding to active channels)
                 s->c = CMD_GET_ACTIVE;
             else if(stricmp(p,"getM") == 0) // syntax: getA (returns 0 0 1 0 1 0 0 ... 24 bits corresponding to movable channels)
                 s->c = CMD_GET_MOVABLE;
-            else if(stricmp(p,"mstatus") == 0) // syntax: 
+            else if(stricmp(p,"mstatus") == 0) // syntax: mstatus
                 s->c = CMD_MOTION_STATUS;
+            else if(stricmp(p,"domove") == 0) // syntax: domove (takes one step with current active probes and params)
+                s->c = CMD_DOMOVE;
             else if(stricmp(p,"comm") == 0) // syntax: comm (returns communication test result (see main))
                 s->c = CMD_COMM_CHECK;
             else if(stricmp(p,"ping") == 0) // syntax: ping (returns ! character if successful)
@@ -67,6 +69,8 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
 // TODO: move the errorOut to within functions
 int execCmd (struct CMD_STRUCT *s){
     errorOut = 1; // by default, return error (1)
+    
+    printf("exec: %d %d %d \n", s->c, s->p1.paramI, s->p2.paramI);
     switch(s->c){
         case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
         case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
@@ -90,6 +94,7 @@ int execCmd (struct CMD_STRUCT *s){
         case CMD_GET_ACTIVE: errorOut = getActive(); break;
         case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
         case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+        case CMD_DOMOVE: errorOut = doMove(); break;
         case CMD_COMM_CHECK: errorOut = commCheck(); break;
         case CMD_PING: printf("!\n"); break;
         default: printf("UNRECOGNIZED COMMAND!\n"); 

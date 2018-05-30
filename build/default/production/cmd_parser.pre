@@ -182,7 +182,7 @@ CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
 CMD_HEATER_TOGGLE,
-CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_COMM_CHECK,
+CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
 CMD_PING
 } cmd_list;
 int errorOut;
@@ -201,7 +201,7 @@ int execCmd (struct CMD_STRUCT *s);
 void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 
 # 41
-void doMove(void);
+int doMove(void);
 int startRelMove(int steps);
 int startAbsMove(int steps);
 int stop(void);
@@ -270,6 +270,8 @@ else if(stricmp(p,"getM") == 0)
 s->c = CMD_GET_MOVABLE;
 else if(stricmp(p,"mstatus") == 0)
 s->c = CMD_MOTION_STATUS;
+else if(stricmp(p,"domove") == 0)
+s->c = CMD_DOMOVE;
 else if(stricmp(p,"comm") == 0)
 s->c = CMD_COMM_CHECK;
 else if(stricmp(p,"ping") == 0)
@@ -294,6 +296,8 @@ paramIter++;
 
 int execCmd (struct CMD_STRUCT *s){
 errorOut = 1;
+
+printf("exec: %d %d %d \n", s->c, s->p1.paramI, s->p2.paramI);
 switch(s->c){
 case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
 case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
@@ -317,11 +321,12 @@ case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
 case CMD_GET_ACTIVE: errorOut = getActive(); break;
 case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
 case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+case CMD_DOMOVE: errorOut = doMove(); break;
 case CMD_COMM_CHECK: errorOut = commCheck(); break;
 case CMD_PING: printf("!\n"); break;
 default: printf("UNRECOGNIZED COMMAND!\n");
 
-# 102
+# 107
 }
 
 return errorOut;

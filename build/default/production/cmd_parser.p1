@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "5 cmd_parser.c
-[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 .. ]
-[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_COMM_CHECK CMD_PING  ]
+[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 .. ]
+[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
 "24 cmd_parser.h
 [u S6 `uc -> 10 `i `i 1 ]
 [n S6 . paramString paramI ]
@@ -14,6 +14,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _stricmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
+"195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "42 cmd_parser.h
 [v _startRelMove `(i ~T0 @X0 0 ef1`i ]
 "43
@@ -48,10 +50,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _getMoveMask `(i ~T0 @X0 0 ef ]
 "70
 [v _getMotionStatus `(i ~T0 @X0 0 ef ]
+"41
+[v _doMove `(i ~T0 @X0 0 ef ]
 "71
 [v _commCheck `(i ~T0 @X0 0 ef ]
-"195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -165,7 +167,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cmd_parser.h: 17: CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 [; ;cmd_parser.h: 18: CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
 [; ;cmd_parser.h: 19: CMD_HEATER_TOGGLE,
-[; ;cmd_parser.h: 20: CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_COMM_CHECK,
+[; ;cmd_parser.h: 20: CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
 [; ;cmd_parser.h: 21: CMD_PING
 [; ;cmd_parser.h: 22: } cmd_list;
 "23 cmd_parser.h
@@ -182,7 +184,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cmd_parser.h: 33: };
 [; ;cmd_parser.h: 35: int execCmd (struct CMD_STRUCT *s);
 [; ;cmd_parser.h: 36: void parseCmd(char cmdString[], struct CMD_STRUCT *s);
-[; ;cmd_parser.h: 41: void doMove(void);
+[; ;cmd_parser.h: 41: int doMove(void);
 [; ;cmd_parser.h: 42: int startRelMove(int steps);
 [; ;cmd_parser.h: 43: int startAbsMove(int steps);
 [; ;cmd_parser.h: 44: int stop(void);
@@ -372,26 +374,35 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 48  ]
 "46
 [e :U 47 ]
-[; ;cmd_parser.c: 46: else if(stricmp(p,"comm") == 0)
+[; ;cmd_parser.c: 46: else if(stricmp(p,"domove") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 21C -> 0 `i 49  ]
-[; ;cmd_parser.c: 47: s->c = CMD_COMM_CHECK;
+[; ;cmd_parser.c: 47: s->c = CMD_DOMOVE;
 "47
 [e = . *U _s 0 . `E272 19 ]
 [e $U 50  ]
 "48
 [e :U 49 ]
-[; ;cmd_parser.c: 48: else if(stricmp(p,"ping") == 0)
+[; ;cmd_parser.c: 48: else if(stricmp(p,"comm") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 22C -> 0 `i 51  ]
-[; ;cmd_parser.c: 49: s->c = CMD_PING;
+[; ;cmd_parser.c: 49: s->c = CMD_COMM_CHECK;
 "49
 [e = . *U _s 0 . `E272 20 ]
 [e $U 52  ]
-"52
+"50
 [e :U 51 ]
-[; ;cmd_parser.c: 52: else
-[; ;cmd_parser.c: 53: s->c = CMD_NONE;
-"53
+[; ;cmd_parser.c: 50: else if(stricmp(p,"ping") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 23C -> 0 `i 53  ]
+[; ;cmd_parser.c: 51: s->c = CMD_PING;
+"51
+[e = . *U _s 0 . `E272 21 ]
+[e $U 54  ]
+"54
+[e :U 53 ]
+[; ;cmd_parser.c: 54: else
+[; ;cmd_parser.c: 55: s->c = CMD_NONE;
+"55
 [e = . *U _s 0 . `E272 0 ]
+[e :U 54 ]
 [e :U 52 ]
 [e :U 50 ]
 [e :U 48 ]
@@ -412,202 +423,211 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 18 ]
 [e :U 16 ]
 [e :U 14 ]
-"54
-}
-[; ;cmd_parser.c: 54: }
-[e $U 53  ]
-"55
-[e :U 12 ]
-[; ;cmd_parser.c: 55: else if(paramIter == 1){
-[e $ ! == _paramIter -> 1 `i 54  ]
-{
-[; ;cmd_parser.c: 56: s->p1.paramI = atoi(p);
 "56
-[e = . . *U _s 1 1 ( _atoi (1 -> _p `*Cuc ]
-"57
 }
-[; ;cmd_parser.c: 57: }
+[; ;cmd_parser.c: 56: }
 [e $U 55  ]
-"58
-[e :U 54 ]
-[; ;cmd_parser.c: 58: else if(paramIter == 2){
-[e $ ! == _paramIter -> 2 `i 56  ]
+"57
+[e :U 12 ]
+[; ;cmd_parser.c: 57: else if(paramIter == 1){
+[e $ ! == _paramIter -> 1 `i 56  ]
 {
-[; ;cmd_parser.c: 60: s->p2.paramI = atoi(p);
-"60
-[e = . . *U _s 2 1 ( _atoi (1 -> _p `*Cuc ]
-"61
+[; ;cmd_parser.c: 58: s->p1.paramI = atoi(p);
+"58
+[e = . . *U _s 1 1 ( _atoi (1 -> _p `*Cuc ]
+"59
 }
+[; ;cmd_parser.c: 59: }
+[e $U 57  ]
+"60
 [e :U 56 ]
+[; ;cmd_parser.c: 60: else if(paramIter == 2){
+[e $ ! == _paramIter -> 2 `i 58  ]
+{
+[; ;cmd_parser.c: 62: s->p2.paramI = atoi(p);
+"62
+[e = . . *U _s 2 1 ( _atoi (1 -> _p `*Cuc ]
 "63
+}
+[e :U 58 ]
+"65
+[e :U 57 ]
 [e :U 55 ]
-[e :U 53 ]
-[; ;cmd_parser.c: 61: }
-[; ;cmd_parser.c: 63: paramIter++;
+[; ;cmd_parser.c: 63: }
+[; ;cmd_parser.c: 65: paramIter++;
 [e ++ _paramIter -> 1 `i ]
-"64
+"66
 }
 "7
 [e = _p ( _strtok (2 , -> -> 0 `i `*uc :s 2C ]
 [e $ != _p -> -> 0 `i `*uc 9  ]
 [e :U 10 ]
-"64
+"66
 }
-[; ;cmd_parser.c: 64: }
-[; ;cmd_parser.c: 65: }
-"65
+[; ;cmd_parser.c: 66: }
+[; ;cmd_parser.c: 67: }
+"67
 [e :UE 8 ]
 }
-"68
+"70
 [v _execCmd `(i ~T0 @X0 1 ef1`*S7 ]
 {
-[; ;cmd_parser.c: 68: int execCmd (struct CMD_STRUCT *s){
+[; ;cmd_parser.c: 70: int execCmd (struct CMD_STRUCT *s){
 [e :U _execCmd ]
 [v _s `*S7 ~T0 @X0 1 r1 ]
 [f ]
-[; ;cmd_parser.c: 69: errorOut = 1;
-"69
-[e = _errorOut -> 1 `i ]
-[; ;cmd_parser.c: 70: switch(s->c){
-"70
-[e $U 59  ]
-{
-[; ;cmd_parser.c: 71: case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+[; ;cmd_parser.c: 71: errorOut = 1;
 "71
-[e :U 60 ]
-[e = _errorOut ( _startRelMove (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 72: case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
-"72
-[e :U 61 ]
-[e = _errorOut ( _startAbsMove (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 73: case CMD_P: errorOut = getPosition(s->p1.paramI); break;
+[e = _errorOut -> 1 `i ]
+[; ;cmd_parser.c: 73: printf("exec: %d %d %d \n", s->c, s->p1.paramI, s->p2.paramI);
 "73
-[e :U 62 ]
-[e = _errorOut ( _getPosition (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 74: case CMD_ZERO: errorOut = zeroPosition(); break;
+[e ( _printf , , , (. :s 24C -> . *U _s 0 `i . . *U _s 1 1 . . *U _s 2 1 ]
+[; ;cmd_parser.c: 74: switch(s->c){
 "74
+[e $U 61  ]
+{
+[; ;cmd_parser.c: 75: case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+"75
+[e :U 62 ]
+[e = _errorOut ( _startRelMove (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 76: case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
+"76
 [e :U 63 ]
-[e = _errorOut ( _zeroPosition ..  ]
-[e $U 58  ]
-[; ;cmd_parser.c: 77: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
+[e = _errorOut ( _startAbsMove (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 77: case CMD_P: errorOut = getPosition(s->p1.paramI); break;
 "77
 [e :U 64 ]
-[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 78: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
+[e = _errorOut ( _getPosition (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 78: case CMD_ZERO: errorOut = zeroPosition(); break;
 "78
 [e :U 65 ]
-[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 79: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
-"79
+[e = _errorOut ( _zeroPosition ..  ]
+[e $U 60  ]
+[; ;cmd_parser.c: 81: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
+"81
 [e :U 66 ]
-[e = _errorOut ( _setDrvPiezoOnTime (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 82: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
+[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 82: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
 "82
 [e :U 67 ]
-[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 83: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
+[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 83: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
 "83
 [e :U 68 ]
-[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 84: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
-"84
-[e :U 69 ]
-[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 85: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
-"85
-[e :U 70 ]
-[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 86: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
+[e = _errorOut ( _setDrvPiezoOnTime (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 86: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
 "86
-[e :U 71 ]
-[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 88: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
+[e :U 69 ]
+[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 87: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
+"87
+[e :U 70 ]
+[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 88: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
 "88
-[e :U 72 ]
-[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 89: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
+[e :U 71 ]
+[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 89: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
 "89
-[e :U 73 ]
-[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 58  ]
-[; ;cmd_parser.c: 90: case CMD_GET_ACTIVE: errorOut = getActive(); break;
+[e :U 72 ]
+[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 90: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
 "90
-[e :U 74 ]
-[e = _errorOut ( _getActive ..  ]
-[e $U 58  ]
-[; ;cmd_parser.c: 91: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
-"91
-[e :U 75 ]
-[e = _errorOut ( _getMoveMask ..  ]
-[e $U 58  ]
-[; ;cmd_parser.c: 92: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+[e :U 73 ]
+[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 92: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
 "92
-[e :U 76 ]
-[e = _errorOut ( _getMotionStatus ..  ]
-[e $U 58  ]
-[; ;cmd_parser.c: 93: case CMD_COMM_CHECK: errorOut = commCheck(); break;
+[e :U 74 ]
+[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 93: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
 "93
-[e :U 77 ]
-[e = _errorOut ( _commCheck ..  ]
-[e $U 58  ]
-[; ;cmd_parser.c: 94: case CMD_PING: printf("!\n"); break;
+[e :U 75 ]
+[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 60  ]
+[; ;cmd_parser.c: 94: case CMD_GET_ACTIVE: errorOut = getActive(); break;
 "94
-[e :U 78 ]
-[e ( _printf :s 23C ]
-[e $U 58  ]
-[; ;cmd_parser.c: 95: default: printf("UNRECOGNIZED COMMAND!\n");
+[e :U 76 ]
+[e = _errorOut ( _getActive ..  ]
+[e $U 60  ]
+[; ;cmd_parser.c: 95: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
 "95
+[e :U 77 ]
+[e = _errorOut ( _getMoveMask ..  ]
+[e $U 60  ]
+[; ;cmd_parser.c: 96: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+"96
+[e :U 78 ]
+[e = _errorOut ( _getMotionStatus ..  ]
+[e $U 60  ]
+[; ;cmd_parser.c: 97: case CMD_DOMOVE: errorOut = doMove(); break;
+"97
 [e :U 79 ]
-[e ( _printf :s 24C ]
-"102
+[e = _errorOut ( _doMove ..  ]
+[e $U 60  ]
+[; ;cmd_parser.c: 98: case CMD_COMM_CHECK: errorOut = commCheck(); break;
+"98
+[e :U 80 ]
+[e = _errorOut ( _commCheck ..  ]
+[e $U 60  ]
+[; ;cmd_parser.c: 99: case CMD_PING: printf("!\n"); break;
+"99
+[e :U 81 ]
+[e ( _printf :s 25C ]
+[e $U 60  ]
+[; ;cmd_parser.c: 100: default: printf("UNRECOGNIZED COMMAND!\n");
+"100
+[e :U 82 ]
+[e ( _printf :s 26C ]
+"107
 }
-[; ;cmd_parser.c: 102: }
-[e $U 58  ]
-"70
-[e :U 59 ]
-[e [\ . *U _s 0 , $ . `E272 2 60
- , $ . `E272 1 61
- , $ . `E272 3 62
- , $ . `E272 7 63
- , $ . `E272 8 64
- , $ . `E272 9 65
- , $ . `E272 10 66
- , $ . `E272 11 67
- , $ . `E272 12 68
- , $ . `E272 13 69
- , $ . `E272 14 70
- , $ . `E272 15 71
- , $ . `E272 5 72
- , $ . `E272 6 73
- , $ . `E272 16 74
- , $ . `E272 17 75
- , $ . `E272 18 76
- , $ . `E272 19 77
- , $ . `E272 20 78
- 79 ]
-"102
-[e :U 58 ]
-[; ;cmd_parser.c: 104: return errorOut;
-"104
+[; ;cmd_parser.c: 107: }
+[e $U 60  ]
+"74
+[e :U 61 ]
+[e [\ . *U _s 0 , $ . `E272 2 62
+ , $ . `E272 1 63
+ , $ . `E272 3 64
+ , $ . `E272 7 65
+ , $ . `E272 8 66
+ , $ . `E272 9 67
+ , $ . `E272 10 68
+ , $ . `E272 11 69
+ , $ . `E272 12 70
+ , $ . `E272 13 71
+ , $ . `E272 14 72
+ , $ . `E272 15 73
+ , $ . `E272 5 74
+ , $ . `E272 6 75
+ , $ . `E272 16 76
+ , $ . `E272 17 77
+ , $ . `E272 18 78
+ , $ . `E272 19 79
+ , $ . `E272 20 80
+ , $ . `E272 21 81
+ 82 ]
+"107
+[e :U 60 ]
+[; ;cmd_parser.c: 109: return errorOut;
+"109
 [e ) _errorOut ]
-[e $UE 57  ]
-[; ;cmd_parser.c: 105: }
-"105
-[e :UE 57 ]
+[e $UE 59  ]
+[; ;cmd_parser.c: 110: }
+"110
+[e :UE 59 ]
 }
-[p f _printf 8388608 ]
+[p f _printf 8388736 ]
 [a 9C 122 0 ]
 [a 20C 109 115 116 97 116 117 115 0 ]
 [a 5C 112 111 115 0 ]
@@ -617,10 +637,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 17C 116 111 103 103 108 101 104 101 97 116 101 114 0 ]
 [a 15C 108 101 100 103 97 105 110 0 ]
 [a 11C 100 114 118 71 97 105 110 0 ]
-[a 21C 99 111 109 109 0 ]
+[a 22C 99 111 109 109 0 ]
 [a 3C 114 101 108 0 ]
 [a 10C 100 114 118 80 101 97 107 0 ]
-[a 22C 112 105 110 103 0 ]
+[a 23C 112 105 110 103 0 ]
+[a 21C 100 111 109 111 118 101 0 ]
 [a 14C 104 101 97 116 101 114 112 111 115 116 116 105 109 101 0 ]
 [a 12C 112 105 101 122 111 111 110 116 105 109 101 0 ]
 [a 13C 104 101 97 116 101 114 112 114 101 116 105 109 101 0 ]
@@ -630,5 +651,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [a 18C 103 101 116 65 0 ]
 [a 1C 32 0 ]
 [a 2C 32 0 ]
-[a 24C 85 78 82 69 67 79 71 78 73 90 69 68 32 67 79 77 77 65 78 68 33 10 0 ]
-[a 23C 33 10 0 ]
+[a 26C 85 78 82 69 67 79 71 78 73 90 69 68 32 67 79 77 77 65 78 68 33 10 0 ]
+[a 25C 33 10 0 ]
+[a 24C 101 120 101 99 58 32 37 100 32 37 100 32 37 100 32 10 0 ]

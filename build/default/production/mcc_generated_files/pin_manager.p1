@@ -62,17 +62,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S699 . . . ]
 "14221
 [v _RXPPSbits `VS699 ~T0 @X0 0 e@3620 ]
-"15434
-[s S774 :5 `uc 1 ]
-[n S774 . RC7PPS ]
-"15437
-[s S775 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S775 . RC7PPS0 RC7PPS1 RC7PPS2 RC7PPS3 RC7PPS4 ]
-"15433
-[u S773 `S774 1 `S775 1 ]
-[n S773 . . . ]
-"15445
-[v _RC7PPSbits `VS773 ~T0 @X0 0 e@3751 ]
+"15018
+[s S750 :5 `uc 1 ]
+[n S750 . RB7PPS ]
+"15021
+[s S751 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S751 . RB7PPS0 RB7PPS1 RB7PPS2 RB7PPS3 RB7PPS4 ]
+"15017
+[u S749 `S750 1 `S751 1 ]
+[n S749 . . . ]
+"15029
+[v _RB7PPSbits `VS749 ~T0 @X0 0 e@3743 ]
 "14966
 [s S747 :5 `uc 1 ]
 [n S747 . RB6PPS ]
@@ -7747,15 +7747,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 64: TRISA = 0x33;
 "64
 [e = _TRISA -> -> 51 `i `uc ]
-[; ;pin_manager.c: 65: TRISB = 0xE0;
+[; ;pin_manager.c: 65: TRISB = 0x60;
 "65
-[e = _TRISB -> -> 224 `i `uc ]
-[; ;pin_manager.c: 66: TRISC = 0x78;
+[e = _TRISB -> -> 96 `i `uc ]
+[; ;pin_manager.c: 66: TRISC = 0xF8;
 "66
-[e = _TRISC -> -> 120 `i `uc ]
-[; ;pin_manager.c: 71: ANSELC = 0x40;
+[e = _TRISC -> -> 248 `i `uc ]
+[; ;pin_manager.c: 71: ANSELC = 0x00;
 "71
-[e = _ANSELC -> -> 64 `i `uc ]
+[e = _ANSELC -> -> 0 `i `uc ]
 [; ;pin_manager.c: 72: ANSELB = 0x00;
 "72
 [e = _ANSELB -> -> 0 `i `uc ]
@@ -7786,12 +7786,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 95: SSP1CLKPPSbits.SSP1CLKPPS = 0x0E;
 "95
 [e = . . _SSP1CLKPPSbits 0 0 -> -> 14 `i `uc ]
-[; ;pin_manager.c: 96: RXPPSbits.RXPPS = 0x0F;
+[; ;pin_manager.c: 96: RXPPSbits.RXPPS = 0x17;
 "96
-[e = . . _RXPPSbits 0 0 -> -> 15 `i `uc ]
-[; ;pin_manager.c: 97: RC7PPSbits.RC7PPS = 0x14;
+[e = . . _RXPPSbits 0 0 -> -> 23 `i `uc ]
+[; ;pin_manager.c: 97: RB7PPSbits.RB7PPS = 0x14;
 "97
-[e = . . _RC7PPSbits 0 0 -> -> 20 `i `uc ]
+[e = . . _RB7PPSbits 0 0 -> -> 20 `i `uc ]
 [; ;pin_manager.c: 98: RB6PPSbits.RB6PPS = 0x18;
 "98
 [e = . . _RB6PPSbits 0 0 -> -> 24 `i `uc ]

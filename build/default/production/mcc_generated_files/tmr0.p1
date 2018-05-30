@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-[v F8031 `(v ~T0 @X0 0 tf ]
+[v F8081 `(v ~T0 @X0 0 tf ]
 "1171 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f18346.h
 [v _T0CON1 `Vuc ~T0 @X0 0 e@24 ]
 "952
@@ -22,10 +22,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S86 . . ]
 "1707
 [v _PIE0bits `VS86 ~T0 @X0 0 e@144 ]
-[v F8028 `(v ~T0 @X0 0 tf ]
-"309 mcc_generated_files/tmr0.h
-[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F8028 ]
-"345
+[v F8078 `(v ~T0 @X0 0 tf ]
+"312 mcc_generated_files/tmr0.h
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 0 ef1`*F8078 ]
+"348
 [v _TMR0_DefaultInterruptHandler `(v ~T0 @X0 0 ef ]
 "1106 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f18346.h
 [v _T0CON0 `Vuc ~T0 @X0 0 e@23 ]
@@ -50,6 +50,68 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S117 . . ]
 "2392
 [v _LATCbits `VS117 ~T0 @X0 0 e@270 ]
+[; ;stdint.h: 13: typedef signed char int8_t;
+[; ;stdint.h: 20: typedef signed int int16_t;
+[; ;stdint.h: 28: typedef signed short long int int24_t;
+[; ;stdint.h: 36: typedef signed long int int32_t;
+[; ;stdint.h: 43: typedef unsigned char uint8_t;
+[; ;stdint.h: 49: typedef unsigned int uint16_t;
+[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
+[; ;stdint.h: 63: typedef unsigned long int uint32_t;
+[; ;stdint.h: 71: typedef signed char int_least8_t;
+[; ;stdint.h: 78: typedef signed int int_least16_t;
+[; ;stdint.h: 90: typedef signed short long int int_least24_t;
+[; ;stdint.h: 98: typedef signed long int int_least32_t;
+[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
+[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
+[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
+[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
+[; ;stdint.h: 137: typedef signed char int_fast8_t;
+[; ;stdint.h: 144: typedef signed int int_fast16_t;
+[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
+[; ;stdint.h: 164: typedef signed long int int_fast32_t;
+[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
+[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
+[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
+[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
+[; ;stdint.h: 200: typedef int32_t intmax_t;
+[; ;stdint.h: 205: typedef uint32_t uintmax_t;
+[; ;stdint.h: 210: typedef int16_t intptr_t;
+[; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;stdbool.h: 12: typedef unsigned char bool;
+"24 mcc_generated_files/LEDcomm.h
+[v _second_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 24: long second_top;
+"25
+[v _first_bottom `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 25: long first_bottom;
+"26
+[v _first_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 26: long first_top;
+"27
+[v _second_bottom `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 27: long second_bottom;
+"28
+[v _LED_configReg_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 28: long LED_configReg_top;
+"29
+[v _LED_configReg_bot `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 29: long LED_configReg_bot;
+[; ;LEDcomm.h: 31: void send_2bytes_latchless(unsigned int data);
+[; ;LEDcomm.h: 32: void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 33: void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 34: void LEDsOn(unsigned long LEDpins, int topOrBottom);
+[; ;LEDcomm.h: 35: void LEDsPwr(int pwr, int topOrBottom);
+[; ;LEDcomm.h: 36: void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 37: void send_2bytes_latchless_IK(unsigned int data);
+[; ;LEDcomm.h: 38: void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 39: void LED_setBrightnessRange(int range, int topOrBottom);
+[; ;LEDcomm.h: 40: void LED_test_openshort(int, int);
+[; ;LEDcomm.h: 41: long LED_getData(void);
+[; ;LEDcomm.h: 42: int LED_testComm(int);
+[; ;LEDcomm.h: 43: long LED_readConfig(int);
+[; ;pin_manager.h: 256: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 268: void PIN_MANAGER_IOC(void);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -7679,271 +7741,209 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;stdint.h: 13: typedef signed char int8_t;
-[; ;stdint.h: 20: typedef signed int int16_t;
-[; ;stdint.h: 28: typedef signed short long int int24_t;
-[; ;stdint.h: 36: typedef signed long int int32_t;
-[; ;stdint.h: 43: typedef unsigned char uint8_t;
-[; ;stdint.h: 49: typedef unsigned int uint16_t;
-[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
-[; ;stdint.h: 63: typedef unsigned long int uint32_t;
-[; ;stdint.h: 71: typedef signed char int_least8_t;
-[; ;stdint.h: 78: typedef signed int int_least16_t;
-[; ;stdint.h: 90: typedef signed short long int int_least24_t;
-[; ;stdint.h: 98: typedef signed long int int_least32_t;
-[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
-[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
-[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
-[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
-[; ;stdint.h: 137: typedef signed char int_fast8_t;
-[; ;stdint.h: 144: typedef signed int int_fast16_t;
-[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
-[; ;stdint.h: 164: typedef signed long int int_fast32_t;
-[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
-[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
-[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
-[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
-[; ;stdint.h: 200: typedef int32_t intmax_t;
-[; ;stdint.h: 205: typedef uint32_t uintmax_t;
-[; ;stdint.h: 210: typedef int16_t intptr_t;
-[; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;tmr0.h: 99: void TMR0_Initialize(void);
-[; ;tmr0.h: 128: void TMR0_StartTimer(void);
-[; ;tmr0.h: 160: void TMR0_StopTimer(void);
-[; ;tmr0.h: 195: uint8_t TMR0_Read8bitTimer(void);
-[; ;tmr0.h: 234: void TMR0_Write8bitTimer(uint8_t timerVal);
-[; ;tmr0.h: 271: void TMR0_Load8bitPeriod(uint8_t periodVal);
-[; ;tmr0.h: 290: void TMR0_ISR(void);
-[; ;tmr0.h: 309: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 327: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 345: void TMR0_DefaultInterruptHandler(void);
-"24 mcc_generated_files/LEDcomm.h
-[v _second_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 24: long second_top;
-"25
-[v _first_bottom `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 25: long first_bottom;
-"26
-[v _first_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 26: long first_top;
-"27
-[v _second_bottom `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 27: long second_bottom;
-"28
-[v _LED_configReg_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 28: long LED_configReg_top;
-"29
-[v _LED_configReg_bot `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 29: long LED_configReg_bot;
-[; ;LEDcomm.h: 31: void send_2bytes_latchless(unsigned int data);
-[; ;LEDcomm.h: 32: void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
-[; ;LEDcomm.h: 33: void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
-[; ;LEDcomm.h: 34: void LEDsOn(unsigned long LEDpins, int topOrBottom);
-[; ;LEDcomm.h: 35: void LEDsPwr(int pwr, int topOrBottom);
-[; ;LEDcomm.h: 36: void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
-[; ;LEDcomm.h: 37: void send_2bytes_latchless_IK(unsigned int data);
-[; ;LEDcomm.h: 38: void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
-[; ;LEDcomm.h: 39: void LED_setBrightnessRange(int range, int topOrBottom);
-[; ;LEDcomm.h: 40: void LED_test_openshort(int, int);
-[; ;LEDcomm.h: 41: long LED_getData(void);
-[; ;LEDcomm.h: 42: int LED_testComm(int);
-[; ;LEDcomm.h: 43: long LED_readConfig(int);
-[; ;pin_manager.h: 256: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 268: void PIN_MANAGER_IOC(void);
-"58 mcc_generated_files/tmr0.c
-[v _TMR0_InterruptHandler `*F8031 ~T0 @X0 1 e ]
-[; ;tmr0.c: 58: void (*TMR0_InterruptHandler)(void);
-"60
+[; ;tmr0.h: 102: void TMR0_Initialize(void);
+[; ;tmr0.h: 131: void TMR0_StartTimer(void);
+[; ;tmr0.h: 163: void TMR0_StopTimer(void);
+[; ;tmr0.h: 198: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 237: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 274: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 293: void TMR0_ISR(void);
+[; ;tmr0.h: 312: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 330: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 348: void TMR0_DefaultInterruptHandler(void);
+"57 mcc_generated_files/tmr0.c
+[v _TMR0_InterruptHandler `*F8081 ~T0 @X0 1 e ]
+[; ;tmr0.c: 57: void (*TMR0_InterruptHandler)(void);
+"59
 [v _TMR0_Initialize `(v ~T0 @X0 1 ef ]
-"61
+"60
 {
-[; ;tmr0.c: 60: void TMR0_Initialize(void)
-[; ;tmr0.c: 61: {
+[; ;tmr0.c: 59: void TMR0_Initialize(void)
+[; ;tmr0.c: 60: {
 [e :U _TMR0_Initialize ]
 [f ]
-[; ;tmr0.c: 65: T0CON1 = 0x58;
-"65
+[; ;tmr0.c: 64: T0CON1 = 0x58;
+"64
 [e = _T0CON1 -> -> 88 `i `uc ]
-[; ;tmr0.c: 68: TMR0H = 0x61;
-"68
+[; ;tmr0.c: 67: TMR0H = 0x61;
+"67
 [e = _TMR0H -> -> 97 `i `uc ]
-[; ;tmr0.c: 71: TMR0L = 0x00;
-"71
+[; ;tmr0.c: 70: TMR0L = 0x00;
+"70
 [e = _TMR0L -> -> 0 `i `uc ]
-[; ;tmr0.c: 74: PIR0bits.TMR0IF = 0;
-"74
+[; ;tmr0.c: 73: PIR0bits.TMR0IF = 0;
+"73
 [e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
-[; ;tmr0.c: 77: PIE0bits.TMR0IE = 1;
-"77
+[; ;tmr0.c: 76: PIE0bits.TMR0IE = 1;
+"76
 [e = . . _PIE0bits 0 3 -> -> 1 `i `uc ]
-[; ;tmr0.c: 80: TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
-"80
+[; ;tmr0.c: 79: TMR0_SetInterruptHandler(TMR0_DefaultInterruptHandler);
+"79
 [e ( _TMR0_SetInterruptHandler (1 &U _TMR0_DefaultInterruptHandler ]
-[; ;tmr0.c: 83: T0CON0 = 0x89;
-"83
+[; ;tmr0.c: 82: T0CON0 = 0x89;
+"82
 [e = _T0CON0 -> -> 137 `i `uc ]
-[; ;tmr0.c: 84: }
-"84
+[; ;tmr0.c: 83: }
+"83
 [e :UE 960 ]
 }
-"86
+"85
 [v _TMR0_StartTimer `(v ~T0 @X0 1 ef ]
-"87
+"86
 {
-[; ;tmr0.c: 86: void TMR0_StartTimer(void)
-[; ;tmr0.c: 87: {
+[; ;tmr0.c: 85: void TMR0_StartTimer(void)
+[; ;tmr0.c: 86: {
 [e :U _TMR0_StartTimer ]
 [f ]
-[; ;tmr0.c: 89: T0CON0bits.T0EN = 1;
-"89
+[; ;tmr0.c: 88: T0CON0bits.T0EN = 1;
+"88
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-[; ;tmr0.c: 90: }
-"90
+[; ;tmr0.c: 89: }
+"89
 [e :UE 961 ]
 }
-"92
+"91
 [v _TMR0_StopTimer `(v ~T0 @X0 1 ef ]
-"93
+"92
 {
-[; ;tmr0.c: 92: void TMR0_StopTimer(void)
-[; ;tmr0.c: 93: {
+[; ;tmr0.c: 91: void TMR0_StopTimer(void)
+[; ;tmr0.c: 92: {
 [e :U _TMR0_StopTimer ]
 [f ]
-[; ;tmr0.c: 95: T0CON0bits.T0EN = 0;
-"95
+[; ;tmr0.c: 94: T0CON0bits.T0EN = 0;
+"94
 [e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
-[; ;tmr0.c: 96: }
-"96
+[; ;tmr0.c: 95: }
+"95
 [e :UE 962 ]
 }
-"98
+"97
 [v _TMR0_Read8bitTimer `(uc ~T0 @X0 1 ef ]
-"99
+"98
 {
-[; ;tmr0.c: 98: uint8_t TMR0_Read8bitTimer(void)
-[; ;tmr0.c: 99: {
+[; ;tmr0.c: 97: uint8_t TMR0_Read8bitTimer(void)
+[; ;tmr0.c: 98: {
 [e :U _TMR0_Read8bitTimer ]
 [f ]
-"100
+"99
 [v _readVal `uc ~T0 @X0 1 a ]
-[; ;tmr0.c: 100: uint8_t readVal;
-[; ;tmr0.c: 103: readVal = TMR0L;
-"103
+[; ;tmr0.c: 99: uint8_t readVal;
+[; ;tmr0.c: 102: readVal = TMR0L;
+"102
 [e = _readVal _TMR0L ]
-[; ;tmr0.c: 105: return readVal;
-"105
+[; ;tmr0.c: 104: return readVal;
+"104
 [e ) _readVal ]
 [e $UE 963  ]
-[; ;tmr0.c: 106: }
-"106
+[; ;tmr0.c: 105: }
+"105
 [e :UE 963 ]
 }
-"108
+"107
 [v _TMR0_Write8bitTimer `(v ~T0 @X0 1 ef1`uc ]
-"109
-{
-[; ;tmr0.c: 108: void TMR0_Write8bitTimer(uint8_t timerVal)
-[; ;tmr0.c: 109: {
-[e :U _TMR0_Write8bitTimer ]
 "108
+{
+[; ;tmr0.c: 107: void TMR0_Write8bitTimer(uint8_t timerVal)
+[; ;tmr0.c: 108: {
+[e :U _TMR0_Write8bitTimer ]
+"107
 [v _timerVal `uc ~T0 @X0 1 r1 ]
-"109
+"108
 [f ]
-[; ;tmr0.c: 111: TMR0L = timerVal;
-"111
+[; ;tmr0.c: 110: TMR0L = timerVal;
+"110
 [e = _TMR0L _timerVal ]
-[; ;tmr0.c: 112: }
-"112
+[; ;tmr0.c: 111: }
+"111
 [e :UE 964 ]
 }
-"114
+"113
 [v _TMR0_Load8bitPeriod `(v ~T0 @X0 1 ef1`uc ]
-"115
-{
-[; ;tmr0.c: 114: void TMR0_Load8bitPeriod(uint8_t periodVal)
-[; ;tmr0.c: 115: {
-[e :U _TMR0_Load8bitPeriod ]
 "114
+{
+[; ;tmr0.c: 113: void TMR0_Load8bitPeriod(uint8_t periodVal)
+[; ;tmr0.c: 114: {
+[e :U _TMR0_Load8bitPeriod ]
+"113
 [v _periodVal `uc ~T0 @X0 1 r1 ]
-"115
+"114
 [f ]
-[; ;tmr0.c: 117: TMR0H = periodVal;
-"117
+[; ;tmr0.c: 116: TMR0H = periodVal;
+"116
 [e = _TMR0H _periodVal ]
-[; ;tmr0.c: 118: }
-"118
+[; ;tmr0.c: 117: }
+"117
 [e :UE 965 ]
 }
-"120
+"119
 [v _TMR0_ISR `(v ~T0 @X0 1 ef ]
-"121
+"120
 {
-[; ;tmr0.c: 120: void TMR0_ISR(void)
-[; ;tmr0.c: 121: {
+[; ;tmr0.c: 119: void TMR0_ISR(void)
+[; ;tmr0.c: 120: {
 [e :U _TMR0_ISR ]
 [f ]
-[; ;tmr0.c: 123: PIR0bits.TMR0IF = 0;
-"123
+[; ;tmr0.c: 122: PIR0bits.TMR0IF = 0;
+"122
 [e = . . _PIR0bits 0 3 -> -> 0 `i `uc ]
-[; ;tmr0.c: 124: if(TMR0_InterruptHandler)
+[; ;tmr0.c: 123: if(TMR0_InterruptHandler)
+"123
+[e $ ! != _TMR0_InterruptHandler -> -> 0 `i `*F8081 967  ]
+[; ;tmr0.c: 124: {
 "124
-[e $ ! != _TMR0_InterruptHandler -> -> 0 `i `*F8031 967  ]
-[; ;tmr0.c: 125: {
-"125
 {
-[; ;tmr0.c: 126: TMR0_InterruptHandler();
-"126
+[; ;tmr0.c: 125: TMR0_InterruptHandler();
+"125
 [e ( *U _TMR0_InterruptHandler ..  ]
-"127
+"126
 }
 [e :U 967 ]
-[; ;tmr0.c: 127: }
-[; ;tmr0.c: 130: }
-"130
+[; ;tmr0.c: 126: }
+[; ;tmr0.c: 129: }
+"129
 [e :UE 966 ]
 }
-"133
-[v _TMR0_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F8028 ]
+"132
+[v _TMR0_SetInterruptHandler `(v ~T0 @X0 1 ef1`*F8078 ]
 {
-[; ;tmr0.c: 133: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
+[; ;tmr0.c: 132: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void)){
 [e :U _TMR0_SetInterruptHandler ]
 [v F8097 `(v ~T0 @X0 0 tf ]
 [v _InterruptHandler `*F8097 ~T0 @X0 1 r1 ]
 [f ]
-[; ;tmr0.c: 134: TMR0_InterruptHandler = InterruptHandler;
-"134
+[; ;tmr0.c: 133: TMR0_InterruptHandler = InterruptHandler;
+"133
 [e = _TMR0_InterruptHandler _InterruptHandler ]
-[; ;tmr0.c: 135: }
-"135
+[; ;tmr0.c: 134: }
+"134
 [e :UE 968 ]
 }
-"137
+"136
 [v _TMR0_DefaultInterruptHandler `(v ~T0 @X0 1 ef ]
 {
-[; ;tmr0.c: 137: void TMR0_DefaultInterruptHandler(void){
+[; ;tmr0.c: 136: void TMR0_DefaultInterruptHandler(void){
 [e :U _TMR0_DefaultInterruptHandler ]
 [f ]
-[; ;tmr0.c: 142: LEDsOn(second_top, 1);
-"142
+[; ;tmr0.c: 141: LEDsOn(second_top, 1);
+"141
 [e ( _LEDsOn (2 , -> _second_top `ul -> 1 `i ]
-[; ;tmr0.c: 143: LEDsOn(second_bottom,2);
-"143
+[; ;tmr0.c: 142: LEDsOn(second_bottom,2);
+"142
 [e ( _LEDsOn (2 , -> _second_bottom `ul -> 2 `i ]
-[; ;tmr0.c: 145: do { LATCbits.LATC1 = 0; } while(0);
-"145
+[; ;tmr0.c: 144: do { LATCbits.LATC1 = 0; } while(0);
+"144
 [e :U 972 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 971 ]
-[; ;tmr0.c: 146: TMR0_StopTimer();
-"146
+[; ;tmr0.c: 145: TMR0_StopTimer();
+"145
 [e ( _TMR0_StopTimer ..  ]
-[; ;tmr0.c: 147: TMR0_Write8bitTimer(0);
-"147
+[; ;tmr0.c: 146: TMR0_Write8bitTimer(0);
+"146
 [e ( _TMR0_Write8bitTimer (1 -> -> 0 `i `uc ]
-[; ;tmr0.c: 148: }
-"148
+[; ;tmr0.c: 147: }
+"147
 [e :UE 969 ]
 }

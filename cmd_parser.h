@@ -17,7 +17,7 @@ typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
                 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
                 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
                 CMD_HEATER_TOGGLE,
-                CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_COMM_CHECK,
+                CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
                 CMD_PING
                 } cmd_list;
 int errorOut;
@@ -38,7 +38,7 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 /*
  * MOVEMENT
  */
-void doMove(void);
+int doMove(void);
 int startRelMove(int steps);
 int startAbsMove(int steps);
 int stop(void);

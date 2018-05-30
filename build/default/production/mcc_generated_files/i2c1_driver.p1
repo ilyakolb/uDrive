@@ -7798,26 +7798,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
-[; ;tmr2.h: 102: void TMR2_Initialize(void);
-[; ;tmr2.h: 131: void TMR2_StartTimer(void);
-[; ;tmr2.h: 163: void TMR2_StopTimer(void);
-[; ;tmr2.h: 198: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 237: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 289: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 307: void TMR2_ISR(void);
-[; ;tmr2.h: 325: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 343: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 361: void TMR2_DefaultInterruptHandler(void);
-[; ;tmr0.h: 99: void TMR0_Initialize(void);
-[; ;tmr0.h: 128: void TMR0_StartTimer(void);
-[; ;tmr0.h: 160: void TMR0_StopTimer(void);
-[; ;tmr0.h: 195: uint8_t TMR0_Read8bitTimer(void);
-[; ;tmr0.h: 234: void TMR0_Write8bitTimer(uint8_t timerVal);
-[; ;tmr0.h: 271: void TMR0_Load8bitPeriod(uint8_t periodVal);
-[; ;tmr0.h: 290: void TMR0_ISR(void);
-[; ;tmr0.h: 309: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 327: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 345: void TMR0_DefaultInterruptHandler(void);
+"24 mcc_generated_files/LEDcomm.h
+[v _second_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 24: long second_top;
+"25
+[v _first_bottom `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 25: long first_bottom;
+"26
+[v _first_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 26: long first_top;
+"27
+[v _second_bottom `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 27: long second_bottom;
+"28
+[v _LED_configReg_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 28: long LED_configReg_top;
+"29
+[v _LED_configReg_bot `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 29: long LED_configReg_bot;
+[; ;LEDcomm.h: 31: void send_2bytes_latchless(unsigned int data);
+[; ;LEDcomm.h: 32: void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 33: void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 34: void LEDsOn(unsigned long LEDpins, int topOrBottom);
+[; ;LEDcomm.h: 35: void LEDsPwr(int pwr, int topOrBottom);
+[; ;LEDcomm.h: 36: void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 37: void send_2bytes_latchless_IK(unsigned int data);
+[; ;LEDcomm.h: 38: void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 39: void LED_setBrightnessRange(int range, int topOrBottom);
+[; ;LEDcomm.h: 40: void LED_test_openshort(int, int);
+[; ;LEDcomm.h: 41: long LED_getData(void);
+[; ;LEDcomm.h: 42: int LED_testComm(int);
+[; ;LEDcomm.h: 43: long LED_readConfig(int);
+[; ;tmr2.h: 104: void TMR2_Initialize(void);
+[; ;tmr2.h: 133: void TMR2_StartTimer(void);
+[; ;tmr2.h: 165: void TMR2_StopTimer(void);
+[; ;tmr2.h: 200: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 239: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 291: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 309: void TMR2_ISR(void);
+[; ;tmr2.h: 327: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 345: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 363: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr0.h: 102: void TMR0_Initialize(void);
+[; ;tmr0.h: 131: void TMR0_StartTimer(void);
+[; ;tmr0.h: 163: void TMR0_StopTimer(void);
+[; ;tmr0.h: 198: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 237: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 274: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 293: void TMR0_ISR(void);
+[; ;tmr0.h: 312: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 330: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 348: void TMR0_DefaultInterruptHandler(void);
 [; ;eusart.h: 76: extern volatile uint8_t eusartTxBufferRemaining;
 [; ;eusart.h: 77: extern volatile uint8_t eusartRxCount;
 [; ;eusart.h: 103: void EUSART_Initialize(void);

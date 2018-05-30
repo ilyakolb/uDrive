@@ -1,6 +1,9 @@
 #include "drv2665.h"
 
 void drv_init(int output_gain, int idle_timeout){
+    
+    i2c_setAddress(drv_address);
+    i2c_open(drv_address);
     __delay_ms(10);
     
     drv_reset();
@@ -11,9 +14,10 @@ void drv_init(int output_gain, int idle_timeout){
     //drv_write(DRV2665_CTRL_1, output_gain); //set mode digital, set gain
     __delay_ms(10);
     drv_write(DRV2665_CTRL_2, idle_timeout); //set timeout period
-    printf("drv_read: %d\n", drv_read(DRV2665_STATUS));
+    //printf("drv_read: %d\n", drv_read(DRV2665_STATUS));
     __delay_ms(10);
     
+    printf("drv initialized\n");
 }
 
 void drv_reset(void){

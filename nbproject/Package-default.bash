@@ -10,9 +10,9 @@ CND_CONF=default
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/udrive_IK.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=udrive_IK.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=udriveik/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/udrive_code.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=udrive_code.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=udrivecode/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/udriveik/bin
+makeDirectory ${TMPDIR}/udrivecode/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/udriveik.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/udrivecode.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/udriveik.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/udrivecode.tar *
 checkReturnCode
 
 # Cleanup

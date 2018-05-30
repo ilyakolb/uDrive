@@ -26,9 +26,9 @@ void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOr
     LED_CLK_SetLow(); //LATC &= ~0x08; //LEDCLK Low
     
     if (data & 1 << j){  //trying to compare to jth value of state for determining LED state
-      LED_SDO_SetHigh(); //SDI1 High
+      LED_MOSI_SetHigh(); //SDI1 High
     }
-    else LED_SDO_SetLow(); //SDI1 Low
+    else LED_MOSI_SetLow(); //SDI1 Low
       
     if( j == latch_start) { //turn on the extended latch
 
@@ -54,9 +54,9 @@ void send_2bytes_latchless_IK(unsigned int data){
     LED_CLK_SetLow();// LATC &= ~0x08; //LEDCLK Low
     
     if (data & 1 << j){  //trying to compare to jth value of state for determining LED state
-        LED_SDO_SetHigh();//LATC |= 0x10; //SDI1 High
+        LED_MOSI_SetHigh();//LATC |= 0x10; //SDI1 High
     } 
-    else LED_SDO_SetLow();//LATC &= ~0x10; //SDI1 Low
+    else LED_MOSI_SetLow();//LATC &= ~0x10; //SDI1 Low
         
     
     LED_CLK_SetHigh();//LATC |= 0x08; //LEDCLK High
@@ -107,8 +107,8 @@ void LED_test_openshort(int type, int topOrBottom){
       __delay_us(10);
       LED_CLK_SetLow();
       // HOW TO BEST OUTPUT RESULT SINCE I CAN'T OUTPUT 2 LONGS?
-      if (LED_SDI_GetValue()) printf("%d ", j);
-      //printf("%d\n", LED_SDI_GetValue());
+      if (LED_MISO_GetValue()) printf("%d ", j);
+      //printf("%d\n", LED_MISO_GetValue());
       
       //__delay_us(100);
       
@@ -133,7 +133,7 @@ long LED_getData(void){
 
     for(int j = 23; j>=0; j--){ //Loop through the 16 bits
       LED_CLK_SetHigh();
-      readData |= (LED_SDI_GetValue() << j);
+      readData |= (LED_MISO_GetValue() << j);
       
       LED_CLK_SetLow();
       __delay_us(100);
@@ -152,7 +152,7 @@ int LED_testComm(int topOrBottom){
     
     long oldConfigReg = (topOrBottom == 1) ? LED_configReg_top : LED_configReg_bot; // save previous brightness
     LED_setBrightnessRange(1, topOrBottom);
-    int readResult = LED_readConfig(1);
+    int readResult = LED_readConfig(topOrBottom);
     // readResult = 7 (0b111) means everything is working
     LED_setBrightnessRange(oldConfigReg > 0, topOrBottom); // sets the brightness to what it was before
     

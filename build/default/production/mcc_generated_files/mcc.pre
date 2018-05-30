@@ -10341,64 +10341,86 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 # 247
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
-# 102 "mcc_generated_files/tmr2.h"
+# 24 "mcc_generated_files/LEDcomm.h"
+long second_top;
+long first_bottom;
+long first_top;
+long second_bottom;
+long LED_configReg_top;
+long LED_configReg_bot;
+
+void send_2bytes_latchless(unsigned int data);
+void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
+void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+void LEDsOn(unsigned long LEDpins, int topOrBottom);
+void LEDsPwr(int pwr, int topOrBottom);
+void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
+void send_2bytes_latchless_IK(unsigned int data);
+void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+void LED_setBrightnessRange(int range, int topOrBottom);
+void LED_test_openshort(int, int);
+long LED_getData(void);
+int LED_testComm(int);
+long LED_readConfig(int);
+
+# 104 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
-# 131
+# 133
 void TMR2_StartTimer(void);
 
-# 163
+# 165
 void TMR2_StopTimer(void);
 
-# 198
+# 200
 uint8_t TMR2_ReadTimer(void);
 
-# 237
+# 239
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 289
+# 291
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 307
+# 309
 void TMR2_ISR(void);
 
-# 325
+# 327
 void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 343
+# 345
 extern void (*TMR2_InterruptHandler)(void);
 
-# 361
+# 363
 void TMR2_DefaultInterruptHandler(void);
 
-# 99 "mcc_generated_files/tmr0.h"
+# 102 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
-# 128
+# 131
 void TMR0_StartTimer(void);
 
-# 160
+# 163
 void TMR0_StopTimer(void);
 
-# 195
+# 198
 uint8_t TMR0_Read8bitTimer(void);
 
-# 234
+# 237
 void TMR0_Write8bitTimer(uint8_t timerVal);
 
-# 271
+# 274
 void TMR0_Load8bitPeriod(uint8_t periodVal);
 
-# 290
+# 293
 void TMR0_ISR(void);
 
-# 309
+# 312
 void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 327
+# 330
 extern void (*TMR0_InterruptHandler)(void);
 
-# 345
+# 348
 void TMR0_DefaultInterruptHandler(void);
 
 # 76 "mcc_generated_files/eusart.h"

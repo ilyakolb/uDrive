@@ -53,6 +53,8 @@
  
 #define DCONTIME_MS                 5 // time between commands when sending out DC pulses
 
+const i2c_address_t drv_address = 0x59;
+
 int drv_peak_val = 0x7F; // value from 0 to 127
 void drv_init(int output_gain, int idle_timeout);
 void drv_reset(void);

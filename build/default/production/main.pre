@@ -10314,64 +10314,86 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 # 247
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
-# 102 "mcc_generated_files/tmr2.h"
+# 24 "mcc_generated_files/LEDcomm.h"
+long second_top;
+long first_bottom;
+long first_top;
+long second_bottom;
+long LED_configReg_top;
+long LED_configReg_bot;
+
+void send_2bytes_latchless(unsigned int data);
+void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
+void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+void LEDsOn(unsigned long LEDpins, int topOrBottom);
+void LEDsPwr(int pwr, int topOrBottom);
+void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
+void send_2bytes_latchless_IK(unsigned int data);
+void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+void LED_setBrightnessRange(int range, int topOrBottom);
+void LED_test_openshort(int, int);
+long LED_getData(void);
+int LED_testComm(int);
+long LED_readConfig(int);
+
+# 104 "mcc_generated_files/tmr2.h"
 void TMR2_Initialize(void);
 
-# 131
+# 133
 void TMR2_StartTimer(void);
 
-# 163
+# 165
 void TMR2_StopTimer(void);
 
-# 198
+# 200
 uint8_t TMR2_ReadTimer(void);
 
-# 237
+# 239
 void TMR2_WriteTimer(uint8_t timerVal);
 
-# 289
+# 291
 void TMR2_LoadPeriodRegister(uint8_t periodVal);
 
-# 307
+# 309
 void TMR2_ISR(void);
 
-# 325
+# 327
 void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 343
+# 345
 extern void (*TMR2_InterruptHandler)(void);
 
-# 361
+# 363
 void TMR2_DefaultInterruptHandler(void);
 
-# 99 "mcc_generated_files/tmr0.h"
+# 102 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
-# 128
+# 131
 void TMR0_StartTimer(void);
 
-# 160
+# 163
 void TMR0_StopTimer(void);
 
-# 195
+# 198
 uint8_t TMR0_Read8bitTimer(void);
 
-# 234
+# 237
 void TMR0_Write8bitTimer(uint8_t timerVal);
 
-# 271
+# 274
 void TMR0_Load8bitPeriod(uint8_t periodVal);
 
-# 290
+# 293
 void TMR0_ISR(void);
 
-# 309
+# 312
 void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 
-# 327
+# 330
 extern void (*TMR0_InterruptHandler)(void);
 
-# 345
+# 348
 void TMR0_DefaultInterruptHandler(void);
 
 # 76 "mcc_generated_files/eusart.h"
@@ -10566,35 +10588,13 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 24 "mcc_generated_files/LEDcomm.h"
-long second_top;
-long first_bottom;
-long first_top;
-long second_bottom;
-long LED_configReg_top;
-long LED_configReg_bot;
-
-void send_2bytes_latchless(unsigned int data);
-void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
-void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
-void LEDsOn(unsigned long LEDpins, int topOrBottom);
-void LEDsPwr(int pwr, int topOrBottom);
-void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
-void send_2bytes_latchless_IK(unsigned int data);
-void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
-void LED_setBrightnessRange(int range, int topOrBottom);
-void LED_test_openshort(int, int);
-long LED_getData(void);
-int LED_testComm(int);
-long LED_readConfig(int);
-
 # 15 "cmd_parser.h"
 typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
 CMD_HEATER_TOGGLE,
-CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_COMM_CHECK,
+CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
 CMD_PING
 } cmd_list;
 int errorOut;
@@ -10613,7 +10613,7 @@ int execCmd (struct CMD_STRUCT *s);
 void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 
 # 41
-void doMove(void);
+int doMove(void);
 int startRelMove(int steps);
 int startAbsMove(int steps);
 int stop(void);
@@ -10669,6 +10669,8 @@ extern double trunc(double);
 extern double round(double);
 
 # 56 "drv2665.h"
+const i2c_address_t drv_address = 0x59;
+
 int drv_peak_val = 0x7F;
 void drv_init(int output_gain, int idle_timeout);
 void drv_reset(void);
@@ -10711,7 +10713,7 @@ static const int drv_fifo_sine[] = {
 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
 };
 
-# 66 "main.c"
+# 67 "main.c"
 const float TMR0_RANGE = 255/(2621.44-10.24);
 const float TMR2_RANGE = 255/(163.84-0.64);
 
@@ -10724,13 +10726,13 @@ int heater_post_time_ms = 10;
 int piezo_on_time_ms = 1000;
 const int LEDpower = 63;
 
-# 81
+# 82
 char readdata[20];
 int cmdRead = 0;
 int readIdx = 0;
 struct CMD_STRUCT cmd_struct={0,0,0};
 
-# 89
+# 90
 unsigned long demoLong = 0x0001;
 
 
@@ -10738,11 +10740,11 @@ unsigned long demoLong = 0x0001;
 long moveVector_ups = 0;
 long moveVector_downs = 0;
 
-# 100
-long activeMask=0x00;
-long moveMask=0x00;
+# 101
+unsigned long activeMask=0x00;
+unsigned long moveMask=0x00;
 
-# 106
+# 107
 long demoHeaterToggle_top = 0;
 long demoHeaterToggle_bot = 0;
 
@@ -10751,34 +10753,39 @@ int remainingSteps=0;
 int absCommand = 0;
 enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 
-# 118
+# 119
 void doAbsMove(void);
 void doRelMove(void);
-void initialize(void);
+void main_initialize(void);
 void calcHeaterPins(void);
 void demoSequence(void);
 
-# 129
+# 130
 void main(void)
 {
 
 SYSTEM_Initialize();
 _delay((unsigned long)((500)*(1000000/4000.0)));
 
-# 139
+# 140
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 printf("\n\nsystem done\n");
 
-# 149
-initialize();
+# 150
+main_initialize();
 
+
+
+moveMask |= (1<<1);
+moveMask |= (1<<5);
+
+printf("moveMask: %lu \n", moveMask);
 while (1)
 {
 
-# 158
 if (eusartRxCount!=0) {
 readdata[readIdx] = EUSART_Read();
 if(readdata[readIdx] == '\n'){
@@ -10809,22 +10816,25 @@ default: break;
 }
 
 
-void initialize(void){
+void main_initialize(void){
 
 LEDsPwr(LEDpower, 1);
 LEDsPwr(LEDpower, 2);
+
+LED_setBrightnessRange(1, 1);
+LED_setBrightnessRange(1, 2);
 
 
 TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
 TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
 
 
-
+drv_init(0x03, 0x0c);
 printf("initialized\n");
 }
 
-# 233
-void doMove(void){
+# 239
+int doMove(void){
 printf("doMove\n");
 
 calcHeaterPins();
@@ -10832,17 +10842,17 @@ do { LATCbits.LATC1 = 1; } while(0);
 LEDsOn(first_top, 1);
 LEDsOn(first_bottom,2);
 do { LATCbits.LATC1 = 0; } while(0);
-_delay((unsigned long)((heater_pre_time_ms)*(1000000/4000.0)));
+for(int t=0; t<heater_pre_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 TMR2_StartTimer();
 TMR0_StartTimer();
 
 drv_write_DC(drv_peak_val, piezo_on_time_ms);
 
-_delay((unsigned long)((heater_post_time_ms)*(1000000/4000.0)));
+for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 
 do { LATCbits.LATC1 = 1; } while(0);
 
-
+return 0;
 
 
 }
@@ -11012,7 +11022,7 @@ printf("A\n");
 return 0;
 };
 
-# 425
+# 431
 int setHeaterPreTime(int t){
 heater_pre_time_ms = t;
 TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
@@ -11048,13 +11058,13 @@ return 0;
 
 int setHeaterToggle(int num, int topOrB){
 
-if(topOrB){
+if(topOrB == 1){
 demoHeaterToggle_top ^= 1UL << num;
 LEDsOn(demoHeaterToggle_top, 1);
 }
-else{
+else if (topOrB == 2){
 demoHeaterToggle_bot ^= 1UL << num;
-LEDsOn(demoHeaterToggle_top, 2);
+LEDsOn(demoHeaterToggle_bot, 2);
 }
 
 printf("A\n");
@@ -11085,7 +11095,7 @@ int setMoveMask(int probeNum, int onOff){
 
 
 
-if (probeNum < 24-1){
+if (probeNum < 24){
 if (onOff)
 moveMask |= (1<<probeNum);
 else

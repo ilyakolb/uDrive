@@ -1,28 +1,30 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F8247 `(v ~T0 @X0 0 tf ]
 [v F8250 `(v ~T0 @X0 0 tf ]
+"36 mcc_generated_files/drivers/i2c_master.h
+[v _i2c_setAddress `(v ~T0 @X0 0 ef1`uc ]
+"6 drv2665.c
+[c E92 0 1 2 .. ]
+[n E92 . I2C_NOERR I2C_BUSY I2C_FAIL  ]
+"35 mcc_generated_files/drivers/i2c_master.h
+[v _i2c_open `(E92 ~T0 @X0 0 ef1`uc ]
 [v F8126 `(v ~T0 @X0 1 tf1`ul ]
 "153 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic.h
 [v __delay `JF8126 ~T0 @X0 0 e ]
 [p i __delay ]
-"58 drv2665.h
+"60 drv2665.h
 [v _drv_reset `(v ~T0 @X0 0 ef ]
-"60
+"62
 [v _drv_write `(v ~T0 @X0 0 ef2`uc`uc ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"65 drv2665.h
-[v _drv_read `(i ~T0 @X0 0 ef1`uc ]
 "36 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _sin `(d ~T0 @X0 0 ef1`d ]
 "43 mcc_generated_files/drivers/i2c_master.h
 [v _i2c_setBuffer `(v ~T0 @X0 0 ef2`*v`ui ]
-"65 drv2665.c
-[c E92 0 1 2 .. ]
-[n E92 . I2C_NOERR I2C_BUSY I2C_FAIL  ]
-"38 mcc_generated_files/drivers/i2c_master.h
+"38
 [v _i2c_masterOperation `(E92 ~T0 @X0 0 ef1`uc ]
-"64 drv2665.h
+"66 drv2665.h
 [v _fifo_check `(b ~T0 @X0 0 ef ]
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;stdint.h: 13: typedef signed char int8_t;
@@ -7797,26 +7799,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 [; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
-[; ;tmr2.h: 102: void TMR2_Initialize(void);
-[; ;tmr2.h: 131: void TMR2_StartTimer(void);
-[; ;tmr2.h: 163: void TMR2_StopTimer(void);
-[; ;tmr2.h: 198: uint8_t TMR2_ReadTimer(void);
-[; ;tmr2.h: 237: void TMR2_WriteTimer(uint8_t timerVal);
-[; ;tmr2.h: 289: void TMR2_LoadPeriodRegister(uint8_t periodVal);
-[; ;tmr2.h: 307: void TMR2_ISR(void);
-[; ;tmr2.h: 325: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr2.h: 343: extern void (*TMR2_InterruptHandler)(void);
-[; ;tmr2.h: 361: void TMR2_DefaultInterruptHandler(void);
-[; ;tmr0.h: 99: void TMR0_Initialize(void);
-[; ;tmr0.h: 128: void TMR0_StartTimer(void);
-[; ;tmr0.h: 160: void TMR0_StopTimer(void);
-[; ;tmr0.h: 195: uint8_t TMR0_Read8bitTimer(void);
-[; ;tmr0.h: 234: void TMR0_Write8bitTimer(uint8_t timerVal);
-[; ;tmr0.h: 271: void TMR0_Load8bitPeriod(uint8_t periodVal);
-[; ;tmr0.h: 290: void TMR0_ISR(void);
-[; ;tmr0.h: 309: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
-[; ;tmr0.h: 327: extern void (*TMR0_InterruptHandler)(void);
-[; ;tmr0.h: 345: void TMR0_DefaultInterruptHandler(void);
+"24 mcc_generated_files/LEDcomm.h
+[v _second_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 24: long second_top;
+"25
+[v _first_bottom `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 25: long first_bottom;
+"26
+[v _first_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 26: long first_top;
+"27
+[v _second_bottom `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 27: long second_bottom;
+"28
+[v _LED_configReg_top `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 28: long LED_configReg_top;
+"29
+[v _LED_configReg_bot `l ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 29: long LED_configReg_bot;
+[; ;LEDcomm.h: 31: void send_2bytes_latchless(unsigned int data);
+[; ;LEDcomm.h: 32: void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 33: void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 34: void LEDsOn(unsigned long LEDpins, int topOrBottom);
+[; ;LEDcomm.h: 35: void LEDsPwr(int pwr, int topOrBottom);
+[; ;LEDcomm.h: 36: void send_last_2bytes_IK(unsigned int data, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 37: void send_2bytes_latchless_IK(unsigned int data);
+[; ;LEDcomm.h: 38: void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
+[; ;LEDcomm.h: 39: void LED_setBrightnessRange(int range, int topOrBottom);
+[; ;LEDcomm.h: 40: void LED_test_openshort(int, int);
+[; ;LEDcomm.h: 41: long LED_getData(void);
+[; ;LEDcomm.h: 42: int LED_testComm(int);
+[; ;LEDcomm.h: 43: long LED_readConfig(int);
+[; ;tmr2.h: 104: void TMR2_Initialize(void);
+[; ;tmr2.h: 133: void TMR2_StartTimer(void);
+[; ;tmr2.h: 165: void TMR2_StopTimer(void);
+[; ;tmr2.h: 200: uint8_t TMR2_ReadTimer(void);
+[; ;tmr2.h: 239: void TMR2_WriteTimer(uint8_t timerVal);
+[; ;tmr2.h: 291: void TMR2_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr2.h: 309: void TMR2_ISR(void);
+[; ;tmr2.h: 327: void TMR2_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr2.h: 345: extern void (*TMR2_InterruptHandler)(void);
+[; ;tmr2.h: 363: void TMR2_DefaultInterruptHandler(void);
+[; ;tmr0.h: 102: void TMR0_Initialize(void);
+[; ;tmr0.h: 131: void TMR0_StartTimer(void);
+[; ;tmr0.h: 163: void TMR0_StopTimer(void);
+[; ;tmr0.h: 198: uint8_t TMR0_Read8bitTimer(void);
+[; ;tmr0.h: 237: void TMR0_Write8bitTimer(uint8_t timerVal);
+[; ;tmr0.h: 274: void TMR0_Load8bitPeriod(uint8_t periodVal);
+[; ;tmr0.h: 293: void TMR0_ISR(void);
+[; ;tmr0.h: 312: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr0.h: 330: extern void (*TMR0_InterruptHandler)(void);
+[; ;tmr0.h: 348: void TMR0_DefaultInterruptHandler(void);
 [; ;eusart.h: 76: extern volatile uint8_t eusartTxBufferRemaining;
 [; ;eusart.h: 77: extern volatile uint8_t eusartRxCount;
 [; ;eusart.h: 103: void EUSART_Initialize(void);
@@ -7882,114 +7915,76 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;math.h: 54: extern double trunc(double);
 [; ;math.h: 55: extern double round(double);
 "56 drv2665.h
+[v _drv_address `Cuc ~T0 @X0 1 e ]
+[i _drv_address
+-> -> 89 `i `uc
+]
+[; ;drv2665.h: 56: const i2c_address_t drv_address = 0x59;
+"58
 [v _drv_peak_val `i ~T0 @X0 1 e ]
 [i _drv_peak_val
 -> 127 `i
 ]
-[; ;drv2665.h: 56: int drv_peak_val = 0x7F;
-[; ;drv2665.h: 57: void drv_init(int output_gain, int idle_timeout);
-[; ;drv2665.h: 58: void drv_reset(void);
-[; ;drv2665.h: 59: void drv_outputSine(int hz);
-[; ;drv2665.h: 60: void drv_write(uint8_t reg, uint8_t data);
-[; ;drv2665.h: 61: void drv_outputWave(int waveform[], int length);
-[; ;drv2665.h: 62: void drv_write_wvfrm(void);
-[; ;drv2665.h: 63: void drv_write_DC(int val, int duration_ms);
-[; ;drv2665.h: 64: bit fifo_check(void);
-[; ;drv2665.h: 65: int drv_read(char reg);
-"67
+[; ;drv2665.h: 58: int drv_peak_val = 0x7F;
+[; ;drv2665.h: 59: void drv_init(int output_gain, int idle_timeout);
+[; ;drv2665.h: 60: void drv_reset(void);
+[; ;drv2665.h: 61: void drv_outputSine(int hz);
+[; ;drv2665.h: 62: void drv_write(uint8_t reg, uint8_t data);
+[; ;drv2665.h: 63: void drv_outputWave(int waveform[], int length);
+[; ;drv2665.h: 64: void drv_write_wvfrm(void);
+[; ;drv2665.h: 65: void drv_write_DC(int val, int duration_ms);
+[; ;drv2665.h: 66: bit fifo_check(void);
+[; ;drv2665.h: 67: int drv_read(char reg);
+"69
 [v _drv_sine `Ci ~T0 @X0 -> 0 `x s ]
 [i _drv_sine
 :U ..
-"68
--> 0 `i
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
-"69
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
 "70
 -> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
+-> 16 `i
+-> 32 `i
+-> 46 `i
+-> 60 `i
+-> 72 `i
+-> 83 `i
+-> 91 `i
+-> 97 `i
+-> 101 `i
+-> 102 `i
 "71
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
+-> 101 `i
+-> 97 `i
+-> 91 `i
+-> 83 `i
+-> 72 `i
+-> 60 `i
+-> 46 `i
+-> 32 `i
+-> 16 `i
 "72
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
+-> 0 `i
+-> 240 `i
+-> 224 `i
+-> 210 `i
+-> 196 `i
+-> 184 `i
+-> 173 `i
+-> 165 `i
+-> 159 `i
+-> 155 `i
+-> 154 `i
 "73
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
+-> 155 `i
+-> 159 `i
+-> 165 `i
+-> 173 `i
+-> 184 `i
+-> 196 `i
+-> 210 `i
+-> 224 `i
+-> 240 `i
+-> 0 `i
 "74
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
-"75
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
-"76
 -> 16 `i
 -> 32 `i
 -> 46 `i
@@ -8000,7 +7995,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 97 `i
 -> 101 `i
 -> 102 `i
-"77
+"75
 -> 101 `i
 -> 97 `i
 -> 91 `i
@@ -8010,7 +8005,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 46 `i
 -> 32 `i
 -> 16 `i
-"78
+"76
 -> 0 `i
 -> 240 `i
 -> 224 `i
@@ -8022,7 +8017,51 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 159 `i
 -> 155 `i
 -> 154 `i
+"77
+-> 155 `i
+-> 159 `i
+-> 165 `i
+-> 173 `i
+-> 184 `i
+-> 196 `i
+-> 210 `i
+-> 224 `i
+-> 240 `i
+-> 0 `i
+"78
+-> 16 `i
+-> 32 `i
+-> 46 `i
+-> 60 `i
+-> 72 `i
+-> 83 `i
+-> 91 `i
+-> 97 `i
+-> 101 `i
+-> 102 `i
 "79
+-> 101 `i
+-> 97 `i
+-> 91 `i
+-> 83 `i
+-> 72 `i
+-> 60 `i
+-> 46 `i
+-> 32 `i
+-> 16 `i
+"80
+-> 0 `i
+-> 240 `i
+-> 224 `i
+-> 210 `i
+-> 196 `i
+-> 184 `i
+-> 173 `i
+-> 165 `i
+-> 159 `i
+-> 155 `i
+-> 154 `i
+"81
 -> 155 `i
 -> 159 `i
 -> 165 `i
@@ -8035,25 +8074,25 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ..
 ]
-[; ;drv2665.h: 67: static const int drv_sine[] = {
-[; ;drv2665.h: 68: 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 69: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 70: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 71: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 72: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 73: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 74: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 75: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 76: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 77: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 78: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 79: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 80: };
-"83
+[; ;drv2665.h: 69: static const int drv_sine[] = {
+[; ;drv2665.h: 70: 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 71: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 72: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 73: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 74: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 75: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 76: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 77: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 78: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 79: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 80: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 81: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 82: };
+"85
 [v _drv_fifo_sine `Ci ~T0 @X0 -> 0 `x s ]
 [i _drv_fifo_sine
 :U ..
-"84
+"86
 -> 11 `i
 -> 0 `i
 -> 16 `i
@@ -8066,84 +8105,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 97 `i
 -> 101 `i
 -> 102 `i
-"85
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
-"86
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
 "87
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
+-> 101 `i
+-> 97 `i
+-> 91 `i
+-> 83 `i
+-> 72 `i
+-> 60 `i
+-> 46 `i
+-> 32 `i
+-> 16 `i
 "88
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
+-> 0 `i
+-> 240 `i
+-> 224 `i
+-> 210 `i
+-> 196 `i
+-> 184 `i
+-> 173 `i
+-> 165 `i
+-> 159 `i
+-> 155 `i
+-> 154 `i
 "89
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
+-> 155 `i
+-> 159 `i
+-> 165 `i
+-> 173 `i
+-> 184 `i
+-> 196 `i
+-> 210 `i
+-> 224 `i
+-> 240 `i
+-> 0 `i
 "90
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
-"91
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
-"92
 -> 16 `i
 -> 32 `i
 -> 46 `i
@@ -8154,7 +8149,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 97 `i
 -> 101 `i
 -> 102 `i
-"93
+"91
 -> 101 `i
 -> 97 `i
 -> 91 `i
@@ -8164,7 +8159,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 46 `i
 -> 32 `i
 -> 16 `i
-"94
+"92
 -> 0 `i
 -> 240 `i
 -> 224 `i
@@ -8176,7 +8171,51 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 159 `i
 -> 155 `i
 -> 154 `i
+"93
+-> 155 `i
+-> 159 `i
+-> 165 `i
+-> 173 `i
+-> 184 `i
+-> 196 `i
+-> 210 `i
+-> 224 `i
+-> 240 `i
+-> 0 `i
+"94
+-> 16 `i
+-> 32 `i
+-> 46 `i
+-> 60 `i
+-> 72 `i
+-> 83 `i
+-> 91 `i
+-> 97 `i
+-> 101 `i
+-> 102 `i
 "95
+-> 101 `i
+-> 97 `i
+-> 91 `i
+-> 83 `i
+-> 72 `i
+-> 60 `i
+-> 46 `i
+-> 32 `i
+-> 16 `i
+"96
+-> 0 `i
+-> 240 `i
+-> 224 `i
+-> 210 `i
+-> 196 `i
+-> 184 `i
+-> 173 `i
+-> 165 `i
+-> 159 `i
+-> 155 `i
+-> 154 `i
+"97
 -> 155 `i
 -> 159 `i
 -> 165 `i
@@ -8189,20 +8228,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ..
 ]
-[; ;drv2665.h: 83: static const int drv_fifo_sine[] = {
-[; ;drv2665.h: 84: 0x0b, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 85: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 86: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 87: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 88: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 89: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 90: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 91: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 92: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 93: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 94: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 95: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 96: };
+[; ;drv2665.h: 85: static const int drv_fifo_sine[] = {
+[; ;drv2665.h: 86: 0x0b, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 87: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 88: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 89: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 90: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 91: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 92: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 93: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 94: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 95: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 96: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 97: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 98: };
 "3 drv2665.c
 [v _drv_init `(v ~T0 @X0 1 ef2`i`i ]
 {
@@ -8211,346 +8250,352 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _output_gain `i ~T0 @X0 1 r1 ]
 [v _idle_timeout `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;drv2665.c: 4: _delay((unsigned long)((10)*(1000000/4000.0)));
-"4
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;drv2665.c: 6: drv_reset();
+[; ;drv2665.c: 5: i2c_setAddress(drv_address);
+"5
+[e ( _i2c_setAddress (1 _drv_address ]
+[; ;drv2665.c: 6: i2c_open(drv_address);
 "6
-[e ( _drv_reset ..  ]
+[e ( _i2c_open (1 _drv_address ]
 [; ;drv2665.c: 7: _delay((unsigned long)((10)*(1000000/4000.0)));
 "7
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;drv2665.c: 8: drv_write(0x02, 0);
-"8
-[e ( _drv_write (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
-[; ;drv2665.c: 9: _delay((unsigned long)((10)*(1000000/4000.0)));
+[; ;drv2665.c: 9: drv_reset();
 "9
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;drv2665.c: 10: drv_write(0x01, 0x38 | output_gain);
+[e ( _drv_reset ..  ]
+[; ;drv2665.c: 10: _delay((unsigned long)((10)*(1000000/4000.0)));
 "10
-[e ( _drv_write (2 , -> -> 1 `i `uc -> | -> 56 `i _output_gain `uc ]
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;drv2665.c: 11: drv_write(0x02, 0);
+"11
+[e ( _drv_write (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
 [; ;drv2665.c: 12: _delay((unsigned long)((10)*(1000000/4000.0)));
 "12
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;drv2665.c: 13: drv_write(0x02, idle_timeout);
+[; ;drv2665.c: 13: drv_write(0x01, 0x38 | output_gain);
 "13
-[e ( _drv_write (2 , -> -> 2 `i `uc -> _idle_timeout `uc ]
-[; ;drv2665.c: 14: printf("drv_read: %d\n", drv_read(0x00));
-"14
-[e ( _printf , (. :s 1C ( _drv_read (1 -> -> 0 `i `uc ]
+[e ( _drv_write (2 , -> -> 1 `i `uc -> | -> 56 `i _output_gain `uc ]
 [; ;drv2665.c: 15: _delay((unsigned long)((10)*(1000000/4000.0)));
 "15
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;drv2665.c: 17: }
-"17
-[e :UE 961 ]
-}
-"19
-[v _drv_reset `(v ~T0 @X0 1 ef ]
-{
-[; ;drv2665.c: 19: void drv_reset(void){
-[e :U _drv_reset ]
-[f ]
-[; ;drv2665.c: 20: drv_write(0x02, 0x80);
+[; ;drv2665.c: 16: drv_write(0x02, idle_timeout);
+"16
+[e ( _drv_write (2 , -> -> 2 `i `uc -> _idle_timeout `uc ]
+[; ;drv2665.c: 18: _delay((unsigned long)((10)*(1000000/4000.0)));
+"18
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;drv2665.c: 20: printf("drv initialized\n");
 "20
-[e ( _drv_write (2 , -> -> 2 `i `uc -> -> 128 `i `uc ]
+[e ( _printf :s 1C ]
 [; ;drv2665.c: 21: }
 "21
-[e :UE 962 ]
+[e :UE 961 ]
 }
 "23
+[v _drv_reset `(v ~T0 @X0 1 ef ]
+{
+[; ;drv2665.c: 23: void drv_reset(void){
+[e :U _drv_reset ]
+[f ]
+[; ;drv2665.c: 24: drv_write(0x02, 0x80);
+"24
+[e ( _drv_write (2 , -> -> 2 `i `uc -> -> 128 `i `uc ]
+[; ;drv2665.c: 25: }
+"25
+[e :UE 962 ]
+}
+"27
 [v _drv_outputSine `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;drv2665.c: 23: void drv_outputSine(int hz){
+[; ;drv2665.c: 27: void drv_outputSine(int hz){
 [e :U _drv_outputSine ]
 [v _hz `i ~T0 @X0 1 r1 ]
 [f ]
-"24
+"28
 [v _waveform_byte `c ~T0 @X0 1 a ]
-"25
-[v _length `ui ~T0 @X0 1 a ]
-"26
-[v _repeat `uc ~T0 @X0 1 a ]
-[; ;drv2665.c: 24: int8_t waveform_byte;
-[; ;drv2665.c: 25: uint16_t length;
-[; ;drv2665.c: 26: uint8_t repeat = 1;
-[e = _repeat -> -> 1 `i `uc ]
-[; ;drv2665.c: 27: length = (100 * 80) / hz;
-"27
-[e = _length -> / * -> 100 `i -> 80 `i _hz `ui ]
-[; ;drv2665.c: 29: for(int j=0; j<repeat; j++) {
 "29
+[v _length `ui ~T0 @X0 1 a ]
+"30
+[v _repeat `uc ~T0 @X0 1 a ]
+[; ;drv2665.c: 28: int8_t waveform_byte;
+[; ;drv2665.c: 29: uint16_t length;
+[; ;drv2665.c: 30: uint8_t repeat = 1;
+[e = _repeat -> -> 1 `i `uc ]
+[; ;drv2665.c: 31: length = (100 * 80) / hz;
+"31
+[e = _length -> / * -> 100 `i -> 80 `i _hz `ui ]
+[; ;drv2665.c: 33: for(int j=0; j<repeat; j++) {
+"33
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
 [e $U 967  ]
 [e :U 964 ]
 {
-[; ;drv2665.c: 31: for(int i=0; i<length; i++) {
-"31
+[; ;drv2665.c: 35: for(int i=0; i<length; i++) {
+"35
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 971  ]
 [e :U 968 ]
 {
-[; ;drv2665.c: 32: waveform_byte = 100.0 * sin( 2*3.14159265358979323846 * i/(length-1) );
-"32
-[e = _waveform_byte -> * .100.0 ( _sin (1 / * * -> -> 2 `i `d .3.14159265358979323846 -> _i `d -> - _length -> -> 1 `i `ui `d `c ]
-[; ;drv2665.c: 34: drv_write(0x0b, (uint8_t)waveform_byte);
-"34
-[e ( _drv_write (2 , -> -> 11 `i `uc -> _waveform_byte `uc ]
-[; ;drv2665.c: 35: _delay((unsigned long)((20)*(1000000/4000000.0)));
-"35
-[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
+[; ;drv2665.c: 36: waveform_byte = 100.0 * sin( 2*3.14159265358979323846 * i/(length-1) );
 "36
+[e = _waveform_byte -> * .100.0 ( _sin (1 / * * -> -> 2 `i `d .3.14159265358979323846 -> _i `d -> - _length -> -> 1 `i `ui `d `c ]
+[; ;drv2665.c: 38: drv_write(0x0b, (uint8_t)waveform_byte);
+"38
+[e ( _drv_write (2 , -> -> 11 `i `uc -> _waveform_byte `uc ]
+[; ;drv2665.c: 39: _delay((unsigned long)((20)*(1000000/4000000.0)));
+"39
+[e ( __delay (1 -> * -> -> 20 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
+"40
 }
-"31
+"35
 [e ++ _i -> 1 `i ]
 [e :U 971 ]
 [e $ < -> _i `ui _length 968  ]
 [e :U 969 ]
-"36
+"40
 }
-"37
+"41
 }
-"29
+"33
 [e ++ _j -> 1 `i ]
 [e :U 967 ]
 [e $ < _j -> _repeat `i 964  ]
 [e :U 965 ]
-"37
+"41
 }
-[; ;drv2665.c: 36: }
-[; ;drv2665.c: 37: }
-[; ;drv2665.c: 38: }
-"38
+[; ;drv2665.c: 40: }
+[; ;drv2665.c: 41: }
+[; ;drv2665.c: 42: }
+"42
 [e :UE 963 ]
 }
-"41
+"45
 [v _drv_outputWave `(v ~T0 @X0 1 ef2`*i`i ]
 {
-[; ;drv2665.c: 41: void drv_outputWave(int waveform[], int length){
+[; ;drv2665.c: 45: void drv_outputWave(int waveform[], int length){
 [e :U _drv_outputWave ]
 [v _waveform `*i ~T0 @X0 1 r1 ]
 [v _length `i ~T0 @X0 1 r2 ]
 [f ]
-"43
+"47
 [v _repeats `i ~T0 @X0 1 a ]
-[; ;drv2665.c: 43: int repeats = 5;
+[; ;drv2665.c: 47: int repeats = 5;
 [e = _repeats -> 5 `i ]
-[; ;drv2665.c: 44: for(int j=0; j<repeats; j++){
-"44
+[; ;drv2665.c: 48: for(int j=0; j<repeats; j++){
+"48
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
 [e $U 976  ]
 [e :U 973 ]
 {
-[; ;drv2665.c: 45: for(int i=0; i<length; i++) {
-"45
+[; ;drv2665.c: 49: for(int i=0; i<length; i++) {
+"49
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 980  ]
 [e :U 977 ]
 {
-[; ;drv2665.c: 46: drv_write(0x0b, drv_sine[i]);
-"46
+[; ;drv2665.c: 50: drv_write(0x0b, drv_sine[i]);
+"50
 [e ( _drv_write (2 , -> -> 11 `i `uc -> *U + &U _drv_sine * -> -> _i `ui `ux -> -> # *U &U _drv_sine `ui `ux `uc ]
-[; ;drv2665.c: 47: _delay((unsigned long)((100)*(1000000/4000000.0)));
-"47
+[; ;drv2665.c: 51: _delay((unsigned long)((100)*(1000000/4000000.0)));
+"51
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"48
+"52
 }
-"45
+"49
 [e ++ _i -> 1 `i ]
 [e :U 980 ]
 [e $ < _i _length 977  ]
 [e :U 978 ]
+"52
+}
+"53
+}
 "48
-}
-"49
-}
-"44
 [e ++ _j -> 1 `i ]
 [e :U 976 ]
 [e $ < _j _repeats 973  ]
 [e :U 974 ]
-"49
+"53
 }
-[; ;drv2665.c: 48: }
-[; ;drv2665.c: 49: }
-[; ;drv2665.c: 51: }
-"51
+[; ;drv2665.c: 52: }
+[; ;drv2665.c: 53: }
+[; ;drv2665.c: 55: }
+"55
 [e :UE 972 ]
 }
-"53
+"57
 [v _drv_write `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;drv2665.c: 53: void drv_write(uint8_t reg, uint8_t data){
+[; ;drv2665.c: 57: void drv_write(uint8_t reg, uint8_t data){
 [e :U _drv_write ]
 [v _reg `uc ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
 [f ]
-"58
+"62
 [v _buff `uc ~T0 @X0 -> 2 `i a ]
-[; ;drv2665.c: 58: uint8_t buff[2];
-[; ;drv2665.c: 60: buff[0] = reg;
-"60
-[e = *U + &U _buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _buff `ui `ux _reg ]
-[; ;drv2665.c: 61: buff[1] = data;
-"61
-[e = *U + &U _buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _buff `ui `ux _data ]
-[; ;drv2665.c: 64: i2c_setBuffer(buff, 2);
+[; ;drv2665.c: 62: uint8_t buff[2];
+[; ;drv2665.c: 64: buff[0] = reg;
 "64
-[e ( _i2c_setBuffer (2 , -> &U _buff `*v -> -> 2 `i `ui ]
-[; ;drv2665.c: 65: if(i2c_masterOperation(0) != I2C_NOERR)
+[e = *U + &U _buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _buff `ui `ux _reg ]
+[; ;drv2665.c: 65: buff[1] = data;
 "65
+[e = *U + &U _buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _buff `ui `ux _data ]
+[; ;drv2665.c: 68: i2c_setBuffer(buff, 2);
+"68
+[e ( _i2c_setBuffer (2 , -> &U _buff `*v -> -> 2 `i `ui ]
+[; ;drv2665.c: 69: if(i2c_masterOperation(0) != I2C_NOERR)
+"69
 [e $ ! != -> ( _i2c_masterOperation (1 -> -> 0 `i `uc `i -> . `E92 0 `i 982  ]
-[; ;drv2665.c: 66: printf("drv_write error!\n");
-"66
+[; ;drv2665.c: 70: printf("drv_write error!\n");
+"70
 [e ( _printf :s 2C ]
 [e :U 982 ]
-[; ;drv2665.c: 69: }
-"69
+[; ;drv2665.c: 73: }
+"73
 [e :UE 981 ]
 }
-"71
+"75
 [v _drv_write_wvfrm `(v ~T0 @X0 1 ef ]
 {
-[; ;drv2665.c: 71: void drv_write_wvfrm(){
+[; ;drv2665.c: 75: void drv_write_wvfrm(){
 [e :U _drv_write_wvfrm ]
 [f ]
-[; ;drv2665.c: 74: i2c_setBuffer(drv_fifo_sine, (sizeof(drv_fifo_sine) / sizeof((drv_fifo_sine)[0])));
-"74
-[e ( _i2c_setBuffer (2 , -> &U _drv_fifo_sine `*v / -> # _drv_fifo_sine `ui -> # *U + &U _drv_fifo_sine * -> -> -> 0 `i `ui `ux -> -> # *U &U _drv_fifo_sine `ui `ux `ui ]
-[; ;drv2665.c: 75: i2c_masterOperation(0);
-"75
-[e ( _i2c_masterOperation (1 -> -> 0 `i `uc ]
-[; ;drv2665.c: 76: i2c_setBuffer(drv_fifo_sine, (sizeof(drv_fifo_sine) / sizeof((drv_fifo_sine)[0])));
-"76
-[e ( _i2c_setBuffer (2 , -> &U _drv_fifo_sine `*v / -> # _drv_fifo_sine `ui -> # *U + &U _drv_fifo_sine * -> -> -> 0 `i `ui `ux -> -> # *U &U _drv_fifo_sine `ui `ux `ui ]
-[; ;drv2665.c: 77: i2c_masterOperation(0);
-"77
-[e ( _i2c_masterOperation (1 -> -> 0 `i `uc ]
-[; ;drv2665.c: 78: }
+[; ;drv2665.c: 78: i2c_setBuffer(drv_fifo_sine, (sizeof(drv_fifo_sine) / sizeof((drv_fifo_sine)[0])));
 "78
+[e ( _i2c_setBuffer (2 , -> &U _drv_fifo_sine `*v / -> # _drv_fifo_sine `ui -> # *U + &U _drv_fifo_sine * -> -> -> 0 `i `ui `ux -> -> # *U &U _drv_fifo_sine `ui `ux `ui ]
+[; ;drv2665.c: 79: i2c_masterOperation(0);
+"79
+[e ( _i2c_masterOperation (1 -> -> 0 `i `uc ]
+[; ;drv2665.c: 80: i2c_setBuffer(drv_fifo_sine, (sizeof(drv_fifo_sine) / sizeof((drv_fifo_sine)[0])));
+"80
+[e ( _i2c_setBuffer (2 , -> &U _drv_fifo_sine `*v / -> # _drv_fifo_sine `ui -> # *U + &U _drv_fifo_sine * -> -> -> 0 `i `ui `ux -> -> # *U &U _drv_fifo_sine `ui `ux `ui ]
+[; ;drv2665.c: 81: i2c_masterOperation(0);
+"81
+[e ( _i2c_masterOperation (1 -> -> 0 `i `uc ]
+[; ;drv2665.c: 82: }
+"82
 [e :UE 983 ]
 }
-"80
+"84
 [v _drv_read `(i ~T0 @X0 1 ef1`uc ]
 {
-[; ;drv2665.c: 80: int drv_read(char reg){
+[; ;drv2665.c: 84: int drv_read(char reg){
 [e :U _drv_read ]
 [v _reg `uc ~T0 @X0 1 r1 ]
 [f ]
-"82
-[v _buff `uc ~T0 @X0 1 a ]
-[; ;drv2665.c: 82: char buff=0;
-[e = _buff -> -> 0 `i `uc ]
-[; ;drv2665.c: 85: i2c_setBuffer(&reg, 1);
-"85
-[e ( _i2c_setBuffer (2 , -> &U _reg `*v -> -> 1 `i `ui ]
-[; ;drv2665.c: 86: if(i2c_masterOperation(0) != I2C_NOERR)
 "86
+[v _buff `uc ~T0 @X0 1 a ]
+[; ;drv2665.c: 86: char buff=0;
+[e = _buff -> -> 0 `i `uc ]
+[; ;drv2665.c: 89: i2c_setBuffer(&reg, 1);
+"89
+[e ( _i2c_setBuffer (2 , -> &U _reg `*v -> -> 1 `i `ui ]
+[; ;drv2665.c: 90: if(i2c_masterOperation(0) != I2C_NOERR)
+"90
 [e $ ! != -> ( _i2c_masterOperation (1 -> -> 0 `i `uc `i -> . `E92 0 `i 985  ]
-[; ;drv2665.c: 87: printf("drv_write error!\n");
-"87
+[; ;drv2665.c: 91: printf("drv_write error!\n");
+"91
 [e ( _printf :s 3C ]
 [e :U 985 ]
-[; ;drv2665.c: 90: _delay((unsigned long)((100)*(1000000/4000000.0)));
-"90
+[; ;drv2665.c: 94: _delay((unsigned long)((100)*(1000000/4000000.0)));
+"94
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-[; ;drv2665.c: 93: i2c_setBuffer(&buff, 1);
-"93
+[; ;drv2665.c: 97: i2c_setBuffer(&buff, 1);
+"97
 [e ( _i2c_setBuffer (2 , -> &U _buff `*v -> -> 1 `i `ui ]
-[; ;drv2665.c: 95: if(i2c_masterOperation(1) != I2C_NOERR)
-"95
+[; ;drv2665.c: 99: if(i2c_masterOperation(1) != I2C_NOERR)
+"99
 [e $ ! != -> ( _i2c_masterOperation (1 -> -> 1 `i `uc `i -> . `E92 0 `i 986  ]
-[; ;drv2665.c: 96: printf("drv_read error!\n");
-"96
+[; ;drv2665.c: 100: printf("drv_read error!\n");
+"100
 [e ( _printf :s 4C ]
 [e :U 986 ]
-[; ;drv2665.c: 98: return buff;
-"98
+[; ;drv2665.c: 102: return buff;
+"102
 [e ) -> _buff `i ]
 [e $UE 984  ]
-[; ;drv2665.c: 99: };
-"99
+[; ;drv2665.c: 103: };
+"103
 [e :UE 984 ]
 }
-"102
+"106
 [v _drv_write_DC `(v ~T0 @X0 1 ef2`i`i ]
 {
-[; ;drv2665.c: 102: void drv_write_DC(int val, int duration_ms){
+[; ;drv2665.c: 106: void drv_write_DC(int val, int duration_ms){
 [e :U _drv_write_DC ]
 [v _val `i ~T0 @X0 1 r1 ]
 [v _duration_ms `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;drv2665.c: 104: drv_write(0x0b, 0x00);
-"104
+[; ;drv2665.c: 108: drv_write(0x0b, 0x00);
+"108
 [e ( _drv_write (2 , -> -> 11 `i `uc -> -> 0 `i `uc ]
-[; ;drv2665.c: 105: for(int i=0;i<duration_ms/5; i++){
-"105
+[; ;drv2665.c: 109: for(int i=0;i<duration_ms/5; i++){
+"109
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 991  ]
 [e :U 988 ]
 {
-[; ;drv2665.c: 106: drv_write(0x0b, val);
-"106
+[; ;drv2665.c: 110: drv_write(0x0b, val);
+"110
 [e ( _drv_write (2 , -> -> 11 `i `uc -> _val `uc ]
-[; ;drv2665.c: 107: _delay((unsigned long)((20)*(1000000/4000000.0)));
-"107
+[; ;drv2665.c: 111: _delay((unsigned long)((20)*(1000000/4000000.0)));
+"111
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"109
+"113
 }
-"105
+"109
 [e ++ _i -> 1 `i ]
 [e :U 991 ]
 [e $ < _i / _duration_ms -> 5 `i 988  ]
 [e :U 989 ]
-"109
+"113
 }
-[; ;drv2665.c: 109: }
-[; ;drv2665.c: 112: if(!fifo_check()) printf("fifo not ready!\n");
-"112
+[; ;drv2665.c: 113: }
+[; ;drv2665.c: 116: if(!fifo_check()) printf("fifo not ready!\n");
+"116
 [e $ ! ! ( _fifo_check ..  992  ]
 [e ( _printf :s 5C ]
 [e :U 992 ]
-[; ;drv2665.c: 114: drv_write(0x0b, 0x00);
-"114
+[; ;drv2665.c: 118: drv_write(0x0b, 0x00);
+"118
 [e ( _drv_write (2 , -> -> 11 `i `uc -> -> 0 `i `uc ]
-[; ;drv2665.c: 116: }
-"116
+[; ;drv2665.c: 120: }
+"120
 [e :UE 987 ]
 }
-"120
+"124
 [v _fifo_check `(b ~T0 @X0 1 ef ]
-"121
+"125
 {
-[; ;drv2665.c: 120: bit fifo_check(void)
-[; ;drv2665.c: 121: {
+[; ;drv2665.c: 124: bit fifo_check(void)
+[; ;drv2665.c: 125: {
 [e :U _fifo_check ]
 [f ]
-"122
+"126
 [v _reply `uc ~T0 @X0 1 a ]
-[; ;drv2665.c: 122: uint8_t reply;
-[; ;drv2665.c: 123: reply = drv_read(0x00);
-"123
+[; ;drv2665.c: 126: uint8_t reply;
+[; ;drv2665.c: 127: reply = drv_read(0x00);
+"127
 [e = _reply -> ( _drv_read (1 -> -> 0 `i `uc `uc ]
-[; ;drv2665.c: 125: return !(reply & 0x01);
-"125
+[; ;drv2665.c: 129: return !(reply & 0x01);
+"129
 [e ) -> -> ! != & -> _reply `i -> 1 `i -> 0 `i `i `b ]
 [e $UE 993  ]
-[; ;drv2665.c: 127: };
-"127
+[; ;drv2665.c: 131: };
+"131
 [e :UE 993 ]
 }
-[p f _printf 8388736 ]
-[a 1C 100 114 118 95 114 101 97 100 58 32 37 100 10 0 ]
+[p f _printf 8388608 ]
+[a 1C 100 114 118 32 105 110 105 116 105 97 108 105 122 101 100 10 0 ]
 [a 5C 102 105 102 111 32 110 111 116 32 114 101 97 100 121 33 10 0 ]
 [a 2C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]
 [a 3C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]

@@ -98,8 +98,8 @@ long moveVector_downs = 0;//0b01000000010000000100000000000000;
 /*
  MOTION CONTROL
  */
-long activeMask=0x00;//0x80808100; // currently active actuators. activeMask must be a SUBSET of moveMask!!
-long moveMask=0x00; // actuators that should move
+unsigned long activeMask=0x00;//0x80808100; // currently active actuators. activeMask must be a SUBSET of moveMask!!
+unsigned long moveMask=0x00; // actuators that should move
 
 /*
  * demo mode constants for toggling individual LEDs on/off
@@ -118,7 +118,7 @@ enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 
 void doAbsMove(void);
 void doRelMove(void);
-void initialize(void);
+void main_initialize(void);
 void calcHeaterPins(void);
 void demoSequence(void);
 
@@ -147,15 +147,17 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-    initialize();
+    main_initialize();
     
+    
+    // debugging
+    moveMask |= (1<<1);
+    moveMask |= (1<<5);
+    //moveMask |= (1<<16);
+    printf("moveMask: %lu \n", moveMask);
     while (1)
     {
-        // serial parser
-        
-        
-        
-        //demoSequence();
+
         if (eusartRxCount!=0) {
                 readdata[readIdx] = EUSART_Read();
                 if(readdata[readIdx] == '\n'){
@@ -186,17 +188,20 @@ void main(void)
 }
 
 
-void initialize(void){
+void main_initialize(void){
     // LEDs
-    LEDsPwr(LEDpower, 1); // set gain: top
-    LEDsPwr(LEDpower, 2); // set gain: bottom
+    LEDsPwr(LEDpower, 1); // set max power (top))
+    LEDsPwr(LEDpower, 2); // set max power (bottom)
+    
+    LED_setBrightnessRange(1, 1); // set max range (top)
+    LED_setBrightnessRange(1, 2); // set max range (bottom)
     
     // timers
     TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1); // delay 1
     TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1); // delay 2
     
     // piezo driver
-    //drv_init(DRV2665_25_VPP_GAIN, DRV2665_5_MS_IDLE_TOUT);
+    drv_init(DRV2665_100_VPP_GAIN, DRV2665_20_MS_IDLE_TOUT);
     printf("initialized\n");
 }
 
@@ -231,7 +236,7 @@ int commCheck(void){return 0;};
 */
 // END DEMO FUNCTIONS
 
- void doMove(void){
+ int doMove(void){
     printf("doMove\n");
     // over-simplified move code
     calcHeaterPins();
@@ -249,7 +254,7 @@ int commCheck(void){return 0;};
 
     LED_ENABLE_SetHigh(); // LEDs off
 
-    
+    return 0;
     
     
 }
@@ -262,7 +267,7 @@ void calcHeaterPins(void){
     second_bottom = (~moveVector_ups) & moveMask;
 }
 
-// demo LED sequence
+// demo LED sequence on both top and bottom LEDs
 void demoSequence(void){
     LEDsOn(demoLong, 1);
     LEDsOn(demoLong, 2);
@@ -458,13 +463,13 @@ int setLEDPwr(int pwr, int topOrBottom){
 // topOrB: 1:top, 2:bottom;
 int setHeaterToggle(int num, int topOrB){
     
-    if(topOrB){
+    if(topOrB == 1){
         demoHeaterToggle_top ^= 1UL << num;
         LEDsOn(demoHeaterToggle_top, 1);
     }
-    else{
+    else if (topOrB == 2){
         demoHeaterToggle_bot ^= 1UL << num;
-        LEDsOn(demoHeaterToggle_top, 2);
+        LEDsOn(demoHeaterToggle_bot, 2);
     }
         
     printf("A\n");
@@ -495,7 +500,7 @@ int setMoveMask(int probeNum, int onOff){
     // error out if probe num > TOTALNUMCHANNELS
     // something like moveMask |= (1<<probeNum);
     // note: probes are indexed 0:TOTALNUMCHANNELS-1!!!
-    if (probeNum < TOTALNUMCHANS-1){
+    if (probeNum < TOTALNUMCHANS){
         if (onOff)
             moveMask |= (1<<probeNum);
         else
