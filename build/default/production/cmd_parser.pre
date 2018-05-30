@@ -297,7 +297,6 @@ paramIter++;
 int execCmd (struct CMD_STRUCT *s){
 errorOut = 1;
 
-printf("exec: %d %d %d \n", s->c, s->p1.paramI, s->p2.paramI);
 switch(s->c){
 case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
 case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
@@ -326,7 +325,7 @@ case CMD_COMM_CHECK: errorOut = commCheck(); break;
 case CMD_PING: printf("!\n"); break;
 default: printf("UNRECOGNIZED COMMAND!\n");
 
-# 107
+# 106
 }
 
 return errorOut;

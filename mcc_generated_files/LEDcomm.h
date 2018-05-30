@@ -21,12 +21,12 @@
 #define LED_OPENSHORT_DETECTION 12
 
 
-long second_top;
-long first_bottom;
-long first_top;
-long second_bottom;
-long LED_configReg_top; // config register for top LED driver
-long LED_configReg_bot; // config register for bottom LED driver
+unsigned long second_top;
+unsigned long first_bottom;
+unsigned long first_top;
+unsigned long second_bottom;
+unsigned long LED_configReg_top; // config register for top LED driver
+unsigned long LED_configReg_bot; // config register for bottom LED driver
 
 void send_2bytes_latchless(unsigned int data);
 void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);

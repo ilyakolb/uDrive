@@ -44,23 +44,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 "41 mcc_generated_files/LEDcomm.h
 [v _LED_getData `(l ~T0 @X0 0 ef ]
 "24 mcc_generated_files/LEDcomm.h
-[v _second_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 24: long second_top;
+[v _second_top `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 24: unsigned long second_top;
 "25
-[v _first_bottom `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 25: long first_bottom;
+[v _first_bottom `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 25: unsigned long first_bottom;
 "26
-[v _first_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 26: long first_top;
+[v _first_top `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 26: unsigned long first_top;
 "27
-[v _second_bottom `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 27: long second_bottom;
+[v _second_bottom `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 27: unsigned long second_bottom;
 "28
-[v _LED_configReg_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 28: long LED_configReg_top;
+[v _LED_configReg_top `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 28: unsigned long LED_configReg_top;
 "29
-[v _LED_configReg_bot `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 29: long LED_configReg_bot;
+[v _LED_configReg_bot `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 29: unsigned long LED_configReg_bot;
 [; ;LEDcomm.h: 31: void send_2bytes_latchless(unsigned int data);
 [; ;LEDcomm.h: 32: void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
 [; ;LEDcomm.h: 33: void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
@@ -8165,7 +8165,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "79
 [v _LED_configReg `l ~T0 @X0 1 a ]
 [; ;LEDcomm.c: 79: long LED_configReg = (topOrBottom == 1) ? LED_configReg_top : LED_configReg_bot;
-[e = _LED_configReg ? == _topOrBottom -> 1 `i : _LED_configReg_top _LED_configReg_bot ]
+[e = _LED_configReg -> ? == _topOrBottom -> 1 `i : _LED_configReg_top _LED_configReg_bot `l ]
 [; ;LEDcomm.c: 80: LED_configReg |= ((range>0) | (range>0)<<1 | (range>0) << 2);
 "80
 [e =| _LED_configReg -> | | -> > _range -> 0 `i `i << -> > _range -> 0 `i `i -> 1 `i << -> > _range -> 0 `i `i -> 2 `i `l ]
@@ -8177,14 +8177,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == _topOrBottom -> 1 `i 1035  ]
 [; ;LEDcomm.c: 85: LED_configReg_top = LED_configReg;
 "85
-[e = _LED_configReg_top _LED_configReg ]
+[e = _LED_configReg_top -> _LED_configReg `ul ]
 [e $U 1036  ]
 "86
 [e :U 1035 ]
 [; ;LEDcomm.c: 86: else
 [; ;LEDcomm.c: 87: LED_configReg_bot = LED_configReg;
 "87
-[e = _LED_configReg_bot _LED_configReg ]
+[e = _LED_configReg_bot -> _LED_configReg `ul ]
 [e :U 1036 ]
 [; ;LEDcomm.c: 88: }
 "88
@@ -8386,7 +8386,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "153
 [v _oldConfigReg `l ~T0 @X0 1 a ]
 [; ;LEDcomm.c: 153: long oldConfigReg = (topOrBottom == 1) ? LED_configReg_top : LED_configReg_bot;
-[e = _oldConfigReg ? == _topOrBottom -> 1 `i : _LED_configReg_top _LED_configReg_bot ]
+[e = _oldConfigReg -> ? == _topOrBottom -> 1 `i : _LED_configReg_top _LED_configReg_bot `l ]
 [; ;LEDcomm.c: 154: LED_setBrightnessRange(1, topOrBottom);
 "154
 [e ( _LED_setBrightnessRange (2 , -> 1 `i _topOrBottom ]

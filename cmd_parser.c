@@ -70,7 +70,6 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
 int execCmd (struct CMD_STRUCT *s){
     errorOut = 1; // by default, return error (1)
     
-    printf("exec: %d %d %d \n", s->c, s->p1.paramI, s->p2.paramI);
     switch(s->c){
         case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
         case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;

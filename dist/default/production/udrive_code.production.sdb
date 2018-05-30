@@ -215,51 +215,51 @@ CMD_PING 21
 [v _LED_testComm LED_testComm `(i  1 e 2 0 ]
 "130 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _main main `(v  1 e 1 0 ]
-"191
+"185
 [v _main_initialize main_initialize `(v  1 e 1 0 ]
-"239
+"233
 [v _doMove doMove `(i  1 e 2 0 ]
-"263
+"257
 [v _calcHeaterPins calcHeaterPins `(v  1 e 1 0 ]
-"285
+"279
 [v _startRelMove startRelMove `(i  1 e 2 0 ]
-"291
+"285
 [v _startAbsMove startAbsMove `(i  1 e 2 0 ]
-"309
+"303
 [v _doAbsMove doAbsMove `(v  1 e 1 0 ]
-"341
+"335
 [v _doRelMove doRelMove `(v  1 e 1 0 ]
-"378
+"372
 [v _zeroPosition zeroPosition `(i  1 e 2 0 ]
-"388
+"382
 [v _getPosition getPosition `(i  1 e 2 0 ]
-"399
+"393
 [v _setDrvPeak setDrvPeak `(i  1 e 2 0 ]
-"406
+"400
 [v _setDrvGain setDrvGain `(i  1 e 2 0 ]
-"420
+"414
 [v _setDrvPiezoOnTime setDrvPiezoOnTime `(i  1 e 2 0 ]
-"431
+"425
 [v _setHeaterPreTime setHeaterPreTime `(i  1 e 2 0 ]
-"437
+"431
 [v _setHeaterPostTime setHeaterPostTime `(i  1 e 2 0 ]
-"447
+"441
 [v _setLEDBrightnessRange setLEDBrightnessRange `(i  1 e 2 0 ]
-"455
+"449
 [v _setLEDPwr setLEDPwr `(i  1 e 2 0 ]
-"464
+"458
 [v _setHeaterToggle setHeaterToggle `(i  1 e 2 0 ]
-"484
+"479
 [v _setActive setActive `(i  1 e 2 0 ]
-"499
+"494
 [v _setMoveMask setMoveMask `(i  1 e 2 0 ]
-"516
+"511
 [v _getActive getActive `(i  1 e 2 0 ]
-"524
+"519
 [v _getMoveMask getMoveMask `(i  1 e 2 0 ]
-"531
+"526
 [v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
-"539
+"534
 [v _commCheck commCheck `(i  1 e 2 0 ]
 "116 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/drivers/i2c_master.c
 [v _i2c_open i2c_open `(E8193  1 e 1 0 ]
@@ -836,23 +836,23 @@ CMD_PING 21
 "90
 [v _demoLong demoLong `ul  1 e 4 0 ]
 "94
-[v _moveVector_ups moveVector_ups `l  1 e 4 0 ]
+[v _moveVector_ups moveVector_ups `ul  1 e 4 0 ]
 "95
-[v _moveVector_downs moveVector_downs `l  1 e 4 0 ]
+[v _moveVector_downs moveVector_downs `ul  1 e 4 0 ]
 "101
 [v _activeMask activeMask `ul  1 e 4 0 ]
 "102
 [v _moveMask moveMask `ul  1 e 4 0 ]
 "107
-[v _demoHeaterToggle_top demoHeaterToggle_top `l  1 e 4 0 ]
+[v _demoHeaterToggle_top demoHeaterToggle_top `ul  1 e 4 0 ]
 "108
-[v _demoHeaterToggle_bot demoHeaterToggle_bot `l  1 e 4 0 ]
+[v _demoHeaterToggle_bot demoHeaterToggle_bot `ul  1 e 4 0 ]
 "110
-[v _currentPositions_steps currentPositions_steps `[24]i  1 e 48 0 ]
+[v _currentPositions_steps currentPositions_steps `[24]l  1 e 96 @10128 ]
 "111
-[v _remainingSteps remainingSteps `i  1 e 2 0 ]
+[v _remainingSteps remainingSteps `l  1 e 4 0 ]
 "112
-[v _absCommand absCommand `i  1 e 2 0 ]
+[v _absCommand absCommand `l  1 e 4 0 ]
 "113
 [v _motionType motionType `E8775  1 e 1 0 ]
 [s S929 . 30 `uc 1 busy 1 0 :1:0 
@@ -885,17 +885,17 @@ CMD_PING 21
 "76
 [v _i2c1_driver_i2cISR i2c1_driver_i2cISR `*.37(v  1 e 2 0 ]
 "24 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/LEDcomm.h
-[v _second_top second_top `l  1 e 4 0 ]
+[v _second_top second_top `ul  1 e 4 0 ]
 "25
-[v _first_bottom first_bottom `l  1 e 4 0 ]
+[v _first_bottom first_bottom `ul  1 e 4 0 ]
 "26
-[v _first_top first_top `l  1 e 4 0 ]
+[v _first_top first_top `ul  1 e 4 0 ]
 "27
-[v _second_bottom second_bottom `l  1 e 4 0 ]
+[v _second_bottom second_bottom `ul  1 e 4 0 ]
 "28
-[v _LED_configReg_top LED_configReg_top `l  1 e 4 0 ]
+[v _LED_configReg_top LED_configReg_top `ul  1 e 4 0 ]
 "29
-[v _LED_configReg_bot LED_configReg_bot `l  1 e 4 0 ]
+[v _LED_configReg_bot LED_configReg_bot `ul  1 e 4 0 ]
 "57 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/tmr0.c
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "56 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/tmr2.c
@@ -903,7 +903,7 @@ CMD_PING 21
 "130 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"188
+"182
 } 0
 "5 C:\Users\smithr13\Documents\uDrive\udrive_code\cmd_parser.c
 [v _parseCmd parseCmd `(v  1 e 1 0 ]
@@ -1019,16 +1019,16 @@ CMD_PING 21
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 19 ]
 "53
 } 0
-"191 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"185 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _main_initialize main_initialize `(v  1 e 1 0 ]
 {
-"206
+"200
 } 0
 "3 C:\Users\smithr13\Documents\uDrive\udrive_code\drv2665.c
 [v _drv_init drv_init `(v  1 e 1 0 ]
 {
-[v drv_init@output_gain output_gain `i  1 p 2 24 ]
-[v drv_init@idle_timeout idle_timeout `i  1 p 2 26 ]
+[v drv_init@output_gain output_gain `i  1 p 2 22 ]
+[v drv_init@idle_timeout idle_timeout `i  1 p 2 24 ]
 "21
 } 0
 "156 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/drivers/i2c_master.c
@@ -1081,41 +1081,41 @@ CMD_PING 21
 [s S1408 CMD_STRUCT 21 `E8587 1 c 1 0 `S1405 1 p1 10 1 `S1405 1 p2 10 11 ]
 [v execCmd@s s `*.5S1408  1 a 1 wreg ]
 [v execCmd@s s `*.5S1408  1 a 1 wreg ]
-[v execCmd@s s `*.5S1408  1 a 1 54 ]
-"110
+[v execCmd@s s `*.5S1408  1 a 1 52 ]
+"109
 } 0
-"378 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"372 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _zeroPosition zeroPosition `(i  1 e 2 0 ]
 {
+"373
+[v zeroPosition@i i `i  1 a 2 41 ]
 "379
-[v zeroPosition@i i `i  1 a 2 43 ]
-"385
 } 0
-"285
+"279
 [v _startRelMove startRelMove `(i  1 e 2 0 ]
 {
-[v startRelMove@steps steps `i  1 p 2 41 ]
-"290
+[v startRelMove@steps steps `i  1 p 2 21 ]
+"284
 } 0
-"291
+"285
 [v _startAbsMove startAbsMove `(i  1 e 2 0 ]
 {
-[v startAbsMove@steps steps `i  1 p 2 41 ]
-"296
+[v startAbsMove@steps steps `i  1 p 2 21 ]
+"290
 } 0
-"499
+"494
 [v _setMoveMask setMoveMask `(i  1 e 2 0 ]
 {
-[v setMoveMask@probeNum probeNum `i  1 p 2 41 ]
-[v setMoveMask@onOff onOff `i  1 p 2 43 ]
-"513
+[v setMoveMask@probeNum probeNum `i  1 p 2 21 ]
+[v setMoveMask@onOff onOff `i  1 p 2 23 ]
+"508
 } 0
-"455
+"449
 [v _setLEDPwr setLEDPwr `(i  1 e 2 0 ]
 {
-[v setLEDPwr@pwr pwr `i  1 p 2 23 ]
-[v setLEDPwr@topOrBottom topOrBottom `i  1 p 2 25 ]
-"459
+[v setLEDPwr@pwr pwr `i  1 p 2 21 ]
+[v setLEDPwr@topOrBottom topOrBottom `i  1 p 2 23 ]
+"453
 } 0
 "12 C:\Users\smithr13\Documents\uDrive\udrive_code\LEDcomm.c
 [v _LEDsPwr LEDsPwr `(v  1 e 1 0 ]
@@ -1127,31 +1127,31 @@ CMD_PING 21
 [v LEDsPwr@topOrBottom topOrBottom `i  1 p 2 38 ]
 "16
 } 0
-"447 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"441 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _setLEDBrightnessRange setLEDBrightnessRange `(i  1 e 2 0 ]
 {
-[v setLEDBrightnessRange@r r `i  1 p 2 23 ]
-[v setLEDBrightnessRange@tOB tOB `i  1 p 2 25 ]
-"451
+[v setLEDBrightnessRange@r r `i  1 p 2 21 ]
+[v setLEDBrightnessRange@tOB tOB `i  1 p 2 23 ]
+"445
 } 0
-"464
+"458
 [v _setHeaterToggle setHeaterToggle `(i  1 e 2 0 ]
 {
-[v setHeaterToggle@num num `i  1 p 2 23 ]
-[v setHeaterToggle@topOrB topOrB `i  1 p 2 25 ]
-"479
+[v setHeaterToggle@num num `i  1 p 2 21 ]
+[v setHeaterToggle@topOrB topOrB `i  1 p 2 23 ]
+"474
 } 0
-"431
+"425
 [v _setHeaterPreTime setHeaterPreTime `(i  1 e 2 0 ]
 {
 [v setHeaterPreTime@t t `i  1 p 2 29 ]
-"436
+"430
 } 0
-"437
+"431
 [v _setHeaterPostTime setHeaterPostTime `(i  1 e 2 0 ]
 {
 [v setHeaterPostTime@t t `i  1 p 2 29 ]
-"442
+"436
 } 0
 "112 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_LoadPeriodRegister TMR2_LoadPeriodRegister `(v  1 e 1 0 ]
@@ -1162,11 +1162,11 @@ CMD_PING 21
 [v TMR2_LoadPeriodRegister@periodVal periodVal `uc  1 a 1 17 ]
 "115
 } 0
-"420 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"414 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _setDrvPiezoOnTime setDrvPiezoOnTime `(i  1 e 2 0 ]
 {
 [v setDrvPiezoOnTime@t t `i  1 p 2 29 ]
-"425
+"419
 } 0
 "44 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]
@@ -1232,68 +1232,68 @@ CMD_PING 21
 [v TMR0_Load8bitPeriod@periodVal periodVal `uc  1 a 1 17 ]
 "117
 } 0
-"399 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"393 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _setDrvPeak setDrvPeak `(i  1 e 2 0 ]
 {
-[v setDrvPeak@pk pk `i  1 p 2 41 ]
-"403
+[v setDrvPeak@pk pk `i  1 p 2 21 ]
+"397
 } 0
-"406
+"400
 [v _setDrvGain setDrvGain `(i  1 e 2 0 ]
 {
-"407
-[v setDrvGain@setGain setGain `i  1 a 2 26 ]
-"406
-[v setDrvGain@gain gain `i  1 p 2 23 ]
-"418
+"401
+[v setDrvGain@setGain setGain `i  1 a 2 24 ]
+"400
+[v setDrvGain@gain gain `i  1 p 2 21 ]
+"412
 } 0
-"484
+"479
 [v _setActive setActive `(i  1 e 2 0 ]
 {
-[v setActive@probeNum probeNum `i  1 p 2 41 ]
-[v setActive@onOff onOff `i  1 p 2 43 ]
-"497
+[v setActive@probeNum probeNum `i  1 p 2 21 ]
+[v setActive@onOff onOff `i  1 p 2 23 ]
+"492
 } 0
-"388
+"382
 [v _getPosition getPosition `(i  1 e 2 0 ]
 {
-[v getPosition@a a `i  1 p 2 41 ]
-"396
+[v getPosition@a a `i  1 p 2 21 ]
+"390
 } 0
-"524
+"519
 [v _getMoveMask getMoveMask `(i  1 e 2 0 ]
 {
+"520
+[v getMoveMask@i i `i  1 a 2 23 ]
 "525
-[v getMoveMask@i i `i  1 a 2 43 ]
-"530
 } 0
-"531
+"526
 [v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
 {
-"537
+"532
 } 0
-"516
+"511
 [v _getActive getActive `(i  1 e 2 0 ]
 {
+"512
+[v getActive@i i `i  1 a 2 23 ]
 "517
-[v getActive@i i `i  1 a 2 43 ]
-"522
 } 0
-"539
+"534
 [v _commCheck commCheck `(i  1 e 2 0 ]
 {
-"571
+"566
 } 0
 "95 C:\Users\smithr13\Documents\uDrive\udrive_code\LEDcomm.c
 [v _LED_test_openshort LED_test_openshort `(v  1 e 1 0 ]
 {
 "105
-[v LED_test_openshort@j j `i  1 a 2 32 ]
+[v LED_test_openshort@j j `i  1 a 2 30 ]
 "103
-[v LED_test_openshort@readData readData `ul  1 a 4 28 ]
+[v LED_test_openshort@readData readData `ul  1 a 4 26 ]
 "95
-[v LED_test_openshort@type type `i  1 p 2 23 ]
-[v LED_test_openshort@topOrBottom topOrBottom `i  1 p 2 25 ]
+[v LED_test_openshort@type type `i  1 p 2 21 ]
+[v LED_test_openshort@topOrBottom topOrBottom `i  1 p 2 23 ]
 "120
 } 0
 "151
@@ -1304,7 +1304,7 @@ CMD_PING 21
 "155
 [v LED_testComm@readResult readResult `i  1 a 2 43 ]
 "151
-[v LED_testComm@topOrBottom topOrBottom `i  1 p 2 39 ]
+[v LED_testComm@topOrBottom topOrBottom `i  1 p 2 41 ]
 "160
 } 0
 "77
@@ -1320,62 +1320,62 @@ CMD_PING 21
 "123
 [v _LED_readConfig LED_readConfig `(l  1 e 4 0 ]
 {
-[v LED_readConfig@topOrBottom topOrBottom `i  1 p 2 35 ]
+[v LED_readConfig@topOrBottom topOrBottom `i  1 p 2 37 ]
 "127
 } 0
 "129
 [v _LED_getData LED_getData `(l  1 e 4 0 ]
 {
 "134
-[v LED_getData@j j `i  1 a 2 33 ]
+[v LED_getData@j j `i  1 a 2 35 ]
 "131
-[v LED_getData@readData readData `l  1 a 4 29 ]
+[v LED_getData@readData readData `l  1 a 4 31 ]
 "146
 } 0
-"341 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"335 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _doRelMove doRelMove `(v  1 e 1 0 ]
 {
-"351
-[v doRelMove@j j `i  1 a 2 47 ]
-"375
+"345
+[v doRelMove@j j `i  1 a 2 54 ]
+"369
 } 0
-"309
+"303
 [v _doAbsMove doAbsMove `(v  1 e 1 0 ]
 {
-"334
-[v doAbsMove@i_1577 i `i  1 a 2 44 ]
-"326
-[v doAbsMove@i_1575 i `i  1 a 2 46 ]
-"313
-[v doAbsMove@i i `i  1 a 2 42 ]
-"312
-[v doAbsMove@allThere allThere `i  1 a 2 40 ]
-"338
+"328
+[v doAbsMove@i_1576 i `i  1 a 2 42 ]
+"320
+[v doAbsMove@i_1574 i `i  1 a 2 44 ]
+"307
+[v doAbsMove@i i `i  1 a 2 40 ]
+"306
+[v doAbsMove@allThere allThere `i  1 a 2 38 ]
+"332
 } 0
-"239
+"233
 [v _doMove doMove `(i  1 e 2 0 ]
 {
-"253
-[v doMove@t_1560 t `i  1 a 2 38 ]
 "247
-[v doMove@t t `i  1 a 2 36 ]
-"260
+[v doMove@t_1559 t `i  1 a 2 36 ]
+"241
+[v doMove@t t `i  1 a 2 34 ]
+"254
 } 0
 "106 C:\Users\smithr13\Documents\uDrive\udrive_code\drv2665.c
 [v _drv_write_DC drv_write_DC `(v  1 e 1 0 ]
 {
 "109
-[v drv_write_DC@i i `i  1 a 2 31 ]
+[v drv_write_DC@i i `i  1 a 2 29 ]
 "106
-[v drv_write_DC@val val `i  1 p 2 26 ]
-[v drv_write_DC@duration_ms duration_ms `i  1 p 2 28 ]
+[v drv_write_DC@val val `i  1 p 2 24 ]
+[v drv_write_DC@duration_ms duration_ms `i  1 p 2 26 ]
 "120
 } 0
 "124
 [v _fifo_check fifo_check `(b  1 e 0 0 ]
 {
 "126
-[v fifo_check@reply reply `uc  1 a 1 25 ]
+[v fifo_check@reply reply `uc  1 a 1 23 ]
 "131
 } 0
 "84
@@ -1383,11 +1383,11 @@ CMD_PING 21
 {
 [v drv_read@reg reg `uc  1 a 1 wreg ]
 "86
-[v drv_read@buff buff `uc  1 a 1 24 ]
+[v drv_read@buff buff `uc  1 a 1 44 ]
 "84
 [v drv_read@reg reg `uc  1 a 1 wreg ]
 "86
-[v drv_read@reg reg `uc  1 a 1 23 ]
+[v drv_read@reg reg `uc  1 a 1 43 ]
 "103
 } 0
 "57
@@ -1407,15 +1407,15 @@ CMD_PING 21
 [v _printf printf `(i  1 e 2 0 ]
 {
 "528
-[v printf@val val `ul  1 a 4 16 ]
+[v printf@val val `ul  1 a 4 14 ]
 "504
-[v printf@prec prec `i  1 a 2 14 ]
+[v printf@prec prec `i  1 a 2 12 ]
 "499
-[v printf@c c `c  1 a 1 22 ]
+[v printf@c c `c  1 a 1 20 ]
 "466
-[v printf@ap ap `[1]*.4v  1 a 1 21 ]
+[v printf@ap ap `[1]*.4v  1 a 1 19 ]
 "508
-[v printf@flag flag `uc  1 a 1 20 ]
+[v printf@flag flag `uc  1 a 1 18 ]
 "464
 [v printf@f f `*.25DCuc  1 p 2 0 ]
 "1541
@@ -1668,10 +1668,10 @@ CMD_PING 21
 [v ___awdiv@dividend dividend `i  1 p 2 19 ]
 "42
 } 0
-"263 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
+"257 C:\Users\smithr13\Documents\uDrive\udrive_code\main.c
 [v _calcHeaterPins calcHeaterPins `(v  1 e 1 0 ]
 {
-"268
+"262
 } 0
 "85 C:\Users\smithr13\Documents\uDrive\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]

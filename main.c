@@ -91,8 +91,8 @@ unsigned long demoLong = 0x0001;
 //          R1      R8(MSB)
 // 0b000000001000000100000000;
 //                            B1      G1       R1    R8
-long moveVector_ups   = 0;//0b10000000100000001000000100000000;
-long moveVector_downs = 0;//0b01000000010000000100000000000000;
+unsigned long moveVector_ups   = 0;//0b10000000100000001000000100000000;
+unsigned long moveVector_downs = 0;//0b01000000010000000100000000000000;
 
 
 /*
@@ -104,12 +104,12 @@ unsigned long moveMask=0x00; // actuators that should move
 /*
  * demo mode constants for toggling individual LEDs on/off
  */
-long demoHeaterToggle_top = 0;
-long demoHeaterToggle_bot = 0;
+unsigned long demoHeaterToggle_top = 0;
+unsigned long demoHeaterToggle_bot = 0;
 
-int currentPositions_steps[TOTALNUMCHANS]=0;
-int remainingSteps=0;
-int absCommand = 0; // command (in steps) (will eventually be sent over serial)
+signed long currentPositions_steps[TOTALNUMCHANS]=0;
+signed long remainingSteps=0;
+signed long absCommand = 0; // command (in steps) (will eventually be sent over serial)
 enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 
 /* 
@@ -149,12 +149,6 @@ void main(void)
     //INTERRUPT_PeripheralInterruptDisable();
     main_initialize();
     
-    
-    // debugging
-    moveMask |= (1<<1);
-    moveMask |= (1<<5);
-    //moveMask |= (1<<16);
-    printf("moveMask: %lu \n", moveMask);
     while (1)
     {
 
@@ -311,7 +305,7 @@ void doAbsMove(void){
     
     int allThere=1; // 1 if all current positions are = command position
     for(int i=0;i<TOTALNUMCHANS;i++){
-        if((activeMask & (1 << i)) > 0)
+        if((activeMask & (1UL << i)) > 0)
             allThere &= (currentPositions_steps[i] == absCommand);
     }
     
@@ -325,14 +319,14 @@ void doAbsMove(void){
     else{
         for(int i=0;i<TOTALNUMCHANS;i++){
             //set vectors to 1 based on moveMask and delta position
-            moveVector_ups |= (activeMask & (1 << i)) & ((currentPositions_steps[i] > absCommand)<<i);
-            moveVector_downs |= (activeMask & (1 << i)) & ((currentPositions_steps[i] < absCommand)<<i);
+            moveVector_ups |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] > absCommand)<<i);
+            moveVector_downs |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] < absCommand)<<i);
             
         }
         doMove();
         
         for(int i=0;i<TOTALNUMCHANS;i++)
-            currentPositions_steps[i] += ((moveVector_downs & (1 << i)) > 0) - ((moveVector_ups & (1 << i)) > 0);
+            currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVector_ups & (1UL << i)) > 0);
         
     }
 }
@@ -358,7 +352,7 @@ void doRelMove(void){
             
             // adjust current position array
             for(j = 0; j<TOTALNUMCHANS; j++)
-                currentPositions_steps[j] += (activeMask & (1<<j) > 0);
+                currentPositions_steps[j] += (activeMask & (1UL<<j) > 0);
             
         }
         else{ // move up
@@ -368,7 +362,7 @@ void doRelMove(void){
             doMove();
             remainingSteps++;
             for(j = 0; j<TOTALNUMCHANS; j++)
-                currentPositions_steps[j] -= (activeMask & (1<<j) > 0);
+                currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
             
         }
     }
@@ -377,7 +371,7 @@ void doRelMove(void){
 // zero positions of active probes
 int zeroPosition(void){
     for(int i = 0; i<TOTALNUMCHANS; i++){
-        if((activeMask & (1 << i)) > 0)
+        if((activeMask & (1UL << i)) > 0)
             currentPositions_steps[i]=0;
     }
     printf("A\n");
@@ -471,7 +465,8 @@ int setHeaterToggle(int num, int topOrB){
         demoHeaterToggle_bot ^= 1UL << num;
         LEDsOn(demoHeaterToggle_bot, 2);
     }
-        
+    
+    printf("demoheatertoggle_top: %lu\n", demoHeaterToggle_top);
     printf("A\n");
     return 0;
     
@@ -484,11 +479,11 @@ int setHeaterToggle(int num, int topOrB){
 int setActive(int probeNum, int onOff){
     // error out if this bit is not in the move mask
     // something like activeMask |= (1<<probeNum);
-    if(moveMask & 1 << probeNum){
+    if(moveMask & 1UL << probeNum){
         if (onOff)
-            activeMask |= 1 << probeNum; // set bit
+            activeMask |= 1UL << probeNum; // set bit
         else
-            activeMask &= ~(1 << probeNum); // clear bit
+            activeMask &= ~(1UL << probeNum); // clear bit
         printf("A\n");
         return 0;
     }
@@ -502,9 +497,9 @@ int setMoveMask(int probeNum, int onOff){
     // note: probes are indexed 0:TOTALNUMCHANNELS-1!!!
     if (probeNum < TOTALNUMCHANS){
         if (onOff)
-            moveMask |= (1<<probeNum);
+            moveMask |= (1UL<<probeNum);
         else
-            moveMask &= ~(1 << probeNum); // clear bit
+            moveMask &= ~(1UL<< probeNum); // clear bit
         printf("A\n");
         return 0;
     }

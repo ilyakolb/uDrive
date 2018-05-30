@@ -80,23 +80,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 "24 mcc_generated_files/LEDcomm.h
-[v _second_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 24: long second_top;
+[v _second_top `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 24: unsigned long second_top;
 "25
-[v _first_bottom `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 25: long first_bottom;
+[v _first_bottom `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 25: unsigned long first_bottom;
 "26
-[v _first_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 26: long first_top;
+[v _first_top `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 26: unsigned long first_top;
 "27
-[v _second_bottom `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 27: long second_bottom;
+[v _second_bottom `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 27: unsigned long second_bottom;
 "28
-[v _LED_configReg_top `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 28: long LED_configReg_top;
+[v _LED_configReg_top `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 28: unsigned long LED_configReg_top;
 "29
-[v _LED_configReg_bot `l ~T0 @X0 1 e ]
-[; ;LEDcomm.h: 29: long LED_configReg_bot;
+[v _LED_configReg_bot `ul ~T0 @X0 1 e ]
+[; ;LEDcomm.h: 29: unsigned long LED_configReg_bot;
 [; ;LEDcomm.h: 31: void send_2bytes_latchless(unsigned int data);
 [; ;LEDcomm.h: 32: void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
 [; ;LEDcomm.h: 33: void send_2length_2bytes(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
@@ -7926,10 +7926,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;tmr0.c: 141: LEDsOn(second_top, 1);
 "141
-[e ( _LEDsOn (2 , -> _second_top `ul -> 1 `i ]
+[e ( _LEDsOn (2 , _second_top -> 1 `i ]
 [; ;tmr0.c: 142: LEDsOn(second_bottom,2);
 "142
-[e ( _LEDsOn (2 , -> _second_bottom `ul -> 2 `i ]
+[e ( _LEDsOn (2 , _second_bottom -> 2 `i ]
 [; ;tmr0.c: 144: do { LATCbits.LATC1 = 0; } while(0);
 "144
 [e :U 972 ]

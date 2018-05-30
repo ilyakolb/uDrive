@@ -2,12 +2,12 @@
 # 1 "LEDcomm.c"
 
 # 24 "mcc_generated_files/LEDcomm.h"
-long second_top;
-long first_bottom;
-long first_top;
-long second_bottom;
-long LED_configReg_top;
-long LED_configReg_bot;
+unsigned long second_top;
+unsigned long first_bottom;
+unsigned long first_top;
+unsigned long second_bottom;
+unsigned long LED_configReg_top;
+unsigned long LED_configReg_bot;
 
 void send_2bytes_latchless(unsigned int data);
 void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);

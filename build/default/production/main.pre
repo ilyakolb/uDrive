@@ -10315,12 +10315,12 @@ void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
 uint8_t DATAEE_ReadByte(uint16_t bAdd);
 
 # 24 "mcc_generated_files/LEDcomm.h"
-long second_top;
-long first_bottom;
-long first_top;
-long second_bottom;
-long LED_configReg_top;
-long LED_configReg_bot;
+unsigned long second_top;
+unsigned long first_bottom;
+unsigned long first_top;
+unsigned long second_bottom;
+unsigned long LED_configReg_top;
+unsigned long LED_configReg_bot;
 
 void send_2bytes_latchless(unsigned int data);
 void send_last_2bytes(unsigned int data, unsigned char latch_start, int topOrBottom);
@@ -10737,20 +10737,20 @@ unsigned long demoLong = 0x0001;
 
 
 
-long moveVector_ups = 0;
-long moveVector_downs = 0;
+unsigned long moveVector_ups = 0;
+unsigned long moveVector_downs = 0;
 
 # 101
 unsigned long activeMask=0x00;
 unsigned long moveMask=0x00;
 
 # 107
-long demoHeaterToggle_top = 0;
-long demoHeaterToggle_bot = 0;
+unsigned long demoHeaterToggle_top = 0;
+unsigned long demoHeaterToggle_bot = 0;
 
-int currentPositions_steps[24]=0;
-int remainingSteps=0;
-int absCommand = 0;
+signed long currentPositions_steps[24]=0;
+signed long remainingSteps=0;
+signed long absCommand = 0;
 enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 
 # 119
@@ -10777,12 +10777,6 @@ printf("\n\nsystem done\n");
 # 150
 main_initialize();
 
-
-
-moveMask |= (1<<1);
-moveMask |= (1<<5);
-
-printf("moveMask: %lu \n", moveMask);
 while (1)
 {
 
@@ -10833,7 +10827,7 @@ drv_init(0x03, 0x0c);
 printf("initialized\n");
 }
 
-# 239
+# 233
 int doMove(void){
 printf("doMove\n");
 
@@ -10909,7 +10903,7 @@ void doAbsMove(void){
 
 int allThere=1;
 for(int i=0;i<24;i++){
-if((activeMask & (1 << i)) > 0)
+if((activeMask & (1UL << i)) > 0)
 allThere &= (currentPositions_steps[i] == absCommand);
 }
 
@@ -10923,14 +10917,14 @@ return;
 else{
 for(int i=0;i<24;i++){
 
-moveVector_ups |= (activeMask & (1 << i)) & ((currentPositions_steps[i] > absCommand)<<i);
-moveVector_downs |= (activeMask & (1 << i)) & ((currentPositions_steps[i] < absCommand)<<i);
+moveVector_ups |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] > absCommand)<<i);
+moveVector_downs |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] < absCommand)<<i);
 
 }
 doMove();
 
 for(int i=0;i<24;i++)
-currentPositions_steps[i] += ((moveVector_downs & (1 << i)) > 0) - ((moveVector_ups & (1 << i)) > 0);
+currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVector_ups & (1UL << i)) > 0);
 
 }
 }
@@ -10956,7 +10950,7 @@ remainingSteps--;
 
 
 for(j = 0; j<24; j++)
-currentPositions_steps[j] += (activeMask & (1<<j) > 0);
+currentPositions_steps[j] += (activeMask & (1UL<<j) > 0);
 
 }
 else{
@@ -10966,7 +10960,7 @@ moveVector_downs = 0;
 doMove();
 remainingSteps++;
 for(j = 0; j<24; j++)
-currentPositions_steps[j] -= (activeMask & (1<<j) > 0);
+currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
 
 }
 }
@@ -10975,7 +10969,7 @@ currentPositions_steps[j] -= (activeMask & (1<<j) > 0);
 
 int zeroPosition(void){
 for(int i = 0; i<24; i++){
-if((activeMask & (1 << i)) > 0)
+if((activeMask & (1UL << i)) > 0)
 currentPositions_steps[i]=0;
 }
 printf("A\n");
@@ -11022,7 +11016,7 @@ printf("A\n");
 return 0;
 };
 
-# 431
+# 425
 int setHeaterPreTime(int t){
 heater_pre_time_ms = t;
 TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
@@ -11067,6 +11061,7 @@ demoHeaterToggle_bot ^= 1UL << num;
 LEDsOn(demoHeaterToggle_bot, 2);
 }
 
+printf("demoheatertoggle_top: %lu\n", demoHeaterToggle_top);
 printf("A\n");
 return 0;
 
@@ -11079,11 +11074,11 @@ return 0;
 int setActive(int probeNum, int onOff){
 
 
-if(moveMask & 1 << probeNum){
+if(moveMask & 1UL << probeNum){
 if (onOff)
-activeMask |= 1 << probeNum;
+activeMask |= 1UL << probeNum;
 else
-activeMask &= ~(1 << probeNum);
+activeMask &= ~(1UL << probeNum);
 printf("A\n");
 return 0;
 }
@@ -11097,9 +11092,9 @@ int setMoveMask(int probeNum, int onOff){
 
 if (probeNum < 24){
 if (onOff)
-moveMask |= (1<<probeNum);
+moveMask |= (1UL<<probeNum);
 else
-moveMask &= ~(1 << probeNum);
+moveMask &= ~(1UL<< probeNum);
 printf("A\n");
 return 0;
 }
