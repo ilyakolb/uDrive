@@ -181,7 +181,7 @@ typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
-CMD_HEATER_TOGGLE,
+CMD_HEATER_TOGGLE, CMD_HEATER_TIMED,
 CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
 CMD_PING
 } cmd_list;
@@ -189,6 +189,7 @@ int errorOut;
 typedef union {
 char paramString[10];
 int paramI;
+unsigned long paramL;
 } param;
 
 struct CMD_STRUCT{
@@ -200,7 +201,7 @@ param p2;
 int execCmd (struct CMD_STRUCT *s);
 void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 
-# 41
+# 42
 int doMove(void);
 int startRelMove(int steps);
 int startAbsMove(int steps);
@@ -208,19 +209,20 @@ int stop(void);
 int zeroPosition(void);
 int getPosition(int a);
 
-# 51
+# 52
 int setDrvPeak(int);
 int setDrvGain(int);
 int setDrvPiezoOnTime(int);
 
-# 58
+# 59
 int setHeaterPreTime(int);
 int setHeaterPostTime(int);
 int setLEDBrightnessRange(int gain, int topOrBottom);
 int setLEDPwr(int pwr, int topOrBottom);
 int setHeaterToggle(int num, int topOrB);
+int timedActiveHeatOn(long onTime, int topOrB);
 
-# 66
+# 68
 int setActive(int probeNum, int onOff);
 int setMoveMask(int probeNum, int onOff);
 int getActive(void);
@@ -264,6 +266,8 @@ else if(stricmp(p,"ledpwr") == 0)
 s->c = CMD_HEATER_PWR;
 else if(stricmp(p,"toggleheater") == 0)
 s->c = CMD_HEATER_TOGGLE;
+else if(stricmp(p,"timeheater") == 0)
+s->c = CMD_HEATER_TIMED;
 else if(stricmp(p,"getA") == 0)
 s->c = CMD_GET_ACTIVE;
 else if(stricmp(p,"getM") == 0)
@@ -314,6 +318,8 @@ case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
 case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
 case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
 case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
+case CMD_HEATER_TIMED: errorOut = timedActiveHeatOn(s->p1.paramL, s->p2.paramI); break;
+
 
 case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
 case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
@@ -325,7 +331,7 @@ case CMD_COMM_CHECK: errorOut = commCheck(); break;
 case CMD_PING: printf("!\n"); break;
 default: printf("UNRECOGNIZED COMMAND!\n");
 
-# 106
+# 110
 }
 
 return errorOut;

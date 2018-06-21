@@ -10575,8 +10575,6 @@ send_2length_2bytes_IK(0,0,type,topOrBottom);
 
 do { LATCbits.LATC1 = 0; } while(0);
 
-unsigned long readData = 0;
-
 for(int j = 23; j>=0; j--){
 do { LATAbits.LATA2 = 1; } while(0);
 _delay((unsigned long)((10)*(1000000/4000000.0)));
@@ -10584,8 +10582,8 @@ do { LATAbits.LATA2 = 0; } while(0);
 
 if (PORTCbits.RC6) printf("%d ", j);
 
-# 116
-if (j == 23) do { LATCbits.LATC1 = 1; } while(0);
+# 114
+if (j == 23) {do { LATCbits.LATC1 = 1; } while(0); LEDsOn(0, topOrBottom); }
 }
 printf("\n");
 

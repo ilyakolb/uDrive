@@ -189,6 +189,7 @@ void main_initialize(void){
     
     LED_setBrightnessRange(1, 1); // set max range (top)
     LED_setBrightnessRange(1, 2); // set max range (bottom)
+    LED_ENABLE_SetHigh(); // LEDs off
     
     // timers
     TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1); // delay 1
@@ -456,7 +457,7 @@ int setLEDPwr(int pwr, int topOrBottom){
 // only toggles on/off one heater at a time!
 // topOrB: 1:top, 2:bottom;
 int setHeaterToggle(int num, int topOrB){
-    
+    LED_ENABLE_SetLow();
     if(topOrB == 1){
         demoHeaterToggle_top ^= 1UL << num;
         LEDsOn(demoHeaterToggle_top, 1);
@@ -465,8 +466,27 @@ int setHeaterToggle(int num, int topOrB){
         demoHeaterToggle_bot ^= 1UL << num;
         LEDsOn(demoHeaterToggle_bot, 2);
     }
-    
-    printf("demoheatertoggle_top: %lu\n", demoHeaterToggle_top);
+
+    printf("A\n");
+    return 0;
+};
+
+// turns on ONLY ACTIVE LEDs for specified time period (ms)
+// onTime: time for heater to be on (ms)
+// topOrB: 1:top, 2:bottom;
+int timedActiveHeatOn(long onTime, int topOrB){
+    __delay_ms(2000);
+    LED_ENABLE_SetLow();
+    if(topOrB == 1){
+        LEDsOn(activeMask, 1);
+    }
+    else if (topOrB == 2){
+        LEDsOn(activeMask, 2);
+    }
+    DELAYMSAPPROX(onTime);
+    LED_ENABLE_SetHigh();
+    LEDsOn(0, 1);
+    LEDsOn(0, 2);
     printf("A\n");
     return 0;
     
@@ -534,6 +554,7 @@ int getMotionStatus(void){
 int commCheck(void){    
     printf("\n----starting comm test----\n\n");
     
+    
     printf("testing top LED driver...");
     if (!LED_testComm(1))
         printf("passed\n");
@@ -544,6 +565,7 @@ int commCheck(void){
     LED_test_openshort(LED_OPEN_DETECTION, 1);
     printf("\n\nshorts: ");
     LED_test_openshort(LED_SHORT_DETECTION, 1);
+    
     
     printf("\ntesting bottom LED driver...\n");
     if (!LED_testComm(2))

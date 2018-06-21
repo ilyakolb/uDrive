@@ -16,7 +16,7 @@ typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
                 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO, 
                 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
                 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
-                CMD_HEATER_TOGGLE,
+                CMD_HEATER_TOGGLE, CMD_HEATER_TIMED,
                 CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
                 CMD_PING
                 } cmd_list;
@@ -24,6 +24,7 @@ int errorOut;
 typedef union {
                 char paramString[10]; // just in case... needed?
                 int paramI;
+                unsigned long paramL;
 } param;
 
 struct CMD_STRUCT{
@@ -60,6 +61,7 @@ int setHeaterPostTime(int);
 int setLEDBrightnessRange(int gain, int topOrBottom);
 int setLEDPwr(int pwr, int topOrBottom);
 int setHeaterToggle(int num, int topOrB);
+int timedActiveHeatOn(long onTime, int topOrB);
 /*
  * MISC
  */

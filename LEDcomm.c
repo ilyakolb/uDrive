@@ -99,9 +99,7 @@ void LED_test_openshort(int type, int topOrBottom){
     send_2length_2bytes_IK(0,0,type,topOrBottom); // short/open command
 
     LED_ENABLE_SetLow(); // LEDs on
-    
-    unsigned long readData = 0;
-    
+
     for(int j = 23; j>=0; j--){ //Loop through the 16 bits
       LED_CLK_SetHigh();
       __delay_us(10);
@@ -113,7 +111,7 @@ void LED_test_openshort(int type, int topOrBottom){
       //__delay_us(100);
       
       // on first pulse, turn LEDs off
-      if (j == 23) LED_ENABLE_SetHigh(); // LEDs off
+      if (j == 23) {LED_ENABLE_SetHigh(); LEDsOn(0, topOrBottom); } // LEDs off
     }
     printf("\n");
     //printf("read data: %lu\n", readData);

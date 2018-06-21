@@ -37,6 +37,8 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
                 s->c = CMD_HEATER_PWR;
             else if(stricmp(p,"toggleheater") == 0) // syntax: toggleheater 5 1 (toggles 5th heater on/off on top board)
                 s->c = CMD_HEATER_TOGGLE;
+            else if(stricmp(p,"timeheater") == 0) // syntax: timeheater 100 1 (2s wait, 100 ms heater on of ACTIVE heaters, on the top (1) board)
+                s->c = CMD_HEATER_TIMED;
             else if(stricmp(p,"getA") == 0) // syntax: getA (returns 0 0 1 0 1 0 0 ... 24 bits corresponding to active channels)
                 s->c = CMD_GET_ACTIVE;
             else if(stricmp(p,"getM") == 0) // syntax: getA (returns 0 0 1 0 1 0 0 ... 24 bits corresponding to movable channels)
@@ -87,6 +89,8 @@ int execCmd (struct CMD_STRUCT *s){
         case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
         case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
         case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
+        case CMD_HEATER_TIMED: errorOut = timedActiveHeatOn(s->p1.paramL, s->p2.paramI); break;
+        
         //misc
         case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI);  break;
         case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
