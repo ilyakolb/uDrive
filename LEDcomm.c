@@ -104,11 +104,10 @@ void LED_test_openshort(int type, int topOrBottom){
       LED_CLK_SetHigh();
       __delay_us(10);
       LED_CLK_SetLow();
-      // HOW TO BEST OUTPUT RESULT SINCE I CAN'T OUTPUT 2 LONGS?
-      if (LED_MISO_GetValue()) printf("%d ", j);
-      //printf("%d\n", LED_MISO_GetValue());
-      
-      //__delay_us(100);
+      if (topOrBottom == 1) // check top pins
+          if (LED_MISOT_GetValue()){ printf("%d ", j);}
+      else // check bottom pins
+          if (LED_MISOB_GetValue()){ printf("%d ", j);}
       
       // on first pulse, turn LEDs off
       if (j == 23) {LED_ENABLE_SetHigh(); LEDsOn(0, topOrBottom); } // LEDs off
@@ -121,17 +120,23 @@ void LED_test_openshort(int type, int topOrBottom){
 long LED_readConfig(int topOrBottom){
     LED_ENABLE_SetHigh(); // LEDs off
     send_2length_2bytes_IK(0,0,LED_READ_CR,topOrBottom);
-    return LED_getData();
+    return LED_getData(topOrBottom);
 }
 
-long LED_getData(void){
+long LED_getData(int topOrBottom){
     
     long readData = 0;
-    LED_LE1_SetLow(); //LE1 Low
-
+    
+    if (topOrBottom == 1) LED_LE1_SetLow(); //LE1 Low
+    else LED_LE2_SetLow();
+    
     for(int j = 23; j>=0; j--){ //Loop through the 16 bits
       LED_CLK_SetHigh();
-      readData |= (LED_MISO_GetValue() << j);
+      
+      if (topOrBottom == 1)
+        {readData |= (LED_MISOT_GetValue() << j);}
+      else
+        {readData |= (LED_MISOB_GetValue() << j);}
       
       LED_CLK_SetLow();
       __delay_us(100);

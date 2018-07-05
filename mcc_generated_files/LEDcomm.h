@@ -38,7 +38,7 @@ void send_2bytes_latchless_IK(unsigned int data);
 void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
 void LED_setBrightnessRange(int range, int topOrBottom);
 void LED_test_openshort(int, int);
-long LED_getData(void);
+long LED_getData(int topOrBottom);
 int LED_testComm(int);
 long LED_readConfig(int);
 #endif	/* LEDCOMM_H */

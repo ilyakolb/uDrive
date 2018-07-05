@@ -211,25 +211,45 @@
 #define LED_MOSI_SetAnalogMode()  do { ANSELCbits.ANSC2 = 1; } while(0)
 #define LED_MOSI_SetDigitalMode() do { ANSELCbits.ANSC2 = 0; } while(0)
 
-// get/set LED_MISO aliases
-#define LED_MISO_TRIS               TRISCbits.TRISC6
-#define LED_MISO_LAT                LATCbits.LATC6
-#define LED_MISO_PORT               PORTCbits.RC6
-#define LED_MISO_WPU                WPUCbits.WPUC6
-#define LED_MISO_OD                ODCONCbits.ODCC6
-#define LED_MISO_ANS                ANSELCbits.ANSC6
-#define LED_MISO_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
-#define LED_MISO_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
-#define LED_MISO_Toggle()             do { LATCbits.LATC6 = ~LATCbits.LATC6; } while(0)
-#define LED_MISO_GetValue()           PORTCbits.RC6
-#define LED_MISO_SetDigitalInput()    do { TRISCbits.TRISC6 = 1; } while(0)
-#define LED_MISO_SetDigitalOutput()   do { TRISCbits.TRISC6 = 0; } while(0)
-#define LED_MISO_SetPullup()      do { WPUCbits.WPUC6 = 1; } while(0)
-#define LED_MISO_ResetPullup()    do { WPUCbits.WPUC6 = 0; } while(0)
-#define LED_MISO_SetPushPull()    do { ODCONCbits.ODCC6 = 0; } while(0)
-#define LED_MISO_SetOpenDrain()   do { ODCONCbits.ODCC6 = 1; } while(0)
-#define LED_MISO_SetAnalogMode()  do { ANSELCbits.ANSC6 = 1; } while(0)
-#define LED_MISO_SetDigitalMode() do { ANSELCbits.ANSC6 = 0; } while(0)
+// get/set LED_MISOB aliases
+#define LED_MISOB_TRIS               TRISCbits.TRISC3
+#define LED_MISOB_LAT                LATCbits.LATC3
+#define LED_MISOB_PORT               PORTCbits.RC3
+#define LED_MISOB_WPU                WPUCbits.WPUC3
+#define LED_MISOB_OD                ODCONCbits.ODCC3
+#define LED_MISOB_ANS                ANSELCbits.ANSC3
+#define LED_MISOB_SetHigh()            do { LATCbits.LATC3 = 1; } while(0)
+#define LED_MISOB_SetLow()             do { LATCbits.LATC3 = 0; } while(0)
+#define LED_MISOB_Toggle()             do { LATCbits.LATC3 = ~LATCbits.LATC3; } while(0)
+#define LED_MISOB_GetValue()           PORTCbits.RC3
+#define LED_MISOB_SetDigitalInput()    do { TRISCbits.TRISC3 = 1; } while(0)
+#define LED_MISOB_SetDigitalOutput()   do { TRISCbits.TRISC3 = 0; } while(0)
+#define LED_MISOB_SetPullup()      do { WPUCbits.WPUC3 = 1; } while(0)
+#define LED_MISOB_ResetPullup()    do { WPUCbits.WPUC3 = 0; } while(0)
+#define LED_MISOB_SetPushPull()    do { ODCONCbits.ODCC3 = 0; } while(0)
+#define LED_MISOB_SetOpenDrain()   do { ODCONCbits.ODCC3 = 1; } while(0)
+#define LED_MISOB_SetAnalogMode()  do { ANSELCbits.ANSC3 = 1; } while(0)
+#define LED_MISOB_SetDigitalMode() do { ANSELCbits.ANSC3 = 0; } while(0)
+
+// get/set LED_MISOT aliases
+#define LED_MISOT_TRIS               TRISCbits.TRISC6
+#define LED_MISOT_LAT                LATCbits.LATC6
+#define LED_MISOT_PORT               PORTCbits.RC6
+#define LED_MISOT_WPU                WPUCbits.WPUC6
+#define LED_MISOT_OD                ODCONCbits.ODCC6
+#define LED_MISOT_ANS                ANSELCbits.ANSC6
+#define LED_MISOT_SetHigh()            do { LATCbits.LATC6 = 1; } while(0)
+#define LED_MISOT_SetLow()             do { LATCbits.LATC6 = 0; } while(0)
+#define LED_MISOT_Toggle()             do { LATCbits.LATC6 = ~LATCbits.LATC6; } while(0)
+#define LED_MISOT_GetValue()           PORTCbits.RC6
+#define LED_MISOT_SetDigitalInput()    do { TRISCbits.TRISC6 = 1; } while(0)
+#define LED_MISOT_SetDigitalOutput()   do { TRISCbits.TRISC6 = 0; } while(0)
+#define LED_MISOT_SetPullup()      do { WPUCbits.WPUC6 = 1; } while(0)
+#define LED_MISOT_ResetPullup()    do { WPUCbits.WPUC6 = 0; } while(0)
+#define LED_MISOT_SetPushPull()    do { ODCONCbits.ODCC6 = 0; } while(0)
+#define LED_MISOT_SetOpenDrain()   do { ODCONCbits.ODCC6 = 1; } while(0)
+#define LED_MISOT_SetAnalogMode()  do { ANSELCbits.ANSC6 = 1; } while(0)
+#define LED_MISOT_SetDigitalMode() do { ANSELCbits.ANSC6 = 0; } while(0)
 
 // get/set RC7 procedures
 #define RC7_SetHigh()    do { LATCbits.LATC7 = 1; } while(0)

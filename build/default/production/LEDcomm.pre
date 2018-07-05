@@ -19,7 +19,7 @@ void send_2bytes_latchless_IK(unsigned int data);
 void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
 void LED_setBrightnessRange(int range, int topOrBottom);
 void LED_test_openshort(int, int);
-long LED_getData(void);
+long LED_getData(int topOrBottom);
 int LED_testComm(int);
 long LED_readConfig(int);
 
@@ -10108,10 +10108,10 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 
-# 256 "mcc_generated_files/pin_manager.h"
+# 276 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
 
-# 268
+# 288
 void PIN_MANAGER_IOC(void);
 
 # 13 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdint.h"
@@ -10579,10 +10579,12 @@ for(int j = 23; j>=0; j--){
 do { LATAbits.LATA2 = 1; } while(0);
 _delay((unsigned long)((10)*(1000000/4000000.0)));
 do { LATAbits.LATA2 = 0; } while(0);
+if (topOrBottom == 1)
+if (PORTCbits.RC6){ printf("%d ", j);}
+else
+if (PORTCbits.RC3){ printf("%d ", j);}
 
-if (PORTCbits.RC6) printf("%d ", j);
 
-# 114
 if (j == 23) {do { LATCbits.LATC1 = 1; } while(0); LEDsOn(0, topOrBottom); }
 }
 printf("\n");
@@ -10593,17 +10595,23 @@ printf("\n");
 long LED_readConfig(int topOrBottom){
 do { LATCbits.LATC1 = 1; } while(0);
 send_2length_2bytes_IK(0,0,5,topOrBottom);
-return LED_getData();
+return LED_getData(topOrBottom);
 }
 
-long LED_getData(void){
+long LED_getData(int topOrBottom){
 
 long readData = 0;
-do { LATBbits.LATB4 = 0; } while(0);
+
+if (topOrBottom == 1) do { LATBbits.LATB4 = 0; } while(0);
+else do { LATCbits.LATC0 = 0; } while(0);
 
 for(int j = 23; j>=0; j--){
 do { LATAbits.LATA2 = 1; } while(0);
-readData |= (PORTCbits.RC6 << j);
+
+if (topOrBottom == 1)
+{readData |= (PORTCbits.RC6 << j);}
+else
+{readData |= (PORTCbits.RC3 << j);}
 
 do { LATAbits.LATA2 = 0; } while(0);
 _delay((unsigned long)((100)*(1000000/4000000.0)));

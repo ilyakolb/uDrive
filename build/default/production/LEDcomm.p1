@@ -42,7 +42,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "41 mcc_generated_files/LEDcomm.h
-[v _LED_getData `(l ~T0 @X0 0 ef ]
+[v _LED_getData `(l ~T0 @X0 0 ef1`i ]
 "24 mcc_generated_files/LEDcomm.h
 [v _second_top `ul ~T0 @X0 1 e ]
 [; ;LEDcomm.h: 24: unsigned long second_top;
@@ -71,7 +71,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LEDcomm.h: 38: void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
 [; ;LEDcomm.h: 39: void LED_setBrightnessRange(int range, int topOrBottom);
 [; ;LEDcomm.h: 40: void LED_test_openshort(int, int);
-[; ;LEDcomm.h: 41: long LED_getData(void);
+[; ;LEDcomm.h: 41: long LED_getData(int topOrBottom);
 [; ;LEDcomm.h: 42: int LED_testComm(int);
 [; ;LEDcomm.h: 43: long LED_readConfig(int);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
@@ -7703,8 +7703,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;pin_manager.h: 256: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 268: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 276: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 288: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -8244,167 +8244,212 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 }
 [e :U 1051 ]
-[; ;LEDcomm.c: 108: if (PORTCbits.RC6) printf("%d ", j);
+[; ;LEDcomm.c: 107: if (topOrBottom == 1)
+"107
+[e $ ! == _topOrBottom -> 1 `i 1053  ]
+[; ;LEDcomm.c: 108: if (PORTCbits.RC6){ printf("%d ", j);}
 "108
-[e $ ! != -> . . _PORTCbits 0 6 `i -> -> -> 0 `i `Vuc `i 1053  ]
-[e ( _printf , (. :s 1C _j ]
-[e :U 1053 ]
-[; ;LEDcomm.c: 114: if (j == 23) {do { LATCbits.LATC1 = 1; } while(0); LEDsOn(0, topOrBottom); }
-"114
-[e $ ! == _j -> 23 `i 1054  ]
+[e $ ! != -> . . _PORTCbits 0 6 `i -> -> -> 0 `i `Vuc `i 1054  ]
 {
-[e :U 1057 ]
+[e ( _printf , (. :s 1C _j ]
+}
+[e $U 1055  ]
+"109
+[e :U 1054 ]
+[; ;LEDcomm.c: 109: else
+[; ;LEDcomm.c: 110: if (PORTCbits.RC3){ printf("%d ", j);}
+"110
+[e $ ! != -> . . _PORTCbits 0 3 `i -> -> -> 0 `i `Vuc `i 1056  ]
+{
+[e ( _printf , (. :s 2C _j ]
+}
+[e :U 1056 ]
+"113
+[e :U 1055 ]
+[e :U 1053 ]
+[; ;LEDcomm.c: 113: if (j == 23) {do { LATCbits.LATC1 = 1; } while(0); LEDsOn(0, topOrBottom); }
+[e $ ! == _j -> 23 `i 1057  ]
+{
+[e :U 1060 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 1056 ]
+[e :U 1059 ]
 [e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul _topOrBottom ]
 }
-[e :U 1054 ]
-"115
+[e :U 1057 ]
+"114
 }
 "103
 [e -- _j -> 1 `i ]
 [e $ >= _j -> 0 `i 1044  ]
 [e :U 1045 ]
-"115
+"114
 }
-[; ;LEDcomm.c: 115: }
-[; ;LEDcomm.c: 116: printf("\n");
-"116
-[e ( _printf :s 2C ]
-[; ;LEDcomm.c: 118: }
-"118
+[; ;LEDcomm.c: 114: }
+[; ;LEDcomm.c: 115: printf("\n");
+"115
+[e ( _printf :s 3C ]
+[; ;LEDcomm.c: 117: }
+"117
 [e :UE 1037 ]
 }
-"121
+"120
 [v _LED_readConfig `(l ~T0 @X0 1 ef1`i ]
 {
-[; ;LEDcomm.c: 121: long LED_readConfig(int topOrBottom){
+[; ;LEDcomm.c: 120: long LED_readConfig(int topOrBottom){
 [e :U _LED_readConfig ]
 [v _topOrBottom `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;LEDcomm.c: 122: do { LATCbits.LATC1 = 1; } while(0);
-"122
-[e :U 1061 ]
+[; ;LEDcomm.c: 121: do { LATCbits.LATC1 = 1; } while(0);
+"121
+[e :U 1064 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 1060 ]
-[; ;LEDcomm.c: 123: send_2length_2bytes_IK(0,0,5,topOrBottom);
-"123
+[e :U 1063 ]
+[; ;LEDcomm.c: 122: send_2length_2bytes_IK(0,0,5,topOrBottom);
+"122
 [e ( _send_2length_2bytes_IK (4 , , , -> -> 0 `i `ui -> -> 0 `i `ui -> -> 5 `i `uc _topOrBottom ]
-[; ;LEDcomm.c: 124: return LED_getData();
+[; ;LEDcomm.c: 123: return LED_getData(topOrBottom);
+"123
+[e ) ( _LED_getData (1 _topOrBottom ]
+[e $UE 1061  ]
+[; ;LEDcomm.c: 124: }
 "124
-[e ) ( _LED_getData ..  ]
-[e $UE 1058  ]
-[; ;LEDcomm.c: 125: }
-"125
-[e :UE 1058 ]
+[e :UE 1061 ]
 }
-"127
-[v _LED_getData `(l ~T0 @X0 1 ef ]
+"126
+[v _LED_getData `(l ~T0 @X0 1 ef1`i ]
 {
-[; ;LEDcomm.c: 127: long LED_getData(void){
+[; ;LEDcomm.c: 126: long LED_getData(int topOrBottom){
 [e :U _LED_getData ]
+[v _topOrBottom `i ~T0 @X0 1 r1 ]
 [f ]
-"129
+"128
 [v _readData `l ~T0 @X0 1 a ]
-[; ;LEDcomm.c: 129: long readData = 0;
+[; ;LEDcomm.c: 128: long readData = 0;
 [e = _readData -> -> 0 `i `l ]
-[; ;LEDcomm.c: 130: do { LATBbits.LATB4 = 0; } while(0);
+[; ;LEDcomm.c: 130: if (topOrBottom == 1) do { LATBbits.LATB4 = 0; } while(0);
 "130
-[e :U 1065 ]
+[e $ ! == _topOrBottom -> 1 `i 1066  ]
+[e :U 1069 ]
 {
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 1064 ]
-[; ;LEDcomm.c: 132: for(int j = 23; j>=0; j--){
-"132
+[e :U 1068 ]
+[e $U 1070  ]
+"131
+[e :U 1066 ]
+[; ;LEDcomm.c: 131: else do { LATCbits.LATC0 = 0; } while(0);
+[e :U 1073 ]
+{
+[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+}
+[e :U 1072 ]
+[e :U 1070 ]
+[; ;LEDcomm.c: 133: for(int j = 23; j>=0; j--){
+"133
 {
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 23 `i ]
-[e $ >= _j -> 0 `i 1066  ]
-[e $U 1067  ]
-[e :U 1066 ]
+[e $ >= _j -> 0 `i 1074  ]
+[e $U 1075  ]
+[e :U 1074 ]
 {
-[; ;LEDcomm.c: 133: do { LATAbits.LATA2 = 1; } while(0);
-"133
-[e :U 1071 ]
+[; ;LEDcomm.c: 134: do { LATAbits.LATA2 = 1; } while(0);
+"134
+[e :U 1079 ]
 {
 [e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
 }
-[e :U 1070 ]
-[; ;LEDcomm.c: 134: readData |= (PORTCbits.RC6 << j);
-"134
-[e =| _readData -> << -> . . _PORTCbits 0 6 `i _j `l ]
-[; ;LEDcomm.c: 136: do { LATAbits.LATA2 = 0; } while(0);
+[e :U 1078 ]
+[; ;LEDcomm.c: 136: if (topOrBottom == 1)
 "136
-[e :U 1074 ]
-{
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-}
-[e :U 1073 ]
-[; ;LEDcomm.c: 137: _delay((unsigned long)((100)*(1000000/4000000.0)));
+[e $ ! == _topOrBottom -> 1 `i 1080  ]
+[; ;LEDcomm.c: 137: {readData |= (PORTCbits.RC6 << j);}
 "137
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"139
+{
+[e =| _readData -> << -> . . _PORTCbits 0 6 `i _j `l ]
 }
-"132
-[e -- _j -> 1 `i ]
-[e $ >= _j -> 0 `i 1066  ]
-[e :U 1067 ]
+[e $U 1081  ]
+"138
+[e :U 1080 ]
+[; ;LEDcomm.c: 138: else
+[; ;LEDcomm.c: 139: {readData |= (PORTCbits.RC3 << j);}
 "139
+{
+[e =| _readData -> << -> . . _PORTCbits 0 3 `i _j `l ]
 }
-[; ;LEDcomm.c: 139: }
+[e :U 1081 ]
 [; ;LEDcomm.c: 141: do { LATAbits.LATA2 = 0; } while(0);
 "141
-[e :U 1077 ]
+[e :U 1084 ]
 {
 [e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
 }
-[e :U 1076 ]
-[; ;LEDcomm.c: 142: printf("read data: %lu\n", readData);
+[e :U 1083 ]
+[; ;LEDcomm.c: 142: _delay((unsigned long)((100)*(1000000/4000000.0)));
 "142
-[e ( _printf , (. :s 3C _readData ]
-[; ;LEDcomm.c: 143: return readData;
-"143
-[e ) _readData ]
-[e $UE 1062  ]
-[; ;LEDcomm.c: 144: }
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
 "144
-[e :UE 1062 ]
 }
+"133
+[e -- _j -> 1 `i ]
+[e $ >= _j -> 0 `i 1074  ]
+[e :U 1075 ]
+"144
+}
+[; ;LEDcomm.c: 144: }
+[; ;LEDcomm.c: 146: do { LATAbits.LATA2 = 0; } while(0);
+"146
+[e :U 1087 ]
+{
+[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
+}
+[e :U 1086 ]
+[; ;LEDcomm.c: 147: printf("read data: %lu\n", readData);
+"147
+[e ( _printf , (. :s 4C _readData ]
+[; ;LEDcomm.c: 148: return readData;
+"148
+[e ) _readData ]
+[e $UE 1065  ]
+[; ;LEDcomm.c: 149: }
 "149
+[e :UE 1065 ]
+}
+"154
 [v _LED_testComm `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;LEDcomm.c: 149: int LED_testComm(int topOrBottom){
+[; ;LEDcomm.c: 154: int LED_testComm(int topOrBottom){
 [e :U _LED_testComm ]
 [v _topOrBottom `i ~T0 @X0 1 r1 ]
 [f ]
-"151
+"156
 [v _oldConfigReg `l ~T0 @X0 1 a ]
-[; ;LEDcomm.c: 151: long oldConfigReg = (topOrBottom == 1) ? LED_configReg_top : LED_configReg_bot;
+[; ;LEDcomm.c: 156: long oldConfigReg = (topOrBottom == 1) ? LED_configReg_top : LED_configReg_bot;
 [e = _oldConfigReg -> ? == _topOrBottom -> 1 `i : _LED_configReg_top _LED_configReg_bot `l ]
-[; ;LEDcomm.c: 152: LED_setBrightnessRange(1, topOrBottom);
-"152
-[e ( _LED_setBrightnessRange (2 , -> 1 `i _topOrBottom ]
-"153
-[v _readResult `i ~T0 @X0 1 a ]
-[; ;LEDcomm.c: 153: int readResult = LED_readConfig(topOrBottom);
-[e = _readResult -> ( _LED_readConfig (1 _topOrBottom `i ]
-[; ;LEDcomm.c: 155: LED_setBrightnessRange(oldConfigReg > 0, topOrBottom);
-"155
-[e ( _LED_setBrightnessRange (2 , -> > _oldConfigReg -> -> 0 `i `l `i _topOrBottom ]
-[; ;LEDcomm.c: 157: return (readResult != 7);
+[; ;LEDcomm.c: 157: LED_setBrightnessRange(1, topOrBottom);
 "157
-[e ) -> != _readResult -> 7 `i `i ]
-[e $UE 1078  ]
-[; ;LEDcomm.c: 158: }
+[e ( _LED_setBrightnessRange (2 , -> 1 `i _topOrBottom ]
 "158
-[e :UE 1078 ]
+[v _readResult `i ~T0 @X0 1 a ]
+[; ;LEDcomm.c: 158: int readResult = LED_readConfig(topOrBottom);
+[e = _readResult -> ( _LED_readConfig (1 _topOrBottom `i ]
+[; ;LEDcomm.c: 160: LED_setBrightnessRange(oldConfigReg > 0, topOrBottom);
+"160
+[e ( _LED_setBrightnessRange (2 , -> > _oldConfigReg -> -> 0 `i `l `i _topOrBottom ]
+[; ;LEDcomm.c: 162: return (readResult != 7);
+"162
+[e ) -> != _readResult -> 7 `i `i ]
+[e $UE 1088  ]
+[; ;LEDcomm.c: 163: }
+"163
+[e :UE 1088 ]
 }
 [p f _printf 8389776 ]
 [a 1C 37 100 32 0 ]
-[a 3C 114 101 97 100 32 100 97 116 97 58 32 37 108 117 10 0 ]
-[a 2C 10 0 ]
+[a 2C 37 100 32 0 ]
+[a 4C 114 101 97 100 32 100 97 116 97 58 32 37 108 117 10 0 ]
+[a 3C 10 0 ]

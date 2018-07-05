@@ -7679,8 +7679,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 193: extern __bank0 unsigned char __resetbits;
 [; ;pic.h: 194: extern __bank0 __bit __powerdown;
 [; ;pic.h: 195: extern __bank0 __bit __timeout;
-[; ;pin_manager.h: 256: void PIN_MANAGER_Initialize (void);
-[; ;pin_manager.h: 268: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 276: void PIN_MANAGER_Initialize (void);
+[; ;pin_manager.h: 288: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -7815,7 +7815,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LEDcomm.h: 38: void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned char latch_start, int topOrBottom);
 [; ;LEDcomm.h: 39: void LED_setBrightnessRange(int range, int topOrBottom);
 [; ;LEDcomm.h: 40: void LED_test_openshort(int, int);
-[; ;LEDcomm.h: 41: long LED_getData(void);
+[; ;LEDcomm.h: 41: long LED_getData(int topOrBottom);
 [; ;LEDcomm.h: 42: int LED_testComm(int);
 [; ;LEDcomm.h: 43: long LED_readConfig(int);
 [; ;tmr2.h: 104: void TMR2_Initialize(void);
