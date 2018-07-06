@@ -10589,7 +10589,7 @@ extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
 # 15 "cmd_parser.h"
-typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
+typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
@@ -10724,17 +10724,19 @@ const float TMR2_RANGE = 255/(163.84-0.64);
 
 int heater_pre_time_ms = 10;
 int heater_post_time_ms = 10;
+long inter_step_interval_ms = 1000;
+
 
 int piezo_on_time_ms = 1000;
 const int LEDpower = 63;
 
-# 82
+# 84
 char readdata[20];
 int cmdRead = 0;
 int readIdx = 0;
 struct CMD_STRUCT cmd_struct={0,0,0};
 
-# 90
+# 92
 unsigned long demoLong = 0x0001;
 
 
@@ -10742,11 +10744,11 @@ unsigned long demoLong = 0x0001;
 unsigned long moveVector_ups = 0;
 unsigned long moveVector_downs = 0;
 
-# 101
+# 103
 unsigned long activeMask=0x00;
 unsigned long moveMask=0x00;
 
-# 107
+# 109
 unsigned long demoHeaterToggle_top = 0;
 unsigned long demoHeaterToggle_bot = 0;
 
@@ -10755,28 +10757,28 @@ signed long remainingSteps=0;
 signed long absCommand = 0;
 enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 
-# 119
+# 121
 void doAbsMove(void);
 void doRelMove(void);
 void main_initialize(void);
 void calcHeaterPins(void);
 void demoSequence(void);
 
-# 130
+# 132
 void main(void)
 {
 
 SYSTEM_Initialize();
 _delay((unsigned long)((500)*(1000000/4000.0)));
 
-# 140
+# 142
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 printf("\n\nsystem done\n");
 
-# 150
+# 152
 main_initialize();
 
 while (1)
@@ -10830,9 +10832,8 @@ drv_init(0x03, 0x0c);
 printf("initialized\n");
 }
 
-# 234
+# 236
 int doMove(void){
-printf("doMove\n");
 
 calcHeaterPins();
 do { LATCbits.LATC1 = 1; } while(0);
@@ -10849,6 +10850,8 @@ for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/400
 
 do { LATCbits.LATC1 = 1; } while(0);
 
+
+for(int t=0; t<inter_step_interval_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 return 0;
 
 
@@ -10934,9 +10937,7 @@ currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVecto
 
 
 void doRelMove(void){
-printf("doRelMove\n");
 if(remainingSteps == 0){
-printf("rel: all there\n");
 motionType = NONE;
 moveVector_ups = 0;
 moveVector_downs = 0;
@@ -11019,7 +11020,7 @@ printf("A\n");
 return 0;
 };
 
-# 426
+# 427
 int setHeaterPreTime(int t){
 heater_pre_time_ms = t;
 TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);

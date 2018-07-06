@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
+typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
                 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO, 
                 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
                 CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,

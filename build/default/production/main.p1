@@ -1,18 +1,18 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [v F8185 `(v ~T0 @X0 0 tf ]
 [v F8188 `(v ~T0 @X0 0 tf ]
-"85 main.c
-[c E8587 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 .. ]
-[n E8587 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_HEATER_TIMED CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
+"87 main.c
+[c E8587 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 .. ]
+[n E8587 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_STOP CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_HEATER_TIMED CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
 "24 cmd_parser.h
 [u S965 `uc -> 10 `i `i 1 `ul 1 ]
 [n S965 . paramString paramI paramL ]
 "30
 [s S966 `E8587 1 `S965 1 `S965 1 ]
 [n S966 CMD_STRUCT c p1 p2 ]
-"113 main.c
-[c E8780 0 1 2 .. ]
-[n E8780 moveType NONE REL_MOVE ABS_MOVE  ]
+"115 main.c
+[c E8782 0 1 2 .. ]
+[n E8782 moveType NONE REL_MOVE ABS_MOVE  ]
 [p mainexit ]
 "74 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
@@ -30,7 +30,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS25 ~T0 @X0 0 e@11 ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
-"121 main.c
+"123 main.c
 [v _main_initialize `(v ~T0 @X0 0 ef ]
 "77 mcc_generated_files/eusart.h
 [v _eusartRxCount `Vuc ~T0 @X0 0 e ]
@@ -40,9 +40,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _parseCmd `(v ~T0 @X0 0 ef2`*uc`*S966 ]
 "36
 [v _execCmd `(i ~T0 @X0 0 ef1`*S966 ]
-"120 main.c
+"122 main.c
 [v _doRelMove `(v ~T0 @X0 0 ef ]
-"119
+"121
 [v _doAbsMove `(v ~T0 @X0 0 ef ]
 "35 mcc_generated_files/LEDcomm.h
 [v _LEDsPwr `(v ~T0 @X0 0 ef2`i`i ]
@@ -62,7 +62,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0_Load8bitPeriod `(v ~T0 @X0 0 ef1`uc ]
 "59 drv2665.h
 [v _drv_init `(v ~T0 @X0 0 ef2`i`i ]
-"122 main.c
+"124 main.c
 [v _calcHeaterPins `(v ~T0 @X0 0 ef ]
 "34 mcc_generated_files/LEDcomm.h
 [v _LEDsOn `(v ~T0 @X0 0 ef2`ul`i ]
@@ -7992,7 +7992,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strichr(const char *, int);
 [; ;string.h: 59: extern char * strrchr(const char *, int);
 [; ;string.h: 60: extern char * strrichr(const char *, int);
-[; ;cmd_parser.h: 15: typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
+[; ;cmd_parser.h: 15: typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
 [; ;cmd_parser.h: 16: CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 [; ;cmd_parser.h: 17: CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 [; ;cmd_parser.h: 18: CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
@@ -8414,34 +8414,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 10 `i
 ]
 [; ;main.c: 74: int heater_post_time_ms = 10;
-"76
+"75
+[v _inter_step_interval_ms `l ~T0 @X0 1 e ]
+[i _inter_step_interval_ms
+-> -> 1000 `i `l
+]
+[; ;main.c: 75: long inter_step_interval_ms = 1000;
+"78
 [v _piezo_on_time_ms `i ~T0 @X0 1 e ]
 [i _piezo_on_time_ms
 -> 1000 `i
 ]
-[; ;main.c: 76: int piezo_on_time_ms = 1000;
-"77
+[; ;main.c: 78: int piezo_on_time_ms = 1000;
+"79
 [v _LEDpower `Ci ~T0 @X0 1 e ]
 [i _LEDpower
 -> 63 `i
 ]
-[; ;main.c: 77: const int LEDpower = 63;
-"82
+[; ;main.c: 79: const int LEDpower = 63;
+"84
 [v _readdata `uc ~T0 @X0 -> 20 `i e ]
-[; ;main.c: 82: char readdata[20];
-"83
+[; ;main.c: 84: char readdata[20];
+"85
 [v _cmdRead `i ~T0 @X0 1 e ]
 [i _cmdRead
 -> 0 `i
 ]
-[; ;main.c: 83: int cmdRead = 0;
-"84
+[; ;main.c: 85: int cmdRead = 0;
+"86
 [v _readIdx `i ~T0 @X0 1 e ]
 [i _readIdx
 -> 0 `i
 ]
-[; ;main.c: 84: int readIdx = 0;
-"85
+[; ;main.c: 86: int readIdx = 0;
+"87
 [v _cmd_struct `S966 ~T0 @X0 1 e ]
 [i _cmd_struct
 :U ..
@@ -8458,276 +8464,273 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;main.c: 85: struct CMD_STRUCT cmd_struct={0,0,0};
-"90
+[; ;main.c: 87: struct CMD_STRUCT cmd_struct={0,0,0};
+"92
 [v _demoLong `ul ~T0 @X0 1 e ]
 [i _demoLong
 -> -> -> 1 `i `l `ul
 ]
-[; ;main.c: 90: unsigned long demoLong = 0x0001;
-"94
+[; ;main.c: 92: unsigned long demoLong = 0x0001;
+"96
 [v _moveVector_ups `ul ~T0 @X0 1 e ]
 [i _moveVector_ups
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 94: unsigned long moveVector_ups = 0;
-"95
+[; ;main.c: 96: unsigned long moveVector_ups = 0;
+"97
 [v _moveVector_downs `ul ~T0 @X0 1 e ]
 [i _moveVector_downs
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 95: unsigned long moveVector_downs = 0;
-"101
+[; ;main.c: 97: unsigned long moveVector_downs = 0;
+"103
 [v _activeMask `ul ~T0 @X0 1 e ]
 [i _activeMask
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 101: unsigned long activeMask=0x00;
-"102
+[; ;main.c: 103: unsigned long activeMask=0x00;
+"104
 [v _moveMask `ul ~T0 @X0 1 e ]
 [i _moveMask
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 102: unsigned long moveMask=0x00;
-"107
+[; ;main.c: 104: unsigned long moveMask=0x00;
+"109
 [v _demoHeaterToggle_top `ul ~T0 @X0 1 e ]
 [i _demoHeaterToggle_top
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 107: unsigned long demoHeaterToggle_top = 0;
-"108
+[; ;main.c: 109: unsigned long demoHeaterToggle_top = 0;
+"110
 [v _demoHeaterToggle_bot `ul ~T0 @X0 1 e ]
 [i _demoHeaterToggle_bot
 -> -> -> 0 `i `l `ul
 ]
-[; ;main.c: 108: unsigned long demoHeaterToggle_bot = 0;
-"110
+[; ;main.c: 110: unsigned long demoHeaterToggle_bot = 0;
+"112
 [v _currentPositions_steps `l ~T0 @X0 -> 24 `i e ]
 [i _currentPositions_steps
 :U ..
 -> -> 0 `i `l
 ..
 ]
-[; ;main.c: 110: signed long currentPositions_steps[24]=0;
-"111
+[; ;main.c: 112: signed long currentPositions_steps[24]=0;
+"113
 [v _remainingSteps `l ~T0 @X0 1 e ]
 [i _remainingSteps
 -> -> 0 `i `l
 ]
-[; ;main.c: 111: signed long remainingSteps=0;
-"112
+[; ;main.c: 113: signed long remainingSteps=0;
+"114
 [v _absCommand `l ~T0 @X0 1 e ]
 [i _absCommand
 -> -> 0 `i `l
 ]
-[; ;main.c: 112: signed long absCommand = 0;
-"113
-[v _motionType `E8780 ~T0 @X0 1 e ]
+[; ;main.c: 114: signed long absCommand = 0;
+"115
+[v _motionType `E8782 ~T0 @X0 1 e ]
 [i _motionType
-. `E8780 0
+. `E8782 0
 ]
-[; ;main.c: 113: enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
-[; ;main.c: 119: void doAbsMove(void);
-[; ;main.c: 120: void doRelMove(void);
-[; ;main.c: 121: void main_initialize(void);
-[; ;main.c: 122: void calcHeaterPins(void);
-[; ;main.c: 123: void demoSequence(void);
+[; ;main.c: 115: enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
+[; ;main.c: 121: void doAbsMove(void);
+[; ;main.c: 122: void doRelMove(void);
+[; ;main.c: 123: void main_initialize(void);
+[; ;main.c: 124: void calcHeaterPins(void);
+[; ;main.c: 125: void demoSequence(void);
 [v $root$_main `(v ~T0 @X0 0 e ]
-"130
+"132
 [v _main `(v ~T0 @X0 1 ef ]
-"131
+"133
 {
-[; ;main.c: 130: void main(void)
-[; ;main.c: 131: {
+[; ;main.c: 132: void main(void)
+[; ;main.c: 133: {
 [e :U _main ]
 [f ]
-[; ;main.c: 133: SYSTEM_Initialize();
-"133
+[; ;main.c: 135: SYSTEM_Initialize();
+"135
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 134: _delay((unsigned long)((500)*(1000000/4000.0)));
-"134
+[; ;main.c: 136: _delay((unsigned long)((500)*(1000000/4000.0)));
+"136
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;main.c: 140: (INTCONbits.GIE = 1);
-"140
+[; ;main.c: 142: (INTCONbits.GIE = 1);
+"142
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-[; ;main.c: 143: (INTCONbits.PEIE = 1);
-"143
+[; ;main.c: 145: (INTCONbits.PEIE = 1);
+"145
 [e = . . _INTCONbits 0 2 -> -> 1 `i `uc ]
-[; ;main.c: 144: printf("\n\nsystem done\n");
-"144
+[; ;main.c: 146: printf("\n\nsystem done\n");
+"146
 [e ( _printf :s 1C ]
-[; ;main.c: 150: main_initialize();
-"150
-[e ( _main_initialize ..  ]
-[; ;main.c: 152: while (1)
+[; ;main.c: 152: main_initialize();
 "152
+[e ( _main_initialize ..  ]
+[; ;main.c: 154: while (1)
+"154
 [e :U 969 ]
-[; ;main.c: 153: {
-"153
-{
-[; ;main.c: 155: if (eusartRxCount!=0) {
+[; ;main.c: 155: {
 "155
+{
+[; ;main.c: 157: if (eusartRxCount!=0) {
+"157
 [e $ ! != -> _eusartRxCount `i -> 0 `i 971  ]
 {
-[; ;main.c: 156: readdata[readIdx] = EUSART_Read();
-"156
+[; ;main.c: 158: readdata[readIdx] = EUSART_Read();
+"158
 [e = *U + &U _readdata * -> -> _readIdx `ui `ux -> -> # *U &U _readdata `ui `ux ( _EUSART_Read ..  ]
-[; ;main.c: 157: if(readdata[readIdx] == '\n'){
-"157
+[; ;main.c: 159: if(readdata[readIdx] == '\n'){
+"159
 [e $ ! == -> *U + &U _readdata * -> -> _readIdx `ui `ux -> -> # *U &U _readdata `ui `ux `ui -> 10 `ui 972  ]
 {
-[; ;main.c: 158: readdata[readIdx] = 0;
-"158
-[e = *U + &U _readdata * -> -> _readIdx `ui `ux -> -> # *U &U _readdata `ui `ux -> -> 0 `i `uc ]
-[; ;main.c: 159: cmdRead = 1;
-"159
-[e = _cmdRead -> 1 `i ]
+[; ;main.c: 160: readdata[readIdx] = 0;
 "160
-}
-[e :U 972 ]
-[; ;main.c: 160: }
-[; ;main.c: 161: readIdx++;
+[e = *U + &U _readdata * -> -> _readIdx `ui `ux -> -> # *U &U _readdata `ui `ux -> -> 0 `i `uc ]
+[; ;main.c: 161: cmdRead = 1;
 "161
-[e ++ _readIdx -> 1 `i ]
+[e = _cmdRead -> 1 `i ]
 "162
 }
-[e :U 971 ]
+[e :U 972 ]
 [; ;main.c: 162: }
-[; ;main.c: 165: if(cmdRead){
-"165
+[; ;main.c: 163: readIdx++;
+"163
+[e ++ _readIdx -> 1 `i ]
+"164
+}
+[e :U 971 ]
+[; ;main.c: 164: }
+[; ;main.c: 167: if(cmdRead){
+"167
 [e $ ! != _cmdRead -> 0 `i 973  ]
 {
-[; ;main.c: 167: parseCmd(readdata, &cmd_struct);
-"167
-[e ( _parseCmd (2 , &U _readdata &U _cmd_struct ]
-[; ;main.c: 169: cmdRead = 0;
+[; ;main.c: 169: parseCmd(readdata, &cmd_struct);
 "169
-[e = _cmdRead -> 0 `i ]
-[; ;main.c: 170: readIdx=0;
-"170
-[e = _readIdx -> 0 `i ]
-[; ;main.c: 171: execCmd(&cmd_struct);
+[e ( _parseCmd (2 , &U _readdata &U _cmd_struct ]
+[; ;main.c: 171: cmdRead = 0;
 "171
-[e ( _execCmd (1 &U _cmd_struct ]
+[e = _cmdRead -> 0 `i ]
+[; ;main.c: 172: readIdx=0;
+"172
+[e = _readIdx -> 0 `i ]
+[; ;main.c: 173: execCmd(&cmd_struct);
 "173
+[e ( _execCmd (1 &U _cmd_struct ]
+"175
 }
 [e :U 973 ]
-[; ;main.c: 173: }
-[; ;main.c: 176: switch(motionType){
-"176
+[; ;main.c: 175: }
+[; ;main.c: 178: switch(motionType){
+"178
 [e $U 975  ]
 {
-[; ;main.c: 177: case REL_MOVE: doRelMove(); break;
-"177
+[; ;main.c: 179: case REL_MOVE: doRelMove(); break;
+"179
 [e :U 976 ]
 [e ( _doRelMove ..  ]
 [e $U 974  ]
-[; ;main.c: 178: case ABS_MOVE: doAbsMove(); break;
-"178
+[; ;main.c: 180: case ABS_MOVE: doAbsMove(); break;
+"180
 [e :U 977 ]
 [e ( _doAbsMove ..  ]
 [e $U 974  ]
-[; ;main.c: 179: default: break;
-"179
+[; ;main.c: 181: default: break;
+"181
 [e :U 978 ]
 [e $U 974  ]
-"180
+"182
 }
-[; ;main.c: 180: }
+[; ;main.c: 182: }
 [e $U 974  ]
-"176
+"178
 [e :U 975 ]
-[e [\ _motionType , $ . `E8780 1 976
- , $ . `E8780 2 977
+[e [\ _motionType , $ . `E8782 1 976
+ , $ . `E8782 2 977
  978 ]
-"180
+"182
 [e :U 974 ]
-"181
+"183
 }
 [e :U 968 ]
-"152
+"154
 [e $U 969  ]
 [e :U 970 ]
-[; ;main.c: 181: }
-[; ;main.c: 182: }
-"182
+[; ;main.c: 183: }
+[; ;main.c: 184: }
+"184
 [e :UE 967 ]
 }
-"185
+"187
 [v _main_initialize `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 185: void main_initialize(void){
+[; ;main.c: 187: void main_initialize(void){
 [e :U _main_initialize ]
 [f ]
-[; ;main.c: 187: LEDsPwr(LEDpower, 1);
-"187
+[; ;main.c: 189: LEDsPwr(LEDpower, 1);
+"189
 [e ( _LEDsPwr (2 , _LEDpower -> 1 `i ]
-[; ;main.c: 188: LEDsPwr(LEDpower, 2);
-"188
-[e ( _LEDsPwr (2 , _LEDpower -> 2 `i ]
-[; ;main.c: 190: LED_setBrightnessRange(1, 1);
+[; ;main.c: 190: LEDsPwr(LEDpower, 2);
 "190
-[e ( _LED_setBrightnessRange (2 , -> 1 `i -> 1 `i ]
-[; ;main.c: 191: LED_setBrightnessRange(1, 2);
-"191
-[e ( _LED_setBrightnessRange (2 , -> 1 `i -> 2 `i ]
-[; ;main.c: 192: do { LATCbits.LATC1 = 1; } while(0);
+[e ( _LEDsPwr (2 , _LEDpower -> 2 `i ]
+[; ;main.c: 192: LED_setBrightnessRange(1, 1);
 "192
+[e ( _LED_setBrightnessRange (2 , -> 1 `i -> 1 `i ]
+[; ;main.c: 193: LED_setBrightnessRange(1, 2);
+"193
+[e ( _LED_setBrightnessRange (2 , -> 1 `i -> 2 `i ]
+[; ;main.c: 194: do { LATCbits.LATC1 = 1; } while(0);
+"194
 [e :U 982 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 981 ]
-[; ;main.c: 195: TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
-"195
+[; ;main.c: 197: TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
+"197
 [e ( _TMR2_LoadPeriodRegister (1 -> - * -> _heater_post_time_ms `f _TMR2_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 196: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
-"196
+[; ;main.c: 198: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
+"198
 [e ( _TMR0_Load8bitPeriod (1 -> - * -> - _piezo_on_time_ms _heater_pre_time_ms `f _TMR0_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 199: drv_init(0x03, 0x0c);
-"199
-[e ( _drv_init (2 , -> 3 `i -> 12 `i ]
-[; ;main.c: 200: printf("initialized\n");
-"200
-[e ( _printf :s 2C ]
-[; ;main.c: 201: }
+[; ;main.c: 201: drv_init(0x03, 0x0c);
 "201
+[e ( _drv_init (2 , -> 3 `i -> 12 `i ]
+[; ;main.c: 202: printf("initialized\n");
+"202
+[e ( _printf :s 2C ]
+[; ;main.c: 203: }
+"203
 [e :UE 979 ]
 }
-"234
+"236
 [v _doMove `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 234: int doMove(void){
+[; ;main.c: 236: int doMove(void){
 [e :U _doMove ]
 [f ]
-[; ;main.c: 235: printf("doMove\n");
-"235
-[e ( _printf :s 3C ]
-[; ;main.c: 237: calcHeaterPins();
-"237
-[e ( _calcHeaterPins ..  ]
-[; ;main.c: 238: do { LATCbits.LATC1 = 1; } while(0);
+[; ;main.c: 238: calcHeaterPins();
 "238
+[e ( _calcHeaterPins ..  ]
+[; ;main.c: 239: do { LATCbits.LATC1 = 1; } while(0);
+"239
 [e :U 986 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 985 ]
-[; ;main.c: 239: LEDsOn(first_top, 1);
-"239
-[e ( _LEDsOn (2 , _first_top -> 1 `i ]
-[; ;main.c: 240: LEDsOn(first_bottom,2);
+[; ;main.c: 240: LEDsOn(first_top, 1);
 "240
-[e ( _LEDsOn (2 , _first_bottom -> 2 `i ]
-[; ;main.c: 241: do { LATCbits.LATC1 = 0; } while(0);
+[e ( _LEDsOn (2 , _first_top -> 1 `i ]
+[; ;main.c: 241: LEDsOn(first_bottom,2);
 "241
+[e ( _LEDsOn (2 , _first_bottom -> 2 `i ]
+[; ;main.c: 242: do { LATCbits.LATC1 = 0; } while(0);
+"242
 [e :U 989 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 988 ]
-[; ;main.c: 242: for(int t=0; t<heater_pre_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
-"242
+[; ;main.c: 243: for(int t=0; t<heater_pre_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+"243
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
@@ -8739,17 +8742,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _t _heater_pre_time_ms 990  ]
 [e :U 991 ]
 }
-[; ;main.c: 243: TMR2_StartTimer();
-"243
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 244: TMR0_StartTimer();
+[; ;main.c: 244: TMR2_StartTimer();
 "244
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 245: TMR0_StartTimer();
+"245
 [e ( _TMR0_StartTimer ..  ]
-[; ;main.c: 246: drv_write_DC(drv_peak_val, piezo_on_time_ms);
-"246
+[; ;main.c: 247: drv_write_DC(drv_peak_val, piezo_on_time_ms);
+"247
 [e ( _drv_write_DC (2 , _drv_peak_val _piezo_on_time_ms ]
-[; ;main.c: 248: for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
-"248
+[; ;main.c: 249: for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+"249
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
@@ -8761,956 +8764,925 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _t _heater_post_time_ms 994  ]
 [e :U 995 ]
 }
-[; ;main.c: 250: do { LATCbits.LATC1 = 1; } while(0);
-"250
+[; ;main.c: 251: do { LATCbits.LATC1 = 1; } while(0);
+"251
 [e :U 1000 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 999 ]
-[; ;main.c: 252: return 0;
-"252
+[; ;main.c: 254: for(int t=0; t<inter_step_interval_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+"254
+{
+[v _t `i ~T0 @X0 1 a ]
+[e = _t -> 0 `i ]
+[e $U 1004  ]
+[e :U 1001 ]
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[e ++ _t -> 1 `i ]
+[e :U 1004 ]
+[e $ < -> _t `l _inter_step_interval_ms 1001  ]
+[e :U 1002 ]
+}
+[; ;main.c: 255: return 0;
+"255
 [e ) -> 0 `i ]
 [e $UE 983  ]
-[; ;main.c: 255: }
-"255
+[; ;main.c: 258: }
+"258
 [e :UE 983 ]
 }
-"258
+"261
 [v _calcHeaterPins `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 258: void calcHeaterPins(void){
+[; ;main.c: 261: void calcHeaterPins(void){
 [e :U _calcHeaterPins ]
 [f ]
-[; ;main.c: 259: first_top = moveVector_downs & moveMask;
-"259
-[e = _first_top & _moveVector_downs _moveMask ]
-[; ;main.c: 260: first_bottom = (~moveVector_downs) & moveMask;
-"260
-[e = _first_bottom & ~ _moveVector_downs _moveMask ]
-[; ;main.c: 261: second_top = moveVector_ups & moveMask;
-"261
-[e = _second_top & _moveVector_ups _moveMask ]
-[; ;main.c: 262: second_bottom = (~moveVector_ups) & moveMask;
+[; ;main.c: 262: first_top = moveVector_downs & moveMask;
 "262
-[e = _second_bottom & ~ _moveVector_ups _moveMask ]
-[; ;main.c: 263: }
+[e = _first_top & _moveVector_downs _moveMask ]
+[; ;main.c: 263: first_bottom = (~moveVector_downs) & moveMask;
 "263
-[e :UE 1001 ]
-}
+[e = _first_bottom & ~ _moveVector_downs _moveMask ]
+[; ;main.c: 264: second_top = moveVector_ups & moveMask;
+"264
+[e = _second_top & _moveVector_ups _moveMask ]
+[; ;main.c: 265: second_bottom = (~moveVector_ups) & moveMask;
+"265
+[e = _second_bottom & ~ _moveVector_ups _moveMask ]
+[; ;main.c: 266: }
 "266
+[e :UE 1005 ]
+}
+"269
 [v _demoSequence `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 266: void demoSequence(void){
+[; ;main.c: 269: void demoSequence(void){
 [e :U _demoSequence ]
 [f ]
-[; ;main.c: 267: LEDsOn(demoLong, 1);
-"267
+[; ;main.c: 270: LEDsOn(demoLong, 1);
+"270
 [e ( _LEDsOn (2 , _demoLong -> 1 `i ]
-[; ;main.c: 268: LEDsOn(demoLong, 2);
-"268
+[; ;main.c: 271: LEDsOn(demoLong, 2);
+"271
 [e ( _LEDsOn (2 , _demoLong -> 2 `i ]
-[; ;main.c: 269: do { LATCbits.LATC1 = 0; } while(0);
-"269
-[e :U 1005 ]
+[; ;main.c: 272: do { LATCbits.LATC1 = 0; } while(0);
+"272
+[e :U 1009 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 1004 ]
-[; ;main.c: 270: _delay((unsigned long)((100)*(1000000/4000.0)));
-"270
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;main.c: 271: do { LATCbits.LATC1 = 1; } while(0);
-"271
 [e :U 1008 ]
+[; ;main.c: 273: _delay((unsigned long)((100)*(1000000/4000.0)));
+"273
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;main.c: 274: do { LATCbits.LATC1 = 1; } while(0);
+"274
+[e :U 1012 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 1007 ]
-[; ;main.c: 273: if(demoLong >= 0b10000000000000000000000000000000){
-"273
-[e $ ! >= _demoLong -> -2147483648 `ul 1009  ]
-{
-[; ;main.c: 274: demoLong = 0x0001;
-"274
-[e = _demoLong -> -> -> 1 `i `l `ul ]
-"275
-}
-[; ;main.c: 275: }
-[e $U 1010  ]
+[e :U 1011 ]
+[; ;main.c: 276: if(demoLong >= 0b10000000000000000000000000000000){
 "276
-[e :U 1009 ]
-[; ;main.c: 276: else demoLong <<= 1;
-[e =<< _demoLong -> 1 `i ]
-[e :U 1010 ]
-[; ;main.c: 277: }
+[e $ ! >= _demoLong -> -2147483648 `ul 1013  ]
+{
+[; ;main.c: 277: demoLong = 0x0001;
 "277
-[e :UE 1002 ]
+[e = _demoLong -> -> -> 1 `i `l `ul ]
+"278
 }
+[; ;main.c: 278: }
+[e $U 1014  ]
+"279
+[e :U 1013 ]
+[; ;main.c: 279: else demoLong <<= 1;
+[e =<< _demoLong -> 1 `i ]
+[e :U 1014 ]
+[; ;main.c: 280: }
 "280
+[e :UE 1006 ]
+}
+"283
 [v _startRelMove `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 280: int startRelMove(int steps){
+[; ;main.c: 283: int startRelMove(int steps){
 [e :U _startRelMove ]
 [v _steps `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 281: motionType = REL_MOVE;
-"281
-[e = _motionType . `E8780 1 ]
-[; ;main.c: 282: remainingSteps = steps;
-"282
-[e = _remainingSteps -> _steps `l ]
-[; ;main.c: 283: printf("A\n");
-"283
-[e ( _printf :s 4C ]
-[; ;main.c: 284: return 0;
+[; ;main.c: 284: motionType = REL_MOVE;
 "284
-[e ) -> 0 `i ]
-[e $UE 1011  ]
-[; ;main.c: 285: }
+[e = _motionType . `E8782 1 ]
+[; ;main.c: 285: remainingSteps = steps;
 "285
-[e :UE 1011 ]
-}
+[e = _remainingSteps -> _steps `l ]
+[; ;main.c: 286: printf("A\n");
 "286
+[e ( _printf :s 3C ]
+[; ;main.c: 287: return 0;
+"287
+[e ) -> 0 `i ]
+[e $UE 1015  ]
+[; ;main.c: 288: }
+"288
+[e :UE 1015 ]
+}
+"289
 [v _startAbsMove `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 286: int startAbsMove(int steps){
+[; ;main.c: 289: int startAbsMove(int steps){
 [e :U _startAbsMove ]
 [v _steps `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 287: motionType = ABS_MOVE;
-"287
-[e = _motionType . `E8780 2 ]
-[; ;main.c: 288: absCommand = steps;
-"288
-[e = _absCommand -> _steps `l ]
-[; ;main.c: 289: printf("A\n");
-"289
-[e ( _printf :s 5C ]
-[; ;main.c: 290: return 0;
+[; ;main.c: 290: motionType = ABS_MOVE;
 "290
-[e ) -> 0 `i ]
-[e $UE 1012  ]
-[; ;main.c: 291: }
+[e = _motionType . `E8782 2 ]
+[; ;main.c: 291: absCommand = steps;
 "291
-[e :UE 1012 ]
-}
+[e = _absCommand -> _steps `l ]
+[; ;main.c: 292: printf("A\n");
+"292
+[e ( _printf :s 4C ]
+[; ;main.c: 293: return 0;
+"293
+[e ) -> 0 `i ]
+[e $UE 1016  ]
+[; ;main.c: 294: }
 "294
+[e :UE 1016 ]
+}
+"297
 [v _stop `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 294: int stop(void){
+[; ;main.c: 297: int stop(void){
 [e :U _stop ]
 [f ]
-[; ;main.c: 295: motionType = NONE;
-"295
-[e = _motionType . `E8780 0 ]
-[; ;main.c: 296: moveVector_ups = 0;
-"296
-[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 297: moveVector_downs = 0;
-"297
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 298: remainingSteps = 0;
+[; ;main.c: 298: motionType = NONE;
 "298
-[e = _remainingSteps -> -> 0 `i `l ]
-[; ;main.c: 299: printf("A\n");
+[e = _motionType . `E8782 0 ]
+[; ;main.c: 299: moveVector_ups = 0;
 "299
-[e ( _printf :s 6C ]
-[; ;main.c: 300: return 0;
+[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
+[; ;main.c: 300: moveVector_downs = 0;
 "300
-[e ) -> 0 `i ]
-[e $UE 1013  ]
-[; ;main.c: 301: }
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 301: remainingSteps = 0;
 "301
-[e :UE 1013 ]
-}
+[e = _remainingSteps -> -> 0 `i `l ]
+[; ;main.c: 302: printf("A\n");
+"302
+[e ( _printf :s 5C ]
+[; ;main.c: 303: return 0;
+"303
+[e ) -> 0 `i ]
+[e $UE 1017  ]
+[; ;main.c: 304: }
 "304
+[e :UE 1017 ]
+}
+"307
 [v _doAbsMove `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 304: void doAbsMove(void){
+[; ;main.c: 307: void doAbsMove(void){
 [e :U _doAbsMove ]
 [f ]
-"307
-[v _allThere `i ~T0 @X0 1 a ]
-[; ;main.c: 307: int allThere=1;
-[e = _allThere -> 1 `i ]
-[; ;main.c: 308: for(int i=0;i<24;i++){
-"308
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 24 `i 1015  ]
-[e $U 1016  ]
-[e :U 1015 ]
-{
-[; ;main.c: 309: if((activeMask & (1UL << i)) > 0)
-"309
-[e $ ! > & _activeMask << -> 1 `ul _i -> -> -> 0 `i `l `ul 1018  ]
-[; ;main.c: 310: allThere &= (currentPositions_steps[i] == absCommand);
 "310
-[e =& _allThere -> == *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i ]
-[e :U 1018 ]
+[v _allThere `i ~T0 @X0 1 a ]
+[; ;main.c: 310: int allThere=1;
+[e = _allThere -> 1 `i ]
+[; ;main.c: 311: for(int i=0;i<24;i++){
 "311
-}
-"308
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 24 `i 1015  ]
-[e :U 1016 ]
-"311
-}
-[; ;main.c: 311: }
-[; ;main.c: 313: if(allThere){
-"313
-[e $ ! != _allThere -> 0 `i 1019  ]
 {
-[; ;main.c: 314: printf("abs: all there\n");
-"314
-[e ( _printf :s 7C ]
-[; ;main.c: 315: motionType = NONE;
-"315
-[e = _motionType . `E8780 0 ]
-[; ;main.c: 316: moveVector_ups = 0;
-"316
-[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 317: moveVector_downs = 0;
-"317
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 318: return;
-"318
-[e $UE 1014  ]
-"319
-}
-[; ;main.c: 319: }
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 24 `i 1019  ]
 [e $U 1020  ]
-"320
 [e :U 1019 ]
-[; ;main.c: 320: else{
 {
-[; ;main.c: 321: for(int i=0;i<24;i++){
-"321
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 24 `i 1021  ]
-[e $U 1022  ]
-[e :U 1021 ]
-{
-[; ;main.c: 323: moveVector_ups |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] > absCommand)<<i);
-"323
-[e =| _moveVector_ups & & _activeMask << -> 1 `ul _i -> -> << -> > *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
-[; ;main.c: 324: moveVector_downs |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] < absCommand)<<i);
-"324
-[e =| _moveVector_downs & & _activeMask << -> 1 `ul _i -> -> << -> < *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
-"326
-}
-"321
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 24 `i 1021  ]
+[; ;main.c: 312: if((activeMask & (1UL << i)) > 0)
+"312
+[e $ ! > & _activeMask << -> 1 `ul _i -> -> -> 0 `i `l `ul 1022  ]
+[; ;main.c: 313: allThere &= (currentPositions_steps[i] == absCommand);
+"313
+[e =& _allThere -> == *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i ]
 [e :U 1022 ]
-"326
+"314
 }
-[; ;main.c: 326: }
-[; ;main.c: 327: doMove();
-"327
-[e ( _doMove ..  ]
-[; ;main.c: 329: for(int i=0;i<24;i++)
-"329
+"311
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 24 `i 1019  ]
+[e :U 1020 ]
+"314
+}
+[; ;main.c: 314: }
+[; ;main.c: 316: if(allThere){
+"316
+[e $ ! != _allThere -> 0 `i 1023  ]
+{
+[; ;main.c: 317: printf("abs: all there\n");
+"317
+[e ( _printf :s 6C ]
+[; ;main.c: 318: motionType = NONE;
+"318
+[e = _motionType . `E8782 0 ]
+[; ;main.c: 319: moveVector_ups = 0;
+"319
+[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
+[; ;main.c: 320: moveVector_downs = 0;
+"320
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 321: return;
+"321
+[e $UE 1018  ]
+"322
+}
+[; ;main.c: 322: }
+[e $U 1024  ]
+"323
+[e :U 1023 ]
+[; ;main.c: 323: else{
+{
+[; ;main.c: 324: for(int i=0;i<24;i++){
+"324
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 24 `i 1024  ]
-[e $U 1025  ]
-"330
-[e :U 1024 ]
-[; ;main.c: 330: currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVector_ups & (1UL << i)) > 0);
-[e =+ *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> - -> > & _moveVector_downs << -> 1 `ul _i -> -> -> 0 `i `l `ul `i -> > & _moveVector_ups << -> 1 `ul _i -> -> -> 0 `i `l `ul `i `l ]
-"329
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 24 `i 1024  ]
+[e $ < _i -> 24 `i 1025  ]
+[e $U 1026  ]
 [e :U 1025 ]
+{
+[; ;main.c: 326: moveVector_ups |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] > absCommand)<<i);
+"326
+[e =| _moveVector_ups & & _activeMask << -> 1 `ul _i -> -> << -> > *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
+[; ;main.c: 327: moveVector_downs |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] < absCommand)<<i);
+"327
+[e =| _moveVector_downs & & _activeMask << -> 1 `ul _i -> -> << -> < *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
+"329
+}
+"324
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 24 `i 1025  ]
+[e :U 1026 ]
+"329
+}
+[; ;main.c: 329: }
+[; ;main.c: 330: doMove();
 "330
-}
+[e ( _doMove ..  ]
+[; ;main.c: 332: for(int i=0;i<24;i++)
 "332
-}
-[e :U 1020 ]
-[; ;main.c: 332: }
-[; ;main.c: 333: }
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 24 `i 1028  ]
+[e $U 1029  ]
 "333
-[e :UE 1014 ]
+[e :U 1028 ]
+[; ;main.c: 333: currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVector_ups & (1UL << i)) > 0);
+[e =+ *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> - -> > & _moveVector_downs << -> 1 `ul _i -> -> -> 0 `i `l `ul `i -> > & _moveVector_ups << -> 1 `ul _i -> -> -> 0 `i `l `ul `i `l ]
+"332
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 24 `i 1028  ]
+[e :U 1029 ]
+"333
 }
+"335
+}
+[e :U 1024 ]
+[; ;main.c: 335: }
+[; ;main.c: 336: }
 "336
+[e :UE 1018 ]
+}
+"339
 [v _doRelMove `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 336: void doRelMove(void){
+[; ;main.c: 339: void doRelMove(void){
 [e :U _doRelMove ]
 [f ]
-[; ;main.c: 337: printf("doRelMove\n");
-"337
-[e ( _printf :s 8C ]
-[; ;main.c: 338: if(remainingSteps == 0){
-"338
-[e $ ! == _remainingSteps -> -> 0 `i `l 1028  ]
-{
-[; ;main.c: 339: printf("rel: all there\n");
-"339
-[e ( _printf :s 9C ]
-[; ;main.c: 340: motionType = NONE;
+[; ;main.c: 340: if(remainingSteps == 0){
 "340
-[e = _motionType . `E8780 0 ]
-[; ;main.c: 341: moveVector_ups = 0;
+[e $ ! == _remainingSteps -> -> 0 `i `l 1032  ]
+{
+[; ;main.c: 341: motionType = NONE;
 "341
-[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 342: moveVector_downs = 0;
+[e = _motionType . `E8782 0 ]
+[; ;main.c: 342: moveVector_ups = 0;
 "342
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 343: return;
-"343
-[e $UE 1027  ]
-"344
-}
-[; ;main.c: 344: }
-[e $U 1029  ]
-"345
-[e :U 1028 ]
-[; ;main.c: 345: else{
-{
-"346
-[v _j `i ~T0 @X0 1 a ]
-[; ;main.c: 346: int j;
-[; ;main.c: 347: if (remainingSteps > 0){
-"347
-[e $ ! > _remainingSteps -> -> 0 `i `l 1030  ]
-{
-[; ;main.c: 348: moveVector_ups = 0;
-"348
 [e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 349: moveVector_downs = activeMask;
-"349
-[e = _moveVector_downs _activeMask ]
-[; ;main.c: 351: doMove();
-"351
-[e ( _doMove ..  ]
-[; ;main.c: 352: remainingSteps--;
-"352
-[e -- _remainingSteps -> -> 1 `i `l ]
-[; ;main.c: 355: for(j = 0; j<24; j++)
-"355
-{
-[e = _j -> 0 `i ]
-[e $ < _j -> 24 `i 1031  ]
-[e $U 1032  ]
-"356
-[e :U 1031 ]
-[; ;main.c: 356: currentPositions_steps[j] += (activeMask & (1UL<<j) > 0);
-[e =+ *U + &U _currentPositions_steps * -> -> _j `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> & _activeMask -> -> -> > << -> 1 `ul _j -> -> -> 0 `i `l `ul `i `l `ul `l ]
-"355
-[e ++ _j -> 1 `i ]
-[e $ < _j -> 24 `i 1031  ]
-[e :U 1032 ]
-"356
-}
-"358
-}
-[; ;main.c: 358: }
-[e $U 1034  ]
-"359
-[e :U 1030 ]
-[; ;main.c: 359: else{
-{
-[; ;main.c: 360: moveVector_ups = activeMask;
-"360
-[e = _moveVector_ups _activeMask ]
-[; ;main.c: 361: moveVector_downs = 0;
-"361
+[; ;main.c: 343: moveVector_downs = 0;
+"343
 [e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 363: doMove();
-"363
+[; ;main.c: 344: return;
+"344
+[e $UE 1031  ]
+"345
+}
+[; ;main.c: 345: }
+[e $U 1033  ]
+"346
+[e :U 1032 ]
+[; ;main.c: 346: else{
+{
+"347
+[v _j `i ~T0 @X0 1 a ]
+[; ;main.c: 347: int j;
+[; ;main.c: 348: if (remainingSteps > 0){
+"348
+[e $ ! > _remainingSteps -> -> 0 `i `l 1034  ]
+{
+[; ;main.c: 349: moveVector_ups = 0;
+"349
+[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
+[; ;main.c: 350: moveVector_downs = activeMask;
+"350
+[e = _moveVector_downs _activeMask ]
+[; ;main.c: 352: doMove();
+"352
 [e ( _doMove ..  ]
-[; ;main.c: 364: remainingSteps++;
-"364
-[e ++ _remainingSteps -> -> 1 `i `l ]
-[; ;main.c: 365: for(j = 0; j<24; j++)
-"365
+[; ;main.c: 353: remainingSteps--;
+"353
+[e -- _remainingSteps -> -> 1 `i `l ]
+[; ;main.c: 356: for(j = 0; j<24; j++)
+"356
 {
 [e = _j -> 0 `i ]
 [e $ < _j -> 24 `i 1035  ]
 [e $U 1036  ]
-"366
+"357
 [e :U 1035 ]
-[; ;main.c: 366: currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
-[e =- *U + &U _currentPositions_steps * -> -> _j `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> & _activeMask -> -> -> > << -> 1 `ul _j -> -> -> 0 `i `l `ul `i `l `ul `l ]
-"365
+[; ;main.c: 357: currentPositions_steps[j] += (activeMask & (1UL<<j) > 0);
+[e =+ *U + &U _currentPositions_steps * -> -> _j `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> & _activeMask -> -> -> > << -> 1 `ul _j -> -> -> 0 `i `l `ul `i `l `ul `l ]
+"356
 [e ++ _j -> 1 `i ]
 [e $ < _j -> 24 `i 1035  ]
 [e :U 1036 ]
-"366
+"357
 }
-"368
+"359
 }
+[; ;main.c: 359: }
+[e $U 1038  ]
+"360
 [e :U 1034 ]
+[; ;main.c: 360: else{
+{
+[; ;main.c: 361: moveVector_ups = activeMask;
+"361
+[e = _moveVector_ups _activeMask ]
+[; ;main.c: 362: moveVector_downs = 0;
+"362
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 364: doMove();
+"364
+[e ( _doMove ..  ]
+[; ;main.c: 365: remainingSteps++;
+"365
+[e ++ _remainingSteps -> -> 1 `i `l ]
+[; ;main.c: 366: for(j = 0; j<24; j++)
+"366
+{
+[e = _j -> 0 `i ]
+[e $ < _j -> 24 `i 1039  ]
+[e $U 1040  ]
+"367
+[e :U 1039 ]
+[; ;main.c: 367: currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
+[e =- *U + &U _currentPositions_steps * -> -> _j `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> & _activeMask -> -> -> > << -> 1 `ul _j -> -> -> 0 `i `l `ul `i `l `ul `l ]
+"366
+[e ++ _j -> 1 `i ]
+[e $ < _j -> 24 `i 1039  ]
+[e :U 1040 ]
+"367
+}
 "369
 }
-[e :U 1029 ]
-[; ;main.c: 368: }
+[e :U 1038 ]
+"370
+}
+[e :U 1033 ]
 [; ;main.c: 369: }
 [; ;main.c: 370: }
-"370
-[e :UE 1027 ]
+[; ;main.c: 371: }
+"371
+[e :UE 1031 ]
 }
-"373
+"374
 [v _zeroPosition `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 373: int zeroPosition(void){
+[; ;main.c: 374: int zeroPosition(void){
 [e :U _zeroPosition ]
 [f ]
-[; ;main.c: 374: for(int i = 0; i<24; i++){
-"374
+[; ;main.c: 375: for(int i = 0; i<24; i++){
+"375
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 24 `i 1039  ]
-[e $U 1040  ]
-[e :U 1039 ]
+[e $ < _i -> 24 `i 1043  ]
+[e $U 1044  ]
+[e :U 1043 ]
 {
-[; ;main.c: 375: if((activeMask & (1UL << i)) > 0)
-"375
-[e $ ! > & _activeMask << -> 1 `ul _i -> -> -> 0 `i `l `ul 1042  ]
-[; ;main.c: 376: currentPositions_steps[i]=0;
+[; ;main.c: 376: if((activeMask & (1UL << i)) > 0)
 "376
+[e $ ! > & _activeMask << -> 1 `ul _i -> -> -> 0 `i `l `ul 1046  ]
+[; ;main.c: 377: currentPositions_steps[i]=0;
+"377
 [e = *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> -> 0 `i `l ]
-[e :U 1042 ]
-"377
-}
-"374
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 24 `i 1039  ]
-[e :U 1040 ]
-"377
-}
-[; ;main.c: 377: }
-[; ;main.c: 378: printf("A\n");
+[e :U 1046 ]
 "378
-[e ( _printf :s 10C ]
-[; ;main.c: 379: return 0;
-"379
-[e ) -> 0 `i ]
-[e $UE 1038  ]
-[; ;main.c: 380: }
-"380
-[e :UE 1038 ]
 }
-"383
+"375
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 24 `i 1043  ]
+[e :U 1044 ]
+"378
+}
+[; ;main.c: 378: }
+[; ;main.c: 379: printf("A\n");
+"379
+[e ( _printf :s 7C ]
+[; ;main.c: 380: return 0;
+"380
+[e ) -> 0 `i ]
+[e $UE 1042  ]
+[; ;main.c: 381: }
+"381
+[e :UE 1042 ]
+}
+"384
 [v _getPosition `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 383: int getPosition(int a){
+[; ;main.c: 384: int getPosition(int a){
 [e :U _getPosition ]
 [v _a `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 385: if (a>=0 && a < 24){
-"385
-[e $ ! && >= _a -> 0 `i < _a -> 24 `i 1044  ]
-{
-[; ;main.c: 386: printf("%d\n", currentPositions_steps[a]);
+[; ;main.c: 386: if (a>=0 && a < 24){
 "386
-[e ( _printf , (. :s 11C *U + &U _currentPositions_steps * -> -> _a `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux ]
-[; ;main.c: 387: return 0;
+[e $ ! && >= _a -> 0 `i < _a -> 24 `i 1048  ]
+{
+[; ;main.c: 387: printf("%d\n", currentPositions_steps[a]);
 "387
-[e ) -> 0 `i ]
-[e $UE 1043  ]
+[e ( _printf , (. :s 8C *U + &U _currentPositions_steps * -> -> _a `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux ]
+[; ;main.c: 388: return 0;
 "388
+[e ) -> 0 `i ]
+[e $UE 1047  ]
+"389
 }
-[e :U 1044 ]
-[; ;main.c: 388: }
-[; ;main.c: 390: return 1;
-"390
-[e ) -> 1 `i ]
-[e $UE 1043  ]
-[; ;main.c: 391: }
+[e :U 1048 ]
+[; ;main.c: 389: }
+[; ;main.c: 391: return 1;
 "391
-[e :UE 1043 ]
+[e ) -> 1 `i ]
+[e $UE 1047  ]
+[; ;main.c: 392: }
+"392
+[e :UE 1047 ]
 }
-"394
+"395
 [v _setDrvPeak `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 394: int setDrvPeak(int pk){
+[; ;main.c: 395: int setDrvPeak(int pk){
 [e :U _setDrvPeak ]
 [v _pk `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 395: drv_peak_val = pk;
-"395
-[e = _drv_peak_val _pk ]
-[; ;main.c: 396: printf("A\n");
+[; ;main.c: 396: drv_peak_val = pk;
 "396
-[e ( _printf :s 12C ]
-[; ;main.c: 397: return 0;
+[e = _drv_peak_val _pk ]
+[; ;main.c: 397: printf("A\n");
 "397
-[e ) -> 0 `i ]
-[e $UE 1045  ]
-[; ;main.c: 398: };
+[e ( _printf :s 9C ]
+[; ;main.c: 398: return 0;
 "398
-[e :UE 1045 ]
+[e ) -> 0 `i ]
+[e $UE 1049  ]
+[; ;main.c: 399: };
+"399
+[e :UE 1049 ]
 }
-"401
+"402
 [v _setDrvGain `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 401: int setDrvGain(int gain){
+[; ;main.c: 402: int setDrvGain(int gain){
 [e :U _setDrvGain ]
 [v _gain `i ~T0 @X0 1 r1 ]
 [f ]
-"402
+"403
 [v _setGain `i ~T0 @X0 1 a ]
-[; ;main.c: 402: int setGain = 0;
+[; ;main.c: 403: int setGain = 0;
 [e = _setGain -> 0 `i ]
-[; ;main.c: 403: switch (gain){
-"403
-[e $U 1048  ]
-{
-[; ;main.c: 404: case 0: setGain = 0x00; break;
+[; ;main.c: 404: switch (gain){
 "404
-[e :U 1049 ]
-[e = _setGain -> 0 `i ]
-[e $U 1047  ]
-[; ;main.c: 405: case 1: setGain = 0x01; break;
+[e $U 1052  ]
+{
+[; ;main.c: 405: case 0: setGain = 0x00; break;
 "405
-[e :U 1050 ]
-[e = _setGain -> 1 `i ]
-[e $U 1047  ]
-[; ;main.c: 406: case 2: setGain = 0x02; break;
-"406
-[e :U 1051 ]
-[e = _setGain -> 2 `i ]
-[e $U 1047  ]
-[; ;main.c: 407: case 3: setGain = 0x03; break;
-"407
-[e :U 1052 ]
-[e = _setGain -> 3 `i ]
-[e $U 1047  ]
-[; ;main.c: 408: default: printf("E\n"); return 1;
-"408
 [e :U 1053 ]
-[e ( _printf :s 13C ]
+[e = _setGain -> 0 `i ]
+[e $U 1051  ]
+[; ;main.c: 406: case 1: setGain = 0x01; break;
+"406
+[e :U 1054 ]
+[e = _setGain -> 1 `i ]
+[e $U 1051  ]
+[; ;main.c: 407: case 2: setGain = 0x02; break;
+"407
+[e :U 1055 ]
+[e = _setGain -> 2 `i ]
+[e $U 1051  ]
+[; ;main.c: 408: case 3: setGain = 0x03; break;
+"408
+[e :U 1056 ]
+[e = _setGain -> 3 `i ]
+[e $U 1051  ]
+[; ;main.c: 409: default: printf("E\n"); return 1;
+"409
+[e :U 1057 ]
+[e ( _printf :s 10C ]
 [e ) -> 1 `i ]
-[e $UE 1046  ]
-"409
-}
-[; ;main.c: 409: }
-[e $U 1047  ]
-"403
-[e :U 1048 ]
-[e [\ _gain , $ -> 0 `i 1049
- , $ -> 1 `i 1050
- , $ -> 2 `i 1051
- , $ -> 3 `i 1052
- 1053 ]
-"409
-[e :U 1047 ]
-[; ;main.c: 410: drv_write(0x01, setGain);
+[e $UE 1050  ]
 "410
-[e ( _drv_write (2 , -> -> 1 `i `uc -> _setGain `uc ]
-[; ;main.c: 411: printf("A\n");
-"411
-[e ( _printf :s 14C ]
-[; ;main.c: 412: return 0;
-"412
-[e ) -> 0 `i ]
-[e $UE 1046  ]
-[; ;main.c: 413: };
-"413
-[e :UE 1046 ]
 }
-"415
+[; ;main.c: 410: }
+[e $U 1051  ]
+"404
+[e :U 1052 ]
+[e [\ _gain , $ -> 0 `i 1053
+ , $ -> 1 `i 1054
+ , $ -> 2 `i 1055
+ , $ -> 3 `i 1056
+ 1057 ]
+"410
+[e :U 1051 ]
+[; ;main.c: 411: drv_write(0x01, setGain);
+"411
+[e ( _drv_write (2 , -> -> 1 `i `uc -> _setGain `uc ]
+[; ;main.c: 412: printf("A\n");
+"412
+[e ( _printf :s 11C ]
+[; ;main.c: 413: return 0;
+"413
+[e ) -> 0 `i ]
+[e $UE 1050  ]
+[; ;main.c: 414: };
+"414
+[e :UE 1050 ]
+}
+"416
 [v _setDrvPiezoOnTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 415: int setDrvPiezoOnTime(int t){
+[; ;main.c: 416: int setDrvPiezoOnTime(int t){
 [e :U _setDrvPiezoOnTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 416: piezo_on_time_ms = t;
-"416
-[e = _piezo_on_time_ms _t ]
-[; ;main.c: 417: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
+[; ;main.c: 417: piezo_on_time_ms = t;
 "417
-[e ( _TMR0_Load8bitPeriod (1 -> - * -> - _piezo_on_time_ms _heater_pre_time_ms `f _TMR0_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 418: printf("A\n");
+[e = _piezo_on_time_ms _t ]
+[; ;main.c: 418: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
 "418
-[e ( _printf :s 15C ]
-[; ;main.c: 419: return 0;
+[e ( _TMR0_Load8bitPeriod (1 -> - * -> - _piezo_on_time_ms _heater_pre_time_ms `f _TMR0_RANGE -> -> 1 `i `f `uc ]
+[; ;main.c: 419: printf("A\n");
 "419
-[e ) -> 0 `i ]
-[e $UE 1054  ]
-[; ;main.c: 420: };
+[e ( _printf :s 12C ]
+[; ;main.c: 420: return 0;
 "420
-[e :UE 1054 ]
+[e ) -> 0 `i ]
+[e $UE 1058  ]
+[; ;main.c: 421: };
+"421
+[e :UE 1058 ]
 }
-"426
+"427
 [v _setHeaterPreTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 426: int setHeaterPreTime(int t){
+[; ;main.c: 427: int setHeaterPreTime(int t){
 [e :U _setHeaterPreTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 427: heater_pre_time_ms = t;
-"427
-[e = _heater_pre_time_ms _t ]
-[; ;main.c: 428: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
+[; ;main.c: 428: heater_pre_time_ms = t;
 "428
-[e ( _TMR0_Load8bitPeriod (1 -> - * -> - _piezo_on_time_ms _heater_pre_time_ms `f _TMR0_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 429: printf("A\n");
+[e = _heater_pre_time_ms _t ]
+[; ;main.c: 429: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
 "429
-[e ( _printf :s 16C ]
-[; ;main.c: 430: return 0;
+[e ( _TMR0_Load8bitPeriod (1 -> - * -> - _piezo_on_time_ms _heater_pre_time_ms `f _TMR0_RANGE -> -> 1 `i `f `uc ]
+[; ;main.c: 430: printf("A\n");
 "430
-[e ) -> 0 `i ]
-[e $UE 1055  ]
-[; ;main.c: 431: };
+[e ( _printf :s 13C ]
+[; ;main.c: 431: return 0;
 "431
-[e :UE 1055 ]
-}
+[e ) -> 0 `i ]
+[e $UE 1059  ]
+[; ;main.c: 432: };
 "432
+[e :UE 1059 ]
+}
+"433
 [v _setHeaterPostTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 432: int setHeaterPostTime(int t){
+[; ;main.c: 433: int setHeaterPostTime(int t){
 [e :U _setHeaterPostTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 433: heater_post_time_ms = t;
-"433
-[e = _heater_post_time_ms _t ]
-[; ;main.c: 434: TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
+[; ;main.c: 434: heater_post_time_ms = t;
 "434
-[e ( _TMR2_LoadPeriodRegister (1 -> - * -> _heater_post_time_ms `f _TMR2_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 435: printf("A\n");
+[e = _heater_post_time_ms _t ]
+[; ;main.c: 435: TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
 "435
-[e ( _printf :s 17C ]
-[; ;main.c: 436: return 0;
+[e ( _TMR2_LoadPeriodRegister (1 -> - * -> _heater_post_time_ms `f _TMR2_RANGE -> -> 1 `i `f `uc ]
+[; ;main.c: 436: printf("A\n");
 "436
-[e ) -> 0 `i ]
-[e $UE 1056  ]
-[; ;main.c: 437: };
+[e ( _printf :s 14C ]
+[; ;main.c: 437: return 0;
 "437
-[e :UE 1056 ]
+[e ) -> 0 `i ]
+[e $UE 1060  ]
+[; ;main.c: 438: };
+"438
+[e :UE 1060 ]
 }
-"442
+"443
 [v _setLEDBrightnessRange `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 442: int setLEDBrightnessRange(int r, int tOB){
+[; ;main.c: 443: int setLEDBrightnessRange(int r, int tOB){
 [e :U _setLEDBrightnessRange ]
 [v _r `i ~T0 @X0 1 r1 ]
 [v _tOB `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 443: LED_setBrightnessRange(r, tOB);
-"443
-[e ( _LED_setBrightnessRange (2 , _r _tOB ]
-[; ;main.c: 444: printf("A\n");
+[; ;main.c: 444: LED_setBrightnessRange(r, tOB);
 "444
-[e ( _printf :s 18C ]
-[; ;main.c: 445: return 0;
+[e ( _LED_setBrightnessRange (2 , _r _tOB ]
+[; ;main.c: 445: printf("A\n");
 "445
-[e ) -> 0 `i ]
-[e $UE 1057  ]
-[; ;main.c: 446: };
+[e ( _printf :s 15C ]
+[; ;main.c: 446: return 0;
 "446
-[e :UE 1057 ]
+[e ) -> 0 `i ]
+[e $UE 1061  ]
+[; ;main.c: 447: };
+"447
+[e :UE 1061 ]
 }
-"450
+"451
 [v _setLEDPwr `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 450: int setLEDPwr(int pwr, int topOrBottom){
+[; ;main.c: 451: int setLEDPwr(int pwr, int topOrBottom){
 [e :U _setLEDPwr ]
 [v _pwr `i ~T0 @X0 1 r1 ]
 [v _topOrBottom `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 451: LEDsPwr(pwr, topOrBottom);
-"451
-[e ( _LEDsPwr (2 , _pwr _topOrBottom ]
-[; ;main.c: 452: printf("A\n");
+[; ;main.c: 452: LEDsPwr(pwr, topOrBottom);
 "452
-[e ( _printf :s 19C ]
-[; ;main.c: 453: return 0;
+[e ( _LEDsPwr (2 , _pwr _topOrBottom ]
+[; ;main.c: 453: printf("A\n");
 "453
-[e ) -> 0 `i ]
-[e $UE 1058  ]
-[; ;main.c: 454: };
+[e ( _printf :s 16C ]
+[; ;main.c: 454: return 0;
 "454
-[e :UE 1058 ]
+[e ) -> 0 `i ]
+[e $UE 1062  ]
+[; ;main.c: 455: };
+"455
+[e :UE 1062 ]
 }
-"459
+"460
 [v _setHeaterToggle `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 459: int setHeaterToggle(int num, int topOrB){
+[; ;main.c: 460: int setHeaterToggle(int num, int topOrB){
 [e :U _setHeaterToggle ]
 [v _num `i ~T0 @X0 1 r1 ]
 [v _topOrB `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 460: do { LATCbits.LATC1 = 0; } while(0);
-"460
-[e :U 1062 ]
+[; ;main.c: 461: do { LATCbits.LATC1 = 0; } while(0);
+"461
+[e :U 1066 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 1061 ]
-[; ;main.c: 461: if(topOrB == 1){
-"461
-[e $ ! == _topOrB -> 1 `i 1063  ]
-{
-[; ;main.c: 462: demoHeaterToggle_top ^= 1UL << num;
-"462
-[e =^ _demoHeaterToggle_top << -> 1 `ul _num ]
-[; ;main.c: 463: LEDsOn(demoHeaterToggle_top, 1);
-"463
-[e ( _LEDsOn (2 , _demoHeaterToggle_top -> 1 `i ]
-"464
-}
-[; ;main.c: 464: }
-[e $U 1064  ]
-"465
-[e :U 1063 ]
-[; ;main.c: 465: else if (topOrB == 2){
-[e $ ! == _topOrB -> 2 `i 1065  ]
-{
-[; ;main.c: 466: demoHeaterToggle_bot ^= 1UL << num;
-"466
-[e =^ _demoHeaterToggle_bot << -> 1 `ul _num ]
-[; ;main.c: 467: LEDsOn(demoHeaterToggle_bot, 2);
-"467
-[e ( _LEDsOn (2 , _demoHeaterToggle_bot -> 2 `i ]
-"468
-}
 [e :U 1065 ]
-"470
-[e :U 1064 ]
-[; ;main.c: 468: }
-[; ;main.c: 470: printf("A\n");
-[e ( _printf :s 20C ]
-[; ;main.c: 471: return 0;
-"471
-[e ) -> 0 `i ]
-[e $UE 1059  ]
-[; ;main.c: 472: };
-"472
-[e :UE 1059 ]
+[; ;main.c: 462: if(topOrB == 1){
+"462
+[e $ ! == _topOrB -> 1 `i 1067  ]
+{
+[; ;main.c: 463: demoHeaterToggle_top ^= 1UL << num;
+"463
+[e =^ _demoHeaterToggle_top << -> 1 `ul _num ]
+[; ;main.c: 464: LEDsOn(demoHeaterToggle_top, 1);
+"464
+[e ( _LEDsOn (2 , _demoHeaterToggle_top -> 1 `i ]
+"465
 }
-"477
+[; ;main.c: 465: }
+[e $U 1068  ]
+"466
+[e :U 1067 ]
+[; ;main.c: 466: else if (topOrB == 2){
+[e $ ! == _topOrB -> 2 `i 1069  ]
+{
+[; ;main.c: 467: demoHeaterToggle_bot ^= 1UL << num;
+"467
+[e =^ _demoHeaterToggle_bot << -> 1 `ul _num ]
+[; ;main.c: 468: LEDsOn(demoHeaterToggle_bot, 2);
+"468
+[e ( _LEDsOn (2 , _demoHeaterToggle_bot -> 2 `i ]
+"469
+}
+[e :U 1069 ]
+"471
+[e :U 1068 ]
+[; ;main.c: 469: }
+[; ;main.c: 471: printf("A\n");
+[e ( _printf :s 17C ]
+[; ;main.c: 472: return 0;
+"472
+[e ) -> 0 `i ]
+[e $UE 1063  ]
+[; ;main.c: 473: };
+"473
+[e :UE 1063 ]
+}
+"478
 [v _timedActiveHeatOn `(i ~T0 @X0 1 ef2`l`i ]
 {
-[; ;main.c: 477: int timedActiveHeatOn(long onTime, int topOrB){
+[; ;main.c: 478: int timedActiveHeatOn(long onTime, int topOrB){
 [e :U _timedActiveHeatOn ]
 [v _onTime `l ~T0 @X0 1 r1 ]
 [v _topOrB `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 478: _delay((unsigned long)((2000)*(1000000/4000.0)));
-"478
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;main.c: 479: do { LATCbits.LATC1 = 0; } while(0);
+[; ;main.c: 479: _delay((unsigned long)((2000)*(1000000/4000.0)));
 "479
-[e :U 1069 ]
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
+[; ;main.c: 480: do { LATCbits.LATC1 = 0; } while(0);
+"480
+[e :U 1073 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
-[e :U 1068 ]
-[; ;main.c: 480: if(topOrB == 1){
-"480
-[e $ ! == _topOrB -> 1 `i 1070  ]
-{
-[; ;main.c: 481: LEDsOn(activeMask, 1);
-"481
-[e ( _LEDsOn (2 , _activeMask -> 1 `i ]
-"482
-}
-[; ;main.c: 482: }
-[e $U 1071  ]
-"483
-[e :U 1070 ]
-[; ;main.c: 483: else if (topOrB == 2){
-[e $ ! == _topOrB -> 2 `i 1072  ]
-{
-[; ;main.c: 484: LEDsOn(activeMask, 2);
-"484
-[e ( _LEDsOn (2 , _activeMask -> 2 `i ]
-"485
-}
 [e :U 1072 ]
+[; ;main.c: 481: if(topOrB == 1){
+"481
+[e $ ! == _topOrB -> 1 `i 1074  ]
+{
+[; ;main.c: 482: LEDsOn(activeMask, 1);
+"482
+[e ( _LEDsOn (2 , _activeMask -> 1 `i ]
+"483
+}
+[; ;main.c: 483: }
+[e $U 1075  ]
+"484
+[e :U 1074 ]
+[; ;main.c: 484: else if (topOrB == 2){
+[e $ ! == _topOrB -> 2 `i 1076  ]
+{
+[; ;main.c: 485: LEDsOn(activeMask, 2);
+"485
+[e ( _LEDsOn (2 , _activeMask -> 2 `i ]
 "486
-[e :U 1071 ]
-[; ;main.c: 485: }
-[; ;main.c: 486: for(int t=0; t<onTime; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+}
+[e :U 1076 ]
+"487
+[e :U 1075 ]
+[; ;main.c: 486: }
+[; ;main.c: 487: for(int t=0; t<onTime; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
-[e $U 1076  ]
-[e :U 1073 ]
+[e $U 1080  ]
+[e :U 1077 ]
 [e ( __delay (1 -> * -> -> 1 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
 [e ++ _t -> 1 `i ]
-[e :U 1076 ]
-[e $ < -> _t `l _onTime 1073  ]
-[e :U 1074 ]
+[e :U 1080 ]
+[e $ < -> _t `l _onTime 1077  ]
+[e :U 1078 ]
 }
-[; ;main.c: 487: do { LATCbits.LATC1 = 1; } while(0);
-"487
-[e :U 1079 ]
+[; ;main.c: 488: do { LATCbits.LATC1 = 1; } while(0);
+"488
+[e :U 1083 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
-[e :U 1078 ]
-[; ;main.c: 488: LEDsOn(0, 1);
-"488
-[e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul -> 1 `i ]
-[; ;main.c: 489: LEDsOn(0, 2);
+[e :U 1082 ]
+[; ;main.c: 489: LEDsOn(0, 1);
 "489
-[e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul -> 2 `i ]
-[; ;main.c: 490: printf("A\n");
+[e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul -> 1 `i ]
+[; ;main.c: 490: LEDsOn(0, 2);
 "490
-[e ( _printf :s 21C ]
-[; ;main.c: 491: return 0;
+[e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul -> 2 `i ]
+[; ;main.c: 491: printf("A\n");
 "491
+[e ( _printf :s 18C ]
+[; ;main.c: 492: return 0;
+"492
 [e ) -> 0 `i ]
-[e $UE 1066  ]
-[; ;main.c: 494: };
-"494
-[e :UE 1066 ]
+[e $UE 1070  ]
+[; ;main.c: 495: };
+"495
+[e :UE 1070 ]
 }
-"499
+"500
 [v _setActive `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 499: int setActive(int probeNum, int onOff){
+[; ;main.c: 500: int setActive(int probeNum, int onOff){
 [e :U _setActive ]
 [v _probeNum `i ~T0 @X0 1 r1 ]
 [v _onOff `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 502: if(moveMask & 1UL << probeNum){
-"502
-[e $ ! != & _moveMask << -> 1 `ul _probeNum -> -> 0 `i `ul 1081  ]
-{
-[; ;main.c: 503: if (onOff)
+[; ;main.c: 503: if(moveMask & 1UL << probeNum){
 "503
-[e $ ! != _onOff -> 0 `i 1082  ]
-[; ;main.c: 504: activeMask |= 1UL << probeNum;
+[e $ ! != & _moveMask << -> 1 `ul _probeNum -> -> 0 `i `ul 1085  ]
+{
+[; ;main.c: 504: if (onOff)
 "504
-[e =| _activeMask << -> 1 `ul _probeNum ]
-[e $U 1083  ]
+[e $ ! != _onOff -> 0 `i 1086  ]
+[; ;main.c: 505: activeMask |= 1UL << probeNum;
 "505
-[e :U 1082 ]
-[; ;main.c: 505: else
-[; ;main.c: 506: activeMask &= ~(1UL << probeNum);
+[e =| _activeMask << -> 1 `ul _probeNum ]
+[e $U 1087  ]
 "506
-[e =& _activeMask ~ << -> 1 `ul _probeNum ]
-[e :U 1083 ]
-[; ;main.c: 507: printf("A\n");
+[e :U 1086 ]
+[; ;main.c: 506: else
+[; ;main.c: 507: activeMask &= ~(1UL << probeNum);
 "507
-[e ( _printf :s 22C ]
-[; ;main.c: 508: return 0;
+[e =& _activeMask ~ << -> 1 `ul _probeNum ]
+[e :U 1087 ]
+[; ;main.c: 508: printf("A\n");
 "508
-[e ) -> 0 `i ]
-[e $UE 1080  ]
+[e ( _printf :s 19C ]
+[; ;main.c: 509: return 0;
 "509
-}
-[e :U 1081 ]
-[; ;main.c: 509: }
-[; ;main.c: 510: printf("E\n");
+[e ) -> 0 `i ]
+[e $UE 1084  ]
 "510
-[e ( _printf :s 23C ]
-[; ;main.c: 511: return 1;
-"511
-[e ) -> 1 `i ]
-[e $UE 1080  ]
-[; ;main.c: 512: }
-"512
-[e :UE 1080 ]
 }
-"514
+[e :U 1085 ]
+[; ;main.c: 510: }
+[; ;main.c: 511: printf("E\n");
+"511
+[e ( _printf :s 20C ]
+[; ;main.c: 512: return 1;
+"512
+[e ) -> 1 `i ]
+[e $UE 1084  ]
+[; ;main.c: 513: }
+"513
+[e :UE 1084 ]
+}
+"515
 [v _setMoveMask `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 514: int setMoveMask(int probeNum, int onOff){
+[; ;main.c: 515: int setMoveMask(int probeNum, int onOff){
 [e :U _setMoveMask ]
 [v _probeNum `i ~T0 @X0 1 r1 ]
 [v _onOff `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 518: if (probeNum < 24){
-"518
-[e $ ! < _probeNum -> 24 `i 1085  ]
-{
-[; ;main.c: 519: if (onOff)
+[; ;main.c: 519: if (probeNum < 24){
 "519
-[e $ ! != _onOff -> 0 `i 1086  ]
-[; ;main.c: 520: moveMask |= (1UL<<probeNum);
+[e $ ! < _probeNum -> 24 `i 1089  ]
+{
+[; ;main.c: 520: if (onOff)
 "520
-[e =| _moveMask << -> 1 `ul _probeNum ]
-[e $U 1087  ]
+[e $ ! != _onOff -> 0 `i 1090  ]
+[; ;main.c: 521: moveMask |= (1UL<<probeNum);
 "521
-[e :U 1086 ]
-[; ;main.c: 521: else
-[; ;main.c: 522: moveMask &= ~(1UL<< probeNum);
+[e =| _moveMask << -> 1 `ul _probeNum ]
+[e $U 1091  ]
 "522
-[e =& _moveMask ~ << -> 1 `ul _probeNum ]
-[e :U 1087 ]
-[; ;main.c: 523: printf("A\n");
-"523
-[e ( _printf :s 24C ]
-[; ;main.c: 524: return 0;
-"524
-[e ) -> 0 `i ]
-[e $UE 1084  ]
-"525
-}
-[e :U 1085 ]
-[; ;main.c: 525: }
-[; ;main.c: 526: printf("E\n");
-"526
-[e ( _printf :s 25C ]
-[; ;main.c: 527: return 1;
-"527
-[e ) -> 1 `i ]
-[e $UE 1084  ]
-[; ;main.c: 528: }
-"528
-[e :UE 1084 ]
-}
-"531
-[v _getActive `(i ~T0 @X0 1 ef ]
-{
-[; ;main.c: 531: int getActive(void){
-[e :U _getActive ]
-[f ]
-[; ;main.c: 532: for(int i=24-1; i>=0; i--){
-"532
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i - -> 24 `i -> 1 `i ]
-[e $ >= _i -> 0 `i 1089  ]
-[e $U 1090  ]
-[e :U 1089 ]
-{
-[; ;main.c: 533: printf("%d ", (activeMask >> i) & 1 );
-"533
-[e ( _printf , (. :s 26C & >> _activeMask _i -> -> -> 1 `i `l `ul ]
-"534
-}
-"532
-[e -- _i -> 1 `i ]
-[e $ >= _i -> 0 `i 1089  ]
 [e :U 1090 ]
-"534
-}
-[; ;main.c: 534: }
-[; ;main.c: 535: printf("\n");
-"535
-[e ( _printf :s 27C ]
-[; ;main.c: 536: return 0;
-"536
+[; ;main.c: 522: else
+[; ;main.c: 523: moveMask &= ~(1UL<< probeNum);
+"523
+[e =& _moveMask ~ << -> 1 `ul _probeNum ]
+[e :U 1091 ]
+[; ;main.c: 524: printf("A\n");
+"524
+[e ( _printf :s 21C ]
+[; ;main.c: 525: return 0;
+"525
 [e ) -> 0 `i ]
 [e $UE 1088  ]
-[; ;main.c: 537: }
-"537
+"526
+}
+[e :U 1089 ]
+[; ;main.c: 526: }
+[; ;main.c: 527: printf("E\n");
+"527
+[e ( _printf :s 22C ]
+[; ;main.c: 528: return 1;
+"528
+[e ) -> 1 `i ]
+[e $UE 1088  ]
+[; ;main.c: 529: }
+"529
 [e :UE 1088 ]
 }
-"539
-[v _getMoveMask `(i ~T0 @X0 1 ef ]
+"532
+[v _getActive `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 539: int getMoveMask(void){
-[e :U _getMoveMask ]
+[; ;main.c: 532: int getActive(void){
+[e :U _getActive ]
 [f ]
-[; ;main.c: 540: for(int i=24-1; i>=0; i--){
-"540
+[; ;main.c: 533: for(int i=24-1; i>=0; i--){
+"533
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i - -> 24 `i -> 1 `i ]
@@ -9718,205 +9690,240 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1094  ]
 [e :U 1093 ]
 {
-[; ;main.c: 541: printf("%d ", (moveMask >> i) & 1 );
-"541
-[e ( _printf , (. :s 28C & >> _moveMask _i -> -> -> 1 `i `l `ul ]
-"542
+[; ;main.c: 534: printf("%d ", (activeMask >> i) & 1 );
+"534
+[e ( _printf , (. :s 23C & >> _activeMask _i -> -> -> 1 `i `l `ul ]
+"535
 }
-"540
+"533
 [e -- _i -> 1 `i ]
 [e $ >= _i -> 0 `i 1093  ]
 [e :U 1094 ]
-"542
+"535
 }
-[; ;main.c: 542: }
-[; ;main.c: 543: printf("\n");
-"543
-[e ( _printf :s 29C ]
-[; ;main.c: 544: return 0;
-"544
+[; ;main.c: 535: }
+[; ;main.c: 536: printf("\n");
+"536
+[e ( _printf :s 24C ]
+[; ;main.c: 537: return 0;
+"537
 [e ) -> 0 `i ]
 [e $UE 1092  ]
-[; ;main.c: 545: };
-"545
+[; ;main.c: 538: }
+"538
 [e :UE 1092 ]
 }
-"546
-[v _getMotionStatus `(i ~T0 @X0 1 ef ]
+"540
+[v _getMoveMask `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 546: int getMotionStatus(void){
-[e :U _getMotionStatus ]
+[; ;main.c: 540: int getMoveMask(void){
+[e :U _getMoveMask ]
 [f ]
-[; ;main.c: 547: switch(motionType){
-"547
-[e $U 1098  ]
+[; ;main.c: 541: for(int i=24-1; i>=0; i--){
+"541
 {
-[; ;main.c: 548: case REL_MOVE: printf("R"); break;
-"548
-[e :U 1099 ]
-[e ( _printf :s 30C ]
-[e $U 1097  ]
-[; ;main.c: 549: case ABS_MOVE: printf("A"); break;
-"549
-[e :U 1100 ]
-[e ( _printf :s 31C ]
-[e $U 1097  ]
-[; ;main.c: 550: default: printf("N"); break;
-"550
-[e :U 1101 ]
-[e ( _printf :s 32C ]
-[e $U 1097  ]
-"551
-}
-[; ;main.c: 551: }
-[e $U 1097  ]
-"547
-[e :U 1098 ]
-[e [\ _motionType , $ . `E8780 1 1099
- , $ . `E8780 2 1100
- 1101 ]
-"551
+[v _i `i ~T0 @X0 1 a ]
+[e = _i - -> 24 `i -> 1 `i ]
+[e $ >= _i -> 0 `i 1097  ]
+[e $U 1098  ]
 [e :U 1097 ]
-[; ;main.c: 552: };
-"552
+{
+[; ;main.c: 542: printf("%d ", (moveMask >> i) & 1 );
+"542
+[e ( _printf , (. :s 25C & >> _moveMask _i -> -> -> 1 `i `l `ul ]
+"543
+}
+"541
+[e -- _i -> 1 `i ]
+[e $ >= _i -> 0 `i 1097  ]
+[e :U 1098 ]
+"543
+}
+[; ;main.c: 543: }
+[; ;main.c: 544: printf("\n");
+"544
+[e ( _printf :s 26C ]
+[; ;main.c: 545: return 0;
+"545
+[e ) -> 0 `i ]
+[e $UE 1096  ]
+[; ;main.c: 546: };
+"546
 [e :UE 1096 ]
 }
-"554
+"547
+[v _getMotionStatus `(i ~T0 @X0 1 ef ]
+{
+[; ;main.c: 547: int getMotionStatus(void){
+[e :U _getMotionStatus ]
+[f ]
+[; ;main.c: 548: switch(motionType){
+"548
+[e $U 1102  ]
+{
+[; ;main.c: 549: case REL_MOVE: printf("R"); break;
+"549
+[e :U 1103 ]
+[e ( _printf :s 27C ]
+[e $U 1101  ]
+[; ;main.c: 550: case ABS_MOVE: printf("A"); break;
+"550
+[e :U 1104 ]
+[e ( _printf :s 28C ]
+[e $U 1101  ]
+[; ;main.c: 551: default: printf("N"); break;
+"551
+[e :U 1105 ]
+[e ( _printf :s 29C ]
+[e $U 1101  ]
+"552
+}
+[; ;main.c: 552: }
+[e $U 1101  ]
+"548
+[e :U 1102 ]
+[e [\ _motionType , $ . `E8782 1 1103
+ , $ . `E8782 2 1104
+ 1105 ]
+"552
+[e :U 1101 ]
+[; ;main.c: 553: };
+"553
+[e :UE 1100 ]
+}
+"555
 [v _commCheck `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 554: int commCheck(void){
+[; ;main.c: 555: int commCheck(void){
 [e :U _commCheck ]
 [f ]
-[; ;main.c: 555: printf("\n----starting comm test----\n\n");
-"555
-[e ( _printf :s 33C ]
-[; ;main.c: 558: printf("testing top LED driver...");
-"558
-[e ( _printf :s 34C ]
-[; ;main.c: 559: if (!LED_testComm(1))
+[; ;main.c: 556: printf("\n----starting comm test----\n\n");
+"556
+[e ( _printf :s 30C ]
+[; ;main.c: 559: printf("testing top LED driver...");
 "559
-[e $ ! ! != ( _LED_testComm (1 -> 1 `i -> 0 `i 1103  ]
-[; ;main.c: 560: printf("passed\n");
+[e ( _printf :s 31C ]
+[; ;main.c: 560: if (!LED_testComm(1))
 "560
-[e ( _printf :s 35C ]
-[e $U 1104  ]
+[e $ ! ! != ( _LED_testComm (1 -> 1 `i -> 0 `i 1107  ]
+[; ;main.c: 561: printf("passed\n");
 "561
-[e :U 1103 ]
-[; ;main.c: 561: else
-[; ;main.c: 562: printf("FAILED\n");
-"562
-[e ( _printf :s 36C ]
-[e :U 1104 ]
-[; ;main.c: 564: printf("opens: ");
-"564
-[e ( _printf :s 37C ]
-[; ;main.c: 565: LED_test_openshort(10, 1);
-"565
-[e ( _LED_test_openshort (2 , -> 10 `i -> 1 `i ]
-[; ;main.c: 566: printf("\n\nshorts: ");
-"566
-[e ( _printf :s 38C ]
-[; ;main.c: 567: LED_test_openshort(11, 1);
-"567
-[e ( _LED_test_openshort (2 , -> 11 `i -> 1 `i ]
-[; ;main.c: 570: printf("\ntesting bottom LED driver...\n");
-"570
-[e ( _printf :s 39C ]
-[; ;main.c: 571: if (!LED_testComm(2))
-"571
-[e $ ! ! != ( _LED_testComm (1 -> 2 `i -> 0 `i 1105  ]
-[; ;main.c: 572: printf("passed\n");
-"572
-[e ( _printf :s 40C ]
-[e $U 1106  ]
-"573
-[e :U 1105 ]
-[; ;main.c: 573: else
-[; ;main.c: 574: printf("FAILED\n");
-"574
-[e ( _printf :s 41C ]
-[e :U 1106 ]
-[; ;main.c: 576: printf("opens: ");
-"576
-[e ( _printf :s 42C ]
-[; ;main.c: 577: LED_test_openshort(10, 2);
-"577
-[e ( _LED_test_openshort (2 , -> 10 `i -> 2 `i ]
-[; ;main.c: 578: printf("\n\nshorts: ");
-"578
-[e ( _printf :s 43C ]
-[; ;main.c: 579: LED_test_openshort(11, 2);
-"579
-[e ( _LED_test_openshort (2 , -> 11 `i -> 2 `i ]
-[; ;main.c: 581: printf("\ntesting piezo driver...");
-"581
-[e ( _printf :s 44C ]
-[; ;main.c: 582: if(drv_read(0x01) > 0)
-"582
-[e $ ! > ( _drv_read (1 -> -> 1 `i `uc -> 0 `i 1107  ]
-[; ;main.c: 583: printf("passed\n\n");
-"583
-[e ( _printf :s 45C ]
+[e ( _printf :s 32C ]
 [e $U 1108  ]
-"584
+"562
 [e :U 1107 ]
-[; ;main.c: 584: else
-[; ;main.c: 585: printf("FAILED\n\n");
-"585
-[e ( _printf :s 46C ]
+[; ;main.c: 562: else
+[; ;main.c: 563: printf("FAILED\n");
+"563
+[e ( _printf :s 33C ]
 [e :U 1108 ]
-[; ;main.c: 586: printf("----finished comm test----\n");
+[; ;main.c: 565: printf("opens: ");
+"565
+[e ( _printf :s 34C ]
+[; ;main.c: 566: LED_test_openshort(10, 1);
+"566
+[e ( _LED_test_openshort (2 , -> 10 `i -> 1 `i ]
+[; ;main.c: 567: printf("\n\nshorts: ");
+"567
+[e ( _printf :s 35C ]
+[; ;main.c: 568: LED_test_openshort(11, 1);
+"568
+[e ( _LED_test_openshort (2 , -> 11 `i -> 1 `i ]
+[; ;main.c: 571: printf("\ntesting bottom LED driver...\n");
+"571
+[e ( _printf :s 36C ]
+[; ;main.c: 572: if (!LED_testComm(2))
+"572
+[e $ ! ! != ( _LED_testComm (1 -> 2 `i -> 0 `i 1109  ]
+[; ;main.c: 573: printf("passed\n");
+"573
+[e ( _printf :s 37C ]
+[e $U 1110  ]
+"574
+[e :U 1109 ]
+[; ;main.c: 574: else
+[; ;main.c: 575: printf("FAILED\n");
+"575
+[e ( _printf :s 38C ]
+[e :U 1110 ]
+[; ;main.c: 577: printf("opens: ");
+"577
+[e ( _printf :s 39C ]
+[; ;main.c: 578: LED_test_openshort(10, 2);
+"578
+[e ( _LED_test_openshort (2 , -> 10 `i -> 2 `i ]
+[; ;main.c: 579: printf("\n\nshorts: ");
+"579
+[e ( _printf :s 40C ]
+[; ;main.c: 580: LED_test_openshort(11, 2);
+"580
+[e ( _LED_test_openshort (2 , -> 11 `i -> 2 `i ]
+[; ;main.c: 582: printf("\ntesting piezo driver...");
+"582
+[e ( _printf :s 41C ]
+[; ;main.c: 583: if(drv_read(0x01) > 0)
+"583
+[e $ ! > ( _drv_read (1 -> -> 1 `i `uc -> 0 `i 1111  ]
+[; ;main.c: 584: printf("passed\n\n");
+"584
+[e ( _printf :s 42C ]
+[e $U 1112  ]
+"585
+[e :U 1111 ]
+[; ;main.c: 585: else
+[; ;main.c: 586: printf("FAILED\n\n");
 "586
-[e ( _printf :s 47C ]
-[; ;main.c: 588: }
-"588
-[e :UE 1102 ]
+[e ( _printf :s 43C ]
+[e :U 1112 ]
+[; ;main.c: 587: printf("----finished comm test----\n");
+"587
+[e ( _printf :s 44C ]
+[; ;main.c: 589: }
+"589
+[e :UE 1106 ]
 }
 [p f _printf 8388736 ]
-[a 30C 82 0 ]
-[a 32C 78 0 ]
-[a 31C 65 0 ]
-[a 44C 10 116 101 115 116 105 110 103 32 112 105 101 122 111 32 100 114 105 118 101 114 46 46 46 0 ]
-[a 34C 116 101 115 116 105 110 103 32 116 111 112 32 76 69 68 32 100 114 105 118 101 114 46 46 46 0 ]
-[a 26C 37 100 32 0 ]
-[a 28C 37 100 32 0 ]
-[a 38C 10 10 115 104 111 114 116 115 58 32 0 ]
-[a 43C 10 10 115 104 111 114 116 115 58 32 0 ]
-[a 37C 111 112 101 110 115 58 32 0 ]
-[a 42C 111 112 101 110 115 58 32 0 ]
-[a 3C 100 111 77 111 118 101 10 0 ]
-[a 8C 100 111 82 101 108 77 111 118 101 10 0 ]
-[a 7C 97 98 115 58 32 97 108 108 32 116 104 101 114 101 10 0 ]
-[a 9C 114 101 108 58 32 97 108 108 32 116 104 101 114 101 10 0 ]
+[a 27C 82 0 ]
+[a 29C 78 0 ]
+[a 28C 65 0 ]
+[a 41C 10 116 101 115 116 105 110 103 32 112 105 101 122 111 32 100 114 105 118 101 114 46 46 46 0 ]
+[a 31C 116 101 115 116 105 110 103 32 116 111 112 32 76 69 68 32 100 114 105 118 101 114 46 46 46 0 ]
+[a 23C 37 100 32 0 ]
+[a 25C 37 100 32 0 ]
+[a 35C 10 10 115 104 111 114 116 115 58 32 0 ]
+[a 40C 10 10 115 104 111 114 116 115 58 32 0 ]
+[a 34C 111 112 101 110 115 58 32 0 ]
+[a 39C 111 112 101 110 115 58 32 0 ]
+[a 6C 97 98 115 58 32 97 108 108 32 116 104 101 114 101 10 0 ]
 [a 1C 10 10 115 121 115 116 101 109 32 100 111 110 101 10 0 ]
 [a 2C 105 110 105 116 105 97 108 105 122 101 100 10 0 ]
-[a 35C 112 97 115 115 101 100 10 0 ]
-[a 40C 112 97 115 115 101 100 10 0 ]
-[a 11C 37 100 10 0 ]
-[a 13C 69 10 0 ]
-[a 23C 69 10 0 ]
-[a 25C 69 10 0 ]
-[a 36C 70 65 73 76 69 68 10 0 ]
-[a 41C 70 65 73 76 69 68 10 0 ]
+[a 32C 112 97 115 115 101 100 10 0 ]
+[a 37C 112 97 115 115 101 100 10 0 ]
+[a 8C 37 100 10 0 ]
+[a 10C 69 10 0 ]
+[a 20C 69 10 0 ]
+[a 22C 69 10 0 ]
+[a 33C 70 65 73 76 69 68 10 0 ]
+[a 38C 70 65 73 76 69 68 10 0 ]
+[a 3C 65 10 0 ]
 [a 4C 65 10 0 ]
 [a 5C 65 10 0 ]
-[a 6C 65 10 0 ]
-[a 10C 65 10 0 ]
+[a 7C 65 10 0 ]
+[a 9C 65 10 0 ]
+[a 11C 65 10 0 ]
 [a 12C 65 10 0 ]
+[a 13C 65 10 0 ]
 [a 14C 65 10 0 ]
 [a 15C 65 10 0 ]
 [a 16C 65 10 0 ]
 [a 17C 65 10 0 ]
 [a 18C 65 10 0 ]
 [a 19C 65 10 0 ]
-[a 20C 65 10 0 ]
 [a 21C 65 10 0 ]
-[a 22C 65 10 0 ]
-[a 24C 65 10 0 ]
-[a 39C 10 116 101 115 116 105 110 103 32 98 111 116 116 111 109 32 76 69 68 32 100 114 105 118 101 114 46 46 46 10 0 ]
-[a 47C 45 45 45 45 102 105 110 105 115 104 101 100 32 99 111 109 109 32 116 101 115 116 45 45 45 45 10 0 ]
-[a 45C 112 97 115 115 101 100 10 10 0 ]
-[a 46C 70 65 73 76 69 68 10 10 0 ]
-[a 33C 10 45 45 45 45 115 116 97 114 116 105 110 103 32 99 111 109 109 32 116 101 115 116 45 45 45 45 10 10 0 ]
-[a 27C 10 0 ]
-[a 29C 10 0 ]
+[a 36C 10 116 101 115 116 105 110 103 32 98 111 116 116 111 109 32 76 69 68 32 100 114 105 118 101 114 46 46 46 10 0 ]
+[a 44C 45 45 45 45 102 105 110 105 115 104 101 100 32 99 111 109 109 32 116 101 115 116 45 45 45 45 10 0 ]
+[a 42C 112 97 115 115 101 100 10 10 0 ]
+[a 43C 70 65 73 76 69 68 10 10 0 ]
+[a 30C 10 45 45 45 45 115 116 97 114 116 105 110 103 32 99 111 109 109 32 116 101 115 116 45 45 45 45 10 10 0 ]
+[a 24C 10 0 ]
+[a 26C 10 0 ]

@@ -72,6 +72,8 @@ const float TMR2_RANGE = 255/(163.84-0.64);
 #define TOTALNUMCHANS 24 // max number of channels
 int heater_pre_time_ms = 10; // milliseconds
 int heater_post_time_ms = 10; // milliseconds
+long inter_step_interval_ms = 1000;
+
 
 int piezo_on_time_ms = 1000;
 const int LEDpower = 63;
@@ -232,7 +234,6 @@ int commCheck(void){return 0;};
 // END DEMO FUNCTIONS
 
  int doMove(void){
-    printf("doMove\n");
     // over-simplified move code
     calcHeaterPins();
     LED_ENABLE_SetHigh();
@@ -248,7 +249,9 @@ int commCheck(void){return 0;};
     DELAYMSAPPROX(heater_post_time_ms);
 
     LED_ENABLE_SetHigh(); // LEDs off
-
+    
+    // PUT IN 1S DELAY HERE?
+    DELAYMSAPPROX(inter_step_interval_ms);
     return 0;
     
     
@@ -334,9 +337,7 @@ void doAbsMove(void){
 
 // all move by relative step
 void doRelMove(void){
-    printf("doRelMove\n");
     if(remainingSteps == 0){
-        printf("rel: all there\n");
         motionType = NONE;
         moveVector_ups = 0;
         moveVector_downs = 0;

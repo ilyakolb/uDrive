@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "5 cmd_parser.c
-[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 .. ]
-[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_HEATER_TIMED CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
+[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 .. ]
+[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_STOP CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_HEATER_TIMED CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
 "24 cmd_parser.h
 [u S6 `uc -> 10 `i `i 1 `ul 1 ]
 [n S6 . paramString paramI paramL ]
@@ -20,6 +20,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _startAbsMove `(i ~T0 @X0 0 ef1`i ]
 "47
 [v _getPosition `(i ~T0 @X0 0 ef1`i ]
+"45
+[v _stop `(i ~T0 @X0 0 ef ]
 "46
 [v _zeroPosition `(i ~T0 @X0 0 ef ]
 "52
@@ -164,7 +166,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 58: extern char * strichr(const char *, int);
 [; ;string.h: 59: extern char * strrchr(const char *, int);
 [; ;string.h: 60: extern char * strrichr(const char *, int);
-[; ;cmd_parser.h: 15: typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P,
+[; ;cmd_parser.h: 15: typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
 [; ;cmd_parser.h: 16: CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 [; ;cmd_parser.h: 17: CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
 [; ;cmd_parser.h: 18: CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
@@ -260,7 +262,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 17 ]
 [; ;cmd_parser.c: 16: else if(stricmp(p,"s") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 6C -> 0 `i 19  ]
-[; ;cmd_parser.c: 17: s->c = CMD_S;
+[; ;cmd_parser.c: 17: s->c = CMD_STOP;
 "17
 [e = . *U _s 0 . `E272 4 ]
 [e $U 20  ]
@@ -270,7 +272,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 7C -> 0 `i 21  ]
 [; ;cmd_parser.c: 19: s->c = CMD_SETA;
 "19
-[e = . *U _s 0 . `E272 5 ]
+[e = . *U _s 0 . `E272 6 ]
 [e $U 22  ]
 "20
 [e :U 21 ]
@@ -278,7 +280,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 8C -> 0 `i 23  ]
 [; ;cmd_parser.c: 21: s->c = CMD_SETM;
 "21
-[e = . *U _s 0 . `E272 6 ]
+[e = . *U _s 0 . `E272 7 ]
 [e $U 24  ]
 "22
 [e :U 23 ]
@@ -286,7 +288,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 9C -> 0 `i 25  ]
 [; ;cmd_parser.c: 23: s->c = CMD_ZERO;
 "23
-[e = . *U _s 0 . `E272 7 ]
+[e = . *U _s 0 . `E272 8 ]
 [e $U 26  ]
 "24
 [e :U 25 ]
@@ -294,7 +296,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 10C -> 0 `i 27  ]
 [; ;cmd_parser.c: 25: s->c = CMD_DRV_PEAK;
 "25
-[e = . *U _s 0 . `E272 8 ]
+[e = . *U _s 0 . `E272 9 ]
 [e $U 28  ]
 "26
 [e :U 27 ]
@@ -302,7 +304,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 11C -> 0 `i 29  ]
 [; ;cmd_parser.c: 27: s->c = CMD_DRV_GAIN;
 "27
-[e = . *U _s 0 . `E272 9 ]
+[e = . *U _s 0 . `E272 10 ]
 [e $U 30  ]
 "28
 [e :U 29 ]
@@ -310,7 +312,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 12C -> 0 `i 31  ]
 [; ;cmd_parser.c: 29: s->c = CMD_DRV_PIEZOONTIME;
 "29
-[e = . *U _s 0 . `E272 10 ]
+[e = . *U _s 0 . `E272 11 ]
 [e $U 32  ]
 "30
 [e :U 31 ]
@@ -318,7 +320,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 13C -> 0 `i 33  ]
 [; ;cmd_parser.c: 31: s->c = CMD_HEATER_PRETIME;
 "31
-[e = . *U _s 0 . `E272 11 ]
+[e = . *U _s 0 . `E272 12 ]
 [e $U 34  ]
 "32
 [e :U 33 ]
@@ -326,7 +328,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 14C -> 0 `i 35  ]
 [; ;cmd_parser.c: 33: s->c = CMD_HEATER_POSTTIME;
 "33
-[e = . *U _s 0 . `E272 12 ]
+[e = . *U _s 0 . `E272 13 ]
 [e $U 36  ]
 "34
 [e :U 35 ]
@@ -334,7 +336,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 15C -> 0 `i 37  ]
 [; ;cmd_parser.c: 35: s->c = CMD_HEATER_GAIN;
 "35
-[e = . *U _s 0 . `E272 13 ]
+[e = . *U _s 0 . `E272 14 ]
 [e $U 38  ]
 "36
 [e :U 37 ]
@@ -342,7 +344,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 16C -> 0 `i 39  ]
 [; ;cmd_parser.c: 37: s->c = CMD_HEATER_PWR;
 "37
-[e = . *U _s 0 . `E272 14 ]
+[e = . *U _s 0 . `E272 15 ]
 [e $U 40  ]
 "38
 [e :U 39 ]
@@ -350,7 +352,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 17C -> 0 `i 41  ]
 [; ;cmd_parser.c: 39: s->c = CMD_HEATER_TOGGLE;
 "39
-[e = . *U _s 0 . `E272 15 ]
+[e = . *U _s 0 . `E272 16 ]
 [e $U 42  ]
 "40
 [e :U 41 ]
@@ -358,7 +360,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 18C -> 0 `i 43  ]
 [; ;cmd_parser.c: 41: s->c = CMD_HEATER_TIMED;
 "41
-[e = . *U _s 0 . `E272 16 ]
+[e = . *U _s 0 . `E272 17 ]
 [e $U 44  ]
 "42
 [e :U 43 ]
@@ -366,7 +368,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 19C -> 0 `i 45  ]
 [; ;cmd_parser.c: 43: s->c = CMD_GET_ACTIVE;
 "43
-[e = . *U _s 0 . `E272 17 ]
+[e = . *U _s 0 . `E272 18 ]
 [e $U 46  ]
 "44
 [e :U 45 ]
@@ -374,7 +376,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 20C -> 0 `i 47  ]
 [; ;cmd_parser.c: 45: s->c = CMD_GET_MOVABLE;
 "45
-[e = . *U _s 0 . `E272 18 ]
+[e = . *U _s 0 . `E272 19 ]
 [e $U 48  ]
 "46
 [e :U 47 ]
@@ -382,7 +384,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 21C -> 0 `i 49  ]
 [; ;cmd_parser.c: 47: s->c = CMD_MOTION_STATUS;
 "47
-[e = . *U _s 0 . `E272 19 ]
+[e = . *U _s 0 . `E272 20 ]
 [e $U 50  ]
 "48
 [e :U 49 ]
@@ -390,7 +392,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 22C -> 0 `i 51  ]
 [; ;cmd_parser.c: 49: s->c = CMD_DOMOVE;
 "49
-[e = . *U _s 0 . `E272 20 ]
+[e = . *U _s 0 . `E272 21 ]
 [e $U 52  ]
 "50
 [e :U 51 ]
@@ -398,7 +400,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 23C -> 0 `i 53  ]
 [; ;cmd_parser.c: 51: s->c = CMD_COMM_CHECK;
 "51
-[e = . *U _s 0 . `E272 21 ]
+[e = . *U _s 0 . `E272 22 ]
 [e $U 54  ]
 "52
 [e :U 53 ]
@@ -406,7 +408,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 24C -> 0 `i 55  ]
 [; ;cmd_parser.c: 53: s->c = CMD_PING;
 "53
-[e = . *U _s 0 . `E272 22 ]
+[e = . *U _s 0 . `E272 23 ]
 [e $U 56  ]
 "56
 [e :U 55 ]
@@ -511,110 +513,115 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 66 ]
 [e = _errorOut ( _getPosition (1 . . *U _s 1 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 79: case CMD_ZERO: errorOut = zeroPosition(); break;
+[; ;cmd_parser.c: 79: case CMD_STOP: errorOut = stop(); break;
 "79
 [e :U 67 ]
+[e = _errorOut ( _stop ..  ]
+[e $U 62  ]
+[; ;cmd_parser.c: 80: case CMD_ZERO: errorOut = zeroPosition(); break;
+"80
+[e :U 68 ]
 [e = _errorOut ( _zeroPosition ..  ]
 [e $U 62  ]
-[; ;cmd_parser.c: 82: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
-"82
-[e :U 68 ]
-[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 83: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
+[; ;cmd_parser.c: 83: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
 "83
 [e :U 69 ]
-[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
+[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 84: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
+[; ;cmd_parser.c: 84: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
 "84
 [e :U 70 ]
+[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
+[e $U 62  ]
+[; ;cmd_parser.c: 85: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
+"85
+[e :U 71 ]
 [e = _errorOut ( _setDrvPiezoOnTime (1 . . *U _s 1 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 87: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
-"87
-[e :U 71 ]
-[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 88: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
+[; ;cmd_parser.c: 88: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
 "88
 [e :U 72 ]
-[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
+[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 89: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
+[; ;cmd_parser.c: 89: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
 "89
 [e :U 73 ]
-[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 90: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
+[; ;cmd_parser.c: 90: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
 "90
 [e :U 74 ]
-[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 91: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
+[; ;cmd_parser.c: 91: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
 "91
 [e :U 75 ]
-[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 92: case CMD_HEATER_TIMED: errorOut = timedActiveHeatOn(s->p1.paramL, s->p2.paramI); break;
+[; ;cmd_parser.c: 92: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
 "92
 [e :U 76 ]
+[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 62  ]
+[; ;cmd_parser.c: 93: case CMD_HEATER_TIMED: errorOut = timedActiveHeatOn(s->p1.paramL, s->p2.paramI); break;
+"93
+[e :U 77 ]
 [e = _errorOut ( _timedActiveHeatOn (2 , -> . . *U _s 1 2 `l . . *U _s 2 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 95: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
-"95
-[e :U 77 ]
-[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 96: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
+[; ;cmd_parser.c: 96: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
 "96
 [e :U 78 ]
-[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 97: case CMD_GET_ACTIVE: errorOut = getActive(); break;
+[; ;cmd_parser.c: 97: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
 "97
 [e :U 79 ]
-[e = _errorOut ( _getActive ..  ]
+[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
 [e $U 62  ]
-[; ;cmd_parser.c: 98: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
+[; ;cmd_parser.c: 98: case CMD_GET_ACTIVE: errorOut = getActive(); break;
 "98
 [e :U 80 ]
-[e = _errorOut ( _getMoveMask ..  ]
+[e = _errorOut ( _getActive ..  ]
 [e $U 62  ]
-[; ;cmd_parser.c: 99: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+[; ;cmd_parser.c: 99: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
 "99
 [e :U 81 ]
-[e = _errorOut ( _getMotionStatus ..  ]
+[e = _errorOut ( _getMoveMask ..  ]
 [e $U 62  ]
-[; ;cmd_parser.c: 100: case CMD_DOMOVE: errorOut = doMove(); break;
+[; ;cmd_parser.c: 100: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
 "100
 [e :U 82 ]
-[e = _errorOut ( _doMove ..  ]
+[e = _errorOut ( _getMotionStatus ..  ]
 [e $U 62  ]
-[; ;cmd_parser.c: 101: case CMD_COMM_CHECK: errorOut = commCheck(); break;
+[; ;cmd_parser.c: 101: case CMD_DOMOVE: errorOut = doMove(); break;
 "101
 [e :U 83 ]
-[e = _errorOut ( _commCheck ..  ]
+[e = _errorOut ( _doMove ..  ]
 [e $U 62  ]
-[; ;cmd_parser.c: 102: case CMD_PING: printf("!\n"); break;
+[; ;cmd_parser.c: 102: case CMD_COMM_CHECK: errorOut = commCheck(); break;
 "102
 [e :U 84 ]
-[e ( _printf :s 25C ]
+[e = _errorOut ( _commCheck ..  ]
 [e $U 62  ]
-[; ;cmd_parser.c: 103: default: printf("UNRECOGNIZED COMMAND!\n");
+[; ;cmd_parser.c: 103: case CMD_PING: printf("!\n"); break;
 "103
 [e :U 85 ]
+[e ( _printf :s 25C ]
+[e $U 62  ]
+[; ;cmd_parser.c: 104: default: printf("UNRECOGNIZED COMMAND!\n");
+"104
+[e :U 86 ]
 [e ( _printf :s 26C ]
-"110
+"111
 }
-[; ;cmd_parser.c: 110: }
+[; ;cmd_parser.c: 111: }
 [e $U 62  ]
 "75
 [e :U 63 ]
 [e [\ . *U _s 0 , $ . `E272 2 64
  , $ . `E272 1 65
  , $ . `E272 3 66
- , $ . `E272 7 67
+ , $ . `E272 4 67
  , $ . `E272 8 68
  , $ . `E272 9 69
  , $ . `E272 10 70
@@ -624,23 +631,24 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ . `E272 14 74
  , $ . `E272 15 75
  , $ . `E272 16 76
- , $ . `E272 5 77
+ , $ . `E272 17 77
  , $ . `E272 6 78
- , $ . `E272 17 79
+ , $ . `E272 7 79
  , $ . `E272 18 80
  , $ . `E272 19 81
  , $ . `E272 20 82
  , $ . `E272 21 83
  , $ . `E272 22 84
- 85 ]
-"110
+ , $ . `E272 23 85
+ 86 ]
+"111
 [e :U 62 ]
-[; ;cmd_parser.c: 112: return errorOut;
-"112
+[; ;cmd_parser.c: 113: return errorOut;
+"113
 [e ) _errorOut ]
 [e $UE 61  ]
-[; ;cmd_parser.c: 113: }
-"113
+[; ;cmd_parser.c: 114: }
+"114
 [e :UE 61 ]
 }
 [p f _printf 8388608 ]

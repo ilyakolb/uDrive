@@ -14,7 +14,7 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
             else if(stricmp(p, "pos") == 0) // syntax: pos 4 (get position of actuator #4)
                 s->c = CMD_P;
             else if(stricmp(p,"s") == 0) // syntax: s (stop)
-                s->c = CMD_S;
+                s->c = CMD_STOP;
             else if(stricmp(p,"setA") == 0) // syntax: setA 6 1 (set probe 6 to active [activeMask])
                 s->c = CMD_SETA;
             else if(stricmp(p,"setM") == 0) // syntax: setM 6 1 (set probe 6 to one of the probes that move [moveMask])
@@ -76,6 +76,7 @@ int execCmd (struct CMD_STRUCT *s){
         case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
         case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
         case CMD_P: errorOut = getPosition(s->p1.paramI); break;
+        case CMD_STOP: errorOut = stop(); break;
         case CMD_ZERO: errorOut = zeroPosition(); break;
         
         //drv
