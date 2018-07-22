@@ -31,9 +31,13 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
                 s->c = CMD_HEATER_PRETIME;
             else if(stricmp(p,"heaterposttime") == 0) // syntax: heaterposttime 5 (heater on for 5 ms after piezo)
                 s->c = CMD_HEATER_POSTTIME;
-            else if(stricmp(p,"ledgain") == 0) // syntax: ledgain 1 (set LED driver chip gain to max [1])
+            else if(stricmp(p,"heater1off") == 0) // syntax: heater1off 30 (heater 1 turns off 30 ms after piezo starts [TMR2])
+                s->c = CMD_HEATER_H1OFF;
+            else if(stricmp(p,"heater2on") == 0) // syntax: heater2on 1000 (heater 2 turns on 1,000 ms after piezo starts [TMR0])
+                s->c = CMD_HEATER_H2ON;
+            else if(stricmp(p,"ledgain") == 0) // syntax: ledgain 1 2 (set LED driver chip gain to max [1] on bottom (2) board)
                 s->c = CMD_HEATER_GAIN;
-            else if(stricmp(p,"ledpwr") == 0) // syntax: ledpwr 63 (set LED power to 63 (max value))
+            else if(stricmp(p,"ledpwr") == 0) // syntax: ledpwr 63 2 (set LED power to 63 (max value) on bottom (2)))
                 s->c = CMD_HEATER_PWR;
             else if(stricmp(p,"toggleheater") == 0) // syntax: toggleheater 5 1 (toggles 5th heater on/off on top board)
                 s->c = CMD_HEATER_TOGGLE;
@@ -51,7 +55,8 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
                 s->c = CMD_COMM_CHECK;
             else if(stricmp(p,"ping") == 0) // syntax: ping (returns ! character if successful)
                 s->c = CMD_PING;
-            
+            else if(stricmp(p,"softreset") == 0) // syntax: softreset (software resets)
+                RESET();
             // ADD COMMANDS HERE
             else // unrecognized command
                 s->c = CMD_NONE;
@@ -87,6 +92,8 @@ int execCmd (struct CMD_STRUCT *s){
         //heaters
         case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
         case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
+        case CMD_HEATER_H1OFF: errorOut = setH1OffTime(s->p1.paramI); break;
+        case CMD_HEATER_H2ON: errorOut = setH2OnTime(s->p1.paramI); break;
         case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
         case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
         case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;

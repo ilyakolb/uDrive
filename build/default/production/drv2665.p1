@@ -8533,65 +8533,59 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _val `i ~T0 @X0 1 r1 ]
 [v _duration_ms `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;drv2665.c: 108: drv_write(0x0b, 0x00);
-"108
-[e ( _drv_write (2 , -> -> 11 `i `uc -> -> 0 `i `uc ]
-[; ;drv2665.c: 109: for(int i=0;i<duration_ms/5; i++){
-"109
+[; ;drv2665.c: 116: for(int i=0;i<duration_ms/5; i++){
+"116
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $U 991  ]
 [e :U 988 ]
 {
-[; ;drv2665.c: 110: drv_write(0x0b, val);
-"110
+[; ;drv2665.c: 117: drv_write(0x0b, val);
+"117
 [e ( _drv_write (2 , -> -> 11 `i `uc -> _val `uc ]
-[; ;drv2665.c: 111: _delay((unsigned long)((20)*(1000000/4000000.0)));
-"111
+[; ;drv2665.c: 118: _delay((unsigned long)((20)*(1000000/4000000.0)));
+"118
 [e ( __delay (1 -> * -> -> 20 `i `d / -> -> 1000000 `l `d .4000000.0 `ul ]
-"113
+"120
 }
-"109
+"116
 [e ++ _i -> 1 `i ]
 [e :U 991 ]
 [e $ < _i / _duration_ms -> 5 `i 988  ]
 [e :U 989 ]
-"113
+"120
 }
-[; ;drv2665.c: 113: }
-[; ;drv2665.c: 116: if(!fifo_check()) printf("fifo not ready!\n");
-"116
+[; ;drv2665.c: 120: }
+[; ;drv2665.c: 131: if(!fifo_check()) printf("fifo not ready!\n");
+"131
 [e $ ! ! ( _fifo_check ..  992  ]
 [e ( _printf :s 5C ]
 [e :U 992 ]
-[; ;drv2665.c: 118: drv_write(0x0b, 0x00);
-"118
-[e ( _drv_write (2 , -> -> 11 `i `uc -> -> 0 `i `uc ]
-[; ;drv2665.c: 120: }
-"120
+[; ;drv2665.c: 135: }
+"135
 [e :UE 987 ]
 }
-"124
+"139
 [v _fifo_check `(b ~T0 @X0 1 ef ]
-"125
+"140
 {
-[; ;drv2665.c: 124: bit fifo_check(void)
-[; ;drv2665.c: 125: {
+[; ;drv2665.c: 139: bit fifo_check(void)
+[; ;drv2665.c: 140: {
 [e :U _fifo_check ]
 [f ]
-"126
+"141
 [v _reply `uc ~T0 @X0 1 a ]
-[; ;drv2665.c: 126: uint8_t reply;
-[; ;drv2665.c: 127: reply = drv_read(0x00);
-"127
+[; ;drv2665.c: 141: uint8_t reply;
+[; ;drv2665.c: 142: reply = drv_read(0x00);
+"142
 [e = _reply -> ( _drv_read (1 -> -> 0 `i `uc `uc ]
-[; ;drv2665.c: 129: return !(reply & 0x01);
-"129
+[; ;drv2665.c: 144: return !(reply & 0x01);
+"144
 [e ) -> -> ! != & -> _reply `i -> 1 `i -> 0 `i `i `b ]
 [e $UE 993  ]
-[; ;drv2665.c: 131: };
-"131
+[; ;drv2665.c: 146: };
+"146
 [e :UE 993 ]
 }
 [p f _printf 8388608 ]

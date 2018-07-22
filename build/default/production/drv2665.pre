@@ -10698,17 +10698,17 @@ return buff;
 
 void drv_write_DC(int val, int duration_ms){
 
-drv_write(0x0b, 0x00);
+# 116
 for(int i=0;i<duration_ms/5; i++){
 drv_write(0x0b, val);
 _delay((unsigned long)((20)*(1000000/4000000.0)));
 
 }
 
-
+# 131
 if(!fifo_check()) printf("fifo not ready!\n");
 
-drv_write(0x0b, 0x00);
+
 
 }
 

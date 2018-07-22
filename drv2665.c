@@ -105,17 +105,32 @@ int drv_read(char reg){
 // write DC signal to piezo
 void drv_write_DC(int val, int duration_ms){
     
-    drv_write(DRV2665_FIFO, 0x00);
+    //drv_write(DRV2665_FIFO, 0x00);
+    /*
+    drv_write(DRV2665_FIFO, val/8);
+    drv_write(DRV2665_FIFO, val/4);
+    drv_write(DRV2665_FIFO, val*3/8);
+    drv_write(DRV2665_FIFO, val/2);
+    drv_write(DRV2665_FIFO, val * 3/4);
+    */
     for(int i=0;i<duration_ms/DCONTIME_MS; i++){
         drv_write(DRV2665_FIFO, val);
         __delay_us(20); // sometimes get weird latchup if i don't have this wait...
         
     }
+    /*
+    drv_write(DRV2665_FIFO, val * 7/8);
+    drv_write(DRV2665_FIFO, val/2);
+    drv_write(DRV2665_FIFO, val*3/8);
+    drv_write(DRV2665_FIFO, val/4);
+    drv_write(DRV2665_FIFO, val/8);
+    */
+    
     //__delay_us(100);
     //while(!fifo_check());
     if(!fifo_check()) printf("fifo not ready!\n");
     
-    drv_write(DRV2665_FIFO, 0x00);
+    //drv_write(DRV2665_FIFO, 0x00);
     
 }
 

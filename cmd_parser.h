@@ -15,7 +15,8 @@
 typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
                 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO, 
                 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
-                CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
+                CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_H1OFF, CMD_HEATER_H2ON,
+                CMD_HEATER_GAIN, CMD_HEATER_PWR,
                 CMD_HEATER_TOGGLE, CMD_HEATER_TIMED,
                 CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
                 CMD_PING
@@ -58,10 +59,12 @@ int setDrvPiezoOnTime(int);
  */
 int setHeaterPreTime(int);
 int setHeaterPostTime(int);
+int setH1OffTime(int t);
+int setH2OnTime(int t);
 int setLEDBrightnessRange(int gain, int topOrBottom);
 int setLEDPwr(int pwr, int topOrBottom);
 int setHeaterToggle(int num, int topOrB);
-int timedActiveHeatOn(long onTime, int topOrB);
+int timedActiveHeatOn(long onTime, int topOrBorBoth);
 /*
  * MISC
  */

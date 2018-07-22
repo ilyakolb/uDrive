@@ -70,8 +70,8 @@ const float TMR2_RANGE = 255/(163.84-0.64);
 
 // CONSTANTS -- SOME WILL BE EDITABLE/SETTABLE LATER!
 #define TOTALNUMCHANS 24 // max number of channels
-int heater_pre_time_ms = 10; // milliseconds
-int heater_post_time_ms = 10; // milliseconds
+int heater_pre_time_ms = 30; // (default) milliseconds
+int heater_post_time_ms = 40; // (default) milliseconds
 long inter_step_interval_ms = 1000;
 
 
@@ -194,8 +194,8 @@ void main_initialize(void){
     LED_ENABLE_SetHigh(); // LEDs off
     
     // timers
-    TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1); // delay 1
-    TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1); // delay 2
+    TMR2_LoadPeriodRegister((heater_pre_time_ms*TMR2_RANGE)-1); // delay 1
+    TMR0_Load8bitPeriod(((piezo_on_time_ms)*TMR0_RANGE)-1); // delay 2
     
     // piezo driver
     drv_init(DRV2665_100_VPP_GAIN, DRV2665_20_MS_IDLE_TOUT);
@@ -250,7 +250,6 @@ int commCheck(void){return 0;};
 
     LED_ENABLE_SetHigh(); // LEDs off
     
-    // PUT IN 1S DELAY HERE?
     DELAYMSAPPROX(inter_step_interval_ms);
     return 0;
     
@@ -426,16 +425,30 @@ int setDrvPiezoOnTime(int t){
 // set pre heat time (before piezo comes on), in milliseconds
 int setHeaterPreTime(int t){
     heater_pre_time_ms = t;
-    TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1); // delay 2
+    //TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1); // delay 2
     printf("A\n");
     return 0;
 };
 int setHeaterPostTime(int t){
     heater_post_time_ms = t;
-    TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1); // delay 1
+    //TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1); // delay 1
     printf("A\n");
     return 0;
 };
+
+// heater1off 30 (heater 1 turns off 30 ms after piezo starts [TMR2])
+int setH1OffTime(int t){
+    TMR2_LoadPeriodRegister((t*TMR2_RANGE)-1);
+    printf("A\n");
+    return 0;
+}
+
+// heater2on 1000 (heater 2 turns on 1,000 ms after piezo starts [TMR0])
+int setH2OnTime(int t){
+    TMR0_Load8bitPeriod((t*TMR0_RANGE)-1);
+    printf("A\n");
+    return 0;
+}
 
 //range: 0: low (default), 1: high
 // topOrBottom (tOB): 1:top, 2:bottom;
@@ -474,16 +487,21 @@ int setHeaterToggle(int num, int topOrB){
 
 // turns on ONLY ACTIVE LEDs for specified time period (ms)
 // onTime: time for heater to be on (ms)
-// topOrB: 1:top, 2:bottom;
-int timedActiveHeatOn(long onTime, int topOrB){
+// topOrB: 1:top, 2:bottom; 3: both
+int timedActiveHeatOn(long onTime, int topOrBorBoth){
     __delay_ms(2000);
     LED_ENABLE_SetLow();
-    if(topOrB == 1){
+    if(topOrBorBoth == 1){ // turn on top
         LEDsOn(activeMask, 1);
     }
-    else if (topOrB == 2){
+    else if (topOrBorBoth == 2){ // turn on bottom
         LEDsOn(activeMask, 2);
     }
+    else if (topOrBorBoth == 3){ // turn on both
+        LEDsOn(activeMask, 1);
+        LEDsOn(activeMask, 2);
+    }
+    
     DELAYMSAPPROX(onTime);
     LED_ENABLE_SetHigh();
     LEDsOn(0, 1);
@@ -491,8 +509,8 @@ int timedActiveHeatOn(long onTime, int topOrB){
     printf("A\n");
     return 0;
     
-
 };
+
 
 //MISC
 
@@ -546,9 +564,9 @@ int getMoveMask(void){
 };
 int getMotionStatus(void){
     switch(motionType){
-            case REL_MOVE: printf("R"); break;
-            case ABS_MOVE: printf("A"); break;
-            default: printf("N"); break;
+            case REL_MOVE: printf("R\n"); break;
+            case ABS_MOVE: printf("A\n"); break;
+            default: printf("N\n"); break;
         }
 };
 

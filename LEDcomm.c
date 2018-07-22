@@ -77,7 +77,11 @@ void send_2length_2bytes_IK(unsigned int data1, unsigned int data2, unsigned cha
 void LED_setBrightnessRange(int range, int topOrBottom){
     
     long LED_configReg = (topOrBottom == 1) ? LED_configReg_top : LED_configReg_bot;
-    LED_configReg |= ((range>0) | (range>0)<<1 | (range>0) << 2); // set three first registers
+    if(range > 0)
+        LED_configReg |= (0b111); // set first 3 registers to 1s (R,G,B)
+    else
+        LED_configReg &= ~(0b111); // set first 3 registers to 0s (R,G,B)
+    
     send_2length_2bytes_IK((unsigned int)((LED_configReg>>16) & 0xFFFF),(unsigned int)LED_configReg, LED_WRITE_CR, topOrBottom); // 9th bit high to enable
     
     // update the correct configRegs with new info

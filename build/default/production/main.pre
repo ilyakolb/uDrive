@@ -10592,7 +10592,8 @@ extern char * strrichr(const char *, int);
 typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
 CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
-CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
+CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_H1OFF, CMD_HEATER_H2ON,
+CMD_HEATER_GAIN, CMD_HEATER_PWR,
 CMD_HEATER_TOGGLE, CMD_HEATER_TIMED,
 CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
 CMD_PING
@@ -10613,7 +10614,7 @@ param p2;
 int execCmd (struct CMD_STRUCT *s);
 void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 
-# 42
+# 43
 int doMove(void);
 int startRelMove(int steps);
 int startAbsMove(int steps);
@@ -10621,20 +10622,22 @@ int stop(void);
 int zeroPosition(void);
 int getPosition(int a);
 
-# 52
+# 53
 int setDrvPeak(int);
 int setDrvGain(int);
 int setDrvPiezoOnTime(int);
 
-# 59
+# 60
 int setHeaterPreTime(int);
 int setHeaterPostTime(int);
+int setH1OffTime(int t);
+int setH2OnTime(int t);
 int setLEDBrightnessRange(int gain, int topOrBottom);
 int setLEDPwr(int pwr, int topOrBottom);
 int setHeaterToggle(int num, int topOrB);
-int timedActiveHeatOn(long onTime, int topOrB);
+int timedActiveHeatOn(long onTime, int topOrBorBoth);
 
-# 68
+# 71
 int setActive(int probeNum, int onOff);
 int setMoveMask(int probeNum, int onOff);
 int getActive(void);
@@ -10722,8 +10725,8 @@ const float TMR2_RANGE = 255/(163.84-0.64);
 
 
 
-int heater_pre_time_ms = 10;
-int heater_post_time_ms = 10;
+int heater_pre_time_ms = 30;
+int heater_post_time_ms = 40;
 long inter_step_interval_ms = 1000;
 
 
@@ -10824,8 +10827,8 @@ LED_setBrightnessRange(1, 2);
 do { LATCbits.LATC1 = 1; } while(0);
 
 
-TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
-TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
+TMR2_LoadPeriodRegister((heater_pre_time_ms*TMR2_RANGE)-1);
+TMR0_Load8bitPeriod(((piezo_on_time_ms)*TMR0_RANGE)-1);
 
 
 drv_init(0x03, 0x0c);
@@ -10849,7 +10852,6 @@ drv_write_DC(drv_peak_val, piezo_on_time_ms);
 for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 
 do { LATCbits.LATC1 = 1; } while(0);
-
 
 for(int t=0; t<inter_step_interval_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 return 0;
@@ -11020,19 +11022,33 @@ printf("A\n");
 return 0;
 };
 
-# 427
+# 426
 int setHeaterPreTime(int t){
 heater_pre_time_ms = t;
-TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
+
 printf("A\n");
 return 0;
 };
 int setHeaterPostTime(int t){
 heater_post_time_ms = t;
-TMR2_LoadPeriodRegister((heater_post_time_ms*TMR2_RANGE)-1);
+
 printf("A\n");
 return 0;
 };
+
+
+int setH1OffTime(int t){
+TMR2_LoadPeriodRegister((t*TMR2_RANGE)-1);
+printf("A\n");
+return 0;
+}
+
+
+int setH2OnTime(int t){
+TMR0_Load8bitPeriod((t*TMR0_RANGE)-1);
+printf("A\n");
+return 0;
+}
 
 
 
@@ -11072,15 +11088,20 @@ return 0;
 
 
 
-int timedActiveHeatOn(long onTime, int topOrB){
+int timedActiveHeatOn(long onTime, int topOrBorBoth){
 _delay((unsigned long)((2000)*(1000000/4000.0)));
 do { LATCbits.LATC1 = 0; } while(0);
-if(topOrB == 1){
+if(topOrBorBoth == 1){
 LEDsOn(activeMask, 1);
 }
-else if (topOrB == 2){
+else if (topOrBorBoth == 2){
 LEDsOn(activeMask, 2);
 }
+else if (topOrBorBoth == 3){
+LEDsOn(activeMask, 1);
+LEDsOn(activeMask, 2);
+}
+
 for(int t=0; t<onTime; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 do { LATCbits.LATC1 = 1; } while(0);
 LEDsOn(0, 1);
@@ -11088,12 +11109,9 @@ LEDsOn(0, 2);
 printf("A\n");
 return 0;
 
-
 };
 
-
-
-
+# 518
 int setActive(int probeNum, int onOff){
 
 
@@ -11143,9 +11161,9 @@ return 0;
 };
 int getMotionStatus(void){
 switch(motionType){
-case REL_MOVE: printf("R"); break;
-case ABS_MOVE: printf("A"); break;
-default: printf("N"); break;
+case REL_MOVE: printf("R\n"); break;
+case ABS_MOVE: printf("A\n"); break;
+default: printf("N\n"); break;
 }
 };
 

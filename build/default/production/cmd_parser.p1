@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "5 cmd_parser.c
-[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 .. ]
-[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_STOP CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_HEATER_TIMED CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
-"24 cmd_parser.h
+[c E272 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 .. ]
+[n E272 . CMD_NONE CMD_ABS CMD_REL CMD_P CMD_STOP CMD_S CMD_SETA CMD_SETM CMD_ZERO CMD_DRV_PEAK CMD_DRV_GAIN CMD_DRV_PIEZOONTIME CMD_HEATER_PRETIME CMD_HEATER_POSTTIME CMD_HEATER_H1OFF CMD_HEATER_H2ON CMD_HEATER_GAIN CMD_HEATER_PWR CMD_HEATER_TOGGLE CMD_HEATER_TIMED CMD_GET_ACTIVE CMD_GET_MOVABLE CMD_MOTION_STATUS CMD_DOMOVE CMD_COMM_CHECK CMD_PING  ]
+"25 cmd_parser.h
 [u S6 `uc -> 10 `i `i 1 `ul 1 ]
 [n S6 . paramString paramI paramL ]
-"30
+"31
 [s S7 `E272 1 `S6 1 `S6 1 ]
 [n S7 CMD_STRUCT c p1 p2 ]
 "41 C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h
@@ -14,47 +14,51 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _stricmp `(i ~T0 @X0 0 ef2`*Cuc`*Cuc ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
-"43 cmd_parser.h
+"44 cmd_parser.h
 [v _startRelMove `(i ~T0 @X0 0 ef1`i ]
-"44
-[v _startAbsMove `(i ~T0 @X0 0 ef1`i ]
-"47
-[v _getPosition `(i ~T0 @X0 0 ef1`i ]
 "45
-[v _stop `(i ~T0 @X0 0 ef ]
+[v _startAbsMove `(i ~T0 @X0 0 ef1`i ]
+"48
+[v _getPosition `(i ~T0 @X0 0 ef1`i ]
 "46
+[v _stop `(i ~T0 @X0 0 ef ]
+"47
 [v _zeroPosition `(i ~T0 @X0 0 ef ]
-"52
-[v _setDrvPeak `(i ~T0 @X0 0 ef1`i ]
 "53
-[v _setDrvGain `(i ~T0 @X0 0 ef1`i ]
+[v _setDrvPeak `(i ~T0 @X0 0 ef1`i ]
 "54
+[v _setDrvGain `(i ~T0 @X0 0 ef1`i ]
+"55
 [v _setDrvPiezoOnTime `(i ~T0 @X0 0 ef1`i ]
-"59
-[v _setHeaterPreTime `(i ~T0 @X0 0 ef1`i ]
 "60
-[v _setHeaterPostTime `(i ~T0 @X0 0 ef1`i ]
+[v _setHeaterPreTime `(i ~T0 @X0 0 ef1`i ]
 "61
-[v _setLEDBrightnessRange `(i ~T0 @X0 0 ef2`i`i ]
+[v _setHeaterPostTime `(i ~T0 @X0 0 ef1`i ]
 "62
-[v _setLEDPwr `(i ~T0 @X0 0 ef2`i`i ]
+[v _setH1OffTime `(i ~T0 @X0 0 ef1`i ]
 "63
-[v _setHeaterToggle `(i ~T0 @X0 0 ef2`i`i ]
+[v _setH2OnTime `(i ~T0 @X0 0 ef1`i ]
 "64
+[v _setLEDBrightnessRange `(i ~T0 @X0 0 ef2`i`i ]
+"65
+[v _setLEDPwr `(i ~T0 @X0 0 ef2`i`i ]
+"66
+[v _setHeaterToggle `(i ~T0 @X0 0 ef2`i`i ]
+"67
 [v _timedActiveHeatOn `(i ~T0 @X0 0 ef2`l`i ]
-"68
-[v _setActive `(i ~T0 @X0 0 ef2`i`i ]
-"69
-[v _setMoveMask `(i ~T0 @X0 0 ef2`i`i ]
-"70
-[v _getActive `(i ~T0 @X0 0 ef ]
 "71
-[v _getMoveMask `(i ~T0 @X0 0 ef ]
+[v _setActive `(i ~T0 @X0 0 ef2`i`i ]
 "72
-[v _getMotionStatus `(i ~T0 @X0 0 ef ]
-"42
-[v _doMove `(i ~T0 @X0 0 ef ]
+[v _setMoveMask `(i ~T0 @X0 0 ef2`i`i ]
 "73
+[v _getActive `(i ~T0 @X0 0 ef ]
+"74
+[v _getMoveMask `(i ~T0 @X0 0 ef ]
+"75
+[v _getMotionStatus `(i ~T0 @X0 0 ef ]
+"43
+[v _doMove `(i ~T0 @X0 0 ef ]
+"76
 [v _commCheck `(i ~T0 @X0 0 ef ]
 "195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
 [v _printf `(i ~T0 @X0 0 ev`*Cuc ]
@@ -169,47 +173,50 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cmd_parser.h: 15: typedef enum {CMD_NONE, CMD_ABS, CMD_REL, CMD_P, CMD_STOP,
 [; ;cmd_parser.h: 16: CMD_S, CMD_SETA, CMD_SETM, CMD_ZERO,
 [; ;cmd_parser.h: 17: CMD_DRV_PEAK, CMD_DRV_GAIN, CMD_DRV_PIEZOONTIME,
-[; ;cmd_parser.h: 18: CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_GAIN, CMD_HEATER_PWR,
-[; ;cmd_parser.h: 19: CMD_HEATER_TOGGLE, CMD_HEATER_TIMED,
-[; ;cmd_parser.h: 20: CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
-[; ;cmd_parser.h: 21: CMD_PING
-[; ;cmd_parser.h: 22: } cmd_list;
-"23 cmd_parser.h
+[; ;cmd_parser.h: 18: CMD_HEATER_PRETIME, CMD_HEATER_POSTTIME, CMD_HEATER_H1OFF, CMD_HEATER_H2ON,
+[; ;cmd_parser.h: 19: CMD_HEATER_GAIN, CMD_HEATER_PWR,
+[; ;cmd_parser.h: 20: CMD_HEATER_TOGGLE, CMD_HEATER_TIMED,
+[; ;cmd_parser.h: 21: CMD_GET_ACTIVE, CMD_GET_MOVABLE, CMD_MOTION_STATUS, CMD_DOMOVE, CMD_COMM_CHECK,
+[; ;cmd_parser.h: 22: CMD_PING
+[; ;cmd_parser.h: 23: } cmd_list;
+"24 cmd_parser.h
 [v _errorOut `i ~T0 @X0 1 e ]
-[; ;cmd_parser.h: 23: int errorOut;
-[; ;cmd_parser.h: 24: typedef union {
-[; ;cmd_parser.h: 25: char paramString[10];
-[; ;cmd_parser.h: 26: int paramI;
-[; ;cmd_parser.h: 27: unsigned long paramL;
-[; ;cmd_parser.h: 28: } param;
-[; ;cmd_parser.h: 30: struct CMD_STRUCT{
-[; ;cmd_parser.h: 31: cmd_list c;
-[; ;cmd_parser.h: 32: param p1;
-[; ;cmd_parser.h: 33: param p2;
-[; ;cmd_parser.h: 34: };
-[; ;cmd_parser.h: 36: int execCmd (struct CMD_STRUCT *s);
-[; ;cmd_parser.h: 37: void parseCmd(char cmdString[], struct CMD_STRUCT *s);
-[; ;cmd_parser.h: 42: int doMove(void);
-[; ;cmd_parser.h: 43: int startRelMove(int steps);
-[; ;cmd_parser.h: 44: int startAbsMove(int steps);
-[; ;cmd_parser.h: 45: int stop(void);
-[; ;cmd_parser.h: 46: int zeroPosition(void);
-[; ;cmd_parser.h: 47: int getPosition(int a);
-[; ;cmd_parser.h: 52: int setDrvPeak(int);
-[; ;cmd_parser.h: 53: int setDrvGain(int);
-[; ;cmd_parser.h: 54: int setDrvPiezoOnTime(int);
-[; ;cmd_parser.h: 59: int setHeaterPreTime(int);
-[; ;cmd_parser.h: 60: int setHeaterPostTime(int);
-[; ;cmd_parser.h: 61: int setLEDBrightnessRange(int gain, int topOrBottom);
-[; ;cmd_parser.h: 62: int setLEDPwr(int pwr, int topOrBottom);
-[; ;cmd_parser.h: 63: int setHeaterToggle(int num, int topOrB);
-[; ;cmd_parser.h: 64: int timedActiveHeatOn(long onTime, int topOrB);
-[; ;cmd_parser.h: 68: int setActive(int probeNum, int onOff);
-[; ;cmd_parser.h: 69: int setMoveMask(int probeNum, int onOff);
-[; ;cmd_parser.h: 70: int getActive(void);
-[; ;cmd_parser.h: 71: int getMoveMask(void);
-[; ;cmd_parser.h: 72: int getMotionStatus(void);
-[; ;cmd_parser.h: 73: int commCheck(void);
+[; ;cmd_parser.h: 24: int errorOut;
+[; ;cmd_parser.h: 25: typedef union {
+[; ;cmd_parser.h: 26: char paramString[10];
+[; ;cmd_parser.h: 27: int paramI;
+[; ;cmd_parser.h: 28: unsigned long paramL;
+[; ;cmd_parser.h: 29: } param;
+[; ;cmd_parser.h: 31: struct CMD_STRUCT{
+[; ;cmd_parser.h: 32: cmd_list c;
+[; ;cmd_parser.h: 33: param p1;
+[; ;cmd_parser.h: 34: param p2;
+[; ;cmd_parser.h: 35: };
+[; ;cmd_parser.h: 37: int execCmd (struct CMD_STRUCT *s);
+[; ;cmd_parser.h: 38: void parseCmd(char cmdString[], struct CMD_STRUCT *s);
+[; ;cmd_parser.h: 43: int doMove(void);
+[; ;cmd_parser.h: 44: int startRelMove(int steps);
+[; ;cmd_parser.h: 45: int startAbsMove(int steps);
+[; ;cmd_parser.h: 46: int stop(void);
+[; ;cmd_parser.h: 47: int zeroPosition(void);
+[; ;cmd_parser.h: 48: int getPosition(int a);
+[; ;cmd_parser.h: 53: int setDrvPeak(int);
+[; ;cmd_parser.h: 54: int setDrvGain(int);
+[; ;cmd_parser.h: 55: int setDrvPiezoOnTime(int);
+[; ;cmd_parser.h: 60: int setHeaterPreTime(int);
+[; ;cmd_parser.h: 61: int setHeaterPostTime(int);
+[; ;cmd_parser.h: 62: int setH1OffTime(int t);
+[; ;cmd_parser.h: 63: int setH2OnTime(int t);
+[; ;cmd_parser.h: 64: int setLEDBrightnessRange(int gain, int topOrBottom);
+[; ;cmd_parser.h: 65: int setLEDPwr(int pwr, int topOrBottom);
+[; ;cmd_parser.h: 66: int setHeaterToggle(int num, int topOrB);
+[; ;cmd_parser.h: 67: int timedActiveHeatOn(long onTime, int topOrBorBoth);
+[; ;cmd_parser.h: 71: int setActive(int probeNum, int onOff);
+[; ;cmd_parser.h: 72: int setMoveMask(int probeNum, int onOff);
+[; ;cmd_parser.h: 73: int getActive(void);
+[; ;cmd_parser.h: 74: int getMoveMask(void);
+[; ;cmd_parser.h: 75: int getMotionStatus(void);
+[; ;cmd_parser.h: 76: int commCheck(void);
 "5 cmd_parser.c
 [v _parseCmd `(v ~T0 @X0 1 ef2`*uc`*S7 ]
 {
@@ -332,90 +339,117 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 36  ]
 "34
 [e :U 35 ]
-[; ;cmd_parser.c: 34: else if(stricmp(p,"ledgain") == 0)
+[; ;cmd_parser.c: 34: else if(stricmp(p,"heater1off") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 15C -> 0 `i 37  ]
-[; ;cmd_parser.c: 35: s->c = CMD_HEATER_GAIN;
+[; ;cmd_parser.c: 35: s->c = CMD_HEATER_H1OFF;
 "35
 [e = . *U _s 0 . `E272 14 ]
 [e $U 38  ]
 "36
 [e :U 37 ]
-[; ;cmd_parser.c: 36: else if(stricmp(p,"ledpwr") == 0)
+[; ;cmd_parser.c: 36: else if(stricmp(p,"heater2on") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 16C -> 0 `i 39  ]
-[; ;cmd_parser.c: 37: s->c = CMD_HEATER_PWR;
+[; ;cmd_parser.c: 37: s->c = CMD_HEATER_H2ON;
 "37
 [e = . *U _s 0 . `E272 15 ]
 [e $U 40  ]
 "38
 [e :U 39 ]
-[; ;cmd_parser.c: 38: else if(stricmp(p,"toggleheater") == 0)
+[; ;cmd_parser.c: 38: else if(stricmp(p,"ledgain") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 17C -> 0 `i 41  ]
-[; ;cmd_parser.c: 39: s->c = CMD_HEATER_TOGGLE;
+[; ;cmd_parser.c: 39: s->c = CMD_HEATER_GAIN;
 "39
 [e = . *U _s 0 . `E272 16 ]
 [e $U 42  ]
 "40
 [e :U 41 ]
-[; ;cmd_parser.c: 40: else if(stricmp(p,"timeheater") == 0)
+[; ;cmd_parser.c: 40: else if(stricmp(p,"ledpwr") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 18C -> 0 `i 43  ]
-[; ;cmd_parser.c: 41: s->c = CMD_HEATER_TIMED;
+[; ;cmd_parser.c: 41: s->c = CMD_HEATER_PWR;
 "41
 [e = . *U _s 0 . `E272 17 ]
 [e $U 44  ]
 "42
 [e :U 43 ]
-[; ;cmd_parser.c: 42: else if(stricmp(p,"getA") == 0)
+[; ;cmd_parser.c: 42: else if(stricmp(p,"toggleheater") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 19C -> 0 `i 45  ]
-[; ;cmd_parser.c: 43: s->c = CMD_GET_ACTIVE;
+[; ;cmd_parser.c: 43: s->c = CMD_HEATER_TOGGLE;
 "43
 [e = . *U _s 0 . `E272 18 ]
 [e $U 46  ]
 "44
 [e :U 45 ]
-[; ;cmd_parser.c: 44: else if(stricmp(p,"getM") == 0)
+[; ;cmd_parser.c: 44: else if(stricmp(p,"timeheater") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 20C -> 0 `i 47  ]
-[; ;cmd_parser.c: 45: s->c = CMD_GET_MOVABLE;
+[; ;cmd_parser.c: 45: s->c = CMD_HEATER_TIMED;
 "45
 [e = . *U _s 0 . `E272 19 ]
 [e $U 48  ]
 "46
 [e :U 47 ]
-[; ;cmd_parser.c: 46: else if(stricmp(p,"mstatus") == 0)
+[; ;cmd_parser.c: 46: else if(stricmp(p,"getA") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 21C -> 0 `i 49  ]
-[; ;cmd_parser.c: 47: s->c = CMD_MOTION_STATUS;
+[; ;cmd_parser.c: 47: s->c = CMD_GET_ACTIVE;
 "47
 [e = . *U _s 0 . `E272 20 ]
 [e $U 50  ]
 "48
 [e :U 49 ]
-[; ;cmd_parser.c: 48: else if(stricmp(p,"domove") == 0)
+[; ;cmd_parser.c: 48: else if(stricmp(p,"getM") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 22C -> 0 `i 51  ]
-[; ;cmd_parser.c: 49: s->c = CMD_DOMOVE;
+[; ;cmd_parser.c: 49: s->c = CMD_GET_MOVABLE;
 "49
 [e = . *U _s 0 . `E272 21 ]
 [e $U 52  ]
 "50
 [e :U 51 ]
-[; ;cmd_parser.c: 50: else if(stricmp(p,"comm") == 0)
+[; ;cmd_parser.c: 50: else if(stricmp(p,"mstatus") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 23C -> 0 `i 53  ]
-[; ;cmd_parser.c: 51: s->c = CMD_COMM_CHECK;
+[; ;cmd_parser.c: 51: s->c = CMD_MOTION_STATUS;
 "51
 [e = . *U _s 0 . `E272 22 ]
 [e $U 54  ]
 "52
 [e :U 53 ]
-[; ;cmd_parser.c: 52: else if(stricmp(p,"ping") == 0)
+[; ;cmd_parser.c: 52: else if(stricmp(p,"domove") == 0)
 [e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 24C -> 0 `i 55  ]
-[; ;cmd_parser.c: 53: s->c = CMD_PING;
+[; ;cmd_parser.c: 53: s->c = CMD_DOMOVE;
 "53
 [e = . *U _s 0 . `E272 23 ]
 [e $U 56  ]
-"56
+"54
 [e :U 55 ]
-[; ;cmd_parser.c: 56: else
-[; ;cmd_parser.c: 57: s->c = CMD_NONE;
+[; ;cmd_parser.c: 54: else if(stricmp(p,"comm") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 25C -> 0 `i 57  ]
+[; ;cmd_parser.c: 55: s->c = CMD_COMM_CHECK;
+"55
+[e = . *U _s 0 . `E272 24 ]
+[e $U 58  ]
+"56
+[e :U 57 ]
+[; ;cmd_parser.c: 56: else if(stricmp(p,"ping") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 26C -> 0 `i 59  ]
+[; ;cmd_parser.c: 57: s->c = CMD_PING;
 "57
+[e = . *U _s 0 . `E272 25 ]
+[e $U 60  ]
+"58
+[e :U 59 ]
+[; ;cmd_parser.c: 58: else if(stricmp(p,"softreset") == 0)
+[e $ ! == ( _stricmp (2 , -> _p `*Cuc :s 27C -> 0 `i 61  ]
+[; ;cmd_parser.c: 59: asm("reset");
+"59
+[; <" reset ;# ">
+[e $U 62  ]
+"61
+[e :U 61 ]
+[; ;cmd_parser.c: 61: else
+[; ;cmd_parser.c: 62: s->c = CMD_NONE;
+"62
 [e = . *U _s 0 . `E272 0 ]
+[e :U 62 ]
+[e :U 60 ]
+[e :U 58 ]
 [e :U 56 ]
 [e :U 54 ]
 [e :U 52 ]
@@ -438,243 +472,258 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 18 ]
 [e :U 16 ]
 [e :U 14 ]
-"58
+"63
 }
-[; ;cmd_parser.c: 58: }
-[e $U 57  ]
-"59
-[e :U 12 ]
-[; ;cmd_parser.c: 59: else if(paramIter == 1){
-[e $ ! == _paramIter -> 1 `i 58  ]
-{
-[; ;cmd_parser.c: 60: s->p1.paramI = atoi(p);
-"60
-[e = . . *U _s 1 1 ( _atoi (1 -> _p `*Cuc ]
-"61
-}
-[; ;cmd_parser.c: 61: }
-[e $U 59  ]
-"62
-[e :U 58 ]
-[; ;cmd_parser.c: 62: else if(paramIter == 2){
-[e $ ! == _paramIter -> 2 `i 60  ]
-{
-[; ;cmd_parser.c: 64: s->p2.paramI = atoi(p);
+[; ;cmd_parser.c: 63: }
+[e $U 63  ]
 "64
-[e = . . *U _s 2 1 ( _atoi (1 -> _p `*Cuc ]
+[e :U 12 ]
+[; ;cmd_parser.c: 64: else if(paramIter == 1){
+[e $ ! == _paramIter -> 1 `i 64  ]
+{
+[; ;cmd_parser.c: 65: s->p1.paramI = atoi(p);
 "65
+[e = . . *U _s 1 1 ( _atoi (1 -> _p `*Cuc ]
+"66
 }
-[e :U 60 ]
+[; ;cmd_parser.c: 66: }
+[e $U 65  ]
 "67
-[e :U 59 ]
-[e :U 57 ]
-[; ;cmd_parser.c: 65: }
-[; ;cmd_parser.c: 67: paramIter++;
+[e :U 64 ]
+[; ;cmd_parser.c: 67: else if(paramIter == 2){
+[e $ ! == _paramIter -> 2 `i 66  ]
+{
+[; ;cmd_parser.c: 69: s->p2.paramI = atoi(p);
+"69
+[e = . . *U _s 2 1 ( _atoi (1 -> _p `*Cuc ]
+"70
+}
+[e :U 66 ]
+"72
+[e :U 65 ]
+[e :U 63 ]
+[; ;cmd_parser.c: 70: }
+[; ;cmd_parser.c: 72: paramIter++;
 [e ++ _paramIter -> 1 `i ]
-"68
+"73
 }
 "7
 [e = _p ( _strtok (2 , -> -> 0 `i `*uc :s 2C ]
 [e $ != _p -> -> 0 `i `*uc 9  ]
 [e :U 10 ]
-"68
+"73
 }
-[; ;cmd_parser.c: 68: }
-[; ;cmd_parser.c: 69: }
-"69
+[; ;cmd_parser.c: 73: }
+[; ;cmd_parser.c: 74: }
+"74
 [e :UE 8 ]
 }
-"72
+"77
 [v _execCmd `(i ~T0 @X0 1 ef1`*S7 ]
 {
-[; ;cmd_parser.c: 72: int execCmd (struct CMD_STRUCT *s){
+[; ;cmd_parser.c: 77: int execCmd (struct CMD_STRUCT *s){
 [e :U _execCmd ]
 [v _s `*S7 ~T0 @X0 1 r1 ]
 [f ]
-[; ;cmd_parser.c: 73: errorOut = 1;
-"73
-[e = _errorOut -> 1 `i ]
-[; ;cmd_parser.c: 75: switch(s->c){
-"75
-[e $U 63  ]
-{
-[; ;cmd_parser.c: 76: case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
-"76
-[e :U 64 ]
-[e = _errorOut ( _startRelMove (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 77: case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
-"77
-[e :U 65 ]
-[e = _errorOut ( _startAbsMove (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 78: case CMD_P: errorOut = getPosition(s->p1.paramI); break;
+[; ;cmd_parser.c: 78: errorOut = 1;
 "78
-[e :U 66 ]
-[e = _errorOut ( _getPosition (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 79: case CMD_STOP: errorOut = stop(); break;
-"79
-[e :U 67 ]
-[e = _errorOut ( _stop ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 80: case CMD_ZERO: errorOut = zeroPosition(); break;
+[e = _errorOut -> 1 `i ]
+[; ;cmd_parser.c: 80: switch(s->c){
 "80
-[e :U 68 ]
-[e = _errorOut ( _zeroPosition ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 83: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
-"83
-[e :U 69 ]
-[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 84: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
-"84
+[e $U 69  ]
+{
+[; ;cmd_parser.c: 81: case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+"81
 [e :U 70 ]
-[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 85: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
-"85
+[e = _errorOut ( _startRelMove (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 82: case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
+"82
 [e :U 71 ]
-[e = _errorOut ( _setDrvPiezoOnTime (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 88: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
-"88
+[e = _errorOut ( _startAbsMove (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 83: case CMD_P: errorOut = getPosition(s->p1.paramI); break;
+"83
 [e :U 72 ]
-[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 89: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
-"89
+[e = _errorOut ( _getPosition (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 84: case CMD_STOP: errorOut = stop(); break;
+"84
 [e :U 73 ]
-[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 90: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
-"90
+[e = _errorOut ( _stop ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 85: case CMD_ZERO: errorOut = zeroPosition(); break;
+"85
 [e :U 74 ]
-[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 91: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
-"91
+[e = _errorOut ( _zeroPosition ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 88: case CMD_DRV_PEAK: errorOut = setDrvPeak(s->p1.paramI); break;
+"88
 [e :U 75 ]
-[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 92: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
-"92
+[e = _errorOut ( _setDrvPeak (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 89: case CMD_DRV_GAIN: errorOut = setDrvGain(s->p1.paramI); break;
+"89
 [e :U 76 ]
-[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 93: case CMD_HEATER_TIMED: errorOut = timedActiveHeatOn(s->p1.paramL, s->p2.paramI); break;
-"93
+[e = _errorOut ( _setDrvGain (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 90: case CMD_DRV_PIEZOONTIME: errorOut = setDrvPiezoOnTime(s->p1.paramI); break;
+"90
 [e :U 77 ]
-[e = _errorOut ( _timedActiveHeatOn (2 , -> . . *U _s 1 2 `l . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 96: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
-"96
+[e = _errorOut ( _setDrvPiezoOnTime (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 93: case CMD_HEATER_PRETIME: errorOut = setHeaterPreTime(s->p1.paramI); break;
+"93
 [e :U 78 ]
-[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 97: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
-"97
+[e = _errorOut ( _setHeaterPreTime (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 94: case CMD_HEATER_POSTTIME: errorOut = setHeaterPostTime(s->p1.paramI); break;
+"94
 [e :U 79 ]
-[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
-[e $U 62  ]
-[; ;cmd_parser.c: 98: case CMD_GET_ACTIVE: errorOut = getActive(); break;
-"98
+[e = _errorOut ( _setHeaterPostTime (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 95: case CMD_HEATER_H1OFF: errorOut = setH1OffTime(s->p1.paramI); break;
+"95
 [e :U 80 ]
-[e = _errorOut ( _getActive ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 99: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
-"99
+[e = _errorOut ( _setH1OffTime (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 96: case CMD_HEATER_H2ON: errorOut = setH2OnTime(s->p1.paramI); break;
+"96
 [e :U 81 ]
-[e = _errorOut ( _getMoveMask ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 100: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
-"100
+[e = _errorOut ( _setH2OnTime (1 . . *U _s 1 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 97: case CMD_HEATER_GAIN: errorOut = setLEDBrightnessRange(s->p1.paramI, s->p2.paramI); break;
+"97
 [e :U 82 ]
-[e = _errorOut ( _getMotionStatus ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 101: case CMD_DOMOVE: errorOut = doMove(); break;
-"101
+[e = _errorOut ( _setLEDBrightnessRange (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 98: case CMD_HEATER_PWR: errorOut = setLEDPwr(s->p1.paramI, s->p2.paramI); break;
+"98
 [e :U 83 ]
-[e = _errorOut ( _doMove ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 102: case CMD_COMM_CHECK: errorOut = commCheck(); break;
-"102
+[e = _errorOut ( _setLEDPwr (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 99: case CMD_HEATER_TOGGLE: errorOut = setHeaterToggle(s->p1.paramI, s->p2.paramI); break;
+"99
 [e :U 84 ]
-[e = _errorOut ( _commCheck ..  ]
-[e $U 62  ]
-[; ;cmd_parser.c: 103: case CMD_PING: printf("!\n"); break;
-"103
+[e = _errorOut ( _setHeaterToggle (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 100: case CMD_HEATER_TIMED: errorOut = timedActiveHeatOn(s->p1.paramL, s->p2.paramI); break;
+"100
 [e :U 85 ]
-[e ( _printf :s 25C ]
-[e $U 62  ]
-[; ;cmd_parser.c: 104: default: printf("UNRECOGNIZED COMMAND!\n");
-"104
+[e = _errorOut ( _timedActiveHeatOn (2 , -> . . *U _s 1 2 `l . . *U _s 2 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 103: case CMD_SETA: errorOut = setActive(s->p1.paramI, s->p2.paramI); break;
+"103
 [e :U 86 ]
-[e ( _printf :s 26C ]
+[e = _errorOut ( _setActive (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 104: case CMD_SETM: errorOut = setMoveMask(s->p1.paramI, s->p2.paramI); break;
+"104
+[e :U 87 ]
+[e = _errorOut ( _setMoveMask (2 , . . *U _s 1 1 . . *U _s 2 1 ]
+[e $U 68  ]
+[; ;cmd_parser.c: 105: case CMD_GET_ACTIVE: errorOut = getActive(); break;
+"105
+[e :U 88 ]
+[e = _errorOut ( _getActive ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 106: case CMD_GET_MOVABLE: errorOut = getMoveMask(); break;
+"106
+[e :U 89 ]
+[e = _errorOut ( _getMoveMask ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 107: case CMD_MOTION_STATUS: errorOut = getMotionStatus(); break;
+"107
+[e :U 90 ]
+[e = _errorOut ( _getMotionStatus ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 108: case CMD_DOMOVE: errorOut = doMove(); break;
+"108
+[e :U 91 ]
+[e = _errorOut ( _doMove ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 109: case CMD_COMM_CHECK: errorOut = commCheck(); break;
+"109
+[e :U 92 ]
+[e = _errorOut ( _commCheck ..  ]
+[e $U 68  ]
+[; ;cmd_parser.c: 110: case CMD_PING: printf("!\n"); break;
+"110
+[e :U 93 ]
+[e ( _printf :s 28C ]
+[e $U 68  ]
+[; ;cmd_parser.c: 111: default: printf("UNRECOGNIZED COMMAND!\n");
 "111
+[e :U 94 ]
+[e ( _printf :s 29C ]
+"118
 }
-[; ;cmd_parser.c: 111: }
-[e $U 62  ]
-"75
-[e :U 63 ]
-[e [\ . *U _s 0 , $ . `E272 2 64
- , $ . `E272 1 65
- , $ . `E272 3 66
- , $ . `E272 4 67
- , $ . `E272 8 68
- , $ . `E272 9 69
- , $ . `E272 10 70
- , $ . `E272 11 71
- , $ . `E272 12 72
- , $ . `E272 13 73
- , $ . `E272 14 74
- , $ . `E272 15 75
- , $ . `E272 16 76
- , $ . `E272 17 77
- , $ . `E272 6 78
- , $ . `E272 7 79
- , $ . `E272 18 80
- , $ . `E272 19 81
- , $ . `E272 20 82
- , $ . `E272 21 83
- , $ . `E272 22 84
- , $ . `E272 23 85
- 86 ]
-"111
-[e :U 62 ]
-[; ;cmd_parser.c: 113: return errorOut;
-"113
+[; ;cmd_parser.c: 118: }
+[e $U 68  ]
+"80
+[e :U 69 ]
+[e [\ . *U _s 0 , $ . `E272 2 70
+ , $ . `E272 1 71
+ , $ . `E272 3 72
+ , $ . `E272 4 73
+ , $ . `E272 8 74
+ , $ . `E272 9 75
+ , $ . `E272 10 76
+ , $ . `E272 11 77
+ , $ . `E272 12 78
+ , $ . `E272 13 79
+ , $ . `E272 14 80
+ , $ . `E272 15 81
+ , $ . `E272 16 82
+ , $ . `E272 17 83
+ , $ . `E272 18 84
+ , $ . `E272 19 85
+ , $ . `E272 6 86
+ , $ . `E272 7 87
+ , $ . `E272 20 88
+ , $ . `E272 21 89
+ , $ . `E272 22 90
+ , $ . `E272 23 91
+ , $ . `E272 24 92
+ , $ . `E272 25 93
+ 94 ]
+"118
+[e :U 68 ]
+[; ;cmd_parser.c: 120: return errorOut;
+"120
 [e ) _errorOut ]
-[e $UE 61  ]
-[; ;cmd_parser.c: 114: }
-"114
-[e :UE 61 ]
+[e $UE 67  ]
+[; ;cmd_parser.c: 121: }
+"121
+[e :UE 67 ]
 }
 [p f _printf 8388608 ]
 [a 9C 122 0 ]
-[a 21C 109 115 116 97 116 117 115 0 ]
+[a 27C 115 111 102 116 114 101 115 101 116 0 ]
+[a 23C 109 115 116 97 116 117 115 0 ]
 [a 5C 112 111 115 0 ]
 [a 4C 97 98 115 0 ]
 [a 6C 115 0 ]
-[a 16C 108 101 100 112 119 114 0 ]
-[a 18C 116 105 109 101 104 101 97 116 101 114 0 ]
-[a 17C 116 111 103 103 108 101 104 101 97 116 101 114 0 ]
-[a 15C 108 101 100 103 97 105 110 0 ]
+[a 18C 108 101 100 112 119 114 0 ]
+[a 20C 116 105 109 101 104 101 97 116 101 114 0 ]
+[a 19C 116 111 103 103 108 101 104 101 97 116 101 114 0 ]
+[a 16C 104 101 97 116 101 114 50 111 110 0 ]
+[a 17C 108 101 100 103 97 105 110 0 ]
 [a 11C 100 114 118 71 97 105 110 0 ]
-[a 23C 99 111 109 109 0 ]
+[a 25C 99 111 109 109 0 ]
 [a 3C 114 101 108 0 ]
 [a 10C 100 114 118 80 101 97 107 0 ]
-[a 24C 112 105 110 103 0 ]
-[a 22C 100 111 109 111 118 101 0 ]
+[a 26C 112 105 110 103 0 ]
+[a 15C 104 101 97 116 101 114 49 111 102 102 0 ]
+[a 24C 100 111 109 111 118 101 0 ]
 [a 14C 104 101 97 116 101 114 112 111 115 116 116 105 109 101 0 ]
 [a 12C 112 105 101 122 111 111 110 116 105 109 101 0 ]
 [a 13C 104 101 97 116 101 114 112 114 101 116 105 109 101 0 ]
 [a 8C 115 101 116 77 0 ]
-[a 20C 103 101 116 77 0 ]
+[a 22C 103 101 116 77 0 ]
 [a 7C 115 101 116 65 0 ]
-[a 19C 103 101 116 65 0 ]
+[a 21C 103 101 116 65 0 ]
 [a 1C 32 0 ]
 [a 2C 32 0 ]
-[a 26C 85 78 82 69 67 79 71 78 73 90 69 68 32 67 79 77 77 65 78 68 33 10 0 ]
-[a 25C 33 10 0 ]
+[a 29C 85 78 82 69 67 79 71 78 73 90 69 68 32 67 79 77 77 65 78 68 33 10 0 ]
+[a 28C 33 10 0 ]
