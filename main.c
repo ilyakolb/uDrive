@@ -75,7 +75,7 @@ int heater_post_time_ms = 40; // (default) milliseconds
 long inter_step_interval_ms = 1000;
 
 
-int piezo_on_time_ms = 1000;
+int piezo_on_time_ms = 960;
 const int LEDpower = 63;
 
 /*
@@ -234,8 +234,9 @@ int commCheck(void){return 0;};
 // END DEMO FUNCTIONS
 
  int doMove(void){
-    // over-simplified move code
+
     calcHeaterPins();
+    
     LED_ENABLE_SetHigh();
     LEDsOn(first_top, 1);
     LEDsOn(first_bottom,2);
@@ -244,8 +245,9 @@ int commCheck(void){return 0;};
     TMR2_StartTimer(); // timer to turn off LEDs first time
     TMR0_StartTimer(); // timer to turn on LEDs second time
     
+    drv_write_wvfrm(1); // write upstroke 
     drv_write_DC(drv_peak_val, piezo_on_time_ms); // piezo command
-    
+    drv_write_wvfrm(0); // write downstroke 
     DELAYMSAPPROX(heater_post_time_ms);
 
     LED_ENABLE_SetHigh(); // LEDs off
@@ -393,6 +395,8 @@ int getPosition(int a){
 // sets piezo square wave peak value to [0, 127] range
 int setDrvPeak(int pk){
     drv_peak_val = pk;
+    calcUpstroke(drv_peak_val);
+    calcDownstroke(drv_peak_val);
     printf("A\n");
     return 0;
 };

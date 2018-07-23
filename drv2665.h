@@ -53,7 +53,10 @@
  
 #define DCONTIME_MS                 5 // time between commands when sending out DC pulses
 
+#define STROKELENGTH    40
+
 const i2c_address_t drv_address = 0x59;
+
 
 int drv_peak_val = 0x7F; // value from 0 to 127
 void drv_init(int output_gain, int idle_timeout);
@@ -61,10 +64,13 @@ void drv_reset(void);
 void drv_outputSine(int hz);
 void drv_write(uint8_t reg, uint8_t data);
 void drv_outputWave(int waveform[], int length);
-void drv_write_wvfrm(void);
+void drv_write_wvfrm(char upOrDown);
 void drv_write_DC(int val, int duration_ms);
 bit fifo_check(void);
 int drv_read(char reg);
+
+void calcUpstroke(int maxVal);
+void calcDownstroke(int maxVal);
 
 static const int drv_sine[] = {
     0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
@@ -82,7 +88,7 @@ static const int drv_sine[] = {
 };
 
 // including FIFO address
-static const int drv_fifo_sine[] = {
+static const char drv_fifo_sine[] = {
     DRV2665_FIFO, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
     0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
     0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
@@ -96,5 +102,9 @@ static const int drv_fifo_sine[] = {
     0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
     0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
 };
+
+char drv_fifo_upstroke[STROKELENGTH];
+char drv_fifo_downstroke[STROKELENGTH];
+
 #endif	/* DRV2665_H */
 

@@ -11,8 +11,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [s S966 `E8587 1 `S965 1 `S965 1 ]
 [n S966 CMD_STRUCT c p1 p2 ]
 "115 main.c
-[c E8788 0 1 2 .. ]
-[n E8788 moveType NONE REL_MOVE ABS_MOVE  ]
+[c E8794 0 1 2 .. ]
+[n E8794 moveType NONE REL_MOVE ABS_MOVE  ]
 [p mainexit ]
 "74 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
@@ -60,7 +60,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR2_LoadPeriodRegister `(v ~T0 @X0 0 ef1`uc ]
 "274 mcc_generated_files/tmr0.h
 [v _TMR0_Load8bitPeriod `(v ~T0 @X0 0 ef1`uc ]
-"59 drv2665.h
+"62 drv2665.h
 [v _drv_init `(v ~T0 @X0 0 ef2`i`i ]
 "124 main.c
 [v _calcHeaterPins `(v ~T0 @X0 0 ef ]
@@ -70,15 +70,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR2_StartTimer `(v ~T0 @X0 0 ef ]
 "131 mcc_generated_files/tmr0.h
 [v _TMR0_StartTimer `(v ~T0 @X0 0 ef ]
-"65 drv2665.h
+"67 drv2665.h
+[v _drv_write_wvfrm `(v ~T0 @X0 0 ef1`uc ]
+"68
 [v _drv_write_DC `(v ~T0 @X0 0 ef2`i`i ]
-"62
+"72
+[v _calcUpstroke `(v ~T0 @X0 0 ef1`i ]
+"73
+[v _calcDownstroke `(v ~T0 @X0 0 ef1`i ]
+"65
 [v _drv_write `(v ~T0 @X0 0 ef2`uc`uc ]
 "42 mcc_generated_files/LEDcomm.h
 [v _LED_testComm `(i ~T0 @X0 0 ef1`i ]
 "40
 [v _LED_test_openshort `(v ~T0 @X0 0 ef2`i`i ]
-"67 drv2665.h
+"70 drv2665.h
 [v _drv_read `(i ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -8065,121 +8071,35 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;math.h: 53: extern double fmod(double, double);
 [; ;math.h: 54: extern double trunc(double);
 [; ;math.h: 55: extern double round(double);
-"56 drv2665.h
+"58 drv2665.h
 [v _drv_address `Cuc ~T0 @X0 1 e ]
 [i _drv_address
 -> -> 89 `i `uc
 ]
-[; ;drv2665.h: 56: const i2c_address_t drv_address = 0x59;
-"58
+[; ;drv2665.h: 58: const i2c_address_t drv_address = 0x59;
+"61
 [v _drv_peak_val `i ~T0 @X0 1 e ]
 [i _drv_peak_val
 -> 127 `i
 ]
-[; ;drv2665.h: 58: int drv_peak_val = 0x7F;
-[; ;drv2665.h: 59: void drv_init(int output_gain, int idle_timeout);
-[; ;drv2665.h: 60: void drv_reset(void);
-[; ;drv2665.h: 61: void drv_outputSine(int hz);
-[; ;drv2665.h: 62: void drv_write(uint8_t reg, uint8_t data);
-[; ;drv2665.h: 63: void drv_outputWave(int waveform[], int length);
-[; ;drv2665.h: 64: void drv_write_wvfrm(void);
-[; ;drv2665.h: 65: void drv_write_DC(int val, int duration_ms);
-[; ;drv2665.h: 66: bit fifo_check(void);
-[; ;drv2665.h: 67: int drv_read(char reg);
-"69
+[; ;drv2665.h: 61: int drv_peak_val = 0x7F;
+[; ;drv2665.h: 62: void drv_init(int output_gain, int idle_timeout);
+[; ;drv2665.h: 63: void drv_reset(void);
+[; ;drv2665.h: 64: void drv_outputSine(int hz);
+[; ;drv2665.h: 65: void drv_write(uint8_t reg, uint8_t data);
+[; ;drv2665.h: 66: void drv_outputWave(int waveform[], int length);
+[; ;drv2665.h: 67: void drv_write_wvfrm(char upOrDown);
+[; ;drv2665.h: 68: void drv_write_DC(int val, int duration_ms);
+[; ;drv2665.h: 69: bit fifo_check(void);
+[; ;drv2665.h: 70: int drv_read(char reg);
+[; ;drv2665.h: 72: void calcUpstroke(int maxVal);
+[; ;drv2665.h: 73: void calcDownstroke(int maxVal);
+"75
 [v _drv_sine `Ci ~T0 @X0 -> 0 `x s ]
 [i _drv_sine
 :U ..
-"70
--> 0 `i
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
-"71
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
-"72
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
-"73
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
-"74
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
-"75
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
 "76
 -> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
-"77
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
-"78
 -> 16 `i
 -> 32 `i
 -> 46 `i
@@ -8190,7 +8110,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 97 `i
 -> 101 `i
 -> 102 `i
-"79
+"77
 -> 101 `i
 -> 97 `i
 -> 91 `i
@@ -8200,7 +8120,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 46 `i
 -> 32 `i
 -> 16 `i
-"80
+"78
 -> 0 `i
 -> 240 `i
 -> 224 `i
@@ -8212,7 +8132,95 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 159 `i
 -> 155 `i
 -> 154 `i
+"79
+-> 155 `i
+-> 159 `i
+-> 165 `i
+-> 173 `i
+-> 184 `i
+-> 196 `i
+-> 210 `i
+-> 224 `i
+-> 240 `i
+-> 0 `i
+"80
+-> 16 `i
+-> 32 `i
+-> 46 `i
+-> 60 `i
+-> 72 `i
+-> 83 `i
+-> 91 `i
+-> 97 `i
+-> 101 `i
+-> 102 `i
 "81
+-> 101 `i
+-> 97 `i
+-> 91 `i
+-> 83 `i
+-> 72 `i
+-> 60 `i
+-> 46 `i
+-> 32 `i
+-> 16 `i
+"82
+-> 0 `i
+-> 240 `i
+-> 224 `i
+-> 210 `i
+-> 196 `i
+-> 184 `i
+-> 173 `i
+-> 165 `i
+-> 159 `i
+-> 155 `i
+-> 154 `i
+"83
+-> 155 `i
+-> 159 `i
+-> 165 `i
+-> 173 `i
+-> 184 `i
+-> 196 `i
+-> 210 `i
+-> 224 `i
+-> 240 `i
+-> 0 `i
+"84
+-> 16 `i
+-> 32 `i
+-> 46 `i
+-> 60 `i
+-> 72 `i
+-> 83 `i
+-> 91 `i
+-> 97 `i
+-> 101 `i
+-> 102 `i
+"85
+-> 101 `i
+-> 97 `i
+-> 91 `i
+-> 83 `i
+-> 72 `i
+-> 60 `i
+-> 46 `i
+-> 32 `i
+-> 16 `i
+"86
+-> 0 `i
+-> 240 `i
+-> 224 `i
+-> 210 `i
+-> 196 `i
+-> 184 `i
+-> 173 `i
+-> 165 `i
+-> 159 `i
+-> 155 `i
+-> 154 `i
+"87
 -> 155 `i
 -> 159 `i
 -> 165 `i
@@ -8225,174 +8233,180 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> 0 `i
 ..
 ]
-[; ;drv2665.h: 69: static const int drv_sine[] = {
-[; ;drv2665.h: 70: 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 71: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 72: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 73: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 74: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 75: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 76: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 77: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 78: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 79: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 80: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 81: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 82: };
-"85
-[v _drv_fifo_sine `Ci ~T0 @X0 -> 0 `x s ]
+[; ;drv2665.h: 75: static const int drv_sine[] = {
+[; ;drv2665.h: 76: 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 77: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 78: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 79: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 80: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 81: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 82: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 83: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 84: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 85: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 86: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 87: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 88: };
+"91
+[v _drv_fifo_sine `Cuc ~T0 @X0 -> 0 `x s ]
 [i _drv_fifo_sine
 :U ..
-"86
--> 11 `i
--> 0 `i
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
-"87
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
-"88
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
-"89
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
-"90
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
-"91
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
 "92
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
+-> -> 11 `i `uc
+-> -> 0 `i `uc
+-> -> 16 `i `uc
+-> -> 32 `i `uc
+-> -> 46 `i `uc
+-> -> 60 `i `uc
+-> -> 72 `i `uc
+-> -> 83 `i `uc
+-> -> 91 `i `uc
+-> -> 97 `i `uc
+-> -> 101 `i `uc
+-> -> 102 `i `uc
 "93
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
+-> -> 101 `i `uc
+-> -> 97 `i `uc
+-> -> 91 `i `uc
+-> -> 83 `i `uc
+-> -> 72 `i `uc
+-> -> 60 `i `uc
+-> -> 46 `i `uc
+-> -> 32 `i `uc
+-> -> 16 `i `uc
 "94
--> 16 `i
--> 32 `i
--> 46 `i
--> 60 `i
--> 72 `i
--> 83 `i
--> 91 `i
--> 97 `i
--> 101 `i
--> 102 `i
+-> -> 0 `i `uc
+-> -> 240 `i `uc
+-> -> 224 `i `uc
+-> -> 210 `i `uc
+-> -> 196 `i `uc
+-> -> 184 `i `uc
+-> -> 173 `i `uc
+-> -> 165 `i `uc
+-> -> 159 `i `uc
+-> -> 155 `i `uc
+-> -> 154 `i `uc
 "95
--> 101 `i
--> 97 `i
--> 91 `i
--> 83 `i
--> 72 `i
--> 60 `i
--> 46 `i
--> 32 `i
--> 16 `i
+-> -> 155 `i `uc
+-> -> 159 `i `uc
+-> -> 165 `i `uc
+-> -> 173 `i `uc
+-> -> 184 `i `uc
+-> -> 196 `i `uc
+-> -> 210 `i `uc
+-> -> 224 `i `uc
+-> -> 240 `i `uc
+-> -> 0 `i `uc
 "96
--> 0 `i
--> 240 `i
--> 224 `i
--> 210 `i
--> 196 `i
--> 184 `i
--> 173 `i
--> 165 `i
--> 159 `i
--> 155 `i
--> 154 `i
+-> -> 16 `i `uc
+-> -> 32 `i `uc
+-> -> 46 `i `uc
+-> -> 60 `i `uc
+-> -> 72 `i `uc
+-> -> 83 `i `uc
+-> -> 91 `i `uc
+-> -> 97 `i `uc
+-> -> 101 `i `uc
+-> -> 102 `i `uc
 "97
--> 155 `i
--> 159 `i
--> 165 `i
--> 173 `i
--> 184 `i
--> 196 `i
--> 210 `i
--> 224 `i
--> 240 `i
--> 0 `i
+-> -> 101 `i `uc
+-> -> 97 `i `uc
+-> -> 91 `i `uc
+-> -> 83 `i `uc
+-> -> 72 `i `uc
+-> -> 60 `i `uc
+-> -> 46 `i `uc
+-> -> 32 `i `uc
+-> -> 16 `i `uc
+"98
+-> -> 0 `i `uc
+-> -> 240 `i `uc
+-> -> 224 `i `uc
+-> -> 210 `i `uc
+-> -> 196 `i `uc
+-> -> 184 `i `uc
+-> -> 173 `i `uc
+-> -> 165 `i `uc
+-> -> 159 `i `uc
+-> -> 155 `i `uc
+-> -> 154 `i `uc
+"99
+-> -> 155 `i `uc
+-> -> 159 `i `uc
+-> -> 165 `i `uc
+-> -> 173 `i `uc
+-> -> 184 `i `uc
+-> -> 196 `i `uc
+-> -> 210 `i `uc
+-> -> 224 `i `uc
+-> -> 240 `i `uc
+-> -> 0 `i `uc
+"100
+-> -> 16 `i `uc
+-> -> 32 `i `uc
+-> -> 46 `i `uc
+-> -> 60 `i `uc
+-> -> 72 `i `uc
+-> -> 83 `i `uc
+-> -> 91 `i `uc
+-> -> 97 `i `uc
+-> -> 101 `i `uc
+-> -> 102 `i `uc
+"101
+-> -> 101 `i `uc
+-> -> 97 `i `uc
+-> -> 91 `i `uc
+-> -> 83 `i `uc
+-> -> 72 `i `uc
+-> -> 60 `i `uc
+-> -> 46 `i `uc
+-> -> 32 `i `uc
+-> -> 16 `i `uc
+"102
+-> -> 0 `i `uc
+-> -> 240 `i `uc
+-> -> 224 `i `uc
+-> -> 210 `i `uc
+-> -> 196 `i `uc
+-> -> 184 `i `uc
+-> -> 173 `i `uc
+-> -> 165 `i `uc
+-> -> 159 `i `uc
+-> -> 155 `i `uc
+-> -> 154 `i `uc
+"103
+-> -> 155 `i `uc
+-> -> 159 `i `uc
+-> -> 165 `i `uc
+-> -> 173 `i `uc
+-> -> 184 `i `uc
+-> -> 196 `i `uc
+-> -> 210 `i `uc
+-> -> 224 `i `uc
+-> -> 240 `i `uc
+-> -> 0 `i `uc
 ..
 ]
-[; ;drv2665.h: 85: static const int drv_fifo_sine[] = {
-[; ;drv2665.h: 86: 0x0b, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 87: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 88: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 89: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 90: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 91: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 92: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 93: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 94: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
-[; ;drv2665.h: 95: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
-[; ;drv2665.h: 96: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
-[; ;drv2665.h: 97: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
-[; ;drv2665.h: 98: };
+[; ;drv2665.h: 91: static const char drv_fifo_sine[] = {
+[; ;drv2665.h: 92: 0x0b, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 93: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 94: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 95: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 96: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 97: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 98: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 99: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 100: 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
+[; ;drv2665.h: 101: 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
+[; ;drv2665.h: 102: 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
+[; ;drv2665.h: 103: 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
+[; ;drv2665.h: 104: };
+"106
+[v _drv_fifo_upstroke `uc ~T0 @X0 -> 40 `i e ]
+[; ;drv2665.h: 106: char drv_fifo_upstroke[40];
+"107
+[v _drv_fifo_downstroke `uc ~T0 @X0 -> 40 `i e ]
+[; ;drv2665.h: 107: char drv_fifo_downstroke[40];
 "67 main.c
 [v _TMR0_RANGE `Cf ~T0 @X0 1 e ]
 [i _TMR0_RANGE
@@ -8426,9 +8440,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "78
 [v _piezo_on_time_ms `i ~T0 @X0 1 e ]
 [i _piezo_on_time_ms
--> 1000 `i
+-> 960 `i
 ]
-[; ;main.c: 78: int piezo_on_time_ms = 1000;
+[; ;main.c: 78: int piezo_on_time_ms = 960;
 "79
 [v _LEDpower `Ci ~T0 @X0 1 e ]
 [i _LEDpower
@@ -8531,9 +8545,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [; ;main.c: 114: signed long absCommand = 0;
 "115
-[v _motionType `E8788 ~T0 @X0 1 e ]
+[v _motionType `E8794 ~T0 @X0 1 e ]
 [i _motionType
-. `E8788 0
+. `E8794 0
 ]
 [; ;main.c: 115: enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 [; ;main.c: 121: void doAbsMove(void);
@@ -8646,8 +8660,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 974  ]
 "178
 [e :U 975 ]
-[e [\ _motionType , $ . `E8788 1 976
- , $ . `E8788 2 977
+[e [\ _motionType , $ . `E8794 1 976
+ , $ . `E8794 2 977
  978 ]
 "182
 [e :U 974 ]
@@ -8712,28 +8726,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 238: calcHeaterPins();
 "238
 [e ( _calcHeaterPins ..  ]
-[; ;main.c: 239: do { LATCbits.LATC1 = 1; } while(0);
-"239
+[; ;main.c: 240: do { LATCbits.LATC1 = 1; } while(0);
+"240
 [e :U 986 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 985 ]
-[; ;main.c: 240: LEDsOn(first_top, 1);
-"240
-[e ( _LEDsOn (2 , _first_top -> 1 `i ]
-[; ;main.c: 241: LEDsOn(first_bottom,2);
+[; ;main.c: 241: LEDsOn(first_top, 1);
 "241
-[e ( _LEDsOn (2 , _first_bottom -> 2 `i ]
-[; ;main.c: 242: do { LATCbits.LATC1 = 0; } while(0);
+[e ( _LEDsOn (2 , _first_top -> 1 `i ]
+[; ;main.c: 242: LEDsOn(first_bottom,2);
 "242
+[e ( _LEDsOn (2 , _first_bottom -> 2 `i ]
+[; ;main.c: 243: do { LATCbits.LATC1 = 0; } while(0);
+"243
 [e :U 989 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 988 ]
-[; ;main.c: 243: for(int t=0; t<heater_pre_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
-"243
+[; ;main.c: 244: for(int t=0; t<heater_pre_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+"244
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
@@ -8745,17 +8759,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _t _heater_pre_time_ms 990  ]
 [e :U 991 ]
 }
-[; ;main.c: 244: TMR2_StartTimer();
-"244
-[e ( _TMR2_StartTimer ..  ]
-[; ;main.c: 245: TMR0_StartTimer();
+[; ;main.c: 245: TMR2_StartTimer();
 "245
+[e ( _TMR2_StartTimer ..  ]
+[; ;main.c: 246: TMR0_StartTimer();
+"246
 [e ( _TMR0_StartTimer ..  ]
-[; ;main.c: 247: drv_write_DC(drv_peak_val, piezo_on_time_ms);
-"247
-[e ( _drv_write_DC (2 , _drv_peak_val _piezo_on_time_ms ]
-[; ;main.c: 249: for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+[; ;main.c: 248: drv_write_wvfrm(1);
+"248
+[e ( _drv_write_wvfrm (1 -> -> 1 `i `uc ]
+[; ;main.c: 249: drv_write_DC(drv_peak_val, piezo_on_time_ms);
 "249
+[e ( _drv_write_DC (2 , _drv_peak_val _piezo_on_time_ms ]
+[; ;main.c: 250: drv_write_wvfrm(0);
+"250
+[e ( _drv_write_wvfrm (1 -> -> 0 `i `uc ]
+[; ;main.c: 251: for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+"251
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
@@ -8767,15 +8787,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _t _heater_post_time_ms 994  ]
 [e :U 995 ]
 }
-[; ;main.c: 251: do { LATCbits.LATC1 = 1; } while(0);
-"251
+[; ;main.c: 253: do { LATCbits.LATC1 = 1; } while(0);
+"253
 [e :U 1000 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 999 ]
-[; ;main.c: 253: for(int t=0; t<inter_step_interval_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
-"253
+[; ;main.c: 255: for(int t=0; t<inter_step_interval_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+"255
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
@@ -8787,174 +8807,174 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < -> _t `l _inter_step_interval_ms 1001  ]
 [e :U 1002 ]
 }
-[; ;main.c: 254: return 0;
-"254
+[; ;main.c: 256: return 0;
+"256
 [e ) -> 0 `i ]
 [e $UE 983  ]
-[; ;main.c: 257: }
-"257
+[; ;main.c: 259: }
+"259
 [e :UE 983 ]
 }
-"260
+"262
 [v _calcHeaterPins `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 260: void calcHeaterPins(void){
+[; ;main.c: 262: void calcHeaterPins(void){
 [e :U _calcHeaterPins ]
 [f ]
-[; ;main.c: 261: first_top = moveVector_downs & moveMask;
-"261
-[e = _first_top & _moveVector_downs _moveMask ]
-[; ;main.c: 262: first_bottom = (~moveVector_downs) & moveMask;
-"262
-[e = _first_bottom & ~ _moveVector_downs _moveMask ]
-[; ;main.c: 263: second_top = moveVector_ups & moveMask;
+[; ;main.c: 263: first_top = moveVector_downs & moveMask;
 "263
-[e = _second_top & _moveVector_ups _moveMask ]
-[; ;main.c: 264: second_bottom = (~moveVector_ups) & moveMask;
+[e = _first_top & _moveVector_downs _moveMask ]
+[; ;main.c: 264: first_bottom = (~moveVector_downs) & moveMask;
 "264
-[e = _second_bottom & ~ _moveVector_ups _moveMask ]
-[; ;main.c: 265: }
+[e = _first_bottom & ~ _moveVector_downs _moveMask ]
+[; ;main.c: 265: second_top = moveVector_ups & moveMask;
 "265
+[e = _second_top & _moveVector_ups _moveMask ]
+[; ;main.c: 266: second_bottom = (~moveVector_ups) & moveMask;
+"266
+[e = _second_bottom & ~ _moveVector_ups _moveMask ]
+[; ;main.c: 267: }
+"267
 [e :UE 1005 ]
 }
-"268
+"270
 [v _demoSequence `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 268: void demoSequence(void){
+[; ;main.c: 270: void demoSequence(void){
 [e :U _demoSequence ]
 [f ]
-[; ;main.c: 269: LEDsOn(demoLong, 1);
-"269
-[e ( _LEDsOn (2 , _demoLong -> 1 `i ]
-[; ;main.c: 270: LEDsOn(demoLong, 2);
-"270
-[e ( _LEDsOn (2 , _demoLong -> 2 `i ]
-[; ;main.c: 271: do { LATCbits.LATC1 = 0; } while(0);
+[; ;main.c: 271: LEDsOn(demoLong, 1);
 "271
+[e ( _LEDsOn (2 , _demoLong -> 1 `i ]
+[; ;main.c: 272: LEDsOn(demoLong, 2);
+"272
+[e ( _LEDsOn (2 , _demoLong -> 2 `i ]
+[; ;main.c: 273: do { LATCbits.LATC1 = 0; } while(0);
+"273
 [e :U 1009 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 1008 ]
-[; ;main.c: 272: _delay((unsigned long)((100)*(1000000/4000.0)));
-"272
+[; ;main.c: 274: _delay((unsigned long)((100)*(1000000/4000.0)));
+"274
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;main.c: 273: do { LATCbits.LATC1 = 1; } while(0);
-"273
+[; ;main.c: 275: do { LATCbits.LATC1 = 1; } while(0);
+"275
 [e :U 1012 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 1011 ]
-[; ;main.c: 275: if(demoLong >= 0b10000000000000000000000000000000){
-"275
+[; ;main.c: 277: if(demoLong >= 0b10000000000000000000000000000000){
+"277
 [e $ ! >= _demoLong -> -2147483648 `ul 1013  ]
 {
-[; ;main.c: 276: demoLong = 0x0001;
-"276
-[e = _demoLong -> -> -> 1 `i `l `ul ]
-"277
-}
-[; ;main.c: 277: }
-[e $U 1014  ]
+[; ;main.c: 278: demoLong = 0x0001;
 "278
+[e = _demoLong -> -> -> 1 `i `l `ul ]
+"279
+}
+[; ;main.c: 279: }
+[e $U 1014  ]
+"280
 [e :U 1013 ]
-[; ;main.c: 278: else demoLong <<= 1;
+[; ;main.c: 280: else demoLong <<= 1;
 [e =<< _demoLong -> 1 `i ]
 [e :U 1014 ]
-[; ;main.c: 279: }
-"279
+[; ;main.c: 281: }
+"281
 [e :UE 1006 ]
 }
-"282
+"284
 [v _startRelMove `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 282: int startRelMove(int steps){
+[; ;main.c: 284: int startRelMove(int steps){
 [e :U _startRelMove ]
 [v _steps `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 283: motionType = REL_MOVE;
-"283
-[e = _motionType . `E8788 1 ]
-[; ;main.c: 284: remainingSteps = steps;
-"284
-[e = _remainingSteps -> _steps `l ]
-[; ;main.c: 285: printf("A\n");
+[; ;main.c: 285: motionType = REL_MOVE;
 "285
-[e ( _printf :s 3C ]
-[; ;main.c: 286: return 0;
+[e = _motionType . `E8794 1 ]
+[; ;main.c: 286: remainingSteps = steps;
 "286
+[e = _remainingSteps -> _steps `l ]
+[; ;main.c: 287: printf("A\n");
+"287
+[e ( _printf :s 3C ]
+[; ;main.c: 288: return 0;
+"288
 [e ) -> 0 `i ]
 [e $UE 1015  ]
-[; ;main.c: 287: }
-"287
+[; ;main.c: 289: }
+"289
 [e :UE 1015 ]
 }
-"288
+"290
 [v _startAbsMove `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 288: int startAbsMove(int steps){
+[; ;main.c: 290: int startAbsMove(int steps){
 [e :U _startAbsMove ]
 [v _steps `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 289: motionType = ABS_MOVE;
-"289
-[e = _motionType . `E8788 2 ]
-[; ;main.c: 290: absCommand = steps;
-"290
-[e = _absCommand -> _steps `l ]
-[; ;main.c: 291: printf("A\n");
+[; ;main.c: 291: motionType = ABS_MOVE;
 "291
-[e ( _printf :s 4C ]
-[; ;main.c: 292: return 0;
+[e = _motionType . `E8794 2 ]
+[; ;main.c: 292: absCommand = steps;
 "292
+[e = _absCommand -> _steps `l ]
+[; ;main.c: 293: printf("A\n");
+"293
+[e ( _printf :s 4C ]
+[; ;main.c: 294: return 0;
+"294
 [e ) -> 0 `i ]
 [e $UE 1016  ]
-[; ;main.c: 293: }
-"293
+[; ;main.c: 295: }
+"295
 [e :UE 1016 ]
 }
-"296
+"298
 [v _stop `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 296: int stop(void){
+[; ;main.c: 298: int stop(void){
 [e :U _stop ]
 [f ]
-[; ;main.c: 297: motionType = NONE;
-"297
-[e = _motionType . `E8788 0 ]
-[; ;main.c: 298: moveVector_ups = 0;
-"298
-[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 299: moveVector_downs = 0;
+[; ;main.c: 299: motionType = NONE;
 "299
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 300: remainingSteps = 0;
+[e = _motionType . `E8794 0 ]
+[; ;main.c: 300: moveVector_ups = 0;
 "300
-[e = _remainingSteps -> -> 0 `i `l ]
-[; ;main.c: 301: printf("A\n");
+[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
+[; ;main.c: 301: moveVector_downs = 0;
 "301
-[e ( _printf :s 5C ]
-[; ;main.c: 302: return 0;
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 302: remainingSteps = 0;
 "302
+[e = _remainingSteps -> -> 0 `i `l ]
+[; ;main.c: 303: printf("A\n");
+"303
+[e ( _printf :s 5C ]
+[; ;main.c: 304: return 0;
+"304
 [e ) -> 0 `i ]
 [e $UE 1017  ]
-[; ;main.c: 303: }
-"303
+[; ;main.c: 305: }
+"305
 [e :UE 1017 ]
 }
-"306
+"308
 [v _doAbsMove `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 306: void doAbsMove(void){
+[; ;main.c: 308: void doAbsMove(void){
 [e :U _doAbsMove ]
 [f ]
-"309
+"311
 [v _allThere `i ~T0 @X0 1 a ]
-[; ;main.c: 309: int allThere=1;
+[; ;main.c: 311: int allThere=1;
 [e = _allThere -> 1 `i ]
-[; ;main.c: 310: for(int i=0;i<24;i++){
-"310
+[; ;main.c: 312: for(int i=0;i<24;i++){
+"312
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -8962,51 +8982,51 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1020  ]
 [e :U 1019 ]
 {
-[; ;main.c: 311: if((activeMask & (1UL << i)) > 0)
-"311
+[; ;main.c: 313: if((activeMask & (1UL << i)) > 0)
+"313
 [e $ ! > & _activeMask << -> 1 `ul _i -> -> -> 0 `i `l `ul 1022  ]
-[; ;main.c: 312: allThere &= (currentPositions_steps[i] == absCommand);
-"312
+[; ;main.c: 314: allThere &= (currentPositions_steps[i] == absCommand);
+"314
 [e =& _allThere -> == *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i ]
 [e :U 1022 ]
-"313
+"315
 }
-"310
+"312
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 24 `i 1019  ]
 [e :U 1020 ]
-"313
-}
-[; ;main.c: 313: }
-[; ;main.c: 315: if(allThere){
 "315
+}
+[; ;main.c: 315: }
+[; ;main.c: 317: if(allThere){
+"317
 [e $ ! != _allThere -> 0 `i 1023  ]
 {
-[; ;main.c: 316: printf("abs: all there\n");
-"316
-[e ( _printf :s 6C ]
-[; ;main.c: 317: motionType = NONE;
-"317
-[e = _motionType . `E8788 0 ]
-[; ;main.c: 318: moveVector_ups = 0;
+[; ;main.c: 318: printf("abs: all there\n");
 "318
-[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 319: moveVector_downs = 0;
+[e ( _printf :s 6C ]
+[; ;main.c: 319: motionType = NONE;
 "319
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 320: return;
+[e = _motionType . `E8794 0 ]
+[; ;main.c: 320: moveVector_ups = 0;
 "320
-[e $UE 1018  ]
+[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
+[; ;main.c: 321: moveVector_downs = 0;
 "321
-}
-[; ;main.c: 321: }
-[e $U 1024  ]
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 322: return;
 "322
-[e :U 1023 ]
-[; ;main.c: 322: else{
-{
-[; ;main.c: 323: for(int i=0;i<24;i++){
+[e $UE 1018  ]
 "323
+}
+[; ;main.c: 323: }
+[e $U 1024  ]
+"324
+[e :U 1023 ]
+[; ;main.c: 324: else{
+{
+[; ;main.c: 325: for(int i=0;i<24;i++){
+"325
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -9014,170 +9034,170 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1026  ]
 [e :U 1025 ]
 {
-[; ;main.c: 325: moveVector_ups |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] > absCommand)<<i);
-"325
+[; ;main.c: 327: moveVector_ups |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] > absCommand)<<i);
+"327
 [e =| _moveVector_ups & & _activeMask << -> 1 `ul _i -> -> << -> > *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
-[; ;main.c: 326: moveVector_downs |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] < absCommand)<<i);
-"326
-[e =| _moveVector_downs & & _activeMask << -> 1 `ul _i -> -> << -> < *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
+[; ;main.c: 328: moveVector_downs |= (activeMask & (1UL << i)) & ((currentPositions_steps[i] < absCommand)<<i);
 "328
+[e =| _moveVector_downs & & _activeMask << -> 1 `ul _i -> -> << -> < *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux _absCommand `i _i `l `ul ]
+"330
 }
-"323
+"325
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 24 `i 1025  ]
 [e :U 1026 ]
-"328
+"330
 }
-[; ;main.c: 328: }
-[; ;main.c: 329: doMove();
-"329
-[e ( _doMove ..  ]
-[; ;main.c: 331: for(int i=0;i<24;i++)
+[; ;main.c: 330: }
+[; ;main.c: 331: doMove();
 "331
+[e ( _doMove ..  ]
+[; ;main.c: 333: for(int i=0;i<24;i++)
+"333
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 24 `i 1028  ]
 [e $U 1029  ]
-"332
+"334
 [e :U 1028 ]
-[; ;main.c: 332: currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVector_ups & (1UL << i)) > 0);
+[; ;main.c: 334: currentPositions_steps[i] += ((moveVector_downs & (1UL << i)) > 0) - ((moveVector_ups & (1UL << i)) > 0);
 [e =+ *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> - -> > & _moveVector_downs << -> 1 `ul _i -> -> -> 0 `i `l `ul `i -> > & _moveVector_ups << -> 1 `ul _i -> -> -> 0 `i `l `ul `i `l ]
-"331
+"333
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 24 `i 1028  ]
 [e :U 1029 ]
-"332
-}
 "334
 }
+"336
+}
 [e :U 1024 ]
-[; ;main.c: 334: }
-[; ;main.c: 335: }
-"335
+[; ;main.c: 336: }
+[; ;main.c: 337: }
+"337
 [e :UE 1018 ]
 }
-"338
+"340
 [v _doRelMove `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 338: void doRelMove(void){
+[; ;main.c: 340: void doRelMove(void){
 [e :U _doRelMove ]
 [f ]
-[; ;main.c: 339: if(remainingSteps == 0){
-"339
+[; ;main.c: 341: if(remainingSteps == 0){
+"341
 [e $ ! == _remainingSteps -> -> 0 `i `l 1032  ]
 {
-[; ;main.c: 340: motionType = NONE;
-"340
-[e = _motionType . `E8788 0 ]
-[; ;main.c: 341: moveVector_ups = 0;
-"341
-[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 342: moveVector_downs = 0;
+[; ;main.c: 342: motionType = NONE;
 "342
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 343: return;
+[e = _motionType . `E8794 0 ]
+[; ;main.c: 343: moveVector_ups = 0;
 "343
-[e $UE 1031  ]
+[e = _moveVector_ups -> -> -> 0 `i `l `ul ]
+[; ;main.c: 344: moveVector_downs = 0;
 "344
-}
-[; ;main.c: 344: }
-[e $U 1033  ]
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 345: return;
 "345
-[e :U 1032 ]
-[; ;main.c: 345: else{
-{
+[e $UE 1031  ]
 "346
-[v _j `i ~T0 @X0 1 a ]
-[; ;main.c: 346: int j;
-[; ;main.c: 347: if (remainingSteps > 0){
+}
+[; ;main.c: 346: }
+[e $U 1033  ]
 "347
+[e :U 1032 ]
+[; ;main.c: 347: else{
+{
+"348
+[v _j `i ~T0 @X0 1 a ]
+[; ;main.c: 348: int j;
+[; ;main.c: 349: if (remainingSteps > 0){
+"349
 [e $ ! > _remainingSteps -> -> 0 `i `l 1034  ]
 {
-[; ;main.c: 348: moveVector_ups = 0;
-"348
+[; ;main.c: 350: moveVector_ups = 0;
+"350
 [e = _moveVector_ups -> -> -> 0 `i `l `ul ]
-[; ;main.c: 349: moveVector_downs = activeMask;
-"349
-[e = _moveVector_downs _activeMask ]
-[; ;main.c: 351: doMove();
+[; ;main.c: 351: moveVector_downs = activeMask;
 "351
+[e = _moveVector_downs _activeMask ]
+[; ;main.c: 353: doMove();
+"353
 [e ( _doMove ..  ]
-[; ;main.c: 352: remainingSteps--;
-"352
+[; ;main.c: 354: remainingSteps--;
+"354
 [e -- _remainingSteps -> -> 1 `i `l ]
-[; ;main.c: 355: for(j = 0; j<24; j++)
-"355
+[; ;main.c: 357: for(j = 0; j<24; j++)
+"357
 {
 [e = _j -> 0 `i ]
 [e $ < _j -> 24 `i 1035  ]
 [e $U 1036  ]
-"356
+"358
 [e :U 1035 ]
-[; ;main.c: 356: currentPositions_steps[j] += (activeMask & (1UL<<j) > 0);
+[; ;main.c: 358: currentPositions_steps[j] += (activeMask & (1UL<<j) > 0);
 [e =+ *U + &U _currentPositions_steps * -> -> _j `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> & _activeMask -> -> -> > << -> 1 `ul _j -> -> -> 0 `i `l `ul `i `l `ul `l ]
-"355
+"357
 [e ++ _j -> 1 `i ]
 [e $ < _j -> 24 `i 1035  ]
 [e :U 1036 ]
-"356
-}
 "358
 }
-[; ;main.c: 358: }
-[e $U 1038  ]
-"359
-[e :U 1034 ]
-[; ;main.c: 359: else{
-{
-[; ;main.c: 360: moveVector_ups = activeMask;
 "360
-[e = _moveVector_ups _activeMask ]
-[; ;main.c: 361: moveVector_downs = 0;
+}
+[; ;main.c: 360: }
+[e $U 1038  ]
 "361
-[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
-[; ;main.c: 363: doMove();
+[e :U 1034 ]
+[; ;main.c: 361: else{
+{
+[; ;main.c: 362: moveVector_ups = activeMask;
+"362
+[e = _moveVector_ups _activeMask ]
+[; ;main.c: 363: moveVector_downs = 0;
 "363
-[e ( _doMove ..  ]
-[; ;main.c: 364: remainingSteps++;
-"364
-[e ++ _remainingSteps -> -> 1 `i `l ]
-[; ;main.c: 365: for(j = 0; j<24; j++)
+[e = _moveVector_downs -> -> -> 0 `i `l `ul ]
+[; ;main.c: 365: doMove();
 "365
+[e ( _doMove ..  ]
+[; ;main.c: 366: remainingSteps++;
+"366
+[e ++ _remainingSteps -> -> 1 `i `l ]
+[; ;main.c: 367: for(j = 0; j<24; j++)
+"367
 {
 [e = _j -> 0 `i ]
 [e $ < _j -> 24 `i 1039  ]
 [e $U 1040  ]
-"366
+"368
 [e :U 1039 ]
-[; ;main.c: 366: currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
+[; ;main.c: 368: currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
 [e =- *U + &U _currentPositions_steps * -> -> _j `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> & _activeMask -> -> -> > << -> 1 `ul _j -> -> -> 0 `i `l `ul `i `l `ul `l ]
-"365
+"367
 [e ++ _j -> 1 `i ]
 [e $ < _j -> 24 `i 1039  ]
 [e :U 1040 ]
-"366
-}
 "368
 }
+"370
+}
 [e :U 1038 ]
-"369
+"371
 }
 [e :U 1033 ]
-[; ;main.c: 368: }
-[; ;main.c: 369: }
 [; ;main.c: 370: }
-"370
+[; ;main.c: 371: }
+[; ;main.c: 372: }
+"372
 [e :UE 1031 ]
 }
-"373
+"375
 [v _zeroPosition `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 373: int zeroPosition(void){
+[; ;main.c: 375: int zeroPosition(void){
 [e :U _zeroPosition ]
 [f ]
-[; ;main.c: 374: for(int i = 0; i<24; i++){
-"374
+[; ;main.c: 376: for(int i = 0; i<24; i++){
+"376
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -9185,420 +9205,426 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1044  ]
 [e :U 1043 ]
 {
-[; ;main.c: 375: if((activeMask & (1UL << i)) > 0)
-"375
+[; ;main.c: 377: if((activeMask & (1UL << i)) > 0)
+"377
 [e $ ! > & _activeMask << -> 1 `ul _i -> -> -> 0 `i `l `ul 1046  ]
-[; ;main.c: 376: currentPositions_steps[i]=0;
-"376
+[; ;main.c: 378: currentPositions_steps[i]=0;
+"378
 [e = *U + &U _currentPositions_steps * -> -> _i `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux -> -> 0 `i `l ]
 [e :U 1046 ]
-"377
+"379
 }
-"374
+"376
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 24 `i 1043  ]
 [e :U 1044 ]
-"377
-}
-[; ;main.c: 377: }
-[; ;main.c: 378: printf("A\n");
-"378
-[e ( _printf :s 7C ]
-[; ;main.c: 379: return 0;
 "379
+}
+[; ;main.c: 379: }
+[; ;main.c: 380: printf("A\n");
+"380
+[e ( _printf :s 7C ]
+[; ;main.c: 381: return 0;
+"381
 [e ) -> 0 `i ]
 [e $UE 1042  ]
-[; ;main.c: 380: }
-"380
+[; ;main.c: 382: }
+"382
 [e :UE 1042 ]
 }
-"383
+"385
 [v _getPosition `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 383: int getPosition(int a){
+[; ;main.c: 385: int getPosition(int a){
 [e :U _getPosition ]
 [v _a `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 385: if (a>=0 && a < 24){
-"385
+[; ;main.c: 387: if (a>=0 && a < 24){
+"387
 [e $ ! && >= _a -> 0 `i < _a -> 24 `i 1048  ]
 {
-[; ;main.c: 386: printf("%d\n", currentPositions_steps[a]);
-"386
+[; ;main.c: 388: printf("%d\n", currentPositions_steps[a]);
+"388
 [e ( _printf , (. :s 8C *U + &U _currentPositions_steps * -> -> _a `ui `ux -> -> # *U &U _currentPositions_steps `ui `ux ]
-[; ;main.c: 387: return 0;
-"387
+[; ;main.c: 389: return 0;
+"389
 [e ) -> 0 `i ]
 [e $UE 1047  ]
-"388
+"390
 }
 [e :U 1048 ]
-[; ;main.c: 388: }
-[; ;main.c: 390: return 1;
-"390
+[; ;main.c: 390: }
+[; ;main.c: 392: return 1;
+"392
 [e ) -> 1 `i ]
 [e $UE 1047  ]
-[; ;main.c: 391: }
-"391
+[; ;main.c: 393: }
+"393
 [e :UE 1047 ]
 }
-"394
+"396
 [v _setDrvPeak `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 394: int setDrvPeak(int pk){
+[; ;main.c: 396: int setDrvPeak(int pk){
 [e :U _setDrvPeak ]
 [v _pk `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 395: drv_peak_val = pk;
-"395
-[e = _drv_peak_val _pk ]
-[; ;main.c: 396: printf("A\n");
-"396
-[e ( _printf :s 9C ]
-[; ;main.c: 397: return 0;
+[; ;main.c: 397: drv_peak_val = pk;
 "397
+[e = _drv_peak_val _pk ]
+[; ;main.c: 398: calcUpstroke(drv_peak_val);
+"398
+[e ( _calcUpstroke (1 _drv_peak_val ]
+[; ;main.c: 399: calcDownstroke(drv_peak_val);
+"399
+[e ( _calcDownstroke (1 _drv_peak_val ]
+[; ;main.c: 400: printf("A\n");
+"400
+[e ( _printf :s 9C ]
+[; ;main.c: 401: return 0;
+"401
 [e ) -> 0 `i ]
 [e $UE 1049  ]
-[; ;main.c: 398: };
-"398
+[; ;main.c: 402: };
+"402
 [e :UE 1049 ]
 }
-"401
+"405
 [v _setDrvGain `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 401: int setDrvGain(int gain){
+[; ;main.c: 405: int setDrvGain(int gain){
 [e :U _setDrvGain ]
 [v _gain `i ~T0 @X0 1 r1 ]
 [f ]
-"402
+"406
 [v _setGain `i ~T0 @X0 1 a ]
-[; ;main.c: 402: int setGain = 0;
+[; ;main.c: 406: int setGain = 0;
 [e = _setGain -> 0 `i ]
-[; ;main.c: 403: switch (gain){
-"403
+[; ;main.c: 407: switch (gain){
+"407
 [e $U 1052  ]
 {
-[; ;main.c: 404: case 0: setGain = 0x00; break;
-"404
+[; ;main.c: 408: case 0: setGain = 0x00; break;
+"408
 [e :U 1053 ]
 [e = _setGain -> 0 `i ]
 [e $U 1051  ]
-[; ;main.c: 405: case 1: setGain = 0x01; break;
-"405
+[; ;main.c: 409: case 1: setGain = 0x01; break;
+"409
 [e :U 1054 ]
 [e = _setGain -> 1 `i ]
 [e $U 1051  ]
-[; ;main.c: 406: case 2: setGain = 0x02; break;
-"406
+[; ;main.c: 410: case 2: setGain = 0x02; break;
+"410
 [e :U 1055 ]
 [e = _setGain -> 2 `i ]
 [e $U 1051  ]
-[; ;main.c: 407: case 3: setGain = 0x03; break;
-"407
+[; ;main.c: 411: case 3: setGain = 0x03; break;
+"411
 [e :U 1056 ]
 [e = _setGain -> 3 `i ]
 [e $U 1051  ]
-[; ;main.c: 408: default: printf("E\n"); return 1;
-"408
+[; ;main.c: 412: default: printf("E\n"); return 1;
+"412
 [e :U 1057 ]
 [e ( _printf :s 10C ]
 [e ) -> 1 `i ]
 [e $UE 1050  ]
-"409
+"413
 }
-[; ;main.c: 409: }
+[; ;main.c: 413: }
 [e $U 1051  ]
-"403
+"407
 [e :U 1052 ]
 [e [\ _gain , $ -> 0 `i 1053
  , $ -> 1 `i 1054
  , $ -> 2 `i 1055
  , $ -> 3 `i 1056
  1057 ]
-"409
+"413
 [e :U 1051 ]
-[; ;main.c: 410: drv_write(0x01, setGain);
-"410
+[; ;main.c: 414: drv_write(0x01, setGain);
+"414
 [e ( _drv_write (2 , -> -> 1 `i `uc -> _setGain `uc ]
-[; ;main.c: 411: printf("A\n");
-"411
+[; ;main.c: 415: printf("A\n");
+"415
 [e ( _printf :s 11C ]
-[; ;main.c: 412: return 0;
-"412
+[; ;main.c: 416: return 0;
+"416
 [e ) -> 0 `i ]
 [e $UE 1050  ]
-[; ;main.c: 413: };
-"413
+[; ;main.c: 417: };
+"417
 [e :UE 1050 ]
 }
-"415
+"419
 [v _setDrvPiezoOnTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 415: int setDrvPiezoOnTime(int t){
+[; ;main.c: 419: int setDrvPiezoOnTime(int t){
 [e :U _setDrvPiezoOnTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 416: piezo_on_time_ms = t;
-"416
+[; ;main.c: 420: piezo_on_time_ms = t;
+"420
 [e = _piezo_on_time_ms _t ]
-[; ;main.c: 417: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
-"417
+[; ;main.c: 421: TMR0_Load8bitPeriod(((piezo_on_time_ms-heater_pre_time_ms)*TMR0_RANGE)-1);
+"421
 [e ( _TMR0_Load8bitPeriod (1 -> - * -> - _piezo_on_time_ms _heater_pre_time_ms `f _TMR0_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 418: printf("A\n");
-"418
+[; ;main.c: 422: printf("A\n");
+"422
 [e ( _printf :s 12C ]
-[; ;main.c: 419: return 0;
-"419
+[; ;main.c: 423: return 0;
+"423
 [e ) -> 0 `i ]
 [e $UE 1058  ]
-[; ;main.c: 420: };
-"420
+[; ;main.c: 424: };
+"424
 [e :UE 1058 ]
 }
-"426
+"430
 [v _setHeaterPreTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 426: int setHeaterPreTime(int t){
+[; ;main.c: 430: int setHeaterPreTime(int t){
 [e :U _setHeaterPreTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 427: heater_pre_time_ms = t;
-"427
+[; ;main.c: 431: heater_pre_time_ms = t;
+"431
 [e = _heater_pre_time_ms _t ]
-[; ;main.c: 429: printf("A\n");
-"429
+[; ;main.c: 433: printf("A\n");
+"433
 [e ( _printf :s 13C ]
-[; ;main.c: 430: return 0;
-"430
+[; ;main.c: 434: return 0;
+"434
 [e ) -> 0 `i ]
 [e $UE 1059  ]
-[; ;main.c: 431: };
-"431
+[; ;main.c: 435: };
+"435
 [e :UE 1059 ]
 }
-"432
+"436
 [v _setHeaterPostTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 432: int setHeaterPostTime(int t){
+[; ;main.c: 436: int setHeaterPostTime(int t){
 [e :U _setHeaterPostTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 433: heater_post_time_ms = t;
-"433
+[; ;main.c: 437: heater_post_time_ms = t;
+"437
 [e = _heater_post_time_ms _t ]
-[; ;main.c: 435: printf("A\n");
-"435
+[; ;main.c: 439: printf("A\n");
+"439
 [e ( _printf :s 14C ]
-[; ;main.c: 436: return 0;
-"436
+[; ;main.c: 440: return 0;
+"440
 [e ) -> 0 `i ]
 [e $UE 1060  ]
-[; ;main.c: 437: };
-"437
+[; ;main.c: 441: };
+"441
 [e :UE 1060 ]
 }
-"440
+"444
 [v _setH1OffTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 440: int setH1OffTime(int t){
+[; ;main.c: 444: int setH1OffTime(int t){
 [e :U _setH1OffTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 441: TMR2_LoadPeriodRegister((t*TMR2_RANGE)-1);
-"441
+[; ;main.c: 445: TMR2_LoadPeriodRegister((t*TMR2_RANGE)-1);
+"445
 [e ( _TMR2_LoadPeriodRegister (1 -> - * -> _t `f _TMR2_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 442: printf("A\n");
-"442
+[; ;main.c: 446: printf("A\n");
+"446
 [e ( _printf :s 15C ]
-[; ;main.c: 443: return 0;
-"443
+[; ;main.c: 447: return 0;
+"447
 [e ) -> 0 `i ]
 [e $UE 1061  ]
-[; ;main.c: 444: }
-"444
+[; ;main.c: 448: }
+"448
 [e :UE 1061 ]
 }
-"447
+"451
 [v _setH2OnTime `(i ~T0 @X0 1 ef1`i ]
 {
-[; ;main.c: 447: int setH2OnTime(int t){
+[; ;main.c: 451: int setH2OnTime(int t){
 [e :U _setH2OnTime ]
 [v _t `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;main.c: 448: TMR0_Load8bitPeriod((t*TMR0_RANGE)-1);
-"448
+[; ;main.c: 452: TMR0_Load8bitPeriod((t*TMR0_RANGE)-1);
+"452
 [e ( _TMR0_Load8bitPeriod (1 -> - * -> _t `f _TMR0_RANGE -> -> 1 `i `f `uc ]
-[; ;main.c: 449: printf("A\n");
-"449
+[; ;main.c: 453: printf("A\n");
+"453
 [e ( _printf :s 16C ]
-[; ;main.c: 450: return 0;
-"450
+[; ;main.c: 454: return 0;
+"454
 [e ) -> 0 `i ]
 [e $UE 1062  ]
-[; ;main.c: 451: }
-"451
+[; ;main.c: 455: }
+"455
 [e :UE 1062 ]
 }
-"456
+"460
 [v _setLEDBrightnessRange `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 456: int setLEDBrightnessRange(int r, int tOB){
+[; ;main.c: 460: int setLEDBrightnessRange(int r, int tOB){
 [e :U _setLEDBrightnessRange ]
 [v _r `i ~T0 @X0 1 r1 ]
 [v _tOB `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 457: LED_setBrightnessRange(r, tOB);
-"457
+[; ;main.c: 461: LED_setBrightnessRange(r, tOB);
+"461
 [e ( _LED_setBrightnessRange (2 , _r _tOB ]
-[; ;main.c: 458: printf("A\n");
-"458
+[; ;main.c: 462: printf("A\n");
+"462
 [e ( _printf :s 17C ]
-[; ;main.c: 459: return 0;
-"459
+[; ;main.c: 463: return 0;
+"463
 [e ) -> 0 `i ]
 [e $UE 1063  ]
-[; ;main.c: 460: };
-"460
+[; ;main.c: 464: };
+"464
 [e :UE 1063 ]
 }
-"464
+"468
 [v _setLEDPwr `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 464: int setLEDPwr(int pwr, int topOrBottom){
+[; ;main.c: 468: int setLEDPwr(int pwr, int topOrBottom){
 [e :U _setLEDPwr ]
 [v _pwr `i ~T0 @X0 1 r1 ]
 [v _topOrBottom `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 465: LEDsPwr(pwr, topOrBottom);
-"465
+[; ;main.c: 469: LEDsPwr(pwr, topOrBottom);
+"469
 [e ( _LEDsPwr (2 , _pwr _topOrBottom ]
-[; ;main.c: 466: printf("A\n");
-"466
+[; ;main.c: 470: printf("A\n");
+"470
 [e ( _printf :s 18C ]
-[; ;main.c: 467: return 0;
-"467
+[; ;main.c: 471: return 0;
+"471
 [e ) -> 0 `i ]
 [e $UE 1064  ]
-[; ;main.c: 468: };
-"468
+[; ;main.c: 472: };
+"472
 [e :UE 1064 ]
 }
-"473
+"477
 [v _setHeaterToggle `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 473: int setHeaterToggle(int num, int topOrB){
+[; ;main.c: 477: int setHeaterToggle(int num, int topOrB){
 [e :U _setHeaterToggle ]
 [v _num `i ~T0 @X0 1 r1 ]
 [v _topOrB `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 474: do { LATCbits.LATC1 = 0; } while(0);
-"474
+[; ;main.c: 478: do { LATCbits.LATC1 = 0; } while(0);
+"478
 [e :U 1068 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 1067 ]
-[; ;main.c: 475: if(topOrB == 1){
-"475
+[; ;main.c: 479: if(topOrB == 1){
+"479
 [e $ ! == _topOrB -> 1 `i 1069  ]
 {
-[; ;main.c: 476: demoHeaterToggle_top ^= 1UL << num;
-"476
-[e =^ _demoHeaterToggle_top << -> 1 `ul _num ]
-[; ;main.c: 477: LEDsOn(demoHeaterToggle_top, 1);
-"477
-[e ( _LEDsOn (2 , _demoHeaterToggle_top -> 1 `i ]
-"478
-}
-[; ;main.c: 478: }
-[e $U 1070  ]
-"479
-[e :U 1069 ]
-[; ;main.c: 479: else if (topOrB == 2){
-[e $ ! == _topOrB -> 2 `i 1071  ]
-{
-[; ;main.c: 480: demoHeaterToggle_bot ^= 1UL << num;
+[; ;main.c: 480: demoHeaterToggle_top ^= 1UL << num;
 "480
-[e =^ _demoHeaterToggle_bot << -> 1 `ul _num ]
-[; ;main.c: 481: LEDsOn(demoHeaterToggle_bot, 2);
+[e =^ _demoHeaterToggle_top << -> 1 `ul _num ]
+[; ;main.c: 481: LEDsOn(demoHeaterToggle_top, 1);
 "481
-[e ( _LEDsOn (2 , _demoHeaterToggle_bot -> 2 `i ]
+[e ( _LEDsOn (2 , _demoHeaterToggle_top -> 1 `i ]
 "482
 }
-[e :U 1071 ]
-"484
-[e :U 1070 ]
 [; ;main.c: 482: }
-[; ;main.c: 484: printf("A\n");
-[e ( _printf :s 19C ]
-[; ;main.c: 485: return 0;
+[e $U 1070  ]
+"483
+[e :U 1069 ]
+[; ;main.c: 483: else if (topOrB == 2){
+[e $ ! == _topOrB -> 2 `i 1071  ]
+{
+[; ;main.c: 484: demoHeaterToggle_bot ^= 1UL << num;
+"484
+[e =^ _demoHeaterToggle_bot << -> 1 `ul _num ]
+[; ;main.c: 485: LEDsOn(demoHeaterToggle_bot, 2);
 "485
+[e ( _LEDsOn (2 , _demoHeaterToggle_bot -> 2 `i ]
+"486
+}
+[e :U 1071 ]
+"488
+[e :U 1070 ]
+[; ;main.c: 486: }
+[; ;main.c: 488: printf("A\n");
+[e ( _printf :s 19C ]
+[; ;main.c: 489: return 0;
+"489
 [e ) -> 0 `i ]
 [e $UE 1065  ]
-[; ;main.c: 486: };
-"486
+[; ;main.c: 490: };
+"490
 [e :UE 1065 ]
 }
-"491
+"495
 [v _timedActiveHeatOn `(i ~T0 @X0 1 ef2`l`i ]
 {
-[; ;main.c: 491: int timedActiveHeatOn(long onTime, int topOrBorBoth){
+[; ;main.c: 495: int timedActiveHeatOn(long onTime, int topOrBorBoth){
 [e :U _timedActiveHeatOn ]
 [v _onTime `l ~T0 @X0 1 r1 ]
 [v _topOrBorBoth `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 492: _delay((unsigned long)((2000)*(1000000/4000.0)));
-"492
+[; ;main.c: 496: _delay((unsigned long)((2000)*(1000000/4000.0)));
+"496
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 1000000 `l `d .4000.0 `ul ]
-[; ;main.c: 493: do { LATCbits.LATC1 = 0; } while(0);
-"493
+[; ;main.c: 497: do { LATCbits.LATC1 = 0; } while(0);
+"497
 [e :U 1075 ]
 {
 [e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
 }
 [e :U 1074 ]
-[; ;main.c: 494: if(topOrBorBoth == 1){
-"494
+[; ;main.c: 498: if(topOrBorBoth == 1){
+"498
 [e $ ! == _topOrBorBoth -> 1 `i 1076  ]
 {
-[; ;main.c: 495: LEDsOn(activeMask, 1);
-"495
+[; ;main.c: 499: LEDsOn(activeMask, 1);
+"499
 [e ( _LEDsOn (2 , _activeMask -> 1 `i ]
-"496
+"500
 }
-[; ;main.c: 496: }
+[; ;main.c: 500: }
 [e $U 1077  ]
-"497
+"501
 [e :U 1076 ]
-[; ;main.c: 497: else if (topOrBorBoth == 2){
+[; ;main.c: 501: else if (topOrBorBoth == 2){
 [e $ ! == _topOrBorBoth -> 2 `i 1078  ]
 {
-[; ;main.c: 498: LEDsOn(activeMask, 2);
-"498
-[e ( _LEDsOn (2 , _activeMask -> 2 `i ]
-"499
-}
-[; ;main.c: 499: }
-[e $U 1079  ]
-"500
-[e :U 1078 ]
-[; ;main.c: 500: else if (topOrBorBoth == 3){
-[e $ ! == _topOrBorBoth -> 3 `i 1080  ]
-{
-[; ;main.c: 501: LEDsOn(activeMask, 1);
-"501
-[e ( _LEDsOn (2 , _activeMask -> 1 `i ]
 [; ;main.c: 502: LEDsOn(activeMask, 2);
 "502
 [e ( _LEDsOn (2 , _activeMask -> 2 `i ]
 "503
 }
-[e :U 1080 ]
+[; ;main.c: 503: }
+[e $U 1079  ]
+"504
+[e :U 1078 ]
+[; ;main.c: 504: else if (topOrBorBoth == 3){
+[e $ ! == _topOrBorBoth -> 3 `i 1080  ]
+{
+[; ;main.c: 505: LEDsOn(activeMask, 1);
 "505
+[e ( _LEDsOn (2 , _activeMask -> 1 `i ]
+[; ;main.c: 506: LEDsOn(activeMask, 2);
+"506
+[e ( _LEDsOn (2 , _activeMask -> 2 `i ]
+"507
+}
+[e :U 1080 ]
+"509
 [e :U 1079 ]
 [e :U 1077 ]
-[; ;main.c: 503: }
-[; ;main.c: 505: for(int t=0; t<onTime; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
+[; ;main.c: 507: }
+[; ;main.c: 509: for(int t=0; t<onTime; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 {
 [v _t `i ~T0 @X0 1 a ]
 [e = _t -> 0 `i ]
@@ -9610,134 +9636,134 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < -> _t `l _onTime 1081  ]
 [e :U 1082 ]
 }
-[; ;main.c: 506: do { LATCbits.LATC1 = 1; } while(0);
-"506
+[; ;main.c: 510: do { LATCbits.LATC1 = 1; } while(0);
+"510
 [e :U 1087 ]
 {
 [e = . . _LATCbits 0 1 -> -> 1 `i `uc ]
 }
 [e :U 1086 ]
-[; ;main.c: 507: LEDsOn(0, 1);
-"507
+[; ;main.c: 511: LEDsOn(0, 1);
+"511
 [e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul -> 1 `i ]
-[; ;main.c: 508: LEDsOn(0, 2);
-"508
+[; ;main.c: 512: LEDsOn(0, 2);
+"512
 [e ( _LEDsOn (2 , -> -> -> 0 `i `l `ul -> 2 `i ]
-[; ;main.c: 509: printf("A\n");
-"509
+[; ;main.c: 513: printf("A\n");
+"513
 [e ( _printf :s 20C ]
-[; ;main.c: 510: return 0;
-"510
+[; ;main.c: 514: return 0;
+"514
 [e ) -> 0 `i ]
 [e $UE 1072  ]
-[; ;main.c: 512: };
-"512
+[; ;main.c: 516: };
+"516
 [e :UE 1072 ]
 }
-"518
+"522
 [v _setActive `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 518: int setActive(int probeNum, int onOff){
+[; ;main.c: 522: int setActive(int probeNum, int onOff){
 [e :U _setActive ]
 [v _probeNum `i ~T0 @X0 1 r1 ]
 [v _onOff `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 521: if(moveMask & 1UL << probeNum){
-"521
+[; ;main.c: 525: if(moveMask & 1UL << probeNum){
+"525
 [e $ ! != & _moveMask << -> 1 `ul _probeNum -> -> 0 `i `ul 1089  ]
 {
-[; ;main.c: 522: if (onOff)
-"522
+[; ;main.c: 526: if (onOff)
+"526
 [e $ ! != _onOff -> 0 `i 1090  ]
-[; ;main.c: 523: activeMask |= 1UL << probeNum;
-"523
+[; ;main.c: 527: activeMask |= 1UL << probeNum;
+"527
 [e =| _activeMask << -> 1 `ul _probeNum ]
 [e $U 1091  ]
-"524
+"528
 [e :U 1090 ]
-[; ;main.c: 524: else
-[; ;main.c: 525: activeMask &= ~(1UL << probeNum);
-"525
+[; ;main.c: 528: else
+[; ;main.c: 529: activeMask &= ~(1UL << probeNum);
+"529
 [e =& _activeMask ~ << -> 1 `ul _probeNum ]
 [e :U 1091 ]
-[; ;main.c: 526: printf("A\n");
-"526
+[; ;main.c: 530: printf("A\n");
+"530
 [e ( _printf :s 21C ]
-[; ;main.c: 527: return 0;
-"527
+[; ;main.c: 531: return 0;
+"531
 [e ) -> 0 `i ]
 [e $UE 1088  ]
-"528
+"532
 }
 [e :U 1089 ]
-[; ;main.c: 528: }
-[; ;main.c: 529: printf("E\n");
-"529
+[; ;main.c: 532: }
+[; ;main.c: 533: printf("E\n");
+"533
 [e ( _printf :s 22C ]
-[; ;main.c: 530: return 1;
-"530
+[; ;main.c: 534: return 1;
+"534
 [e ) -> 1 `i ]
 [e $UE 1088  ]
-[; ;main.c: 531: }
-"531
+[; ;main.c: 535: }
+"535
 [e :UE 1088 ]
 }
-"533
+"537
 [v _setMoveMask `(i ~T0 @X0 1 ef2`i`i ]
 {
-[; ;main.c: 533: int setMoveMask(int probeNum, int onOff){
+[; ;main.c: 537: int setMoveMask(int probeNum, int onOff){
 [e :U _setMoveMask ]
 [v _probeNum `i ~T0 @X0 1 r1 ]
 [v _onOff `i ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 537: if (probeNum < 24){
-"537
+[; ;main.c: 541: if (probeNum < 24){
+"541
 [e $ ! < _probeNum -> 24 `i 1093  ]
 {
-[; ;main.c: 538: if (onOff)
-"538
+[; ;main.c: 542: if (onOff)
+"542
 [e $ ! != _onOff -> 0 `i 1094  ]
-[; ;main.c: 539: moveMask |= (1UL<<probeNum);
-"539
+[; ;main.c: 543: moveMask |= (1UL<<probeNum);
+"543
 [e =| _moveMask << -> 1 `ul _probeNum ]
 [e $U 1095  ]
-"540
+"544
 [e :U 1094 ]
-[; ;main.c: 540: else
-[; ;main.c: 541: moveMask &= ~(1UL<< probeNum);
-"541
+[; ;main.c: 544: else
+[; ;main.c: 545: moveMask &= ~(1UL<< probeNum);
+"545
 [e =& _moveMask ~ << -> 1 `ul _probeNum ]
 [e :U 1095 ]
-[; ;main.c: 542: printf("A\n");
-"542
+[; ;main.c: 546: printf("A\n");
+"546
 [e ( _printf :s 23C ]
-[; ;main.c: 543: return 0;
-"543
+[; ;main.c: 547: return 0;
+"547
 [e ) -> 0 `i ]
 [e $UE 1092  ]
-"544
+"548
 }
 [e :U 1093 ]
-[; ;main.c: 544: }
-[; ;main.c: 545: printf("E\n");
-"545
+[; ;main.c: 548: }
+[; ;main.c: 549: printf("E\n");
+"549
 [e ( _printf :s 24C ]
-[; ;main.c: 546: return 1;
-"546
+[; ;main.c: 550: return 1;
+"550
 [e ) -> 1 `i ]
 [e $UE 1092  ]
-[; ;main.c: 547: }
-"547
+[; ;main.c: 551: }
+"551
 [e :UE 1092 ]
 }
-"550
+"554
 [v _getActive `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 550: int getActive(void){
+[; ;main.c: 554: int getActive(void){
 [e :U _getActive ]
 [f ]
-[; ;main.c: 551: for(int i=24-1; i>=0; i--){
-"551
+[; ;main.c: 555: for(int i=24-1; i>=0; i--){
+"555
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i - -> 24 `i -> 1 `i ]
@@ -9745,37 +9771,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1098  ]
 [e :U 1097 ]
 {
-[; ;main.c: 552: printf("%d ", (activeMask >> i) & 1 );
-"552
+[; ;main.c: 556: printf("%d ", (activeMask >> i) & 1 );
+"556
 [e ( _printf , (. :s 25C & >> _activeMask _i -> -> -> 1 `i `l `ul ]
-"553
+"557
 }
-"551
+"555
 [e -- _i -> 1 `i ]
 [e $ >= _i -> 0 `i 1097  ]
 [e :U 1098 ]
-"553
+"557
 }
-[; ;main.c: 553: }
-[; ;main.c: 554: printf("\n");
-"554
+[; ;main.c: 557: }
+[; ;main.c: 558: printf("\n");
+"558
 [e ( _printf :s 26C ]
-[; ;main.c: 555: return 0;
-"555
+[; ;main.c: 559: return 0;
+"559
 [e ) -> 0 `i ]
 [e $UE 1096  ]
-[; ;main.c: 556: }
-"556
+[; ;main.c: 560: }
+"560
 [e :UE 1096 ]
 }
-"558
+"562
 [v _getMoveMask `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 558: int getMoveMask(void){
+[; ;main.c: 562: int getMoveMask(void){
 [e :U _getMoveMask ]
 [f ]
-[; ;main.c: 559: for(int i=24-1; i>=0; i--){
-"559
+[; ;main.c: 563: for(int i=24-1; i>=0; i--){
+"563
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i - -> 24 `i -> 1 `i ]
@@ -9783,158 +9809,158 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1102  ]
 [e :U 1101 ]
 {
-[; ;main.c: 560: printf("%d ", (moveMask >> i) & 1 );
-"560
+[; ;main.c: 564: printf("%d ", (moveMask >> i) & 1 );
+"564
 [e ( _printf , (. :s 27C & >> _moveMask _i -> -> -> 1 `i `l `ul ]
-"561
+"565
 }
-"559
+"563
 [e -- _i -> 1 `i ]
 [e $ >= _i -> 0 `i 1101  ]
 [e :U 1102 ]
-"561
+"565
 }
-[; ;main.c: 561: }
-[; ;main.c: 562: printf("\n");
-"562
+[; ;main.c: 565: }
+[; ;main.c: 566: printf("\n");
+"566
 [e ( _printf :s 28C ]
-[; ;main.c: 563: return 0;
-"563
+[; ;main.c: 567: return 0;
+"567
 [e ) -> 0 `i ]
 [e $UE 1100  ]
-[; ;main.c: 564: };
-"564
+[; ;main.c: 568: };
+"568
 [e :UE 1100 ]
 }
-"565
+"569
 [v _getMotionStatus `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 565: int getMotionStatus(void){
+[; ;main.c: 569: int getMotionStatus(void){
 [e :U _getMotionStatus ]
 [f ]
-[; ;main.c: 566: switch(motionType){
-"566
+[; ;main.c: 570: switch(motionType){
+"570
 [e $U 1106  ]
 {
-[; ;main.c: 567: case REL_MOVE: printf("R\n"); break;
-"567
+[; ;main.c: 571: case REL_MOVE: printf("R\n"); break;
+"571
 [e :U 1107 ]
 [e ( _printf :s 29C ]
 [e $U 1105  ]
-[; ;main.c: 568: case ABS_MOVE: printf("A\n"); break;
-"568
+[; ;main.c: 572: case ABS_MOVE: printf("A\n"); break;
+"572
 [e :U 1108 ]
 [e ( _printf :s 30C ]
 [e $U 1105  ]
-[; ;main.c: 569: default: printf("N\n"); break;
-"569
+[; ;main.c: 573: default: printf("N\n"); break;
+"573
 [e :U 1109 ]
 [e ( _printf :s 31C ]
 [e $U 1105  ]
-"570
+"574
 }
-[; ;main.c: 570: }
+[; ;main.c: 574: }
 [e $U 1105  ]
-"566
-[e :U 1106 ]
-[e [\ _motionType , $ . `E8788 1 1107
- , $ . `E8788 2 1108
- 1109 ]
 "570
+[e :U 1106 ]
+[e [\ _motionType , $ . `E8794 1 1107
+ , $ . `E8794 2 1108
+ 1109 ]
+"574
 [e :U 1105 ]
-[; ;main.c: 571: };
-"571
+[; ;main.c: 575: };
+"575
 [e :UE 1104 ]
 }
-"573
+"577
 [v _commCheck `(i ~T0 @X0 1 ef ]
 {
-[; ;main.c: 573: int commCheck(void){
+[; ;main.c: 577: int commCheck(void){
 [e :U _commCheck ]
 [f ]
-[; ;main.c: 574: printf("\n----starting comm test----\n\n");
-"574
-[e ( _printf :s 32C ]
-[; ;main.c: 577: printf("testing top LED driver...");
-"577
-[e ( _printf :s 33C ]
-[; ;main.c: 578: if (!LED_testComm(1))
+[; ;main.c: 578: printf("\n----starting comm test----\n\n");
 "578
+[e ( _printf :s 32C ]
+[; ;main.c: 581: printf("testing top LED driver...");
+"581
+[e ( _printf :s 33C ]
+[; ;main.c: 582: if (!LED_testComm(1))
+"582
 [e $ ! ! != ( _LED_testComm (1 -> 1 `i -> 0 `i 1111  ]
-[; ;main.c: 579: printf("passed\n");
-"579
+[; ;main.c: 583: printf("passed\n");
+"583
 [e ( _printf :s 34C ]
 [e $U 1112  ]
-"580
+"584
 [e :U 1111 ]
-[; ;main.c: 580: else
-[; ;main.c: 581: printf("FAILED\n");
-"581
+[; ;main.c: 584: else
+[; ;main.c: 585: printf("FAILED\n");
+"585
 [e ( _printf :s 35C ]
 [e :U 1112 ]
-[; ;main.c: 583: printf("opens: ");
-"583
+[; ;main.c: 587: printf("opens: ");
+"587
 [e ( _printf :s 36C ]
-[; ;main.c: 584: LED_test_openshort(10, 1);
-"584
+[; ;main.c: 588: LED_test_openshort(10, 1);
+"588
 [e ( _LED_test_openshort (2 , -> 10 `i -> 1 `i ]
-[; ;main.c: 585: printf("\n\nshorts: ");
-"585
-[e ( _printf :s 37C ]
-[; ;main.c: 586: LED_test_openshort(11, 1);
-"586
-[e ( _LED_test_openshort (2 , -> 11 `i -> 1 `i ]
-[; ;main.c: 589: printf("\ntesting bottom LED driver...\n");
+[; ;main.c: 589: printf("\n\nshorts: ");
 "589
-[e ( _printf :s 38C ]
-[; ;main.c: 590: if (!LED_testComm(2))
+[e ( _printf :s 37C ]
+[; ;main.c: 590: LED_test_openshort(11, 1);
 "590
+[e ( _LED_test_openshort (2 , -> 11 `i -> 1 `i ]
+[; ;main.c: 593: printf("\ntesting bottom LED driver...\n");
+"593
+[e ( _printf :s 38C ]
+[; ;main.c: 594: if (!LED_testComm(2))
+"594
 [e $ ! ! != ( _LED_testComm (1 -> 2 `i -> 0 `i 1113  ]
-[; ;main.c: 591: printf("passed\n");
-"591
+[; ;main.c: 595: printf("passed\n");
+"595
 [e ( _printf :s 39C ]
 [e $U 1114  ]
-"592
+"596
 [e :U 1113 ]
-[; ;main.c: 592: else
-[; ;main.c: 593: printf("FAILED\n");
-"593
+[; ;main.c: 596: else
+[; ;main.c: 597: printf("FAILED\n");
+"597
 [e ( _printf :s 40C ]
 [e :U 1114 ]
-[; ;main.c: 595: printf("opens: ");
-"595
+[; ;main.c: 599: printf("opens: ");
+"599
 [e ( _printf :s 41C ]
-[; ;main.c: 596: LED_test_openshort(10, 2);
-"596
-[e ( _LED_test_openshort (2 , -> 10 `i -> 2 `i ]
-[; ;main.c: 597: printf("\n\nshorts: ");
-"597
-[e ( _printf :s 42C ]
-[; ;main.c: 598: LED_test_openshort(11, 2);
-"598
-[e ( _LED_test_openshort (2 , -> 11 `i -> 2 `i ]
-[; ;main.c: 600: printf("\ntesting piezo driver...");
+[; ;main.c: 600: LED_test_openshort(10, 2);
 "600
-[e ( _printf :s 43C ]
-[; ;main.c: 601: if(drv_read(0x01) > 0)
+[e ( _LED_test_openshort (2 , -> 10 `i -> 2 `i ]
+[; ;main.c: 601: printf("\n\nshorts: ");
 "601
-[e $ ! > ( _drv_read (1 -> -> 1 `i `uc -> 0 `i 1115  ]
-[; ;main.c: 602: printf("passed\n\n");
+[e ( _printf :s 42C ]
+[; ;main.c: 602: LED_test_openshort(11, 2);
 "602
+[e ( _LED_test_openshort (2 , -> 11 `i -> 2 `i ]
+[; ;main.c: 604: printf("\ntesting piezo driver...");
+"604
+[e ( _printf :s 43C ]
+[; ;main.c: 605: if(drv_read(0x01) > 0)
+"605
+[e $ ! > ( _drv_read (1 -> -> 1 `i `uc -> 0 `i 1115  ]
+[; ;main.c: 606: printf("passed\n\n");
+"606
 [e ( _printf :s 44C ]
 [e $U 1116  ]
-"603
+"607
 [e :U 1115 ]
-[; ;main.c: 603: else
-[; ;main.c: 604: printf("FAILED\n\n");
-"604
+[; ;main.c: 607: else
+[; ;main.c: 608: printf("FAILED\n\n");
+"608
 [e ( _printf :s 45C ]
 [e :U 1116 ]
-[; ;main.c: 605: printf("----finished comm test----\n");
-"605
+[; ;main.c: 609: printf("----finished comm test----\n");
+"609
 [e ( _printf :s 46C ]
-[; ;main.c: 607: }
-"607
+[; ;main.c: 611: }
+"611
 [e :UE 1110 ]
 }
 [p f _printf 8388736 ]

@@ -10673,8 +10673,9 @@ extern double fmod(double, double);
 extern double trunc(double);
 extern double round(double);
 
-# 56 "drv2665.h"
+# 58 "drv2665.h"
 const i2c_address_t drv_address = 0x59;
+
 
 int drv_peak_val = 0x7F;
 void drv_init(int output_gain, int idle_timeout);
@@ -10682,10 +10683,13 @@ void drv_reset(void);
 void drv_outputSine(int hz);
 void drv_write(uint8_t reg, uint8_t data);
 void drv_outputWave(int waveform[], int length);
-void drv_write_wvfrm(void);
+void drv_write_wvfrm(char upOrDown);
 void drv_write_DC(int val, int duration_ms);
 bit fifo_check(void);
 int drv_read(char reg);
+
+void calcUpstroke(int maxVal);
+void calcDownstroke(int maxVal);
 
 static const int drv_sine[] = {
 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
@@ -10703,7 +10707,7 @@ static const int drv_sine[] = {
 };
 
 
-static const int drv_fifo_sine[] = {
+static const char drv_fifo_sine[] = {
 0x0b, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
@@ -10718,6 +10722,9 @@ static const int drv_fifo_sine[] = {
 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
 };
 
+char drv_fifo_upstroke[40];
+char drv_fifo_downstroke[40];
+
 # 67 "main.c"
 const float TMR0_RANGE = 255/(2621.44-10.24);
 const float TMR2_RANGE = 255/(163.84-0.64);
@@ -10730,7 +10737,7 @@ int heater_post_time_ms = 40;
 long inter_step_interval_ms = 1000;
 
 
-int piezo_on_time_ms = 1000;
+int piezo_on_time_ms = 960;
 const int LEDpower = 63;
 
 # 84
@@ -10839,6 +10846,7 @@ printf("initialized\n");
 int doMove(void){
 
 calcHeaterPins();
+
 do { LATCbits.LATC1 = 1; } while(0);
 LEDsOn(first_top, 1);
 LEDsOn(first_bottom,2);
@@ -10847,8 +10855,9 @@ for(int t=0; t<heater_pre_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000
 TMR2_StartTimer();
 TMR0_StartTimer();
 
+drv_write_wvfrm(1);
 drv_write_DC(drv_peak_val, piezo_on_time_ms);
-
+drv_write_wvfrm(0);
 for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/4000.0)));
 
 do { LATCbits.LATC1 = 1; } while(0);
@@ -10996,6 +11005,8 @@ return 1;
 
 int setDrvPeak(int pk){
 drv_peak_val = pk;
+calcUpstroke(drv_peak_val);
+calcDownstroke(drv_peak_val);
 printf("A\n");
 return 0;
 };
@@ -11022,7 +11033,7 @@ printf("A\n");
 return 0;
 };
 
-# 426
+# 430
 int setHeaterPreTime(int t){
 heater_pre_time_ms = t;
 
@@ -11111,7 +11122,7 @@ return 0;
 
 };
 
-# 518
+# 522
 int setActive(int probeNum, int onOff){
 
 

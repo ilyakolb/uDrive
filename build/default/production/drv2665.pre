@@ -10547,8 +10547,9 @@ extern double fmod(double, double);
 extern double trunc(double);
 extern double round(double);
 
-# 56 "drv2665.h"
+# 58 "drv2665.h"
 const i2c_address_t drv_address = 0x59;
+
 
 int drv_peak_val = 0x7F;
 void drv_init(int output_gain, int idle_timeout);
@@ -10556,10 +10557,13 @@ void drv_reset(void);
 void drv_outputSine(int hz);
 void drv_write(uint8_t reg, uint8_t data);
 void drv_outputWave(int waveform[], int length);
-void drv_write_wvfrm(void);
+void drv_write_wvfrm(char upOrDown);
 void drv_write_DC(int val, int duration_ms);
 bit fifo_check(void);
 int drv_read(char reg);
+
+void calcUpstroke(int maxVal);
+void calcDownstroke(int maxVal);
 
 static const int drv_sine[] = {
 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
@@ -10577,7 +10581,7 @@ static const int drv_sine[] = {
 };
 
 
-static const int drv_fifo_sine[] = {
+static const char drv_fifo_sine[] = {
 0x0b, 0x00, 0x10, 0x20, 0x2e, 0x3c, 0x48, 0x53, 0x5b, 0x61, 0x65, 0x66,
 0x65, 0x61, 0x5b, 0x53, 0x48, 0x3c, 0x2e, 0x20, 0x10,
 0x00, 0xf0, 0xe0, 0xd2, 0xc4, 0xb8, 0xad, 0xa5, 0x9f, 0x9b, 0x9a,
@@ -10592,7 +10596,10 @@ static const int drv_fifo_sine[] = {
 0x9b, 0x9f, 0xa5, 0xad, 0xb8, 0xc4, 0xd2, 0xe0, 0xf0, 0x00,
 };
 
-# 3 "drv2665.c"
+char drv_fifo_upstroke[40];
+char drv_fifo_downstroke[40];
+
+# 4 "drv2665.c"
 void drv_init(int output_gain, int idle_timeout){
 
 i2c_setAddress(drv_address);
@@ -10609,7 +10616,8 @@ _delay((unsigned long)((10)*(1000000/4000.0)));
 drv_write(0x02, idle_timeout);
 
 _delay((unsigned long)((10)*(1000000/4000.0)));
-
+calcUpstroke(drv_peak_val);
+calcDownstroke(drv_peak_val);
 printf("drv initialized\n");
 }
 
@@ -10665,12 +10673,13 @@ printf("drv_write error!\n");
 
 }
 
-void drv_write_wvfrm(){
+void drv_write_wvfrm(char upOrDown){
 
 
-i2c_setBuffer(drv_fifo_sine, (sizeof(drv_fifo_sine) / sizeof((drv_fifo_sine)[0])));
-i2c_masterOperation(0);
-i2c_setBuffer(drv_fifo_sine, (sizeof(drv_fifo_sine) / sizeof((drv_fifo_sine)[0])));
+if (upOrDown)
+i2c_setBuffer(&drv_fifo_upstroke, (sizeof(drv_fifo_upstroke) / sizeof((drv_fifo_upstroke)[0])));
+else
+i2c_setBuffer(&drv_fifo_downstroke, (sizeof(drv_fifo_downstroke) / sizeof((drv_fifo_downstroke)[0])));
 i2c_masterOperation(0);
 }
 
@@ -10698,18 +10707,14 @@ return buff;
 
 void drv_write_DC(int val, int duration_ms){
 
-# 116
+# 119
 for(int i=0;i<duration_ms/5; i++){
 drv_write(0x0b, val);
 _delay((unsigned long)((20)*(1000000/4000000.0)));
 
 }
 
-# 131
-if(!fifo_check()) printf("fifo not ready!\n");
-
-
-
+# 138
 }
 
 
@@ -10721,4 +10726,21 @@ reply = drv_read(0x00);
 
 return !(reply & 0x01);
 
+};
+
+void calcUpstroke(int maxVal){
+
+drv_fifo_upstroke[0] = 0x0b;
+for(int i = 1; i < 40; i++){
+drv_fifo_upstroke[i] = (char)round(i*maxVal/40);
+printf("%i\n", drv_fifo_upstroke[i]);
+}
+};
+
+void calcDownstroke(int maxVal){
+drv_fifo_downstroke[0] = 0x0b;
+for(int i = 1; i < 40; i++){
+drv_fifo_downstroke[i] = (char)(maxVal - round(i*maxVal/40));
+printf("%i\n", drv_fifo_downstroke[i]);
+}
 };

@@ -17,7 +17,8 @@ void drv_init(int output_gain, int idle_timeout){
     drv_write(DRV2665_CTRL_2, idle_timeout); //set timeout period
     //printf("drv_read: %d\n", drv_read(DRV2665_STATUS));
     __delay_ms(10);
-    
+    calcUpstroke(drv_peak_val);
+    calcDownstroke(drv_peak_val);
     printf("drv initialized\n");
 }
 
@@ -73,12 +74,13 @@ void drv_write(uint8_t reg, uint8_t data){
 
 }
 
-void drv_write_wvfrm(){
+void drv_write_wvfrm(char upOrDown){
     
     //Write the data
-    i2c_setBuffer(drv_fifo_sine, NELEMS(drv_fifo_sine));
-    i2c_masterOperation(0);
-    i2c_setBuffer(drv_fifo_sine, NELEMS(drv_fifo_sine));
+    if (upOrDown) // upstroke
+        i2c_setBuffer(&drv_fifo_upstroke, NELEMS(drv_fifo_upstroke));
+    else // downstroke
+        i2c_setBuffer(&drv_fifo_downstroke, NELEMS(drv_fifo_downstroke));
     i2c_masterOperation(0);
 }
 
@@ -129,7 +131,7 @@ void drv_write_DC(int val, int duration_ms){
     
     //__delay_us(100);
     //while(!fifo_check());
-    if(!fifo_check()) printf("fifo not ready!\n");
+    //if(!fifo_check()) printf("fifo not ready!\n");
     
     //drv_write(DRV2665_FIFO, 0x00);
     
@@ -144,4 +146,19 @@ bit fifo_check(void)
     //printf("reply: %d\n", reply);
     return !(reply & 0x01); // tests the DRV2665_FIFO_FULL (0x00) register
 
+};
+
+void calcUpstroke(int maxVal){
+    
+    drv_fifo_upstroke[0] = DRV2665_FIFO;
+    for(int i = 1; i < STROKELENGTH; i++){
+        drv_fifo_upstroke[i] = (char)round(i*maxVal/STROKELENGTH);
+    }
+};
+
+void calcDownstroke(int maxVal){
+    drv_fifo_downstroke[0] = DRV2665_FIFO;
+    for(int i = 1; i < STROKELENGTH; i++){
+        drv_fifo_downstroke[i] = (char)(maxVal - round(i*maxVal/STROKELENGTH));
+    }
 };
