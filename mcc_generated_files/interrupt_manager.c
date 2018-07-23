@@ -65,6 +65,10 @@ void interrupt INTERRUPT_InterruptManager (void)
         {
             i2c1_driver_i2cISR();
         } 
+        else if(PIE2bits.TMR4IE == 1 && PIR2bits.TMR4IF == 1)
+        {
+            TMR4_ISR();
+        } 
         else if(PIE1bits.TMR2IE == 1 && PIR1bits.TMR2IF == 1)
         {
             TMR2_ISR();

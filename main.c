@@ -100,6 +100,7 @@ unsigned long moveVector_downs = 0;//0b01000000010000000100000000000000;
 /*
  MOTION CONTROL
  */
+
 unsigned long activeMask=0x00;//0x80808100; // currently active actuators. activeMask must be a SUBSET of moveMask!!
 unsigned long moveMask=0x00; // actuators that should move
 
@@ -174,12 +175,18 @@ void main(void)
             
         }
         
-
-        switch(motionType){
+        
+        if (interpulseWait > 0){ // if doing inter-pulse wait
+            //printf("wait\n");
+        }
+        else{
+            switch(motionType){
             case REL_MOVE: doRelMove(); break;
             case ABS_MOVE: doAbsMove(); break;
             default: break;
+            }
         }
+        
     }
 }
 
@@ -196,6 +203,7 @@ void main_initialize(void){
     // timers
     TMR2_LoadPeriodRegister((heater_pre_time_ms*TMR2_RANGE)-1); // delay 1
     TMR0_Load8bitPeriod(((piezo_on_time_ms)*TMR0_RANGE)-1); // delay 2
+    //TMR4_LoadPeriodRegister(0xF3); 
     
     // piezo driver
     drv_init(DRV2665_100_VPP_GAIN, DRV2665_20_MS_IDLE_TOUT);
@@ -252,7 +260,12 @@ int commCheck(void){return 0;};
 
     LED_ENABLE_SetHigh(); // LEDs off
     
-    DELAYMSAPPROX(inter_step_interval_ms);
+    //TMR4_LoadPeriodRegister(0xF3); // reset timer
+    
+    TMR4_StartTimer(); // delay timer
+    interpulseWait = 1;
+    printf("domove\n");
+    //DELAYMSAPPROX(inter_step_interval_ms);
     return 0;
     
     

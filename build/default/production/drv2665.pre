@@ -10350,23 +10350,38 @@ inline void i2c1_driver_setI2cISR(void *f);
 void (*i2c1_driver_busCollisionISR)(void);
 void (*i2c1_driver_i2cISR)(void);
 
-# 98 "mcc_generated_files/memory.h"
-uint16_t FLASH_ReadWord(uint16_t flashAddr);
+# 56 "mcc_generated_files/tmr4.h"
+int interpulseWait = 0;
 
-# 127
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 104
+void TMR4_Initialize(void);
 
-# 163
-int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+# 133
+void TMR4_StartTimer(void);
 
-# 188
-void FLASH_EraseBlock(uint16_t startAddr);
+# 165
+void TMR4_StopTimer(void);
 
-# 221
-void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+# 200
+uint8_t TMR4_ReadTimer(void);
 
-# 247
-uint8_t DATAEE_ReadByte(uint16_t bAdd);
+# 239
+void TMR4_WriteTimer(uint8_t timerVal);
+
+# 291
+void TMR4_LoadPeriodRegister(uint8_t periodVal);
+
+# 309
+void TMR4_ISR(void);
+
+# 327
+void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
+
+# 345
+extern void (*TMR4_InterruptHandler)(void);
+
+# 363
+void TMR4_DefaultInterruptHandler(void);
 
 # 24 "mcc_generated_files/LEDcomm.h"
 unsigned long second_top;
@@ -10450,6 +10465,24 @@ extern void (*TMR0_InterruptHandler)(void);
 # 348
 void TMR0_DefaultInterruptHandler(void);
 
+# 98 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+
+# 127
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+
+# 163
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+
+# 188
+void FLASH_EraseBlock(uint16_t startAddr);
+
+# 221
+void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+
+# 247
+uint8_t DATAEE_ReadByte(uint16_t bAdd);
+
 # 76 "mcc_generated_files/eusart.h"
 extern volatile uint8_t eusartTxBufferRemaining;
 extern volatile uint8_t eusartRxCount;
@@ -10469,16 +10502,16 @@ void EUSART_Transmit_ISR(void);
 # 185
 void EUSART_Receive_ISR(void);
 
-# 74 "mcc_generated_files/mcc.h"
+# 75 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 87
+# 88
 void OSCILLATOR_Initialize(void);
 
-# 100
+# 101
 void WDT_Initialize(void);
 
-# 112
+# 113
 void PMD_Initialize(void);
 
 # 14 "C:\Program Files (x86)\Microchip\xc8\v1.45\include\string.h"
@@ -10733,7 +10766,6 @@ void calcUpstroke(int maxVal){
 drv_fifo_upstroke[0] = 0x0b;
 for(int i = 1; i < 40; i++){
 drv_fifo_upstroke[i] = (char)round(i*maxVal/40);
-printf("%i\n", drv_fifo_upstroke[i]);
 }
 };
 
@@ -10741,6 +10773,5 @@ void calcDownstroke(int maxVal){
 drv_fifo_downstroke[0] = 0x0b;
 for(int i = 1; i < 40; i++){
 drv_fifo_downstroke[i] = (char)(maxVal - round(i*maxVal/40));
-printf("%i\n", drv_fifo_downstroke[i]);
 }
 };

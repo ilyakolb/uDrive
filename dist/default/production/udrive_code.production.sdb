@@ -52,7 +52,7 @@ i2c_continue 4
 i2c_reset_link 5
 ]
 "87 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
-[e E8587 . `uc
+[e E8611 . `uc
 CMD_NONE 0
 CMD_ABS 1
 CMD_REL 2
@@ -80,8 +80,8 @@ CMD_DOMOVE 23
 CMD_COMM_CHECK 24
 CMD_PING 25
 ]
-"115
-[e E8794 moveType `uc
+"116
+[e E8818 moveType `uc
 NONE 0
 REL_MOVE 1
 ABS_MOVE 2
@@ -203,7 +203,7 @@ CMD_PING 25
 [v _drv_write_DC drv_write_DC `(v  1 e 1 0 ]
 "151
 [v _calcUpstroke calcUpstroke `(v  1 e 1 0 ]
-"160
+"159
 [v _calcDownstroke calcDownstroke `(v  1 e 1 0 ]
 "6 C:\Users\kolbi\Documents\UDRIVE\udrive_code\LEDcomm.c
 [v _LEDsOn LEDsOn `(v  1 e 1 0 ]
@@ -229,61 +229,61 @@ CMD_PING 25
 [v _LED_getData LED_getData `(l  1 e 4 0 ]
 "158
 [v _LED_testComm LED_testComm `(i  1 e 2 0 ]
-"132 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"133 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _main main `(v  1 e 1 0 ]
-"187
+"194
 [v _main_initialize main_initialize `(v  1 e 1 0 ]
-"236
+"244
 [v _doMove doMove `(i  1 e 2 0 ]
-"262
+"275
 [v _calcHeaterPins calcHeaterPins `(v  1 e 1 0 ]
-"284
+"297
 [v _startRelMove startRelMove `(i  1 e 2 0 ]
-"290
+"303
 [v _startAbsMove startAbsMove `(i  1 e 2 0 ]
-"298
+"311
 [v _stop stop `(i  1 e 2 0 ]
-"308
+"321
 [v _doAbsMove doAbsMove `(v  1 e 1 0 ]
-"340
+"353
 [v _doRelMove doRelMove `(v  1 e 1 0 ]
-"375
+"388
 [v _zeroPosition zeroPosition `(i  1 e 2 0 ]
-"385
+"398
 [v _getPosition getPosition `(i  1 e 2 0 ]
-"396
+"409
 [v _setDrvPeak setDrvPeak `(i  1 e 2 0 ]
-"405
+"418
 [v _setDrvGain setDrvGain `(i  1 e 2 0 ]
-"419
+"432
 [v _setDrvPiezoOnTime setDrvPiezoOnTime `(i  1 e 2 0 ]
-"430
+"443
 [v _setHeaterPreTime setHeaterPreTime `(i  1 e 2 0 ]
-"436
+"449
 [v _setHeaterPostTime setHeaterPostTime `(i  1 e 2 0 ]
-"444
+"457
 [v _setH1OffTime setH1OffTime `(i  1 e 2 0 ]
-"451
+"464
 [v _setH2OnTime setH2OnTime `(i  1 e 2 0 ]
-"460
+"473
 [v _setLEDBrightnessRange setLEDBrightnessRange `(i  1 e 2 0 ]
-"468
+"481
 [v _setLEDPwr setLEDPwr `(i  1 e 2 0 ]
-"477
+"490
 [v _setHeaterToggle setHeaterToggle `(i  1 e 2 0 ]
-"495
+"508
 [v _timedActiveHeatOn timedActiveHeatOn `(i  1 e 2 0 ]
-"522
+"535
 [v _setActive setActive `(i  1 e 2 0 ]
-"537
+"550
 [v _setMoveMask setMoveMask `(i  1 e 2 0 ]
-"554
+"567
 [v _getActive getActive `(i  1 e 2 0 ]
-"562
+"575
 [v _getMoveMask getMoveMask `(i  1 e 2 0 ]
-"569
+"582
 [v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
-"577
+"590
 [v _commCheck commCheck `(i  1 e 2 0 ]
 "116 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/drivers/i2c_master.c
 [v _i2c_open i2c_open `(E8193  1 e 1 0 ]
@@ -423,11 +423,11 @@ CMD_PING 25
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 "77 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
-"89
+"90
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
-"103
+"104
 [v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
-"109
+"110
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 "57 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/memory.c
 [v _FLASH_ReadWord FLASH_ReadWord `(ui  1 e 2 0 ]
@@ -469,6 +469,20 @@ CMD_PING 25
 [v _TMR2_SetInterruptHandler TMR2_SetInterruptHandler `(v  1 e 1 0 ]
 "134
 [v _TMR2_DefaultInterruptHandler TMR2_DefaultInterruptHandler `(v  1 e 1 0 ]
+"63 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.c
+[v _TMR4_Initialize TMR4_Initialize `(v  1 e 1 0 ]
+"86
+[v _TMR4_StartTimer TMR4_StartTimer `(v  1 e 1 0 ]
+"92
+[v _TMR4_StopTimer TMR4_StopTimer `(v  1 e 1 0 ]
+"107
+[v _TMR4_WriteTimer TMR4_WriteTimer `(v  1 e 1 0 ]
+"118
+[v _TMR4_ISR TMR4_ISR `(v  1 e 1 0 ]
+"131
+[v _TMR4_SetInterruptHandler TMR4_SetInterruptHandler `(v  1 e 1 0 ]
+"135
+[v _TMR4_DefaultInterruptHandler TMR4_DefaultInterruptHandler `(v  1 e 1 0 ]
 [s S19 . 1 `uc 1 INTEDG 1 0 :1:0 
 `uc 1 . 1 0 :5:1 
 `uc 1 PEIE 1 0 :1:6 
@@ -477,7 +491,7 @@ CMD_PING 25
 "362 C:\Program Files (x86)\Microchip\xc8\v1.45\include\pic16f18346.h
 [u S24 . 1 `S19 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES24  1 e 1 @11 ]
-[s S381 . 1 `uc 1 RC0 1 0 :1:0 
+[s S386 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -487,17 +501,17 @@ CMD_PING 25
 `uc 1 RC7 1 0 :1:7 
 ]
 "488
-[u S390 . 1 `S381 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES390  1 e 1 @14 ]
-[s S509 . 1 `uc 1 INTF 1 0 :1:0 
+[u S395 . 1 `S386 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES395  1 e 1 @14 ]
+[s S515 . 1 `uc 1 INTF 1 0 :1:0 
 `uc 1 . 1 0 :3:1 
 `uc 1 IOCIF 1 0 :1:4 
 `uc 1 TMR0IF 1 0 :1:5 
 ]
 "546
-[u S514 . 1 `S509 1 . 1 0 ]
-[v _PIR0bits PIR0bits `VES514  1 e 1 @16 ]
-[s S555 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S520 . 1 `S515 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES520  1 e 1 @16 ]
+[s S561 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 BCL1IF 1 0 :1:2 
 `uc 1 SSP1IF 1 0 :1:3 
@@ -507,28 +521,40 @@ CMD_PING 25
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
 "583
-[u S564 . 1 `S555 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES564  1 e 1 @17 ]
+[u S570 . 1 `S561 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES570  1 e 1 @17 ]
+[s S603 . 1 `uc 1 NCO1IF 1 0 :1:0 
+`uc 1 TMR4IF 1 0 :1:1 
+`uc 1 BCL2IF 1 0 :1:2 
+`uc 1 SSP2IF 1 0 :1:3 
+`uc 1 NVMIF 1 0 :1:4 
+`uc 1 C1IF 1 0 :1:5 
+`uc 1 C2IF 1 0 :1:6 
+`uc 1 TMR6IF 1 0 :1:7 
+]
+"645
+[u S612 . 1 `S603 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES612  1 e 1 @18 ]
 "814
 [v _TMR0L TMR0L `VEuc  1 e 1 @21 ]
 "952
 [v _TMR0H TMR0H `VEuc  1 e 1 @22 ]
 "1106
 [v _T0CON0 T0CON0 `VEuc  1 e 1 @23 ]
-[s S1209 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S1279 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "1126
-[s S1215 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S1285 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
-[u S1220 . 1 `S1209 1 . 1 0 `S1215 1 . 1 0 ]
-[v _T0CON0bits T0CON0bits `VES1220  1 e 1 @23 ]
+[u S1290 . 1 `S1279 1 . 1 0 `S1285 1 . 1 0 ]
+[v _T0CON0bits T0CON0bits `VES1290  1 e 1 @23 ]
 "1171
 [v _T0CON1 T0CON1 `VEuc  1 e 1 @24 ]
 "1437
@@ -537,12 +563,12 @@ CMD_PING 25
 [v _PR2 PR2 `VEuc  1 e 1 @30 ]
 "1477
 [v _T2CON T2CON `VEuc  1 e 1 @31 ]
-[s S1315 . 1 `uc 1 T2CKPS 1 0 :2:0 
+[s S1385 . 1 `uc 1 T2CKPS 1 0 :2:0 
 `uc 1 TMR2ON 1 0 :1:2 
 `uc 1 T2OUTPS 1 0 :4:3 
 ]
 "1498
-[s S1319 . 1 `uc 1 T2CKPS0 1 0 :1:0 
+[s S1389 . 1 `uc 1 T2CKPS0 1 0 :1:0 
 `uc 1 T2CKPS1 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 T2OUTPS0 1 0 :1:3 
@@ -550,23 +576,23 @@ CMD_PING 25
 `uc 1 T2OUTPS2 1 0 :1:5 
 `uc 1 T2OUTPS3 1 0 :1:6 
 ]
-[u S1327 . 1 `S1315 1 . 1 0 `S1319 1 . 1 0 ]
-[v _T2CONbits T2CONbits `VES1327  1 e 1 @31 ]
+[u S1397 . 1 `S1385 1 . 1 0 `S1389 1 . 1 0 ]
+[v _T2CONbits T2CONbits `VES1397  1 e 1 @31 ]
 "1548
 [v _TRISA TRISA `VEuc  1 e 1 @140 ]
 "1593
 [v _TRISB TRISB `VEuc  1 e 1 @141 ]
 "1632
 [v _TRISC TRISC `VEuc  1 e 1 @142 ]
-[s S496 . 1 `uc 1 INTE 1 0 :1:0 
+[s S502 . 1 `uc 1 INTE 1 0 :1:0 
 `uc 1 . 1 0 :3:1 
 `uc 1 IOCIE 1 0 :1:4 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
 "1707
-[u S501 . 1 `S496 1 . 1 0 ]
-[v _PIE0bits PIE0bits `VES501  1 e 1 @144 ]
-[s S534 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S507 . 1 `S502 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES507  1 e 1 @144 ]
+[s S540 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 BCL1IE 1 0 :1:2 
 `uc 1 SSP1IE 1 0 :1:3 
@@ -576,13 +602,25 @@ CMD_PING 25
 `uc 1 TMR1GIE 1 0 :1:7 
 ]
 "1744
-[u S543 . 1 `S534 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES543  1 e 1 @145 ]
+[u S549 . 1 `S540 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES549  1 e 1 @145 ]
+[s S582 . 1 `uc 1 NCO1IE 1 0 :1:0 
+`uc 1 TMR4IE 1 0 :1:1 
+`uc 1 BCL2IE 1 0 :1:2 
+`uc 1 SSP2IE 1 0 :1:3 
+`uc 1 NVMIE 1 0 :1:4 
+`uc 1 C1IE 1 0 :1:5 
+`uc 1 C2IE 1 0 :1:6 
+`uc 1 TMR6IE 1 0 :1:7 
+]
+"1806
+[u S591 . 1 `S582 1 . 1 0 ]
+[v _PIE2bits PIE2bits `VES591  1 e 1 @146 ]
 "1975
 [v _WDTCON WDTCON `VEuc  1 e 1 @151 ]
 "2291
 [v _LATA LATA `VEuc  1 e 1 @268 ]
-[s S358 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S363 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -590,22 +628,22 @@ CMD_PING 25
 `uc 1 LATA5 1 0 :1:5 
 ]
 "2306
-[u S365 . 1 `S358 1 . 1 0 ]
-[v _LATAbits LATAbits `VES365  1 e 1 @268 ]
+[u S370 . 1 `S363 1 . 1 0 ]
+[v _LATAbits LATAbits `VES370  1 e 1 @268 ]
 "2336
 [v _LATB LATB `VEuc  1 e 1 @269 ]
-[s S322 . 1 `uc 1 . 1 0 :4:0 
+[s S327 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 LATB4 1 0 :1:4 
 `uc 1 LATB5 1 0 :1:5 
 `uc 1 LATB6 1 0 :1:6 
 `uc 1 LATB7 1 0 :1:7 
 ]
 "2350
-[u S328 . 1 `S322 1 . 1 0 ]
-[v _LATBbits LATBbits `VES328  1 e 1 @269 ]
+[u S333 . 1 `S327 1 . 1 0 ]
+[v _LATBbits LATBbits `VES333  1 e 1 @269 ]
 "2375
 [v _LATC LATC `VEuc  1 e 1 @270 ]
-[s S337 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S342 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -615,8 +653,8 @@ CMD_PING 25
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2392
-[u S346 . 1 `S337 1 . 1 0 ]
-[v _LATCbits LATCbits `VES346  1 e 1 @270 ]
+[u S351 . 1 `S342 1 . 1 0 ]
+[v _LATCbits LATCbits `VES351  1 e 1 @270 ]
 "2930
 [v _ANSELA ANSELA `VEuc  1 e 1 @396 ]
 "2975
@@ -633,7 +671,7 @@ CMD_PING 25
 [v _SP1BRGH SP1BRGH `VEuc  1 e 1 @412 ]
 "3336
 [v _RC1STA RC1STA `VEuc  1 e 1 @413 ]
-[s S646 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S715 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -643,8 +681,8 @@ CMD_PING 25
 `uc 1 SPEN 1 0 :1:7 
 ]
 "3362
-[u S655 . 1 `S646 1 . 1 0 ]
-[v _RC1STAbits RC1STAbits `VES655  1 e 1 @413 ]
+[u S724 . 1 `S715 1 . 1 0 ]
+[v _RC1STAbits RC1STAbits `VES724  1 e 1 @413 ]
 "3516
 [v _TX1STA TX1STA `VEuc  1 e 1 @414 ]
 "3696
@@ -663,7 +701,7 @@ CMD_PING 25
 [v _SSP1MSK SSP1MSK `VEuc  1 e 1 @531 ]
 "4855
 [v _SSP1STAT SSP1STAT `VEuc  1 e 1 @532 ]
-[s S777 . 1 `uc 1 BF 1 0 :1:0 
+[s S846 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -673,27 +711,27 @@ CMD_PING 25
 `uc 1 SMP 1 0 :1:7 
 ]
 "4877
-[u S786 . 1 `S777 1 . 1 0 ]
-[v _SSP1STATbits SSP1STATbits `VES786  1 e 1 @532 ]
+[u S855 . 1 `S846 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES855  1 e 1 @532 ]
 "4977
 [v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @533 ]
-[s S698 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S767 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "5010
-[s S704 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S773 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S709 . 1 `S698 1 . 1 0 `S704 1 . 1 0 ]
-[v _SSP1CON1bits SSP1CON1bits `VES709  1 e 1 @533 ]
+[u S778 . 1 `S767 1 . 1 0 `S773 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES778  1 e 1 @533 ]
 "5247
 [v _SSP1CON2 SSP1CON2 `VEuc  1 e 1 @534 ]
-[s S754 . 1 `uc 1 SEN 1 0 :1:0 
+[s S823 . 1 `uc 1 SEN 1 0 :1:0 
 `uc 1 RSEN 1 0 :1:1 
 `uc 1 PEN 1 0 :1:2 
 `uc 1 RCEN 1 0 :1:3 
@@ -703,14 +741,35 @@ CMD_PING 25
 `uc 1 GCEN 1 0 :1:7 
 ]
 "5269
-[u S763 . 1 `S754 1 . 1 0 ]
-[v _SSP1CON2bits SSP1CON2bits `VES763  1 e 1 @534 ]
+[u S832 . 1 `S823 1 . 1 0 ]
+[v _SSP1CON2bits SSP1CON2bits `VES832  1 e 1 @534 ]
 "6199
 [v _ODCONA ODCONA `VEuc  1 e 1 @652 ]
 "6244
 [v _ODCONB ODCONB `VEuc  1 e 1 @653 ]
 "6283
 [v _ODCONC ODCONC `VEuc  1 e 1 @654 ]
+"8299
+[v _TMR4 TMR4 `VEuc  1 e 1 @1045 ]
+"8319
+[v _PR4 PR4 `VEuc  1 e 1 @1046 ]
+"8339
+[v _T4CON T4CON `VEuc  1 e 1 @1047 ]
+[s S2048 . 1 `uc 1 T4CKPS 1 0 :2:0 
+`uc 1 TMR4ON 1 0 :1:2 
+`uc 1 T4OUTPS 1 0 :4:3 
+]
+"8360
+[s S2052 . 1 `uc 1 T4CKPS0 1 0 :1:0 
+`uc 1 T4CKPS1 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 T4OUTPS0 1 0 :1:3 
+`uc 1 T4OUTPS1 1 0 :1:4 
+`uc 1 T4OUTPS2 1 0 :1:5 
+`uc 1 T4OUTPS3 1 0 :1:6 
+]
+[u S2060 . 1 `S2048 1 . 1 0 `S2052 1 . 1 0 ]
+[v _T4CONbits T4CONbits `VES2060  1 e 1 @1047 ]
 "11139
 [v _NVMADRL NVMADRL `VEuc  1 e 1 @2193 ]
 "11391
@@ -757,72 +816,72 @@ CMD_PING 25
 [v _OSCTUNE OSCTUNE `VEuc  1 e 1 @2334 ]
 "13150
 [v _OSCFRQ OSCFRQ `VEuc  1 e 1 @2335 ]
-[s S204 . 1 `uc 1 SSP1CLKPPS 1 0 :5:0 
+[s S209 . 1 `uc 1 SSP1CLKPPS 1 0 :5:0 
 ]
 "14065
-[s S206 . 1 `uc 1 SSP1CLKPPS0 1 0 :1:0 
+[s S211 . 1 `uc 1 SSP1CLKPPS0 1 0 :1:0 
 `uc 1 SSP1CLKPPS1 1 0 :1:1 
 `uc 1 SSP1CLKPPS2 1 0 :1:2 
 `uc 1 SSP1CLKPPS3 1 0 :1:3 
 `uc 1 SSP1CLKPPS4 1 0 :1:4 
 ]
-[u S212 . 1 `S204 1 . 1 0 `S206 1 . 1 0 ]
-[v _SSP1CLKPPSbits SSP1CLKPPSbits `VES212  1 e 1 @3616 ]
-[s S184 . 1 `uc 1 SSP1DATPPS 1 0 :5:0 
+[u S217 . 1 `S209 1 . 1 0 `S211 1 . 1 0 ]
+[v _SSP1CLKPPSbits SSP1CLKPPSbits `VES217  1 e 1 @3616 ]
+[s S189 . 1 `uc 1 SSP1DATPPS 1 0 :5:0 
 ]
 "14117
-[s S186 . 1 `uc 1 SSP1DATPPS0 1 0 :1:0 
+[s S191 . 1 `uc 1 SSP1DATPPS0 1 0 :1:0 
 `uc 1 SSP1DATPPS1 1 0 :1:1 
 `uc 1 SSP1DATPPS2 1 0 :1:2 
 `uc 1 SSP1DATPPS3 1 0 :1:3 
 `uc 1 SSP1DATPPS4 1 0 :1:4 
 ]
-[u S192 . 1 `S184 1 . 1 0 `S186 1 . 1 0 ]
-[v _SSP1DATPPSbits SSP1DATPPSbits `VES192  1 e 1 @3617 ]
-[s S224 . 1 `uc 1 RXPPS 1 0 :5:0 
+[u S197 . 1 `S189 1 . 1 0 `S191 1 . 1 0 ]
+[v _SSP1DATPPSbits SSP1DATPPSbits `VES197  1 e 1 @3617 ]
+[s S229 . 1 `uc 1 RXPPS 1 0 :5:0 
 ]
 "14221
-[s S226 . 1 `uc 1 RXDTPPS0 1 0 :1:0 
+[s S231 . 1 `uc 1 RXDTPPS0 1 0 :1:0 
 `uc 1 RXDTPPS1 1 0 :1:1 
 `uc 1 RXDTPPS2 1 0 :1:2 
 `uc 1 RXDTPPS3 1 0 :1:3 
 `uc 1 RXDTPPS4 1 0 :1:4 
 ]
-[u S232 . 1 `S224 1 . 1 0 `S226 1 . 1 0 ]
-[v _RXPPSbits RXPPSbits `VES232  1 e 1 @3620 ]
-[s S284 . 1 `uc 1 RB5PPS 1 0 :5:0 
+[u S237 . 1 `S229 1 . 1 0 `S231 1 . 1 0 ]
+[v _RXPPSbits RXPPSbits `VES237  1 e 1 @3620 ]
+[s S289 . 1 `uc 1 RB5PPS 1 0 :5:0 
 ]
 "14925
-[s S286 . 1 `uc 1 RB5PPS0 1 0 :1:0 
+[s S291 . 1 `uc 1 RB5PPS0 1 0 :1:0 
 `uc 1 RB5PPS1 1 0 :1:1 
 `uc 1 RB5PPS2 1 0 :1:2 
 `uc 1 RB5PPS3 1 0 :1:3 
 `uc 1 RB5PPS4 1 0 :1:4 
 ]
-[u S292 . 1 `S284 1 . 1 0 `S286 1 . 1 0 ]
-[v _RB5PPSbits RB5PPSbits `VES292  1 e 1 @3741 ]
-[s S264 . 1 `uc 1 RB6PPS 1 0 :5:0 
+[u S297 . 1 `S289 1 . 1 0 `S291 1 . 1 0 ]
+[v _RB5PPSbits RB5PPSbits `VES297  1 e 1 @3741 ]
+[s S269 . 1 `uc 1 RB6PPS 1 0 :5:0 
 ]
 "14977
-[s S266 . 1 `uc 1 RB6PPS0 1 0 :1:0 
+[s S271 . 1 `uc 1 RB6PPS0 1 0 :1:0 
 `uc 1 RB6PPS1 1 0 :1:1 
 `uc 1 RB6PPS2 1 0 :1:2 
 `uc 1 RB6PPS3 1 0 :1:3 
 `uc 1 RB6PPS4 1 0 :1:4 
 ]
-[u S272 . 1 `S264 1 . 1 0 `S266 1 . 1 0 ]
-[v _RB6PPSbits RB6PPSbits `VES272  1 e 1 @3742 ]
-[s S244 . 1 `uc 1 RB7PPS 1 0 :5:0 
+[u S277 . 1 `S269 1 . 1 0 `S271 1 . 1 0 ]
+[v _RB6PPSbits RB6PPSbits `VES277  1 e 1 @3742 ]
+[s S249 . 1 `uc 1 RB7PPS 1 0 :5:0 
 ]
 "15029
-[s S246 . 1 `uc 1 RB7PPS0 1 0 :1:0 
+[s S251 . 1 `uc 1 RB7PPS0 1 0 :1:0 
 `uc 1 RB7PPS1 1 0 :1:1 
 `uc 1 RB7PPS2 1 0 :1:2 
 `uc 1 RB7PPS3 1 0 :1:3 
 `uc 1 RB7PPS4 1 0 :1:4 
 ]
-[u S252 . 1 `S244 1 . 1 0 `S246 1 . 1 0 ]
-[v _RB7PPSbits RB7PPSbits `VES252  1 e 1 @3743 ]
+[u S257 . 1 `S249 1 . 1 0 `S251 1 . 1 0 ]
+[v _RB7PPSbits RB7PPSbits `VES257  1 e 1 @3743 ]
 "354 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\doprnt.c
 [v _dpowers dpowers `DC[10]ul  1 s 40 dpowers ]
 "24 C:\Users\kolbi\Documents\UDRIVE\udrive_code\cmd_parser.h
@@ -845,8 +904,6 @@ CMD_PING 25
 [v _heater_pre_time_ms heater_pre_time_ms `i  1 e 2 0 ]
 "74
 [v _heater_post_time_ms heater_post_time_ms `i  1 e 2 0 ]
-"75
-[v _inter_step_interval_ms inter_step_interval_ms `l  1 e 4 0 ]
 "78
 [v _piezo_on_time_ms piezo_on_time_ms `i  1 e 2 0 ]
 "79
@@ -857,39 +914,39 @@ CMD_PING 25
 [v _cmdRead cmdRead `i  1 e 2 0 ]
 "86
 [v _readIdx readIdx `i  1 e 2 0 ]
-[u S1411 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
+[u S1481 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
 "87
-[s S1415 CMD_STRUCT 21 `E8587 1 c 1 0 `S1411 1 p1 10 1 `S1411 1 p2 10 11 ]
-[v _cmd_struct cmd_struct `S1415  1 e 21 0 ]
+[s S1485 CMD_STRUCT 21 `E8611 1 c 1 0 `S1481 1 p1 10 1 `S1481 1 p2 10 11 ]
+[v _cmd_struct cmd_struct `S1485  1 e 21 0 ]
 "92
 [v _demoLong demoLong `ul  1 e 4 0 ]
 "96
 [v _moveVector_ups moveVector_ups `ul  1 e 4 0 ]
 "97
 [v _moveVector_downs moveVector_downs `ul  1 e 4 0 ]
-"103
-[v _activeMask activeMask `ul  1 e 4 0 ]
 "104
+[v _activeMask activeMask `ul  1 e 4 0 ]
+"105
 [v _moveMask moveMask `ul  1 e 4 0 ]
-"109
-[v _demoHeaterToggle_top demoHeaterToggle_top `ul  1 e 4 0 ]
 "110
+[v _demoHeaterToggle_top demoHeaterToggle_top `ul  1 e 4 0 ]
+"111
 [v _demoHeaterToggle_bot demoHeaterToggle_bot `ul  1 e 4 0 ]
-"112
-[v _currentPositions_steps currentPositions_steps `[24]l  1 e 96 @10128 ]
 "113
-[v _remainingSteps remainingSteps `l  1 e 4 0 ]
+[v _currentPositions_steps currentPositions_steps `[24]l  1 e 96 @10128 ]
 "114
-[v _absCommand absCommand `l  1 e 4 0 ]
+[v _remainingSteps remainingSteps `l  1 e 4 0 ]
 "115
-[v _motionType motionType `E8794  1 e 1 0 ]
-[s S931 . 30 `uc 1 busy 1 0 :1:0 
+[v _absCommand absCommand `l  1 e 4 0 ]
+"116
+[v _motionType motionType `E8818  1 e 1 0 ]
+[s S1001 . 30 `uc 1 busy 1 0 :1:0 
 `uc 1 inUse 1 0 :1:1 
 `uc 1 bufferFree 1 0 :1:2 
 `uc 1 addressNACKCheck 1 0 :1:3 
 `uc 1 address 1 1 `*.39uc 1 data_ptr 2 2 `ui 1 data_length 2 4 `ui 1 time_out 2 6 `ui 1 time_out_value 2 8 `E8364 1 state 1 10 `E8193 1 error 1 11 `[6]*.37(E8198 1 callbackTable 12 12 `[6]*.1v 1 callbackPayload 6 24 ]
 "80 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/drivers/i2c_master.c
-[v _i2c_status i2c_status `S931  1 e 30 0 ]
+[v _i2c_status i2c_status `S1001  1 e 30 0 ]
 "400
 [v _fsmStateTable fsmStateTable `[16]*.37DC(E8364  1 e 32 0 ]
 "59 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/eusart.c
@@ -928,10 +985,14 @@ CMD_PING 25
 [v _TMR0_InterruptHandler TMR0_InterruptHandler `*.37(v  1 e 2 0 ]
 "56 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_InterruptHandler TMR2_InterruptHandler `*.37(v  1 e 2 0 ]
-"132 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"57 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.c
+[v _TMR4_InterruptHandler TMR4_InterruptHandler `*.37(v  1 e 2 0 ]
+"56 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.h
+[v _interpulseWait interpulseWait `i  1 e 2 0 ]
+"133 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"184
+"191
 } 0
 "5 C:\Users\kolbi\Documents\UDRIVE\udrive_code\cmd_parser.c
 [v _parseCmd parseCmd `(v  1 e 1 0 ]
@@ -943,9 +1004,9 @@ CMD_PING 25
 [v parseCmd@paramIter paramIter `i  1 a 2 40 ]
 "5
 [v parseCmd@cmdString cmdString `*.5uc  1 a 1 wreg ]
-[u S1411 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
-[s S1415 CMD_STRUCT 21 `E8587 1 c 1 0 `S1411 1 p1 10 1 `S1411 1 p2 10 11 ]
-[v parseCmd@s s `*.5S1415  1 p 1 37 ]
+[u S1481 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
+[s S1485 CMD_STRUCT 21 `E8611 1 c 1 0 `S1481 1 p1 10 1 `S1481 1 p2 10 11 ]
+[v parseCmd@s s `*.5S1485  1 p 1 37 ]
 [v parseCmd@cmdString cmdString `*.5uc  1 a 1 39 ]
 "74
 } 0
@@ -1037,16 +1098,16 @@ CMD_PING 25
 [v isdigit@c c `uc  1 a 1 18 ]
 "15
 } 0
-"187 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"194 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _main_initialize main_initialize `(v  1 e 1 0 ]
 {
-"203
+"211
 } 0
 "4 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _drv_init drv_init `(v  1 e 1 0 ]
 {
-[v drv_init@output_gain output_gain `i  1 p 2 0 ]
-[v drv_init@idle_timeout idle_timeout `i  1 p 2 2 ]
+[v drv_init@output_gain output_gain `i  1 p 2 5 ]
+[v drv_init@idle_timeout idle_timeout `i  1 p 2 7 ]
 "23
 } 0
 "156 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/drivers/i2c_master.c
@@ -1095,60 +1156,60 @@ CMD_PING 25
 "77 C:\Users\kolbi\Documents\UDRIVE\udrive_code\cmd_parser.c
 [v _execCmd execCmd `(i  1 e 2 0 ]
 {
-[u S1411 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
-[s S1415 CMD_STRUCT 21 `E8587 1 c 1 0 `S1411 1 p1 10 1 `S1411 1 p2 10 11 ]
-[v execCmd@s s `*.5S1415  1 a 1 wreg ]
-[v execCmd@s s `*.5S1415  1 a 1 wreg ]
-[v execCmd@s s `*.5S1415  1 a 1 0 ]
+[u S1481 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
+[s S1485 CMD_STRUCT 21 `E8611 1 c 1 0 `S1481 1 p1 10 1 `S1481 1 p2 10 11 ]
+[v execCmd@s s `*.5S1485  1 a 1 wreg ]
+[v execCmd@s s `*.5S1485  1 a 1 wreg ]
+[v execCmd@s s `*.5S1485  1 a 1 55 ]
 "121
 } 0
-"375 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"388 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _zeroPosition zeroPosition `(i  1 e 2 0 ]
 {
-"376
+"389
 [v zeroPosition@i i `i  1 a 2 41 ]
-"382
+"395
 } 0
-"495
+"508
 [v _timedActiveHeatOn timedActiveHeatOn `(i  1 e 2 0 ]
 {
-"509
+"522
 [v timedActiveHeatOn@t t `i  1 a 2 32 ]
-"495
+"508
 [v timedActiveHeatOn@onTime onTime `l  1 p 4 21 ]
 [v timedActiveHeatOn@topOrBorBoth topOrBorBoth `i  1 p 2 25 ]
-"516
+"529
 } 0
-"298
+"311
 [v _stop stop `(i  1 e 2 0 ]
 {
-"305
+"318
 } 0
-"284
+"297
 [v _startRelMove startRelMove `(i  1 e 2 0 ]
 {
 [v startRelMove@steps steps `i  1 p 2 21 ]
-"289
+"302
 } 0
-"290
+"303
 [v _startAbsMove startAbsMove `(i  1 e 2 0 ]
 {
 [v startAbsMove@steps steps `i  1 p 2 21 ]
-"295
+"308
 } 0
-"537
+"550
 [v _setMoveMask setMoveMask `(i  1 e 2 0 ]
 {
 [v setMoveMask@probeNum probeNum `i  1 p 2 21 ]
 [v setMoveMask@onOff onOff `i  1 p 2 23 ]
-"551
+"564
 } 0
-"468
+"481
 [v _setLEDPwr setLEDPwr `(i  1 e 2 0 ]
 {
 [v setLEDPwr@pwr pwr `i  1 p 2 21 ]
 [v setLEDPwr@topOrBottom topOrBottom `i  1 p 2 23 ]
-"472
+"485
 } 0
 "12 C:\Users\kolbi\Documents\UDRIVE\udrive_code\LEDcomm.c
 [v _LEDsPwr LEDsPwr `(v  1 e 1 0 ]
@@ -1160,43 +1221,43 @@ CMD_PING 25
 [v LEDsPwr@topOrBottom topOrBottom `i  1 p 2 38 ]
 "16
 } 0
-"460 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"473 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setLEDBrightnessRange setLEDBrightnessRange `(i  1 e 2 0 ]
 {
 [v setLEDBrightnessRange@r r `i  1 p 2 21 ]
 [v setLEDBrightnessRange@tOB tOB `i  1 p 2 23 ]
-"464
-} 0
 "477
+} 0
+"490
 [v _setHeaterToggle setHeaterToggle `(i  1 e 2 0 ]
 {
 [v setHeaterToggle@num num `i  1 p 2 21 ]
 [v setHeaterToggle@topOrB topOrB `i  1 p 2 23 ]
-"490
+"503
 } 0
-"430
+"443
 [v _setHeaterPreTime setHeaterPreTime `(i  1 e 2 0 ]
 {
 [v setHeaterPreTime@t t `i  1 p 2 21 ]
-"435
+"448
 } 0
-"436
+"449
 [v _setHeaterPostTime setHeaterPostTime `(i  1 e 2 0 ]
 {
 [v setHeaterPostTime@t t `i  1 p 2 21 ]
-"441
+"454
 } 0
-"451
+"464
 [v _setH2OnTime setH2OnTime `(i  1 e 2 0 ]
 {
 [v setH2OnTime@t t `i  1 p 2 37 ]
-"455
+"468
 } 0
-"444
+"457
 [v _setH1OffTime setH1OffTime `(i  1 e 2 0 ]
 {
 [v setH1OffTime@t t `i  1 p 2 37 ]
-"448
+"461
 } 0
 "112 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_LoadPeriodRegister TMR2_LoadPeriodRegister `(v  1 e 1 0 ]
@@ -1207,11 +1268,11 @@ CMD_PING 25
 [v TMR2_LoadPeriodRegister@periodVal periodVal `uc  1 a 1 17 ]
 "115
 } 0
-"419 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"432 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setDrvPiezoOnTime setDrvPiezoOnTime `(i  1 e 2 0 ]
 {
 [v setDrvPiezoOnTime@t t `i  1 p 2 37 ]
-"424
+"437
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
@@ -1236,29 +1297,29 @@ CMD_PING 25
 [v TMR0_Load8bitPeriod@periodVal periodVal `uc  1 a 1 17 ]
 "117
 } 0
-"396 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"409 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setDrvPeak setDrvPeak `(i  1 e 2 0 ]
 {
-[v setDrvPeak@pk pk `i  1 p 2 60 ]
-"402
+[v setDrvPeak@pk pk `i  1 p 2 53 ]
+"415
 } 0
 "151 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _calcUpstroke calcUpstroke `(v  1 e 1 0 ]
 {
 "154
-[v calcUpstroke@i i `i  1 a 2 58 ]
+[v calcUpstroke@i i `i  1 a 2 3 ]
 "151
 [v calcUpstroke@maxVal maxVal `i  1 p 2 51 ]
-"158
+"157
 } 0
-"160
+"159
 [v _calcDownstroke calcDownstroke `(v  1 e 1 0 ]
 {
-"162
-[v calcDownstroke@i i `i  1 a 2 58 ]
-"160
+"161
+[v calcDownstroke@i i `i  1 a 2 3 ]
+"159
 [v calcDownstroke@maxVal maxVal `i  1 p 2 51 ]
-"166
+"164
 } 0
 "6 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\round.c
 [v _round round `(d  1 e 3 0 ]
@@ -1312,7 +1373,7 @@ CMD_PING 25
 "15 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftneg.c
 [v ___ftneg __ftneg `(f  1 e 3 0 ]
 {
-[v ___ftneg@f1 f1 `f  1 p 3 33 ]
+[v ___ftneg@f1 f1 `f  1 p 3 38 ]
 "20
 } 0
 "86 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftadd.c
@@ -1354,51 +1415,51 @@ CMD_PING 25
 [v ___ftpack@sign sign `uc  1 p 1 21 ]
 "86
 } 0
-"405 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"418 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setDrvGain setDrvGain `(i  1 e 2 0 ]
 {
-"406
+"419
 [v setDrvGain@setGain setGain `i  1 a 2 24 ]
-"405
+"418
 [v setDrvGain@gain gain `i  1 p 2 21 ]
-"417
+"430
 } 0
-"522
+"535
 [v _setActive setActive `(i  1 e 2 0 ]
 {
 [v setActive@probeNum probeNum `i  1 p 2 21 ]
 [v setActive@onOff onOff `i  1 p 2 23 ]
-"535
+"548
 } 0
-"385
+"398
 [v _getPosition getPosition `(i  1 e 2 0 ]
 {
 [v getPosition@a a `i  1 p 2 21 ]
-"393
+"406
 } 0
-"562
+"575
 [v _getMoveMask getMoveMask `(i  1 e 2 0 ]
 {
-"563
+"576
 [v getMoveMask@i i `i  1 a 2 23 ]
-"568
+"581
 } 0
-"569
+"582
 [v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
 {
-"575
+"588
 } 0
-"554
+"567
 [v _getActive getActive `(i  1 e 2 0 ]
 {
-"555
+"568
 [v getActive@i i `i  1 a 2 23 ]
-"560
+"573
 } 0
-"577
+"590
 [v _commCheck commCheck `(i  1 e 2 0 ]
 {
-"611
+"624
 } 0
 "87 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _drv_read drv_read `(i  1 e 2 0 ]
@@ -1460,36 +1521,34 @@ CMD_PING 25
 [v LED_getData@topOrBottom topOrBottom `i  1 p 2 21 ]
 "153
 } 0
-"340 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"353 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _doRelMove doRelMove `(v  1 e 1 0 ]
 {
-"348
-[v doRelMove@j j `i  1 a 2 57 ]
-"372
+"361
+[v doRelMove@j j `i  1 a 2 51 ]
+"385
 } 0
-"308
+"321
 [v _doAbsMove doAbsMove `(v  1 e 1 0 ]
 {
-"333
-[v doAbsMove@i_1603 i `i  1 a 2 45 ]
+"346
+[v doAbsMove@i_1678 i `i  1 a 2 39 ]
+"338
+[v doAbsMove@i_1676 i `i  1 a 2 41 ]
 "325
-[v doAbsMove@i_1601 i `i  1 a 2 47 ]
-"312
-[v doAbsMove@i i `i  1 a 2 43 ]
-"311
-[v doAbsMove@allThere allThere `i  1 a 2 41 ]
-"337
+[v doAbsMove@i i `i  1 a 2 37 ]
+"324
+[v doAbsMove@allThere allThere `i  1 a 2 35 ]
+"350
 } 0
-"236
+"244
 [v _doMove doMove `(i  1 e 2 0 ]
 {
-"255
-[v doMove@t_1586 t `i  1 a 2 39 ]
-"251
-[v doMove@t_1585 t `i  1 a 2 37 ]
-"244
-[v doMove@t t `i  1 a 2 35 ]
 "259
+[v doMove@t_1660 t `i  1 a 2 33 ]
+"252
+[v doMove@t t `i  1 a 2 31 ]
+"272
 } 0
 "77 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _drv_write_wvfrm drv_write_wvfrm `(v  1 e 1 0 ]
@@ -1788,10 +1847,15 @@ CMD_PING 25
 [v ___awdiv@dividend dividend `i  1 p 2 25 ]
 "42
 } 0
-"262 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"275 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _calcHeaterPins calcHeaterPins `(v  1 e 1 0 ]
 {
-"267
+"280
+} 0
+"86 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.c
+[v _TMR4_StartTimer TMR4_StartTimer `(v  1 e 1 0 ]
+{
+"90
 } 0
 "85 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_StartTimer TMR2_StartTimer `(v  1 e 1 0 ]
@@ -1842,12 +1906,23 @@ CMD_PING 25
 "77 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
-"87
+"88
 } 0
-"103
+"104
 [v _WDT_Initialize WDT_Initialize `(v  1 e 1 0 ]
 {
-"107
+"108
+} 0
+"63 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.c
+[v _TMR4_Initialize TMR4_Initialize `(v  1 e 1 0 ]
+{
+"84
+} 0
+"131
+[v _TMR4_SetInterruptHandler TMR4_SetInterruptHandler `(v  1 e 1 0 ]
+{
+[v TMR4_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 17 ]
+"133
 } 0
 "62 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_Initialize TMR2_Initialize `(v  1 e 1 0 ]
@@ -1871,20 +1946,20 @@ CMD_PING 25
 [v TMR0_SetInterruptHandler@InterruptHandler InterruptHandler `*.37(v  1 p 2 17 ]
 "134
 } 0
-"109 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/mcc.c
+"110 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/mcc.c
 [v _PMD_Initialize PMD_Initialize `(v  1 e 1 0 ]
 {
-"123
+"124
 } 0
 "52 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
 {
 "101
 } 0
-"89 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/mcc.c
+"90 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
-"101
+"102
 } 0
 "72 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/eusart.c
 [v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
@@ -1901,7 +1976,7 @@ CMD_PING 25
 "51 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
-"89
+"93
 } 0
 "419 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/drivers/i2c_master.c
 [v i1_i2c_ISR i2c_ISR `(v  1 e 1 0 ]
@@ -2067,6 +2142,30 @@ CMD_PING 25
 [v _i2c1_driver_clearBusCollision i2c1_driver_clearBusCollision `T(v  1 e 1 0 ]
 {
 "256
+} 0
+"118 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.c
+[v _TMR4_ISR TMR4_ISR `(v  1 e 1 0 ]
+{
+"128
+} 0
+"135
+[v _TMR4_DefaultInterruptHandler TMR4_DefaultInterruptHandler `(v  1 e 1 0 ]
+{
+"141
+} 0
+"107
+[v _TMR4_WriteTimer TMR4_WriteTimer `(v  1 e 1 0 ]
+{
+[v TMR4_WriteTimer@timerVal timerVal `uc  1 a 1 wreg ]
+[v TMR4_WriteTimer@timerVal timerVal `uc  1 a 1 wreg ]
+"110
+[v TMR4_WriteTimer@timerVal timerVal `uc  1 a 1 0 ]
+"111
+} 0
+"92
+[v _TMR4_StopTimer TMR4_StopTimer `(v  1 e 1 0 ]
+{
+"96
 } 0
 "117 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_ISR TMR2_ISR `(v  1 e 1 0 ]

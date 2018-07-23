@@ -7806,12 +7806,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 "76
 [v _i2c1_driver_i2cISR `*F8234 ~T0 @X0 1 e ]
 [; ;i2c1_driver.h: 76: void (*i2c1_driver_i2cISR)(void);
-[; ;memory.h: 98: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 127: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-[; ;memory.h: 163: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-[; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
-[; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-[; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+"56 mcc_generated_files/tmr4.h
+[v _interpulseWait `i ~T0 @X0 1 e ]
+[i _interpulseWait
+-> 0 `i
+]
+[; ;tmr4.h: 56: int interpulseWait = 0;
+[; ;tmr4.h: 104: void TMR4_Initialize(void);
+[; ;tmr4.h: 133: void TMR4_StartTimer(void);
+[; ;tmr4.h: 165: void TMR4_StopTimer(void);
+[; ;tmr4.h: 200: uint8_t TMR4_ReadTimer(void);
+[; ;tmr4.h: 239: void TMR4_WriteTimer(uint8_t timerVal);
+[; ;tmr4.h: 291: void TMR4_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr4.h: 309: void TMR4_ISR(void);
+[; ;tmr4.h: 327: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr4.h: 345: extern void (*TMR4_InterruptHandler)(void);
+[; ;tmr4.h: 363: void TMR4_DefaultInterruptHandler(void);
 [; ;tmr2.h: 104: void TMR2_Initialize(void);
 [; ;tmr2.h: 133: void TMR2_StartTimer(void);
 [; ;tmr2.h: 165: void TMR2_StopTimer(void);
@@ -7832,6 +7842,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 312: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr0.h: 330: extern void (*TMR0_InterruptHandler)(void);
 [; ;tmr0.h: 348: void TMR0_DefaultInterruptHandler(void);
+[; ;memory.h: 98: uint16_t FLASH_ReadWord(uint16_t flashAddr);
+[; ;memory.h: 127: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 163: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+[; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;eusart.h: 76: extern volatile uint8_t eusartTxBufferRemaining;
 [; ;eusart.h: 77: extern volatile uint8_t eusartRxCount;
 [; ;eusart.h: 103: void EUSART_Initialize(void);
@@ -7874,10 +7890,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;i2c_master.h: 50: void i2c_setTimeOutCallback(i2c_callback cb, void *p);
 [; ;i2c_master.h: 53: void i2c_ISR(void);
 [; ;i2c_master.h: 54: void i2c_busCollisionISR(void);
-[; ;mcc.h: 74: void SYSTEM_Initialize(void);
-[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 100: void WDT_Initialize(void);
-[; ;mcc.h: 112: void PMD_Initialize(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
+[; ;mcc.h: 113: void PMD_Initialize(void);
 "6 LEDcomm.c
 [v _LEDsOn `(v ~T0 @X0 1 ef2`ul`i ]
 {

@@ -7797,12 +7797,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 "76
 [v _i2c1_driver_i2cISR `*F8250 ~T0 @X0 1 e ]
 [; ;i2c1_driver.h: 76: void (*i2c1_driver_i2cISR)(void);
-[; ;memory.h: 98: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 127: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-[; ;memory.h: 163: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-[; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
-[; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
-[; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
+"56 mcc_generated_files/tmr4.h
+[v _interpulseWait `i ~T0 @X0 1 e ]
+[i _interpulseWait
+-> 0 `i
+]
+[; ;tmr4.h: 56: int interpulseWait = 0;
+[; ;tmr4.h: 104: void TMR4_Initialize(void);
+[; ;tmr4.h: 133: void TMR4_StartTimer(void);
+[; ;tmr4.h: 165: void TMR4_StopTimer(void);
+[; ;tmr4.h: 200: uint8_t TMR4_ReadTimer(void);
+[; ;tmr4.h: 239: void TMR4_WriteTimer(uint8_t timerVal);
+[; ;tmr4.h: 291: void TMR4_LoadPeriodRegister(uint8_t periodVal);
+[; ;tmr4.h: 309: void TMR4_ISR(void);
+[; ;tmr4.h: 327: void TMR4_SetInterruptHandler(void (* InterruptHandler)(void));
+[; ;tmr4.h: 345: extern void (*TMR4_InterruptHandler)(void);
+[; ;tmr4.h: 363: void TMR4_DefaultInterruptHandler(void);
 "24 mcc_generated_files/LEDcomm.h
 [v _second_top `ul ~T0 @X0 1 e ]
 [; ;LEDcomm.h: 24: unsigned long second_top;
@@ -7854,6 +7864,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 312: void TMR0_SetInterruptHandler(void (* InterruptHandler)(void));
 [; ;tmr0.h: 330: extern void (*TMR0_InterruptHandler)(void);
 [; ;tmr0.h: 348: void TMR0_DefaultInterruptHandler(void);
+[; ;memory.h: 98: uint16_t FLASH_ReadWord(uint16_t flashAddr);
+[; ;memory.h: 127: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 163: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+[; ;memory.h: 188: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 221: void DATAEE_WriteByte(uint16_t bAdd, uint8_t bData);
+[; ;memory.h: 247: uint8_t DATAEE_ReadByte(uint16_t bAdd);
 [; ;eusart.h: 76: extern volatile uint8_t eusartTxBufferRemaining;
 [; ;eusart.h: 77: extern volatile uint8_t eusartRxCount;
 [; ;eusart.h: 103: void EUSART_Initialize(void);
@@ -7861,10 +7877,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 143: void EUSART_Write(uint8_t txData);
 [; ;eusart.h: 164: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 185: void EUSART_Receive_ISR(void);
-[; ;mcc.h: 74: void SYSTEM_Initialize(void);
-[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;mcc.h: 100: void WDT_Initialize(void);
-[; ;mcc.h: 112: void PMD_Initialize(void);
+[; ;mcc.h: 75: void SYSTEM_Initialize(void);
+[; ;mcc.h: 88: void OSCILLATOR_Initialize(void);
+[; ;mcc.h: 101: void WDT_Initialize(void);
+[; ;mcc.h: 113: void PMD_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -8629,34 +8645,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;drv2665.c: 155: drv_fifo_upstroke[i] = (char)round(i*maxVal/40);
 "155
 [e = *U + &U _drv_fifo_upstroke * -> -> _i `ui `ux -> -> # *U &U _drv_fifo_upstroke `ui `ux -> ( _round (1 -> / * _i _maxVal -> 40 `i `d `uc ]
-[; ;drv2665.c: 156: printf("%i\n", drv_fifo_upstroke[i]);
 "156
-[e ( _printf , (. :s 5C -> *U + &U _drv_fifo_upstroke * -> -> _i `ui `ux -> -> # *U &U _drv_fifo_upstroke `ui `ux `i ]
-"157
 }
 "154
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 40 `i 996  ]
 [e :U 997 ]
-"157
+"156
 }
-[; ;drv2665.c: 157: }
-[; ;drv2665.c: 158: };
-"158
+[; ;drv2665.c: 156: }
+[; ;drv2665.c: 157: };
+"157
 [e :UE 995 ]
 }
-"160
+"159
 [v _calcDownstroke `(v ~T0 @X0 1 ef1`i ]
 {
-[; ;drv2665.c: 160: void calcDownstroke(int maxVal){
+[; ;drv2665.c: 159: void calcDownstroke(int maxVal){
 [e :U _calcDownstroke ]
 [v _maxVal `i ~T0 @X0 1 r1 ]
 [f ]
-[; ;drv2665.c: 161: drv_fifo_downstroke[0] = 0x0b;
-"161
+[; ;drv2665.c: 160: drv_fifo_downstroke[0] = 0x0b;
+"160
 [e = *U + &U _drv_fifo_downstroke * -> -> -> 0 `i `ui `ux -> -> # *U &U _drv_fifo_downstroke `ui `ux -> -> 11 `i `uc ]
-[; ;drv2665.c: 162: for(int i = 1; i < 40; i++){
-"162
+[; ;drv2665.c: 161: for(int i = 1; i < 40; i++){
+"161
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 1 `i ]
@@ -8664,28 +8677,23 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $U 1001  ]
 [e :U 1000 ]
 {
-[; ;drv2665.c: 163: drv_fifo_downstroke[i] = (char)(maxVal - round(i*maxVal/40));
-"163
-[e = *U + &U _drv_fifo_downstroke * -> -> _i `ui `ux -> -> # *U &U _drv_fifo_downstroke `ui `ux -> - -> _maxVal `d ( _round (1 -> / * _i _maxVal -> 40 `i `d `uc ]
-[; ;drv2665.c: 164: printf("%i\n", drv_fifo_downstroke[i]);
-"164
-[e ( _printf , (. :s 6C -> *U + &U _drv_fifo_downstroke * -> -> _i `ui `ux -> -> # *U &U _drv_fifo_downstroke `ui `ux `i ]
-"165
-}
+[; ;drv2665.c: 162: drv_fifo_downstroke[i] = (char)(maxVal - round(i*maxVal/40));
 "162
+[e = *U + &U _drv_fifo_downstroke * -> -> _i `ui `ux -> -> # *U &U _drv_fifo_downstroke `ui `ux -> - -> _maxVal `d ( _round (1 -> / * _i _maxVal -> 40 `i `d `uc ]
+"163
+}
+"161
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 40 `i 1000  ]
 [e :U 1001 ]
-"165
+"163
 }
-[; ;drv2665.c: 165: }
-[; ;drv2665.c: 166: };
-"166
+[; ;drv2665.c: 163: }
+[; ;drv2665.c: 164: };
+"164
 [e :UE 999 ]
 }
-[p f _printf 8388736 ]
-[a 5C 37 105 10 0 ]
-[a 6C 37 105 10 0 ]
+[p f _printf 8388608 ]
 [a 1C 100 114 118 32 105 110 105 116 105 97 108 105 122 101 100 10 0 ]
 [a 2C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]
 [a 3C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]
