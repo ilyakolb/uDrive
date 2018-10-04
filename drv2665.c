@@ -19,7 +19,7 @@ void drv_init(int output_gain, int idle_timeout){
     __delay_ms(10);
     calcUpstroke(drv_peak_val);
     calcDownstroke(drv_peak_val);
-    printf("drv initialized\n");
+    //printf("drv initialized\n");
 }
 
 void drv_reset(void){

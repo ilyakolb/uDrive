@@ -10651,7 +10651,7 @@ drv_write(0x02, idle_timeout);
 _delay((unsigned long)((10)*(1000000/4000.0)));
 calcUpstroke(drv_peak_val);
 calcDownstroke(drv_peak_val);
-printf("drv initialized\n");
+
 }
 
 void drv_reset(void){

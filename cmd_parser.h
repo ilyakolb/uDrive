@@ -41,7 +41,7 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s);
  * MOVEMENT
  */
 int doMove(void);
-int startRelMove(int steps);
+int startRelMove(int steps, int verbose);
 int startAbsMove(int steps);
 int stop(void);
 int zeroPosition(void);

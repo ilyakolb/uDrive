@@ -7,7 +7,7 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s){
     for (char *p = strtok(cmdString," "); p != NULL; p = strtok(NULL, " ")){
         
         if (paramIter == 0){
-            if(stricmp(p, "rel") == 0) // syntax: rel 100 (rel move)
+            if(stricmp(p, "rel") == 0) // syntax: rel 100 1 (rel move 100 steps, verbose)
                 s->c = CMD_REL;
             else if(stricmp(p, "abs") == 0) // syntax: abs 100 (abs move)
                 s->c = CMD_ABS;
@@ -78,7 +78,7 @@ int execCmd (struct CMD_STRUCT *s){
     errorOut = 1; // by default, return error (1)
     
     switch(s->c){
-        case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+        case CMD_REL: errorOut = startRelMove(s->p1.paramI, s->p2.paramI); break;
         case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
         case CMD_P: errorOut = getPosition(s->p1.paramI); break;
         case CMD_STOP: errorOut = stop(); break;

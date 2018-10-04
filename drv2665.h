@@ -53,7 +53,7 @@
  
 #define DCONTIME_MS                 5 // time between commands when sending out DC pulses
 
-#define STROKELENGTH    40
+#define STROKELENGTH    40// original! : 40
 
 const i2c_address_t drv_address = 0x59;
 

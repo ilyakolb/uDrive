@@ -20,14 +20,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _calcUpstroke `(v ~T0 @X0 0 ef1`i ]
 "73
 [v _calcDownstroke `(v ~T0 @X0 0 ef1`i ]
-"195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "36 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _sin `(d ~T0 @X0 0 ef1`d ]
 "43 mcc_generated_files/drivers/i2c_master.h
 [v _i2c_setBuffer `(v ~T0 @X0 0 ef2`*v`ui ]
 "38
 [v _i2c_masterOperation `(E92 ~T0 @X0 0 ef1`uc ]
+"195 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
 "55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\math.h
 [v _round `(d ~T0 @X0 0 ef1`d ]
 [; ;stdbool.h: 12: typedef unsigned char bool;
@@ -8317,9 +8317,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;drv2665.c: 21: calcDownstroke(drv_peak_val);
 "21
 [e ( _calcDownstroke (1 _drv_peak_val ]
-[; ;drv2665.c: 22: printf("drv initialized\n");
-"22
-[e ( _printf :s 1C ]
 [; ;drv2665.c: 23: }
 "23
 [e :UE 961 ]
@@ -8489,7 +8486,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! != -> ( _i2c_masterOperation (1 -> -> 0 `i `uc `i -> . `E92 0 `i 982  ]
 [; ;drv2665.c: 72: printf("drv_write error!\n");
 "72
-[e ( _printf :s 2C ]
+[e ( _printf :s 1C ]
 [e :U 982 ]
 [; ;drv2665.c: 75: }
 "75
@@ -8542,7 +8539,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! != -> ( _i2c_masterOperation (1 -> -> 0 `i `uc `i -> . `E92 0 `i 987  ]
 [; ;drv2665.c: 94: printf("drv_write error!\n");
 "94
-[e ( _printf :s 3C ]
+[e ( _printf :s 2C ]
 [e :U 987 ]
 [; ;drv2665.c: 97: _delay((unsigned long)((100)*(1000000/4000000.0)));
 "97
@@ -8555,7 +8552,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! != -> ( _i2c_masterOperation (1 -> -> 1 `i `uc `i -> . `E92 0 `i 988  ]
 [; ;drv2665.c: 103: printf("drv_read error!\n");
 "103
-[e ( _printf :s 4C ]
+[e ( _printf :s 3C ]
 [e :U 988 ]
 [; ;drv2665.c: 105: return buff;
 "105
@@ -8694,7 +8691,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 999 ]
 }
 [p f _printf 8388608 ]
-[a 1C 100 114 118 32 105 110 105 116 105 97 108 105 122 101 100 10 0 ]
+[a 1C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]
 [a 2C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]
-[a 3C 100 114 118 95 119 114 105 116 101 32 101 114 114 111 114 33 10 0 ]
-[a 4C 100 114 118 95 114 101 97 100 32 101 114 114 111 114 33 10 0 ]
+[a 3C 100 114 118 95 114 101 97 100 32 101 114 114 111 114 33 10 0 ]

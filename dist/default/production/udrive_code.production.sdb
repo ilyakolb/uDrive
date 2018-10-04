@@ -51,7 +51,7 @@ i2c_restart_write 3
 i2c_continue 4
 i2c_reset_link 5
 ]
-"87 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"85 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [e E8611 . `uc
 CMD_NONE 0
 CMD_ABS 1
@@ -80,8 +80,8 @@ CMD_DOMOVE 23
 CMD_COMM_CHECK 24
 CMD_PING 25
 ]
-"116
-[e E8818 moveType `uc
+"114
+[e E8819 moveType `uc
 NONE 0
 REL_MOVE 1
 ABS_MOVE 2
@@ -229,61 +229,61 @@ CMD_PING 25
 [v _LED_getData LED_getData `(l  1 e 4 0 ]
 "158
 [v _LED_testComm LED_testComm `(i  1 e 2 0 ]
-"133 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"131 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _main main `(v  1 e 1 0 ]
-"194
+"192
 [v _main_initialize main_initialize `(v  1 e 1 0 ]
-"244
+"212
 [v _doMove doMove `(i  1 e 2 0 ]
-"275
+"239
 [v _calcHeaterPins calcHeaterPins `(v  1 e 1 0 ]
-"297
+"261
 [v _startRelMove startRelMove `(i  1 e 2 0 ]
-"303
+"270
 [v _startAbsMove startAbsMove `(i  1 e 2 0 ]
-"311
+"278
 [v _stop stop `(i  1 e 2 0 ]
-"321
+"288
 [v _doAbsMove doAbsMove `(v  1 e 1 0 ]
-"353
+"321
 [v _doRelMove doRelMove `(v  1 e 1 0 ]
-"388
+"360
 [v _zeroPosition zeroPosition `(i  1 e 2 0 ]
-"398
+"370
 [v _getPosition getPosition `(i  1 e 2 0 ]
-"409
+"381
 [v _setDrvPeak setDrvPeak `(i  1 e 2 0 ]
-"418
+"390
 [v _setDrvGain setDrvGain `(i  1 e 2 0 ]
-"432
+"404
 [v _setDrvPiezoOnTime setDrvPiezoOnTime `(i  1 e 2 0 ]
-"443
+"415
 [v _setHeaterPreTime setHeaterPreTime `(i  1 e 2 0 ]
-"449
+"421
 [v _setHeaterPostTime setHeaterPostTime `(i  1 e 2 0 ]
-"457
+"429
 [v _setH1OffTime setH1OffTime `(i  1 e 2 0 ]
-"464
+"436
 [v _setH2OnTime setH2OnTime `(i  1 e 2 0 ]
-"473
+"445
 [v _setLEDBrightnessRange setLEDBrightnessRange `(i  1 e 2 0 ]
-"481
+"453
 [v _setLEDPwr setLEDPwr `(i  1 e 2 0 ]
-"490
+"462
 [v _setHeaterToggle setHeaterToggle `(i  1 e 2 0 ]
-"508
+"480
 [v _timedActiveHeatOn timedActiveHeatOn `(i  1 e 2 0 ]
-"535
+"507
 [v _setActive setActive `(i  1 e 2 0 ]
-"550
+"522
 [v _setMoveMask setMoveMask `(i  1 e 2 0 ]
-"567
+"539
 [v _getActive getActive `(i  1 e 2 0 ]
-"575
+"547
 [v _getMoveMask getMoveMask `(i  1 e 2 0 ]
-"582
+"554
 [v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
-"590
+"563
 [v _commCheck commCheck `(i  1 e 2 0 ]
 "116 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/drivers/i2c_master.c
 [v _i2c_open i2c_open `(E8193  1 e 1 0 ]
@@ -904,42 +904,44 @@ CMD_PING 25
 [v _heater_pre_time_ms heater_pre_time_ms `i  1 e 2 0 ]
 "74
 [v _heater_post_time_ms heater_post_time_ms `i  1 e 2 0 ]
-"78
+"76
 [v _piezo_on_time_ms piezo_on_time_ms `i  1 e 2 0 ]
-"79
+"77
 [v _LEDpower LEDpower `DCi  1 e 2 0 ]
-"84
+"82
 [v _readdata readdata `[20]uc  1 e 20 0 ]
-"85
+"83
 [v _cmdRead cmdRead `i  1 e 2 0 ]
-"86
+"84
 [v _readIdx readIdx `i  1 e 2 0 ]
 [u S1481 . 10 `[10]uc 1 paramString 10 0 `i 1 paramI 2 0 `ul 1 paramL 4 0 ]
-"87
+"85
 [s S1485 CMD_STRUCT 21 `E8611 1 c 1 0 `S1481 1 p1 10 1 `S1481 1 p2 10 11 ]
 [v _cmd_struct cmd_struct `S1485  1 e 21 0 ]
-"92
+"90
 [v _demoLong demoLong `ul  1 e 4 0 ]
-"96
+"94
 [v _moveVector_ups moveVector_ups `ul  1 e 4 0 ]
-"97
+"95
 [v _moveVector_downs moveVector_downs `ul  1 e 4 0 ]
-"104
+"102
 [v _activeMask activeMask `ul  1 e 4 0 ]
-"105
+"103
 [v _moveMask moveMask `ul  1 e 4 0 ]
-"110
+"104
+[v _verboseMove verboseMove `i  1 e 2 0 ]
+"108
 [v _demoHeaterToggle_top demoHeaterToggle_top `ul  1 e 4 0 ]
-"111
+"109
 [v _demoHeaterToggle_bot demoHeaterToggle_bot `ul  1 e 4 0 ]
-"113
+"111
 [v _currentPositions_steps currentPositions_steps `[24]l  1 e 96 @10128 ]
-"114
+"112
 [v _remainingSteps remainingSteps `l  1 e 4 0 ]
-"115
+"113
 [v _absCommand absCommand `l  1 e 4 0 ]
-"116
-[v _motionType motionType `E8818  1 e 1 0 ]
+"114
+[v _motionType motionType `E8819  1 e 1 0 ]
 [s S1001 . 30 `uc 1 busy 1 0 :1:0 
 `uc 1 inUse 1 0 :1:1 
 `uc 1 bufferFree 1 0 :1:2 
@@ -989,10 +991,10 @@ CMD_PING 25
 [v _TMR4_InterruptHandler TMR4_InterruptHandler `*.37(v  1 e 2 0 ]
 "56 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.h
 [v _interpulseWait interpulseWait `i  1 e 2 0 ]
-"133 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"131 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"191
+"189
 } 0
 "5 C:\Users\kolbi\Documents\UDRIVE\udrive_code\cmd_parser.c
 [v _parseCmd parseCmd `(v  1 e 1 0 ]
@@ -1098,10 +1100,10 @@ CMD_PING 25
 [v isdigit@c c `uc  1 a 1 18 ]
 "15
 } 0
-"194 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"192 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _main_initialize main_initialize `(v  1 e 1 0 ]
 {
-"211
+"208
 } 0
 "4 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _drv_init drv_init `(v  1 e 1 0 ]
@@ -1163,53 +1165,54 @@ CMD_PING 25
 [v execCmd@s s `*.5S1485  1 a 1 55 ]
 "121
 } 0
-"388 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"360 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _zeroPosition zeroPosition `(i  1 e 2 0 ]
 {
-"389
+"361
 [v zeroPosition@i i `i  1 a 2 41 ]
-"395
+"367
 } 0
-"508
+"480
 [v _timedActiveHeatOn timedActiveHeatOn `(i  1 e 2 0 ]
 {
-"522
+"494
 [v timedActiveHeatOn@t t `i  1 a 2 32 ]
-"508
+"480
 [v timedActiveHeatOn@onTime onTime `l  1 p 4 21 ]
 [v timedActiveHeatOn@topOrBorBoth topOrBorBoth `i  1 p 2 25 ]
-"529
+"501
 } 0
-"311
+"278
 [v _stop stop `(i  1 e 2 0 ]
 {
-"318
+"285
 } 0
-"297
+"261
 [v _startRelMove startRelMove `(i  1 e 2 0 ]
 {
-[v startRelMove@steps steps `i  1 p 2 21 ]
-"302
+[v startRelMove@steps steps `i  1 p 2 17 ]
+[v startRelMove@verbose verbose `i  1 p 2 19 ]
+"269
 } 0
-"303
+"270
 [v _startAbsMove startAbsMove `(i  1 e 2 0 ]
 {
-[v startAbsMove@steps steps `i  1 p 2 21 ]
-"308
+[v startAbsMove@steps steps `i  1 p 2 17 ]
+"275
 } 0
-"550
+"522
 [v _setMoveMask setMoveMask `(i  1 e 2 0 ]
 {
 [v setMoveMask@probeNum probeNum `i  1 p 2 21 ]
 [v setMoveMask@onOff onOff `i  1 p 2 23 ]
-"564
+"536
 } 0
-"481
+"453
 [v _setLEDPwr setLEDPwr `(i  1 e 2 0 ]
 {
 [v setLEDPwr@pwr pwr `i  1 p 2 21 ]
 [v setLEDPwr@topOrBottom topOrBottom `i  1 p 2 23 ]
-"485
+"457
 } 0
 "12 C:\Users\kolbi\Documents\UDRIVE\udrive_code\LEDcomm.c
 [v _LEDsPwr LEDsPwr `(v  1 e 1 0 ]
@@ -1221,43 +1224,43 @@ CMD_PING 25
 [v LEDsPwr@topOrBottom topOrBottom `i  1 p 2 38 ]
 "16
 } 0
-"473 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"445 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setLEDBrightnessRange setLEDBrightnessRange `(i  1 e 2 0 ]
 {
 [v setLEDBrightnessRange@r r `i  1 p 2 21 ]
 [v setLEDBrightnessRange@tOB tOB `i  1 p 2 23 ]
-"477
+"449
 } 0
-"490
+"462
 [v _setHeaterToggle setHeaterToggle `(i  1 e 2 0 ]
 {
 [v setHeaterToggle@num num `i  1 p 2 21 ]
 [v setHeaterToggle@topOrB topOrB `i  1 p 2 23 ]
-"503
+"475
 } 0
-"443
+"415
 [v _setHeaterPreTime setHeaterPreTime `(i  1 e 2 0 ]
 {
 [v setHeaterPreTime@t t `i  1 p 2 21 ]
-"448
+"420
 } 0
-"449
+"421
 [v _setHeaterPostTime setHeaterPostTime `(i  1 e 2 0 ]
 {
 [v setHeaterPostTime@t t `i  1 p 2 21 ]
-"454
+"426
 } 0
-"464
+"436
 [v _setH2OnTime setH2OnTime `(i  1 e 2 0 ]
 {
 [v setH2OnTime@t t `i  1 p 2 37 ]
-"468
+"440
 } 0
-"457
+"429
 [v _setH1OffTime setH1OffTime `(i  1 e 2 0 ]
 {
 [v setH1OffTime@t t `i  1 p 2 37 ]
-"461
+"433
 } 0
 "112 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr2.c
 [v _TMR2_LoadPeriodRegister TMR2_LoadPeriodRegister `(v  1 e 1 0 ]
@@ -1268,11 +1271,11 @@ CMD_PING 25
 [v TMR2_LoadPeriodRegister@periodVal periodVal `uc  1 a 1 17 ]
 "115
 } 0
-"432 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"404 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setDrvPiezoOnTime setDrvPiezoOnTime `(i  1 e 2 0 ]
 {
 [v setDrvPiezoOnTime@t t `i  1 p 2 37 ]
-"437
+"409
 } 0
 "62 C:\Program Files (x86)\Microchip\xc8\v1.45\sources\common\ftmul.c
 [v ___ftmul __ftmul `(f  1 e 3 0 ]
@@ -1297,11 +1300,11 @@ CMD_PING 25
 [v TMR0_Load8bitPeriod@periodVal periodVal `uc  1 a 1 17 ]
 "117
 } 0
-"409 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"381 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setDrvPeak setDrvPeak `(i  1 e 2 0 ]
 {
 [v setDrvPeak@pk pk `i  1 p 2 53 ]
-"415
+"387
 } 0
 "151 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _calcUpstroke calcUpstroke `(v  1 e 1 0 ]
@@ -1415,51 +1418,46 @@ CMD_PING 25
 [v ___ftpack@sign sign `uc  1 p 1 21 ]
 "86
 } 0
-"418 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"390 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _setDrvGain setDrvGain `(i  1 e 2 0 ]
 {
-"419
+"391
 [v setDrvGain@setGain setGain `i  1 a 2 24 ]
-"418
+"390
 [v setDrvGain@gain gain `i  1 p 2 21 ]
-"430
+"402
 } 0
-"535
+"507
 [v _setActive setActive `(i  1 e 2 0 ]
 {
 [v setActive@probeNum probeNum `i  1 p 2 21 ]
 [v setActive@onOff onOff `i  1 p 2 23 ]
-"548
+"520
 } 0
-"398
+"370
 [v _getPosition getPosition `(i  1 e 2 0 ]
 {
 [v getPosition@a a `i  1 p 2 21 ]
-"406
+"378
 } 0
-"575
+"547
 [v _getMoveMask getMoveMask `(i  1 e 2 0 ]
 {
-"576
+"548
 [v getMoveMask@i i `i  1 a 2 23 ]
-"581
+"553
 } 0
-"582
-[v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
-{
-"588
-} 0
-"567
+"539
 [v _getActive getActive `(i  1 e 2 0 ]
 {
-"568
+"540
 [v getActive@i i `i  1 a 2 23 ]
-"573
+"545
 } 0
-"590
+"563
 [v _commCheck commCheck `(i  1 e 2 0 ]
 {
-"624
+"597
 } 0
 "87 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _drv_read drv_read `(i  1 e 2 0 ]
@@ -1521,34 +1519,39 @@ CMD_PING 25
 [v LED_getData@topOrBottom topOrBottom `i  1 p 2 21 ]
 "153
 } 0
-"353 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"321 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _doRelMove doRelMove `(v  1 e 1 0 ]
 {
-"361
+"330
 [v doRelMove@j j `i  1 a 2 51 ]
-"385
+"357
 } 0
-"321
+"554
+[v _getMotionStatus getMotionStatus `(i  1 e 2 0 ]
+{
+"561
+} 0
+"288
 [v _doAbsMove doAbsMove `(v  1 e 1 0 ]
 {
-"346
-[v doAbsMove@i_1678 i `i  1 a 2 39 ]
-"338
-[v doAbsMove@i_1676 i `i  1 a 2 41 ]
-"325
+"314
+[v doAbsMove@i_1679 i `i  1 a 2 39 ]
+"306
+[v doAbsMove@i_1677 i `i  1 a 2 41 ]
+"292
 [v doAbsMove@i i `i  1 a 2 37 ]
-"324
+"291
 [v doAbsMove@allThere allThere `i  1 a 2 35 ]
-"350
+"318
 } 0
-"244
+"212
 [v _doMove doMove `(i  1 e 2 0 ]
 {
-"259
-[v doMove@t_1660 t `i  1 a 2 33 ]
-"252
+"227
+[v doMove@t_1662 t `i  1 a 2 33 ]
+"220
 [v doMove@t t `i  1 a 2 31 ]
-"272
+"236
 } 0
 "77 C:\Users\kolbi\Documents\UDRIVE\udrive_code\drv2665.c
 [v _drv_write_wvfrm drv_write_wvfrm `(v  1 e 1 0 ]
@@ -1847,10 +1850,10 @@ CMD_PING 25
 [v ___awdiv@dividend dividend `i  1 p 2 25 ]
 "42
 } 0
-"275 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
+"239 C:\Users\kolbi\Documents\UDRIVE\udrive_code\main.c
 [v _calcHeaterPins calcHeaterPins `(v  1 e 1 0 ]
 {
-"280
+"244
 } 0
 "86 C:\Users\kolbi\Documents\UDRIVE\udrive_code\mcc_generated_files/tmr4.c
 [v _TMR4_StartTimer TMR4_StartTimer `(v  1 e 1 0 ]

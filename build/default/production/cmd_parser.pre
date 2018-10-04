@@ -204,7 +204,7 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 
 # 43
 int doMove(void);
-int startRelMove(int steps);
+int startRelMove(int steps, int verbose);
 int startAbsMove(int steps);
 int stop(void);
 int zeroPosition(void);
@@ -310,7 +310,7 @@ int execCmd (struct CMD_STRUCT *s){
 errorOut = 1;
 
 switch(s->c){
-case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+case CMD_REL: errorOut = startRelMove(s->p1.paramI, s->p2.paramI); break;
 case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
 case CMD_P: errorOut = getPosition(s->p1.paramI); break;
 case CMD_STOP: errorOut = stop(); break;

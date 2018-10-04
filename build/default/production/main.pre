@@ -10649,7 +10649,7 @@ void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 
 # 43
 int doMove(void);
-int startRelMove(int steps);
+int startRelMove(int steps, int verbose);
 int startAbsMove(int steps);
 int stop(void);
 int zeroPosition(void);
@@ -10767,19 +10767,17 @@ const float TMR2_RANGE = 255/(163.84-0.64);
 
 int heater_pre_time_ms = 30;
 int heater_post_time_ms = 40;
-long inter_step_interval_ms = 1000;
-
 
 int piezo_on_time_ms = 960;
 const int LEDpower = 63;
 
-# 84
+# 82
 char readdata[20];
 int cmdRead = 0;
 int readIdx = 0;
 struct CMD_STRUCT cmd_struct={0,0,0};
 
-# 92
+# 90
 unsigned long demoLong = 0x0001;
 
 
@@ -10787,11 +10785,12 @@ unsigned long demoLong = 0x0001;
 unsigned long moveVector_ups = 0;
 unsigned long moveVector_downs = 0;
 
-# 104
+# 102
 unsigned long activeMask=0x00;
 unsigned long moveMask=0x00;
+int verboseMove = 0;
 
-# 110
+# 108
 unsigned long demoHeaterToggle_top = 0;
 unsigned long demoHeaterToggle_bot = 0;
 
@@ -10800,28 +10799,27 @@ signed long remainingSteps=0;
 signed long absCommand = 0;
 enum moveType{NONE, REL_MOVE, ABS_MOVE} motionType = NONE;
 
-# 122
+# 120
 void doAbsMove(void);
 void doRelMove(void);
 void main_initialize(void);
 void calcHeaterPins(void);
 void demoSequence(void);
 
-# 133
+# 131
 void main(void)
 {
 
 SYSTEM_Initialize();
 _delay((unsigned long)((500)*(1000000/4000.0)));
 
-# 143
+# 141
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
-printf("\n\nsystem done\n");
 
-# 153
+# 151
 main_initialize();
 
 while (1)
@@ -10877,12 +10875,12 @@ TMR2_LoadPeriodRegister((heater_pre_time_ms*TMR2_RANGE)-1);
 TMR0_Load8bitPeriod(((piezo_on_time_ms)*TMR0_RANGE)-1);
 
 
-
 drv_init(0x03, 0x0c);
-printf("initialized\n");
+
 }
 
-# 244
+
+
 int doMove(void){
 
 calcHeaterPins();
@@ -10902,12 +10900,8 @@ for(int t=0; t<heater_post_time_ms; t++) _delay((unsigned long)((1)*(1000000/400
 
 do { LATCbits.LATC1 = 1; } while(0);
 
-
-
 TMR4_StartTimer();
 interpulseWait = 1;
-printf("domove\n");
-
 return 0;
 
 
@@ -10936,16 +10930,19 @@ else demoLong <<= 1;
 }
 
 
-int startRelMove(int steps){
+int startRelMove(int steps, int verbose){
 motionType = REL_MOVE;
 remainingSteps = steps;
-printf("A\n");
+
+
+verboseMove = verbose;
+
 return 0;
 }
 int startAbsMove(int steps){
 motionType = ABS_MOVE;
 absCommand = steps;
-printf("A\n");
+
 return 0;
 }
 
@@ -10974,6 +10971,7 @@ printf("abs: all there\n");
 motionType = NONE;
 moveVector_ups = 0;
 moveVector_downs = 0;
+printf("A\n");
 return;
 }
 else{
@@ -10997,6 +10995,7 @@ if(remainingSteps == 0){
 motionType = NONE;
 moveVector_ups = 0;
 moveVector_downs = 0;
+printf("A\n");
 return;
 }
 else{
@@ -11024,6 +11023,9 @@ currentPositions_steps[j] -= (activeMask & (1UL<<j) > 0);
 
 }
 }
+
+if(verboseMove)
+getMotionStatus();
 }
 
 
@@ -11078,7 +11080,7 @@ printf("A\n");
 return 0;
 };
 
-# 443
+# 415
 int setHeaterPreTime(int t){
 heater_pre_time_ms = t;
 
@@ -11145,7 +11147,7 @@ return 0;
 
 
 int timedActiveHeatOn(long onTime, int topOrBorBoth){
-_delay((unsigned long)((2000)*(1000000/4000.0)));
+
 do { LATCbits.LATC1 = 0; } while(0);
 if(topOrBorBoth == 1){
 LEDsOn(activeMask, 1);
@@ -11167,7 +11169,7 @@ return 0;
 
 };
 
-# 535
+# 507
 int setActive(int probeNum, int onOff){
 
 
@@ -11221,6 +11223,7 @@ case REL_MOVE: printf("R\n"); break;
 case ABS_MOVE: printf("A\n"); break;
 default: printf("N\n"); break;
 }
+return 0;
 };
 
 int commCheck(void){

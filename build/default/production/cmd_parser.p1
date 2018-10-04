@@ -15,7 +15,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "55 C:\Program Files (x86)\Microchip\xc8\v1.45\include\stdlib.h
 [v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "44 cmd_parser.h
-[v _startRelMove `(i ~T0 @X0 0 ef1`i ]
+[v _startRelMove `(i ~T0 @X0 0 ef2`i`i ]
 "45
 [v _startAbsMove `(i ~T0 @X0 0 ef1`i ]
 "48
@@ -195,7 +195,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;cmd_parser.h: 37: int execCmd (struct CMD_STRUCT *s);
 [; ;cmd_parser.h: 38: void parseCmd(char cmdString[], struct CMD_STRUCT *s);
 [; ;cmd_parser.h: 43: int doMove(void);
-[; ;cmd_parser.h: 44: int startRelMove(int steps);
+[; ;cmd_parser.h: 44: int startRelMove(int steps, int verbose);
 [; ;cmd_parser.h: 45: int startAbsMove(int steps);
 [; ;cmd_parser.h: 46: int stop(void);
 [; ;cmd_parser.h: 47: int zeroPosition(void);
@@ -532,10 +532,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "80
 [e $U 69  ]
 {
-[; ;cmd_parser.c: 81: case CMD_REL: errorOut = startRelMove(s->p1.paramI); break;
+[; ;cmd_parser.c: 81: case CMD_REL: errorOut = startRelMove(s->p1.paramI, s->p2.paramI); break;
 "81
 [e :U 70 ]
-[e = _errorOut ( _startRelMove (1 . . *U _s 1 1 ]
+[e = _errorOut ( _startRelMove (2 , . . *U _s 1 1 . . *U _s 2 1 ]
 [e $U 68  ]
 [; ;cmd_parser.c: 82: case CMD_ABS: errorOut = startAbsMove(s->p1.paramI); break;
 "82

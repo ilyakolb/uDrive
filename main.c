@@ -72,8 +72,6 @@ const float TMR2_RANGE = 255/(163.84-0.64);
 #define TOTALNUMCHANS 24 // max number of channels
 int heater_pre_time_ms = 30; // (default) milliseconds
 int heater_post_time_ms = 40; // (default) milliseconds
-long inter_step_interval_ms = 1000;
-
 
 int piezo_on_time_ms = 960;
 const int LEDpower = 63;
@@ -103,7 +101,7 @@ unsigned long moveVector_downs = 0;//0b01000000010000000100000000000000;
 
 unsigned long activeMask=0x00;//0x80808100; // currently active actuators. activeMask must be a SUBSET of moveMask!!
 unsigned long moveMask=0x00; // actuators that should move
-
+int verboseMove = 0; // set to 1 to return motion status (moving or not) on every step
 /*
  * demo mode constants for toggling individual LEDs on/off
  */
@@ -144,7 +142,7 @@ void main(void)
 
     // Enable the Peripheral Interrupts
     INTERRUPT_PeripheralInterruptEnable();
-    printf("\n\nsystem done\n");
+    //printf("\n\nsystem done\n");
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
 
@@ -203,43 +201,13 @@ void main_initialize(void){
     // timers
     TMR2_LoadPeriodRegister((heater_pre_time_ms*TMR2_RANGE)-1); // delay 1
     TMR0_Load8bitPeriod(((piezo_on_time_ms)*TMR0_RANGE)-1); // delay 2
-    //TMR4_LoadPeriodRegister(0xF3); 
     
     // piezo driver
     drv_init(DRV2665_100_VPP_GAIN, DRV2665_20_MS_IDLE_TOUT);
-    printf("initialized\n");
+    //printf("initialized\n");
 }
 
 
-
-// DEMO FUNCTIONS!
-/*
-void doAbsMove(void){};
-void doRelMove(void){};
-int startRelMove(int steps){return 0;};
-int startAbsMove(int steps){return 0;};
-int stop(void){return 0;};
-int zeroPosition(void){return 0;};
-int getPosition(void){return 0;};
-
-int setDrvPeak(int){return 0;};
-int setDrvGain(int){return 0;};
-int setDrvPiezoOnTime(int){return 0;};
-
-int setHeaterPreTime(int){return 0;};
-int setHeaterPostTime(int){return 0;};
-int setLEDBrightnessRange(int gain, int topOrBottom){return 0;};
-int setLEDPwr(int pwr, int topOrBottom){return 0;};
-int setHeaterToggle(int num, int topOrB){return 0;};
-
-int setActive(int probeNum, int onOff){return 0;};
-int setMoveMask(int probeNum, int onOff){return 0;};
-int getActive(void){return 0;};
-int getMoveMask(void){return 0;};
-int getMotionStatus(void){return 0;};
-int commCheck(void){return 0;};
-*/
-// END DEMO FUNCTIONS
 
  int doMove(void){
 
@@ -259,13 +227,9 @@ int commCheck(void){return 0;};
     DELAYMSAPPROX(heater_post_time_ms);
 
     LED_ENABLE_SetHigh(); // LEDs off
-    
-    //TMR4_LoadPeriodRegister(0xF3); // reset timer
-    
+
     TMR4_StartTimer(); // delay timer
     interpulseWait = 1;
-    printf("domove\n");
-    //DELAYMSAPPROX(inter_step_interval_ms);
     return 0;
     
     
@@ -294,16 +258,19 @@ void demoSequence(void){
 }
 
 
-int startRelMove(int steps){
+int startRelMove(int steps, int verbose){
     motionType = REL_MOVE;
     remainingSteps = steps;
-    printf("A\n");
+    
+    // verboseMove = 1 means all relMoves will return motion status on every move
+    verboseMove = verbose;
+    //printf("A\n");
     return 0;
 }
 int startAbsMove(int steps){
     motionType = ABS_MOVE;
     absCommand = steps;
-    printf("A\n");
+    //printf("A\n");
     return 0;
 }
 
@@ -332,6 +299,7 @@ void doAbsMove(void){
         motionType = NONE;
         moveVector_ups = 0;
         moveVector_downs = 0;
+        printf("A\n"); // testing
         return;
     }
     else{
@@ -355,6 +323,7 @@ void doRelMove(void){
         motionType = NONE;
         moveVector_ups = 0;
         moveVector_downs = 0;
+        printf("A\n"); // testing
         return;
     }
     else{
@@ -382,6 +351,9 @@ void doRelMove(void){
             
         }
     }
+    
+    if(verboseMove)
+        getMotionStatus();
 }
 
 // zero positions of active probes
@@ -506,7 +478,7 @@ int setHeaterToggle(int num, int topOrB){
 // onTime: time for heater to be on (ms)
 // topOrB: 1:top, 2:bottom; 3: both
 int timedActiveHeatOn(long onTime, int topOrBorBoth){
-    __delay_ms(2000);
+    // got rid of delay: implement in LV if needed
     LED_ENABLE_SetLow();
     if(topOrBorBoth == 1){ // turn on top
         LEDsOn(activeMask, 1);
@@ -585,6 +557,7 @@ int getMotionStatus(void){
             case ABS_MOVE: printf("A\n"); break;
             default: printf("N\n"); break;
         }
+    return 0;
 };
 
 int commCheck(void){    
